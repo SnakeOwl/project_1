@@ -1,2 +1,4 @@
 *
+!system
+!system/*
 !.gitignore

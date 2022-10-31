@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import Button from '@/Components/Button';
-import Checkbox from '@/Components/Checkbox';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
+import BlueButton from '@/Components/Buttons/BlueButton';
+import Checkbox from '@/Components/Inputs/Checkbox';
+import MainLayout from '@/Layouts/MainLayout';
 import InputError from '@/Components/InputError';
-import Label from '@/Components/Label';
-import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import { Link, useForm } from '@inertiajs/inertia-react';
+import FloatInput from '@/Components/Inputs/FloatInput';
+import Logo from '@/Components/Logo'
 
 export default function Login({ status, canResetPassword }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, errors, reset } = useForm({
         email: '',
         password: '',
         remember: '',
@@ -31,66 +31,65 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <Guest>
-            <Head title="Log in" />
+        <MainLayout
+            title="Вход">
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+            <div className="form-signin">
+                <Logo className="d-block text-center h2 mb-2"/>
+                <p className="text-center">Пожалуйста войдите</p>
+                <form className="" onSubmit={submit}>
+                    <div className="mb-3 text-start">
+                        <FloatInput
+                            type="email"
+                            id="email"
+                            value={data.email}
+                            isFocused={true}
+                            handleChange={onHandleChange}
+                            labelText="email"
+                        />
 
-            <form onSubmit={submit}>
-                <div>
-                    <Label forInput="email" value="Email" />
+                        <InputError message={errors.email} className="mt-2" />
+                    </div>
 
-                    <Input
-                        type="text"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        handleChange={onHandleChange}
-                    />
+                    <div className="mb-3 text-start">
+                        <FloatInput
+                            type="password"
+                            id="password"
+                            value={data.password}
+                            className="mt-1 block w-full"
+                            handleChange={onHandleChange}
+                            labelText="Пароль"
+                        />
 
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
+                        <InputError message={errors.password} className="mt-2" />
+                    </div>
+                    <p className="text-secondary">administrator@gmail.com  |  administrator</p>
+                    <div className="d-flex justify-content-center mb-3">
+                        <Checkbox
+                            id="remember"
+                            labelText="Remember me"
+                            value={data.remember}
+                            handleChange={onHandleChange}
+                            errors={errors}
+                        />
+                    </div>
 
-                <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                    <div className="text-center">
+                        <BlueButton className="w-100 d-block mb-2">
+                            Войти
+                        </BlueButton>
 
-                    <Input
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        handleChange={onHandleChange}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
-
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <Button className="ml-4" processing={processing}>
-                        Log in
-                    </Button>
-                </div>
-            </form>
-        </Guest>
+                        {canResetPassword && (
+                            <Link
+                                href={route('password.request')}
+                            >
+                                Forgot your password?
+                            </Link>
+                        )}
+                    </div>
+                </form>
+            </div>
+        </MainLayout>
     );
 }

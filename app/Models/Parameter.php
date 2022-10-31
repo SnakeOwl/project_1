@@ -16,6 +16,7 @@ class Parameter extends Model
         'param_name',
         'param_value',
     ];
+    protected $hidden = ['id', 'item_id'];
 
     protected $table = "parameters";
 }

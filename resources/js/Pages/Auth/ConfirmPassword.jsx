@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import InputError from '@/Components/InputError';
-import Label from '@/Components/Label';
+import BlueButton from '@/Components/Buttons/BlueButton';
+import MainLayout from '@/Layouts/MainLayout';
+import StandartInput from '@/Components/Inputs/StandartInput';
 import { Head, useForm } from '@inertiajs/inertia-react';
 
 export default function ConfirmPassword() {
@@ -28,7 +26,7 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <Guest>
+        <MainLayout>
             <Head title="Confirm Password" />
 
             <div className="mb-4 text-sm text-gray-600">
@@ -36,27 +34,22 @@ export default function ConfirmPassword() {
             </div>
 
             <form onSubmit={submit}>
-                <div className="mt-4">
-                    <Label forInput="password" value="Password" />
-
-                    <Input
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        isFocused={true}
-                        handleChange={onHandleChange}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
+                <StandartInput
+                    type="password"
+                    id="password"
+                    value={data.password}
+                    errors={errors}
+                    handleChange={onHandleChange}
+                    isFocused={true}
+                    labelText="Пароль"
+                />
 
                 <div className="flex items-center justify-end mt-4">
-                    <Button className="ml-4" processing={processing}>
+                    <BlueButton processing={processing}>
                         Confirm
-                    </Button>
+                    </BlueButton>
                 </div>
             </form>
-        </Guest>
+        </MainLayout>
     );
 }

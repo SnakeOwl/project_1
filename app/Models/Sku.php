@@ -15,17 +15,21 @@ class Sku extends Model
     protected $fillable = ['item_id','count', 'price'];
     // protected $visible = ['id','count','price', 'item_name'];
     // protected $guarded = ['deleted_at', 'created_at', 'updated_at', 'item_id'];
-    protected $hidden = ['deleted_at', 'created_at', 'updated_at', 'item_id'];
+    protected $hidden = [
+        'created_at',
+        'deleted_at',
+        'updated_at',
+        'item_id'
+    ];
 
     public function get_price_for_count()
     {
         if (!is_null ($this->pivot))
-        {
             return $this->price * $this->pivot->count;
-        }
 
         return $this->price;
     }
+
 
     public function scopeAvailable($query)
     {
@@ -37,6 +41,7 @@ class Sku extends Model
         return ($this->count > 0) && !$this->item->trashed();
     }
 
+
     public function item()
     {
         return $this->belongsTo(Item::class);
@@ -46,6 +51,7 @@ class Sku extends Model
     {
         return $this->belongsToMany(PropertyOption::class, 'sku_property_option')->withTimestamps();
     }
+
 
     public function getPriceAttribute($value)
     {

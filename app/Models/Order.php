@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Services\CurrencyConverter;
 
 class Order extends Model
@@ -22,6 +23,20 @@ class Order extends Model
         'currency_id',
         'date_delivered',
     ];
+
+    protected function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => date_format(date_create($value), 'Y-m-d H:i:s'),
+        );
+    }
+    
+    protected function updatedAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => date_format(date_create($value), 'Y-m-d H:i:s'),
+        );
+    }
 
     public function currency()
     {

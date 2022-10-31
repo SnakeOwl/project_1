@@ -12,6 +12,7 @@ class PropertyOption extends Model
     use HasFactory, SoftDeletes, Translatable;
 
     protected $fillable = ['name', 'name_en', 'property_id'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     public function property()
     {

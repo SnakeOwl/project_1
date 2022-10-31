@@ -1,17 +1,19 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Storage extends Model
 {
     use HasFactory;
 
-    public function get_schedule()
+    protected function schedule(): Attribute
     {
-        return nl2br($this->schedule);
+        return Attribute::make(
+            get: fn ($value) => nl2br($value),
+        );
     }
 
     public function get_phone_link()

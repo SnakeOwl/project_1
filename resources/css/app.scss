@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('/fonts/Comfortaa-VariableFont_wght.ttf');
+}
+
+*{
+    font-family: 'Comfortaa';
+}
+
+$body_color: #fff;
+$red: #EE0000;
+$blue: #000cdd;
+$green: #45AD09; //вторичный цвет (зеленый) 6BFA19
+
+%body_box{
+    background-color: $body_color;
+    color: black;
+}
+%red_box{
+    background-color: $red;
+    color: white;
+}
+%blue_box{
+    background-color: $blue;
+    color: white;
+}
+%green_box{
+    background-color: $green;
+    color: white;
+}
+
+
+// ===== зарезервированные настройки
+.text-justify{
+    text-align: justify !important;
+}
+
+.color-red{
+    color: $red;
+}
+.color-blue{
+    color: $blue;
+}
+.color-green{
+    color: $green;
+}
+
+
+// === Кнопки
+.bttn{
+    padding: 10px 20px;
+    border: none;
+    display: inline-block;
+
+    &.red{
+        @extend %red_box;
+    }
+
+    &.blue{
+        @extend %blue_box;
+    }
+
+    &.green{
+        @extend %green_box;
+    }
+
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+        color:white;
+    }
+
+    &[disabled]{
+        background: white;
+        color: black;
+        border: 1px solid black;
+    }
+
+}
+
+
+// основные настройки
+body{
+    @extend %body_box;
+}
+.red-box{
+    @extend %red_box;
+}
+.blue-box{
+    @extend %blue_box;
+}
+.green-box{
+    @extend %green_box;
+}
+
+a{
+    text-decoration: none;
+    &:hover{
+        color: $green;
+    }
+}
+
+.form-signin{
+    width: 100%;
+    max-width: 320px;
+    padding: 15px;
+    margin: auto;
+}
+
+
+ul.list-style-inside{
+    list-style: inside;
+}
+
+.catalog{
+    .card{
+        max-height: 600px;
+
+        .img-wrapper {
+            width: auto;
+            height: 300px;
+
+            img{
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .title{
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 50px;
+        }
+
+        .text{
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 70px;
+        }
+
+        .hit-pointer{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: $red;
+        }
+
+        .new-pointer{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: $blue;
+        }
+    }
+}
+
+.catalog-show{
+    // детальная страница товара
+    .hit-pointer{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: $red;
+        z-index: 1;
+    }
+
+    .new-pointer{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: $blue;
+        z-index: 1;
+    }
+}
+
+.basket{
+    .btn-remove{
+        background-color: inherit;
+        color: $green;
+        border: none;
+    }
+
+    .btn-add{
+        background-color: inherit;
+        border: none;
+        color: $red;
+    }
+}
+
+header{
+    a{
+        color:black;
+    }
+}
+
+footer{
+    a{
+        color:white;
+    }
+}

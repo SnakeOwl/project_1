@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import BlueButton from '@/Components/Buttons/BlueButton';
+import MainLayout from '@/Layouts/MainLayout';
+import { Head, useForm } from '@inertiajs/inertia-react';
 
 export default function VerifyEmail({ status }) {
-    const { post, processing } = useForm();
+    const { post } = useForm();
 
     const submit = (e) => {
         e.preventDefault();
@@ -13,7 +13,7 @@ export default function VerifyEmail({ status }) {
     };
 
     return (
-        <Guest>
+        <MainLayout>
             <Head title="Email Verification" />
 
             <div className="mb-4 text-sm text-gray-600">
@@ -29,18 +29,18 @@ export default function VerifyEmail({ status }) {
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
-                    <Button processing={processing}>Resend Verification Email</Button>
+                    <BlueButton>Resend Verification Email</BlueButton>
 
-                    <Link
+                    <a
                         href={route('logout')}
                         method="post"
                         as="button"
                         className="underline text-sm text-gray-600 hover:text-gray-900"
                     >
                         Log Out
-                    </Link>
+                    </a>
                 </div>
             </form>
-        </Guest>
+        </MainLayout>
     );
 }

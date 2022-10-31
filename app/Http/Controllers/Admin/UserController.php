@@ -1,75 +1,52 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $users = User::paginate(25);
-        return view('admin.users.index', compact('users'));
+
+        return Inertia::render('Admin/User/Index', compact('users'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {
         $active_orders = $user->orders()->active()->paginate(25);
-        return view( 'auth.personal.user.show', compact('user', 'active_orders') );
+
+        return Inertia::render('Admin/User/Show', compact('user', 'active_orders'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
     {
-        return view( 'auth.personal.user.edit', compact('user') );
+        return Inertia::render('Admin/User/Form', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $params = $request->all();
-        if (!is_null($params['password']))
-            $params['password'] = bcrypt($params['password']);
+        $params = $request->safe()->all();
+
+        if (! $user->updatePassword($params['password']))
+        {
+            unset($params['password']);
+        }
         $user->update($params);
 
-        return redirect()->route('users.show', $user->id);
+        session()->flash('message', 'Пользователь изменен');
+
+        return redirect()->route('users.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(User $user)
     {
         $user->delete();
-        session()->flash('info', 'Пользователь удален');
+
+        session()->flash('message', 'Пользователь удален');
 
         return redirect()->route('users.index');
     }

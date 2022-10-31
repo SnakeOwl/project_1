@@ -11,7 +11,6 @@ class CatalogController extends Controller
 {
     public function getSkus()
     {
-
         return Sku::with('item')
                 ->available()
                 ->get()

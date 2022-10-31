@@ -13,7 +13,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('update-user', $this->user);
+        return $this->user()->can('update');
     }
 
     /**
@@ -26,7 +26,8 @@ class UpdateUserRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:255',
             'phone' => 'required|min:4|max:255',
-            'email' => 'required|email:rfc,dns'
+            'email' => 'required|email:rfc,dns',
+            'password' => 'nullable|min:8|max:32'
         ];
     }
 }

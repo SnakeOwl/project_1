@@ -17,7 +17,8 @@ class UserController extends Controller
     public function show(User $user)
     {
         $active_orders = $user->orders()->active()->paginate(25);
-        return view( 'auth.personal.user.show', compact('user', 'active_orders') );
+        dd("work");
+        // return view( 'auth.personal.user.show', compact('user', 'active_orders') );
     }
 
     /**
@@ -41,8 +42,10 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $params = $request->all();
-        if (!is_null($params['password']))
-            $params['password'] = bcrypt($params['password']);
+        if (! $user->updatePassword($params['password']))
+        {
+            unset($params['password']);
+        }
         $user->update($params);
 
         return redirect()->route('users.show', $user->id);
