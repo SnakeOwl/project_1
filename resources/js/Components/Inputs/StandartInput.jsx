@@ -8,7 +8,7 @@ export default function StandartInput({
     labelText,
     min,
     max,
-    minlength="1",
+    minlength="2",
     maxlength="255",
     required,
     placeholder,
@@ -47,7 +47,9 @@ export default function StandartInput({
                 accept={accept}
                 />
 
-            <InputError message={errors? errors[id]: ""} className="mt-1 text-danger" />
+                {errors &&
+                    <InputError message={errors[id]} />
+                }
         </div>
     );
 }

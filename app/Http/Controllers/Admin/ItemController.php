@@ -66,7 +66,6 @@ class ItemController extends Controller
     public function update(UpdateItemRequest $request, Item $item)
     {
         $item->customUpdate($request->safe());
-
         session()->flash('message', 'Товар изменен');
 
         return redirect()->back();

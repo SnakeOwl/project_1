@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Services\CurrencyConverter;
-
+use App\Models\Traits\Filterable;
 
 class Sku extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Filterable;
 
     protected $fillable = ['item_id','count', 'price'];
-    // protected $visible = ['id','count','price', 'item_name'];
-    // protected $guarded = ['deleted_at', 'created_at', 'updated_at', 'item_id'];
+
     protected $hidden = [
         'created_at',
         'deleted_at',
@@ -36,7 +35,7 @@ class Sku extends Model
         return $query->where('count', '>', 0);
     }
 
-    public function isAvailable()
+    public function isAvailable(): bool
     {
         return ($this->count > 0) && !$this->item->trashed();
     }
@@ -53,12 +52,12 @@ class Sku extends Model
     }
 
 
-    public function getPriceAttribute($value)
+    public function getPriceAttribute($value): float
     {
         return round(CurrencyConverter::convert($value), 2);
     }
 
-    public function getItemNameAttribute($value)
+    public function getItemNameAttribute($value): string
     {
         return $this->item->name;
     }

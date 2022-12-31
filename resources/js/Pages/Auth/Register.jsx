@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import BlueButton from '@/Components/Buttons/BlueButton';
 import MainLayout from '@/Layouts/MainLayout';
-import StandartInput from '@/Components/Inputs/StandartInput';
+import FloatInput from '@/Components/Inputs/FloatInput';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 
 export default function Register() {
@@ -33,21 +33,23 @@ export default function Register() {
             <Head title="Register" />
 
             <form className="form-signin" onSubmit={submit}>
-                <StandartInput
+                <FloatInput
                     id="name"
                     labelText="Имя"
                     value={data.name}
                     autoComplete="email"
+                    className="mb-3"
                     isFocused={true}
                     handleChange={onHandleChange}
                     errors={errors}
                     required
                 />
 
-                <StandartInput
+                <FloatInput
                     id="email"
                     labelText="Email"
                     type="email"
+                    className="mb-3"
                     value={data.email}
                     autoComplete="name"
                     handleChange={onHandleChange}
@@ -55,7 +57,7 @@ export default function Register() {
                     required
                 />
 
-                <StandartInput
+                <FloatInput
                     id="password"
                     labelText="Пароль"
                     type="password"
@@ -66,10 +68,11 @@ export default function Register() {
                     required
                 />
 
-                <StandartInput
+                <FloatInput
                     id="password_confirmation"
                     labelText="Подтвердите пароль"
                     type="password"
+                    className="mb-3"
                     value={data.password_confirmation}
                     autoComplete="off"
                     handleChange={onHandleChange}
@@ -77,13 +80,16 @@ export default function Register() {
                     required
                 />
 
+                <BlueButton className="mb-3 w-100">
+                    Регистрация
+                </BlueButton>
+
                 <div className="text-center">
                     <a href={route('login')} className="mb-3">
                         Already registered?
                     </a>
-
-                    <BlueButton>Регистрация</BlueButton>
                 </div>
+
             </form>
         </MainLayout>
     );

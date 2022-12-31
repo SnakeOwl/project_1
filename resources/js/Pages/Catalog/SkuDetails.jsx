@@ -1,15 +1,14 @@
-import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
+import RedLink from '@/Components/Links/RedLink';
 import Img from '@/Components/Img';
-import ToBasketButton from '@/Components/Catalog/ToBasketButton';
-import SubscribeForm from '@/Components/Catalog/SubscribeForm';
+import SubscribeForm from './Components/SubscribeForm';
+import CarouselWithIndicators from './Components/DetailSlider';
 
 export default function SkuDetails(props) {
     const sku = props.sku;
 
-    const skuProperties = [];
-    sku.propertyOptions.forEach( (propertyOption)=>{
-        skuProperties.push(
+    const skuProperties = sku.propertyOptions.map( (propertyOption)=>{
+        return(
             <tr>
                 <td>{propertyOption.property.name}</td>
                 <td>{propertyOption.name}</td>
@@ -17,9 +16,8 @@ export default function SkuDetails(props) {
             );
     });
 
-    const itemProperties = [];
-    sku.item.parameters.forEach((parameter) => {
-        itemProperties.push(
+    const itemProperties = sku.item.parameters.map((parameter) => {
+        return (
             <tr>
                 <td>{parameter.param_name}</td>
                 <td>{parameter.param_value}</td>
@@ -29,7 +27,13 @@ export default function SkuDetails(props) {
 
     let skuAvailable;
     if (props.skuIsAvailable){
-        skuAvailable =  <ToBasketButton className="d-inline ms-auto" />
+        skuAvailable =
+            <RedLink
+                href={route('add-sku-to-basket', sku)}
+                className=""
+            >
+                В корзину
+            </RedLink>
     }else{
         skuAvailable = <>
             <span>Товара нет в наличии</span>
@@ -43,13 +47,12 @@ export default function SkuDetails(props) {
         <MainLayout
             flash={props.flash}
             errors={props.errors}
-            title={sku.item.name + "Купить"}>
-
+            title={sku.item.name + "Купить"}
+        >
             <div className="container catalog-show">
                 <div className="row mb-4">
                     <div className="col-12 col-xl-6 mb-2">
-                        <Img className="w-100" src={sku.item.short_image} alt="short image" />
-                        <p className="text-danger">Посмотреть как юзать слайдеры, подключенные через react. Ещё к слайдеру сюда иконочки прикрутить. Чтобы как в Каталоге было</p>
+                        <CarouselWithIndicators images={sku.item.images} />
                     </div>
 
                     <div className="col-12 col-xl-6">
@@ -83,7 +86,6 @@ export default function SkuDetails(props) {
                     </div>
                 </div>
             </div>
-
         </MainLayout>
     );
 }

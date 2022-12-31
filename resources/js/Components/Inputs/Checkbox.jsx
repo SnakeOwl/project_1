@@ -3,7 +3,6 @@ import InputError from '@/Components/InputError';
 export default function Checkbox({
     id,
     name,
-    value,
     handleChange,
     labelText,
     className,
@@ -16,14 +15,13 @@ export default function Checkbox({
                 id={id}
                 type="checkbox"
                 name={name? name: id}
-                value={value}
                 className={"form-check-input " + className}
                 onChange={(e) => handleChange(e)}
                 checked={checked}
             />
-            <label htmlFor={id}>{labelText}</label>
+            <label className="form-check-label" htmlFor={id}>{labelText}</label>
 
-            <InputError message={errors[id]} className="mt-1 text-danger" />
+            {errors && <InputError message={errors[id]} />}
         </div>
 
     );

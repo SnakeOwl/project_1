@@ -1,0 +1,58 @@
+import InputError from '@/Components/InputError';
+
+/*
+    options - array with "id" and "name"
+    selectedOptionIds - one id, or array of ids
+*/
+export default function FloatSelect ({
+    id,
+    name,
+    options,
+    className,
+    labelText,
+    selectedOptionIds = null, // maybe one id
+    multiple,
+    disabled,
+    inputClassName,
+    errors,
+    handleChange,
+}){
+    const list = [];
+
+    options.forEach((option) => {
+        list.push(
+            <option
+                value={option.id}
+                selected={
+                    Array.isArray(selectedOptionIds)?
+                    selectedOptionIds.indexOf(option.id) !== -1:
+                    selectedOptionIds === option.id
+                    && "selected"
+                }
+            >
+                {option.name}
+            </option>
+        );
+    });
+
+
+    return (
+            <div className={"form-floating " + className}>
+                <select
+                    id={id}
+                    name={name? name: id}
+                    class={"form-select " + inputClassName}
+                    multiple={multiple}
+                    disabled={disabled}
+                    onChange={handleChange}
+                >
+                    {list}
+                </select>
+                <label htmlFor={id}>{labelText}</label>
+
+                {errors &&
+                    <InputError message={errors[id]} />
+                }
+            </div>
+    );
+}

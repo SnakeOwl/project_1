@@ -16,15 +16,9 @@ class OrderController extends Controller
         return view('auth.personal.orders.index', compact('orders'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Order $order)
     {
          $skus = $order->skus()->withTrashed()->get();
-         return view( 'auth.personal.orders.show', compact('order', 'skus'));
+         return view('auth.personal.orders.show', compact('order', 'skus'));
     }
 }

@@ -39,7 +39,9 @@ export default function FloatInput({
                 onChange={(e) => handleChange(e)}
             />
 
-            <InputError message={errors[id]} className="mt-1 text-danger" />
+            {errors &&
+                <InputError message={errors[id]} />
+            }
         </div>
     );
 }

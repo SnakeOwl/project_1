@@ -1,17 +1,17 @@
-import React from 'react';
+import Link from './Link';
 
 export default function RedLink({
-    className = '',
+    className='',
     href='#',
-    clickHandler,
     children,
+    disabled,
 }){
     return (
-        <a className={'bttn red' + className}
+        <a className={'bttn red ' + className}
             href={href}
-            onClick={ (e) => clickHandler(e) }
-            >
+            disabled={disabled}
+        >
             {children}
-            </a>
+        </a>
     );
 }

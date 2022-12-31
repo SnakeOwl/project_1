@@ -15,8 +15,7 @@ export default function MessageForm(props){
 
     function handleSubmit (e){
         e.preventDefault();
-
-        post(route('create-message'));
+        post(route('message-store'));
         e.target.reset();
     }
 
@@ -44,9 +43,9 @@ export default function MessageForm(props){
                                     id="name"
                                     labelText="Ваше имя"
                                     placeholder="Виктор"
-                                    required="required" />
-
-                                <InputError message={errors.name} className="mt-1" />
+                                    required="required"
+                                    errors={errors}
+                                />
                             </div>
 
                             <div className="col-12 col-lg-6">
@@ -56,8 +55,9 @@ export default function MessageForm(props){
                                     id="email"
                                     labelText="Ваш email"
                                     placeholder="myEmail@gmail.com"
-                                    required="required"/>
-                                <InputError message={errors.email} className="mt-1" />
+                                    required="required"
+                                    errors={errors}
+                                />
                             </div>
 
                         </div>
@@ -70,8 +70,10 @@ export default function MessageForm(props){
                                     id="message"
                                     labelText="Сообщение"
                                     rows="5"
-                                    required="required"/>
-                                <InputError message={errors.message} className="mt-1" />
+                                    required="required"
+                                    errors={errors}    
+                                />
+
                             </div>
                         </div>
                         <BlueButton className="w-100">Отправить</BlueButton>

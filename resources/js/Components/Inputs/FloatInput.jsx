@@ -1,3 +1,5 @@
+import InputError from '@/Components/InputError';
+
 export default function FloatInput({
     id,
     className = '',
@@ -6,21 +8,23 @@ export default function FloatInput({
     labelText,
     min,
     max,
-    minlength,
-    maxlength,
+    minlength="2",
+    maxlength="255",
     required,
     placeholder="something to work",
     disabled,
     readonly,
     value,
     autocomplete = "on",
+    inputClassName,
     isFocused,
     handleChange,
+    errors,
 }){
     return (
         <div className={"form-floating " + className}>
             <input
-                className="form-control"
+                className={"form-control " + inputClassName}
                 id={id}
                 type={type}
                 name={name? name: id}
@@ -39,6 +43,9 @@ export default function FloatInput({
                 />
 
             <label htmlFor={id}>{labelText}</label>
+            {errors &&
+                <InputError message={errors[id]} />
+            }
         </div>
     );
 }

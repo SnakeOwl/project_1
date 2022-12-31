@@ -15,7 +15,7 @@ class BasketIsNotEmpty
             return $next($request);
 
         session()->forget('order');
-        session()->flash('info', __('info.your basket is empty'));
+        session()->flash('message', __('info.your basket is empty'));
 
         return redirect()->route('catalog');
     }

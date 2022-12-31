@@ -1,14 +1,14 @@
-import AdminLayout      from '@/Layouts/AdminLayout';
-import BlueButton       from '@/Components/Buttons/BlueButton'
-import StandartInput    from '@/Components/Inputs/StandartInput'
-import StandartTextarea from '@/Components/Inputs/StandartTextarea'
-import Checkbox         from '@/Components/Inputs/Checkbox'
-import ParametersManager from '@/Components/Admin/Item/ParametersManager'
-import GaleryManager    from '@/Components/Admin/Item/GaleryManager'
-import Select           from '@/Components/Inputs/Select'
 import { useForm }      from '@inertiajs/inertia-react';
+import AdminLayout      from '@/Layouts/AdminLayout';
+import BlueButton       from '@/Components/Buttons/BlueButton';
+import StandartInput    from '@/Components/Inputs/StandartInput';
+import StandartTextarea from '@/Components/Inputs/StandartTextarea';
+import Checkbox         from '@/Components/Inputs/Checkbox';
+import Select           from '@/Components/Inputs/Select';
 import Img              from '@/Components/Img'
 import Input            from '@/Components/Inputs/Input';
+import ParametersManager from './Components/ParametersManager';
+import GaleryManager    from './Components/GaleryManager';
 
 export default function Form(props){
     const skuProperties     = props.skuProperties? props.skuProperties: null;
@@ -40,7 +40,8 @@ export default function Form(props){
     }
 
     function handleChangeParameter(event){
-        const indexes = (event.target.name).split(',',2); // первым значением будет row, вторым col
+        // первым значением будет row, вторым col
+        const indexes = (event.target.name).split(',',2);
         data.itemParameters[indexes[0]][indexes[1]] = event.target.value;
         setData("itemParameters", data.itemParameters);
     }
@@ -49,7 +50,6 @@ export default function Form(props){
         data.itemGalery.splice(number, 1);
         setData("itemGalery", data.itemGalery);
     }
-
 
     function handleSubmit(e){
         e.preventDefault();

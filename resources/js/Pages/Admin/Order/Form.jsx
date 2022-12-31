@@ -4,12 +4,10 @@ import Checkbox from '@/Components/Inputs/Checkbox'
 import StandartInput from '@/Components/Inputs/StandartInput'
 import { useForm } from '@inertiajs/inertia-react';
 
-
 export default function Form(props){
     const order = props.order;
-    const { data, setData, post, errors, reset } = useForm({
-        payment_status: order? order.payment_status: "",
-        status:         order? order.status: "",
+    const { data, setData, post, get, errors} = useForm({
+        status: order? order.status: "",
     });
 
     const fields = [];
@@ -22,27 +20,8 @@ export default function Form(props){
          );
     }
 
-    function handleOrderDeliveredSubmit(e){
-        e.preventDefault();
-
-        post(route('order-deliver', order.id));
-        setData('status', 'Заказ доставлен')
-    }
-
-    function handleOrderSetStatusSubmit(e){
-        e.preventDefault();
-
-        post(route('order-set-status', order.id));
-    }
-
-    function handleOrderPaidSubmit(e){
-        e.preventDefault();
-
-        post(route('order-set-payment-status', order.id));
-    }
-
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        setData(event.target.name, event.target.value);
     };
 
     return (
@@ -61,27 +40,37 @@ export default function Form(props){
             <p className="text-danger">Нужно переделать весь механизм курьеров чтобы по нормальному уже с ними работать</p>
 
             <h3>Изменение статуса заказа</h3>
-            <form className="col-6 mb-3" onSubmit={handleOrderSetStatusSubmit}>
+            <div className="col-6 mb-3">
                 <StandartInput
+                    className="col-6"
                     handleChange={onHandleChange}
                     id="status"
                     value={data.status}
                     labelText="Статус заказа"
                     errors={errors}
                 />
-                <BlueButton>Изменить статус</BlueButton>
-            </form>
+
+                <BlueButton
+                    className="mb-3"
+                    handleClick={ () => get(route('set-order-status', [order, data.status])) }
+                >
+                    Изменить статус
+                </BlueButton>
+            </div>
 
             <h3>Изменение статуса доставки заказа</h3>
-            <form className="mb-3" onSubmit={handleOrderDeliveredSubmit}>
-                <BlueButton>Заказ доставлен</BlueButton>
-            </form>
+                <BlueButton
+                    handleClick={() => get(route('order-delivered', order))}
+                >
+                    Заказ доставлен
+                </BlueButton>
 
             <h3>Оплата заказа</h3>
-            <form className="mb-3" onSubmit={handleOrderPaidSubmit}>
-                <Checkbox handleChange={onHandleChange} id="payment_status" value={data.payment_status} checked={data.payment_status && "checked"} labelText="Статус оплаты заказа"/>
-                <BlueButton>Изменить статус оплаты</BlueButton>
-            </form>
+                <BlueButton
+                    handleClick={ () => get(route('order-paid', order))}
+                >
+                    Оплатить товар (установить статус на "Оплачено")!
+                </BlueButton>
         </AdminLayout>
     );
 }

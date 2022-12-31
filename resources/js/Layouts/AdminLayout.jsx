@@ -1,14 +1,16 @@
-import Header from '@/Components/Layouts/Header';
-import Footer from '@/Components/Layouts/Footer';
-import FlashMessage from '@/Components/Layouts/FlashMessage';
-import { Head } from '@inertiajs/inertia-react';
-import NavigationMenu from '@/Components/Layouts/Admin/NavigationMenu';
+import { Head, usePage } from '@inertiajs/inertia-react';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import FlashMessage from '@/Components/FlashMessage';
+import NavigationMenu from './Components/Admin/NavigationMenu';
 
-export default function AdminLayout({children, flash=undefined, auth=undefined}){
+export default function AdminLayout({children}){
+    const {flash} = usePage().props;
+
     return (
         <>
-            <Head title="MiceMice admin" />
-            <Header auth={auth}/>
+            <Head title="admin" />
+            <Header />
             <main className="container-fluid py-2 px-0">
                 <div className="row">
                     <div className="col-12 col-lg-2">

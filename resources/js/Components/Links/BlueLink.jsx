@@ -1,14 +1,18 @@
-import React from 'react';
+import Link from './Link';
 
 export default function BlueLink({
     className = '',
     href='#',
     children,
+    disabled
 }){
     return (
-        <a className={'bttn blue ' + className}
-            href={href}>
+        <Link
+            className={'bttn blue ' + className}
+            href={href}
+            disabled={disabled}
+        >
             {children}
-            </a>
+        </Link>
     );
 }

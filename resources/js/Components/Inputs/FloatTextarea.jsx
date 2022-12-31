@@ -1,3 +1,5 @@
+import InputError from '@/Components/InputError';
+
 export default function FloatInput({
     id,
     className = '',
@@ -12,6 +14,7 @@ export default function FloatInput({
     disabled,
     value,
     handleChange,
+    errors,
 }){
     return (
         <div className="form-floating">
@@ -29,6 +32,10 @@ export default function FloatInput({
                 onChange={(e) => handleChange(e)}
                 />
             <label htmlFor={id}>{labelText}</label>
+
+            {errors &&
+                <InputError message={errors[id]} />
+            }
         </div>
     );
 }

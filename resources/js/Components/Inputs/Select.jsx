@@ -1,9 +1,13 @@
 import InputError from '@/Components/InputError';
 
+/*
+    options - array with "id" and "name"
+    selectedOptionIds - one id, or array of ids
+*/
 export default function Select ({
     id,
     name,
-    options, // array with "id" and "name"
+    options,
     className,
     labelText,
     selectedOptionIds = null, // maybe one id
@@ -44,7 +48,10 @@ export default function Select ({
                 >
                     {list}
                 </select>
-                <InputError message={errors[id]} className="mt-1 text-danger" />
+
+                {errors &&
+                    <InputError message={errors[id]} />
+                }
             </div>
     );
 }

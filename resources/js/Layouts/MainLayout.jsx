@@ -1,13 +1,14 @@
-import React from 'react';
-import Header from '@/Components/Layouts/Header';
-import Footer from '@/Components/Layouts/Footer';
-import FlashMessage from '@/Components/Layouts/FlashMessage';
+import { usePage } from '@inertiajs/inertia-react';
 import { Head } from '@inertiajs/inertia-react';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import FlashMessage from '@/Components/FlashMessage';
 
-export default function MainLayout({children, flash=undefined, auth=undefined}){
+export default function MainLayout({children}){
+    const {flash} = usePage().props;
     return (
         <>
-            <Header auth={auth}/>
+            <Header />
             <main className="container-fluid py-4 px-0">
                 {flash && <FlashMessage message={flash.message} />}
                 {children}

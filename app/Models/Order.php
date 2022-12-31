@@ -10,6 +10,7 @@ use App\Services\CurrencyConverter;
 class Order extends Model
 {
     use HasFactory;
+
     public $fillable = [
         'payment_status',
         'status',
@@ -24,13 +25,23 @@ class Order extends Model
         'date_delivered',
     ];
 
+    //The model's default values for attributes.
+    protected $attributes = [
+        'status' => 'Обрабатывается',
+        'payment_status' => 0,
+        'payment_method' => 'Способ оплаты не выбран',
+        'delivery_method' => 'Способ доставки не выбран',
+        'phone' => 'Телефон не задан',
+        'currency_id' => 1,
+    ];
+
     protected function createdAt(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => date_format(date_create($value), 'Y-m-d H:i:s'),
         );
     }
-    
+
     protected function updatedAt(): Attribute
     {
         return Attribute::make(
@@ -68,20 +79,19 @@ class Order extends Model
     {
         $sum = 0;
         foreach ($this->skus as $sku)
-        {
             $sum += $sku->price * $sku->countInOrder;
-        }
 
         return $sum;
     }
 
     public function save_order($params)
     {
-        $this->currency_id = (CurrencyConverter::getCurrentCurrencyFromSession())->id;
+        $this->currency_id = CurrencyConverter::getCurrentCurrencyFromSession()->id;
         $this->name = $params['name'];
         $this->phone = $params['phone'];
         $this->delivery_method = $params['delivery_method'];
         $this->payment_method = $params['payment_method'];
+
         if($params['delivery_method'] === 'Доставка курьером')
         {
             $this->address = $params['address'];
@@ -95,13 +105,14 @@ class Order extends Model
         {
             $this->storage_id = $params['storage_id'] ?? null;
         }
+
+        unset($this->fullPrice);
         $this->price = $this->get_full_price();
         $this->save();
 
         if (isset($params['user_id']))
-        {
             $this->users()->attach($params['user_id']);
-        }
+
 
         foreach($this->skus as $skuInOrder)
         {
@@ -114,17 +125,6 @@ class Order extends Model
         return true;
     }
 
-    /**
-     * The model's default values for attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'status' => 'Обрабатывается',
-        'payment_status' => 0,
-        'payment_method' => 'Способ оплаты не выбран',
-        'delivery_method' => 'Способ доставки не выбран',
-        'phone' => 'Телефон не задан',
-        'currency_id' => 1,
-    ];
+
+
 }
