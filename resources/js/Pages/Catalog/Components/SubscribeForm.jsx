@@ -1,6 +1,6 @@
 import FloatInput from '@/Components/Inputs/FloatInput';
 
-export default function SubscribeForm(className='', csrf_token){
+export default function (className='', csrf_token){
     return (
         <form className="ms-auto" action="" method="post">
             <input type="hidden" name="_token" value={csrf_token} />

@@ -1,8 +1,10 @@
 import InputError from '@/Components/InputError';
+import {usePage} from '@inertiajs/inertia-react';
+
 
 export default function FloatInput({
     id,
-    className = '',
+    className='',
     name,
     labelText,
     maxlength,
@@ -13,29 +15,32 @@ export default function FloatInput({
     rows,
     disabled,
     value,
-    handleChange,
-    errors,
+    onHandleChange,
 }){
-    return (
-        <div className="form-floating">
-            <textarea
-                class={"form-control h-100 " + className}
-                name={name? name: id}
-                id={id}
-                cols={cols}
-                rows={rows}
-                placeholder={" " + placeholder}
-                required={required}
-                autofocus={autofocus}
-                disabled={disabled}
-                value={value}
-                onChange={(e) => handleChange(e)}
-                />
-            <label htmlFor={id}>{labelText}</label>
+    const {errors} = usePage().props;
 
-            {errors &&
-                <InputError message={errors[id]} />
-            }
+    return (
+        <div className={className}>
+            <div className="form-floating">
+                <textarea
+                    class="form-control h-100"
+                    name={name? name: id}
+                    id={id}
+                    cols={cols}
+                    rows={rows}
+                    placeholder={" " + placeholder}
+                    required={required}
+                    autofocus={autofocus}
+                    disabled={disabled}
+                    value={value}
+                    onChange={(e) => onHandleChange(e)}
+                    />
+                <label htmlFor={id}>{labelText}</label>
+
+                {errors &&
+                    <InputError message={errors[id]} />
+                }
+            </div>
         </div>
     );
 }

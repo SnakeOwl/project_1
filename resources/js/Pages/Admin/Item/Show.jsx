@@ -14,9 +14,7 @@ export default function Show(props){
     }
 
     return (
-        <AdminLayout
-            auth={props.auth}
-        >
+        <AdminLayout>
             <h3>Просмотр товара</h3>
             <table className="table table-striped">
                 <tbody>

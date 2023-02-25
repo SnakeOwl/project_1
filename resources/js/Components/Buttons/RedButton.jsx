@@ -4,13 +4,15 @@ export default function RedButton({
     className = '',
     children,
     type,
-    handleClick,
+    onHandleClick,
+    title,
 }){
     return (
         <button
             className={'bttn red ' + className}
             type={type}
-            onClick={handleClick}
+            onClick={onHandleClick}
+            title={title}
             >
             {children}
         </button>

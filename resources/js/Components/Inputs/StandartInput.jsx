@@ -1,4 +1,5 @@
 import InputError from '@/Components/InputError';
+import {usePage} from '@inertiajs/inertia-react';
 
 export default function StandartInput({
     id,
@@ -16,12 +17,13 @@ export default function StandartInput({
     readonly,
     value,
     autocomplete = "on",
-    handleChange,
-    errors=null,
+    onHandleChange,
     isFocused,
     multiple,
     accept,
 }){
+    const {errors} = usePage().props;
+
     return (
         <div className={"mb-3 " + className}>
             <label class="form-label" htmlFor={id}>{labelText}</label>
@@ -41,7 +43,7 @@ export default function StandartInput({
                 readonly={readonly}
                 value={value}
                 autocomplete={autocomplete}
-                onChange={(e) => handleChange(e)}
+                onChange={onHandleChange}
                 autofocus={isFocused}
                 multiple={multiple}
                 accept={accept}

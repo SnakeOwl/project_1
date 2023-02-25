@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
             \App\Http\Middleware\SetLocale::class,
+            \App\Http\Middleware\SetCurrenCurrency::class,
         ],
 
         'api' => [
@@ -55,6 +56,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'adminCounter' => \App\Http\Middleware\AdminCounter::class,
         'set_locale' => \App\Http\Middleware\SetLocale::class,
         'basket_not_empty' => \App\Http\Middleware\BasketIsNotEmpty::class,
         'is_editor' => \App\Http\Middleware\CheckUsersRights::class,

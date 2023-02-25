@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Basket;
 
 use App\Http\Controllers\Controller;
-use App\Domain\Basket\Basket;
-use App\Models\Sku;
+use App\Classes\Basket\Basket;
+use App\Models\Offer;
 use Inertia\Inertia;
 
 class BasketIndexController extends Controller
@@ -13,10 +13,8 @@ class BasketIndexController extends Controller
     {
         $order = (new Basket())->getOrder();
 
-        // бля я не ебу как получить предмет через торговое предложение, with не работает
-        // думаю только так смогу обойти ленивую загрузку, пока что
-        foreach($order->skus as $sku)
-            $sku->item->category;
+        foreach($order->offers as $offer)
+            $offer->item->category;
 
         $order->fullPrice = $order->get_full_price();
 

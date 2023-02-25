@@ -1,9 +1,8 @@
-import React from 'react';
+import { useForm, usePage } from '@inertiajs/inertia-react';
 import MainLayout from '@/Layouts/MainLayout';
 import FloatInput from '@/Components/Inputs/FloatInput';
 import FloatTextarea from '@/Components/Inputs/FloatTextarea';
 import BlueButton from '@/Components/Buttons/BlueButton';
-import { useForm } from '@inertiajs/inertia-react';
 import InputError from '@/Components/InputError';
 
 export default function MessageForm(props){
@@ -12,6 +11,8 @@ export default function MessageForm(props){
             message: '',
             name: '',
         });
+
+    const {lang} = usePage().props;
 
     function handleSubmit (e){
         e.preventDefault();
@@ -24,61 +25,49 @@ export default function MessageForm(props){
     };
 
     return (
-        <MainLayout
-            flash={props.flash}
-            title="Связь с администрацией"
-            auth={props.auth}
-            >
-            <div className="col-12 col-lg-6 mx-auto">
+        <MainLayout title={lang["contact form"]}>
+            <div className="col-12 col-xxl-6 mx-auto">
                 <form className="mb-3" onSubmit={handleSubmit}>
-                    <input type="hidden" name="_token" value={props.csrf_token} />
-                        <h2>Форма связи с администрацией</h2>
-                        <div className="row mb-3">
-                            <div className="col-12 col-lg-6">
+                    <h2>{lang["contactForm"]}</h2>
+                    <div className="row mb-3">
+                        <FloatInput
+                            id="name"
+                            boxClassName="col-12 col-lg-6 mb-3"
+                            handleChange={onHandleChange}
+                            value={data.name}
+                            labelText={lang["name"]}
+                            placeholder="Viktor"
+                            required="required"
+                            errors={errors}
+                        />
 
-                                <FloatInput
-                                    handleChange={onHandleChange}
-                                    type="text"
-                                    value={data.name}
-                                    id="name"
-                                    labelText="Ваше имя"
-                                    placeholder="Виктор"
-                                    required="required"
-                                    errors={errors}
-                                />
-                            </div>
+                        <FloatInput
+                            id="email"
+                            boxClassName="col-12 col-lg-6 mb-3"
+                            handleChange={onHandleChange}
+                            type="email"
+                            labelText="email"
+                            placeholder="myEmail@gmail.com"
+                            required="required"
+                            errors={errors}
+                        />
 
-                            <div className="col-12 col-lg-6">
-                                <FloatInput
-                                    handleChange={onHandleChange}
-                                    type="email"
-                                    id="email"
-                                    labelText="Ваш email"
-                                    placeholder="myEmail@gmail.com"
-                                    required="required"
-                                    errors={errors}
-                                />
-                            </div>
+                        <FloatTextarea
+                            id="message"
+                            boxClassName="col-12"
+                            handleChange={onHandleChange}
+                            value={data.message}
+                            labelText={lang["message"]}
+                            rows="5"
+                            required="required"
+                            errors={errors}
+                        />
+                    </div>
 
-                        </div>
-
-                        <div className="row mb-3">
-                            <div className="col-12">
-                                <FloatTextarea
-                                    handleChange={onHandleChange}
-                                    value={data.message}
-                                    id="message"
-                                    labelText="Сообщение"
-                                    rows="5"
-                                    required="required"
-                                    errors={errors}    
-                                />
-
-                            </div>
-                        </div>
-                        <BlueButton className="w-100">Отправить</BlueButton>
+                    <BlueButton className="w-100">{lang["submit"]}</BlueButton>
                 </form>
-                <p>Напишите нам письмо и мы вам ответим!</p>
+
+                <p className="text-center">{lang["contact form message"]}</p>
             </div>
         </MainLayout>
     );

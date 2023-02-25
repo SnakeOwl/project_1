@@ -1,4 +1,5 @@
 import InputError from '@/Components/InputError';
+import {usePage} from '@inertiajs/inertia-react';
 
 /*
     options - array with "id" and "name"
@@ -14,13 +15,12 @@ export default function FloatSelect ({
     multiple,
     disabled,
     inputClassName,
-    errors,
-    handleChange,
+    onHandleChange,
 }){
-    const list = [];
+    const {errors} = usePage().props;
 
-    options.forEach((option) => {
-        list.push(
+    const list = options.map((option) => {
+        return(
             <option
                 value={option.id}
                 selected={
@@ -37,15 +37,15 @@ export default function FloatSelect ({
 
 
     return (
-            <div className={"form-floating " + className}>
+        <div className={className}>
+            <div className="form-floating">
                 <select
                     id={id}
                     name={name? name: id}
                     class={"form-select " + inputClassName}
                     multiple={multiple}
                     disabled={disabled}
-                    onChange={handleChange}
-                >
+                    onChange={onHandleChange} >
                     {list}
                 </select>
                 <label htmlFor={id}>{labelText}</label>
@@ -54,5 +54,7 @@ export default function FloatSelect ({
                     <InputError message={errors[id]} />
                 }
             </div>
+        </div>
+
     );
 }

@@ -2,8 +2,8 @@ import AdminLayout from '@/Layouts/AdminLayout';
 import BlueButton from '@/Components/Buttons/BlueButton'
 
 export default function Index(props){
+console.log(props);
     const orders = props.orders.data.map((order) => {
-        console.log(order);
         return (
             <tr>
                 <td>{order.id}</td>

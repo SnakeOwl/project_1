@@ -10,12 +10,14 @@ class Merchant extends Authenticatable
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'email',
     ];
 
-    public function updateToken()
+    public function updateToken(): string
     {
         $token = \Str::random(60);
         $this->api_token = hash('sha256', $token);

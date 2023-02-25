@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Basket;
 
 use App\Http\Controllers\Controller;
 use App\Models\Storage;
-use App\Domain\Basket\Basket;
+use App\Classes\Basket\Basket;
 use Inertia\Inertia;
 
 class ShowOrderFormController extends Controller

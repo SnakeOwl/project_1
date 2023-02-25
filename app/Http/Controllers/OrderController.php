@@ -10,15 +10,10 @@ use App\Http\Requests\updateOrderRequest;
 
 class OrderController extends Controller
 {
-    public function showPersonalOrders()
-    {
-        $orders = Auth::user()->orders()->paginate(25);
-        return view('auth.personal.orders.index', compact('orders'));
-    }
 
     public function show(Order $order)
     {
-         $skus = $order->skus()->withTrashed()->get();
-         return view('auth.personal.orders.show', compact('order', 'skus'));
+         $offers = $order->offers()->withTrashed()->get();
+         return view('auth.personal.orders.show', compact('order', 'offers'));
     }
 }

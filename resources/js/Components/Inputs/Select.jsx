@@ -1,4 +1,5 @@
 import InputError from '@/Components/InputError';
+import {usePage} from '@inertiajs/inertia-react';
 
 /*
     options - array with "id" and "name"
@@ -13,13 +14,12 @@ export default function Select ({
     selectedOptionIds = null, // maybe one id
     multiple,
     disabled,
-    errors,
-    handleChange,
+    onHandleChange,
 }){
-    const list = [];
+    const {errors} = usePage().props;
 
-    options.forEach((option) => {
-        list.push(
+    const list = options.map((option) => {
+        return(
             <option
                 value={option.id}
                 selected={
@@ -44,7 +44,7 @@ export default function Select ({
                     class="form-select"
                     multiple={multiple}
                     disabled={disabled}
-                    onChange={handleChange}
+                    onChange={onHandleChange}
                 >
                     {list}
                 </select>

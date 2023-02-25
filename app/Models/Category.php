@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\hasMany;
 use App\Models\Traits\Translatable;
 
 class Category extends Model
@@ -12,6 +13,7 @@ class Category extends Model
 
     public $timestamps = false;
 
+    // old style
     public function getName()
     {
         return  $this->__('name');
@@ -21,6 +23,15 @@ class Category extends Model
         'name',
         'name_en',
         'alias',
-        'id_parent'
     ];
+
+    public function shapes(): hasMany
+    {
+        return $this->hasMany(Shape::class);
+    }
+
+    public function items(): hasMany
+    {
+        return $this->hasMany(Item::class);
+    }
 }

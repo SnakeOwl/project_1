@@ -1,30 +1,22 @@
-import { Head, usePage } from '@inertiajs/inertia-react';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import FlashMessage from '@/Components/FlashMessage';
+import MainLayout from './MainLayout';
 import NavigationMenu from './Components/Admin/NavigationMenu';
 
-export default function AdminLayout({children}){
-    const {flash} = usePage().props;
+export default function AdminLayout({
+    children,
+    title="admin"
+}){
 
     return (
-        <>
-            <Head title="admin" />
-            <Header />
-            <main className="container-fluid py-2 px-0">
-                <div className="row">
-                    <div className="col-12 col-lg-2">
-                        <NavigationMenu />
-                    </div>
-
-                    <div className="col-12 col-lg-9 px-2">
-                        {flash && <FlashMessage message={flash.message} />}
-
-                        {children}
-                    </div>
+        <MainLayout title={title} >
+            <div className="row">
+                <div className="col-12 col-lg-2">
+                    <NavigationMenu />
                 </div>
-            </main>
-            <Footer />
-        </>
+
+                <div className="col-12 col-lg-10 px-2">
+                    {children}
+                </div>
+            </div>
+        </MainLayout>
     );
 }

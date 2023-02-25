@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\belongsToMany;
 
 
 class User extends Authenticatable
@@ -19,10 +20,16 @@ class User extends Authenticatable
         'courier' => 3
     ];
 
-
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'rights',
+        'order_id',
+    ];
 
     // $password - is not hashed string
-    public function updatePassword($password)
+    public function updatePassword($password): bool
     {
         if (is_null($password))
             return false;
@@ -31,7 +38,7 @@ class User extends Authenticatable
         return true;
     }
 
-    public function orders()
+    public function orders(): belongsToMany
     {
         return $this->belongsToMany(Order::class);
     }
@@ -41,29 +48,23 @@ class User extends Authenticatable
         return $query->where('rights', User::RIGHTS['courier']);
     }
 
-    public function is_admin()
+    public function is_admin(): bool
     {
         return $this->rights === User::RIGHTS['admin'];
     }
 
-    public function is_editor()
+    public function is_editor(): bool
     {
-        return $this->is_admin() || $this->rights === User::RIGHTS['editor'];
+        return $this->is_admin()
+            || $this->rights === User::RIGHTS['editor'];
     }
 
-    public function is_courier()
+    public function is_courier(): bool
     {
-        return $this->is_admin() || $this->is_editor() || $this->rights === User::RIGHTS['courier'];
+        return $this->is_admin()
+            || $this->is_editor()
+            || $this->rights === User::RIGHTS['courier'];
     }
-
-    protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'password',
-        'rights',
-        'order_id',
-    ];
 
     protected $hidden = [
         'password',

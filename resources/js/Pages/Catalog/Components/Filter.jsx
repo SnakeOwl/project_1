@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-
+import { usePage } from '@inertiajs/inertia-react';
+import { useState } from 'react';
 import FloatInput from '@/Components/Inputs/FloatInput';
 import BlueButton from '@/Components/Buttons/BlueButton';
 import Checkbox from '@/Components/Inputs/Checkbox';
-
+import PriceFilter from './Filter/PriceFilter';
 
 export default function Filter({
     values,
@@ -11,45 +11,26 @@ export default function Filter({
     useFilter,
     className="",
 }){
+    const {lang} = usePage().props;
+
     return (
         <div className={"filter " + className}>
-            <div className="filter-price">
-                <span>Цена</span>
-                <FloatInput
-                    id="priceFrom"
-                    labelText="Цена От"
-                    value={values.priceFrom}
-                    handleChange={handleChange}
-                />
+            <div className="filter-price mb-3">
+                <span>{lang["price"]}</span>
 
-                <FloatInput
-                    id="priceTo"
-                    labelText="до"
-                    value={values.priceTo}
+                <PriceFilter
+                    priceFrom={values.priceFrom}
+                    priceTo={values.priceTo}
                     handleChange={handleChange}
-                />
-            </div>
-
-            <div className="tags">
-                <Checkbox
-                    id="isNew"
-                    labelText="Новинки"
-                    handleChange={handleChange}
-                    checked={values.isNew}
-                />
-
-                <Checkbox
-                    id="isPopular"
-                    labelText="Популярные"
-                    handleChange={handleChange}
-                    checked={values.isPopular}
-                />
+                 />
             </div>
 
             <BlueButton
-            className="w-100"
+                className="w-100"
                 handleClick={useFilter}
-            >Фильтровать</BlueButton>
+            >
+                {lang["doFilter"]}
+            </BlueButton>
         </div>
     );
 }

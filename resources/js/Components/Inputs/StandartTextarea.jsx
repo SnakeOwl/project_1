@@ -1,4 +1,6 @@
 import InputError from '@/Components/InputError';
+import {usePage} from '@inertiajs/inertia-react';
+
 
 export default function FloatInput({
     id,
@@ -13,9 +15,10 @@ export default function FloatInput({
     rows,
     disabled,
     value,
-    handleChange,
-    errors,
+    onHandleChange,
 }){
+    const {errors} = usePage().props;
+
     return (
         <div className={"mb-3 " + className}>
             <label
@@ -36,7 +39,7 @@ export default function FloatInput({
                 autofocus={autofocus}
                 disabled={disabled}
                 value={value}
-                onChange={(e) => handleChange(e)}
+                onChange={onHandleChange}
             />
 
             {errors &&

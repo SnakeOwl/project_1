@@ -6,29 +6,29 @@ export default function GaleryManager ({
     removeImageHandler,
     images = null,
 }){
-    let currentImages;
-    if (images !== null){
-        currentImages = images.map((image, i) => {
+    const currentImages = (images !== null)?
+        images.map((image, i) => {
             return (
                 <div className="col-12 col-md-3">
                     <div className="position-relative">
                         <Img
                             className="w-100"
-                            src={image.image}
+                            src={image.url}
                         />
 
                         <RedButton
                             type="button"
                             className="position-absolute top-0 end-0"
-                            handleClick={()=>removeImageHandler(i)}
+                            onHandleClick={()=>removeImageHandler(i)}
                         >
                             <i class="bi bi-x-lg"></i>
                         </RedButton>
                     </div>
                 </div>
             );
-        });
-    }
+        })
+    :
+    null;
 
     return (
         <>

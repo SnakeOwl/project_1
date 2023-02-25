@@ -4,14 +4,16 @@ export default function RedLink({
     className='',
     href='#',
     children,
+    title,
     disabled,
 }){
     return (
-        <a className={'bttn red ' + className}
+        <Link className={'bttn red ' + className}
             href={href}
+            title={title}
             disabled={disabled}
         >
             {children}
-        </a>
+        </Link>
     );
 }

@@ -13,7 +13,7 @@ export default function ParametersManager({
     leftColumnName="Характеристика",
     rightColumnName="Значение",
     disabled=false,
-    handleChange,
+    onHandleChange,
     addRow,
     removeRow,
 }){
@@ -23,22 +23,22 @@ export default function ParametersManager({
                 <tr>
                     <td>
                         <Input
-                            name={i + ',0'}
-                            handleChange={handleChange}
-                            value={item[0]}
+                            name={i + ',param_name'}
+                            onHandleChange={onHandleChange}
+                            value={item.param_name}
                         />
                     </td>
                     <td>
                         <Input
-                            name={i + ',1'}
-                            handleChange={handleChange}
-                            value={item[1]}
+                            name={i + ',param_value'}
+                            onHandleChange={onHandleChange}
+                            value={item.param_value}
                         />
                     </td>
                     <td>
                         <RedButton
                             type="button"
-                            handleClick={() => removeRow(i)}
+                            onHandleClick={() => removeRow(i)}
                         >
                             <i class="bi bi-x-lg"></i>
                         </RedButton>
@@ -61,7 +61,6 @@ export default function ParametersManager({
                 <thead>
                     <th>{leftColumnName}</th>
                     <th>{rightColumnName}</th>
-                    <th>Удаление</th>
                 </thead>
                 <tbody>
                     {tbody}
@@ -69,7 +68,7 @@ export default function ParametersManager({
             </table>
             <BlueButton
                 type="button"
-                handleClick={addRow}
+                onHandleClick={addRow}
                 className="w-100"
             >
                 <i class="bi bi-plus-lg"></i>

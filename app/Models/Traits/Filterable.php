@@ -3,7 +3,7 @@
 namespace App\Models\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use App\Domain\Filters\IFilter;
+use App\Classes\Filters\IFilter;
 
 
 trait Filterable

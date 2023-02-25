@@ -1,14 +1,16 @@
 import InputError from '@/Components/InputError';
+import {usePage} from '@inertiajs/inertia-react';
 
 export default function Checkbox({
     id,
     name,
-    handleChange,
+    onHandleChange,
     labelText,
     className,
     checked,
-    errors,
 }) {
+    const {errors} = usePage().props;
+
     return (
         <div className="form-check">
             <input
@@ -16,7 +18,7 @@ export default function Checkbox({
                 type="checkbox"
                 name={name? name: id}
                 className={"form-check-input " + className}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => onHandleChange(e)}
                 checked={checked}
             />
             <label className="form-check-label" htmlFor={id}>{labelText}</label>

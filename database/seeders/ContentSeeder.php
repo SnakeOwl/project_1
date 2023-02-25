@@ -5,177 +5,70 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Offer;
+use App\Models\Item;
+use App\Models\Category;
+use App\Models\Shape;
+use App\Models\ShapeOption;
+use App\Models\Parameter;
 
 class ContentSeeder extends Seeder
 {
-    private $now;
-
-    public function __construct()
-    {
-        $this->now = \Carbon\Carbon::now();
-    }
-
     public function run()
     {
-        $categories = [
-            [
-                'name' => 'Клавиатуры',
-                'name_en' => 'Keyboards',
-                'alias' => 'keyboads',
-            ],
-            [
-                'name' => 'Мыши',
-                'name_en' => 'Mice',
-                'alias' => 'mice',
-            ],
-            [
-                'name' => 'Игровые приставки',
-                'name_en' => 'Play stations',
-                'alias' => 'playstation',
-            ],
-            [
-                'name' => 'Мониторы',
-                'name_en' => 'Displays',
-                'alias' => 'displays',
-            ],
-            [
-                'name' => 'Камеры',
-                'name_en' => 'Camers',
-                'alias' => 'camers',
-            ],
-            [
-                'name' => 'Звук',
-                'name_en' => 'sound',
-                'alias' => 'sound',
-            ],
-            [
-                'name' => 'Наушники',
-                'name_en' => 'Headphones',
-                'alias' => 'headphones',
-            ],
-            [
-                'name' => 'Колонки',
-                'name_en' => 'Columns',
-                'alias' => 'columns',
-            ],
-        ];
+        $count_categories = 4;
+        $count_shapes_per_category = 4;             // шейпы будут рандомно привязаны к категориям
+        $count_shape_options_per_shape = 4;    // опции будут рандомно привязаны к шейпам
+        $count_items = 64;             // предметы будут рандомно привязаны к категориям
+        $COUNT_OFFERS_PER_ITEM_AND_SHAPES = 2;    // перемножит количество предметов и шейпов, потом создаст заданное число записей
+        $count_parameters_per_item = 8; // уникальные параметры для каждого предмета
+        /*
+            Если создавать эти модели внутри других фабрик (->recycle(Shape::factory ...)),
+            они начинают создавать не нужные модели и не корректно работает ->count(number).
+            Из-за этого все модели создаю отдельно, и просто связываю их.
+            Так же при создании таким образом моделей (фабрика внутри фабрики),
+            Не работает ->sequence.
+        */
+        $categories = Category::factory()
+            ->count($count_categories)
+            ->create();
 
-        foreach($categories as $category)
+        $shapes = [];
+        foreach ($categories as $category)
+            $shapes[] = Shape::factory()
+                ->count($count_shapes_per_category)
+                ->for($category)
+                ->create();
+
+        foreach ($shapes as $claster)
+            foreach($claster as $shape)
+                ShapeOption::factory()
+                    ->count($count_shape_options_per_shape)
+                    ->for($shape)
+                    ->create();
+
+        $items = Item::factory()
+            ->count($count_items)
+            ->recycle($categories)
+            ->create();
+
+        foreach ($items as $item)
         {
-            $now = \Carbon\Carbon::now();
-            $categoryId = DB::table('categories')->insert($category);
-        }
+            foreach($item->category->shapes as $shape)
+                Offer::factory()
+                    ->count($COUNT_OFFERS_PER_ITEM_AND_SHAPES)
+                    ->sequence(
+                        ['price' => 4000],
+                        ['price' => 8000],
+                        ['price' => 16000])
+                    ->for($item)
+                    ->hasAttached($shape->shapeOptions)
+                    ->create();
 
-        $properties = [
-            [
-                'name' => 'Цвет',
-                'name_en' => 'Color',
-                'options' => [
-                    [
-                        'name' => 'Белый',
-                        'name_en' => 'White',
-                    ],
-                    [
-                        'name' => 'Черный',
-                        'name_en' => 'Black',
-                    ],
-                    [
-                        'name' => 'Зеленый',
-                        'name_en' => 'Green',
-                    ],
-                    [
-                        'name' => 'Красный',
-                        'name_en' => 'Red',
-                    ],
-                    [
-                        'name' => 'Синий',
-                        'name_en' => 'Blue',
-                    ],
-                    [
-                        'name' => 'Желтый',
-                        'name_en' => 'Yellow',
-                    ],
-                    [
-                        'name' => 'Золотой',
-                        'name_en' => 'Gold',
-                    ],
-                    [
-                        'name' => 'Оранжевый',
-                        'name_en' => 'Orange',
-                    ],
-                    [
-                        'name' => 'Фиолетовый',
-                        'name_en' => 'Purple',
-                    ],
-                    [
-                        'name' => 'Розовый',
-                        'name_en' => 'Pink',
-                    ],
-                    [
-                        'name' => 'Серый',
-                        'name_en' => 'Gray',
-                    ],
-                ],
-            ],
-            [
-                'name' => 'Материал',
-                'name_en' => 'Material',
-                'options' => [
-                    [
-                        'name' => 'Пластик',
-                        'name_en' => 'Plastic',
-                    ],
-                    [
-                        'name' => 'Металл',
-                        'name_en' => 'Metal',
-                    ],
-                    [
-                        'name' => 'Дерево',
-                        'name_en' => 'Wood',
-                    ],
-                ],
-            ],
-        ];
-
-        foreach($properties as $property)
-        {
-            $property['created_at'] = $this->now;
-            $property['updated_at'] = $this->now;
-            $options = $property['options'] ?? array();
-            unset($property['options']);
-            $propertyId = DB::table('properties')->insertGetId($property);
-
-            foreach ($options as $option) {
-                $option['created_at'] = $this->now;
-                $option['updated_at'] = $this->now;
-                $option['property_id'] = $propertyId;
-                DB::table('property_options')->insert($option);
-            }
-        }
-
-        $currencies = [
-            [
-                'code' => 'RUB',
-                'symbol' => '₽',
-                'is_main' => '1',
-                'rate' => '1',
-            ],
-            [
-                'code' => 'USD',
-                'symbol' => '$',
-                'is_main' => '0',
-            ],
-            [
-                'code' => 'EUR',
-                'symbol' => '€',
-                'is_main' => '0',
-            ],
-        ];
-        foreach($currencies as $currency)
-        {
-            $currency['created_at'] = $this->now;
-            $currency['updated_at'] = $this->now;
-            DB::table('currencies')->insert($currency);
+            Parameter::factory()
+                ->count($count_parameters_per_item)
+                ->for($item)
+                ->create();
         }
     }
 }

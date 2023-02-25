@@ -12,7 +12,7 @@ class MessageReadController extends Controller
     {
         $message->update(['active' => 0]);
 
-        session()->flash('message', 'Письмо прочитано');
+        session()->flash('message', __('message was read'));
 
         return redirect()->route('messages.index');
     }

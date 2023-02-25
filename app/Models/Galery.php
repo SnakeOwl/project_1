@@ -12,9 +12,8 @@ class Galery extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'item_id',
-        'image',
+        'offer_id',
+        'url',
     ];
 
-    protected $table = "galeries";
 }

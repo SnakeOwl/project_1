@@ -1,16 +1,16 @@
-import React from 'react';
-
 export default function BlueButton({
     className = '',
     children,
     type,
-    handleClick,
+    onHandleClick,
+    title,
 }){
     return (
         <button
             className={'bttn blue ' + className}
             type={type}
-            onClick={handleClick}
+            onClick={onHandleClick}
+            title={title}
             >
             {children}
         </button>

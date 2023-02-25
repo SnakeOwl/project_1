@@ -9,26 +9,6 @@ class Storage extends Model
 {
     use HasFactory;
 
-    protected function schedule(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => nl2br($value),
-        );
-    }
-
-    public function get_phone_link()
-    {
-        $result = "tel:+";
-        $chars = str_split($this->phone);
-
-        foreach ($chars as $char) {
-            if ($char >= 0 && $char <= 9)
-                $result .= $char;
-        }
-
-        return $result;
-    }
-
     public $timestamps = false;
 
     protected $fillable = [
@@ -38,5 +18,22 @@ class Storage extends Model
         'schedule'
     ];
 
-    protected $table = "storages";
+    protected function schedule(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => nl2br($value),
+        );
+    }
+
+    public function getPhoneLink(): string
+    {
+        $result = "tel:+";
+        $chars = str_split($this->phone);
+
+        foreach ($chars as $char)
+            if ($char >= 0 && $char <= 9)
+                $result .= $char;
+
+        return $result;
+    }
 }

@@ -20,7 +20,7 @@ class CheckUsersRights
         $user = Auth::user();
         if(! $user->is_editor())
         {
-            session()->flash('info', 'У вас нет прав доступа');
+            session()->flash('info', __('Access denied'));
             return redirect()->route('index');
         }
 

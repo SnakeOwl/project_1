@@ -6,34 +6,68 @@ import { useForm } from '@inertiajs/inertia-react';
 import RadioList from './Components/RadioList'
 
 export default function OrderForm(props){
-    const storages = props.storages;
-    const order = props.order;
-
+    const {storages, order, lang} = props;
     const {data, setData, errors, post} = useForm({
         name: "",
         phone: "",
-        delivery_method: "Доставка курьером",
+        delivery_method: "courier",
         payment_method: "Оплата при получении",
         email: null,
         address: null,
         post_index: null,
         storage_id: null,
+        test: ["231"],
     });
+
+    const onHandleChange = (event) => {
+        setData(event.target.name, event.target.value);
+    };
 
     const delyveryMethods = [
         {
-            id: "Доставка курьером",
+            id: "courier",
             name: "Доставка курьером",
         },
         {
-            id: "Доставка почтой",
+            id: "post",
             name: "Доставка почтой",
         },
         {
-            id: "Доставка до точки самовывоза",
+            id: "storage",
             name: "Доставка до точки самовывоза",
         }
     ];
+
+    // при изменении способа доставки нужно изменять видимые поля
+    const changeDelivery = (event)=>{
+        const value = event.target.options[event.target.selectedIndex].value;
+        console.log("selected data:");
+        console.log(event.target.options[event.target.selectedIndex].value);
+
+
+        switch (value) {
+            case "post":
+                data.test.push(
+                    "111"
+                );
+            case "courier":
+                data.test.push(
+                    "222"
+                );
+            break;
+
+            case "storage":
+                data.test.push(
+                    "333"
+                );
+            break;
+        }
+
+        setData("delivery_method", value);
+
+        setData("test", data.test);
+
+    }
 
     const paymentMethods = [
         {
@@ -47,101 +81,50 @@ export default function OrderForm(props){
 
     ];
 
-    function recreateDeliveryInputs(value){
-        if(value == "Доставка курьером"){
-            address.classList.remove('d-none');
-            post_index.classList.add('d-none');
-            storage_id.classList.add('d-none');
-        }
-        else if (value == "Доставка почтой"){
-            address.classList.remove('d-none');
-            post_index.classList.remove('d-none');
-            storage_id.classList.add('d-none');
-        }
-        else if (value == "Доставка до точки самовывоза"){
-            address.classList.add('d-none');
-            post_index.classList.add('d-none');
-            storage_id.classList.remove('d-none');
-        }
-    }
 
-    function handleSubmit(e){
+
+    function onHandleSubmit(e){
         e.preventDefault();
-        post(route('order-store'));
-        // e.target.reset();
+        console.log(data);
+        // post(route('order-store'));
     }
 
 
-    const onHandleChange = (event) => {
-        // при изменении способа доставки нужно изменять видимые поля
-        if(event.target.name == "delivery_method")
-            recreateDeliveryInputs(event.target.value);
 
-        setData(event.target.name, event.target.value);
-    };
 
     return (
-        <MainLayout
-        flash={props.flash}
-        errors={props.errors}
-        title="Корзина"
-        auth={props.auth}
-        >
+        <MainLayout title="Корзина">
+        {data.delivery_method}
             <div className="container">
                 <h3>Оформление заказа</h3>
-                <form onSubmit={handleSubmit}>
-                    <FloatInput
-                        id='name'
-                        labelText='Ваше Имя'
-                        className="mb-3"
-                        value={data.name}
-                        handleChange={onHandleChange}
-                        errors={props.errors}
-                    />
+                <form onSubmit={onHandleSubmit}>
+                    <div className="row">
+                        <FloatInput
+                            id='name'
+                            labelText='Ваше Имя'
+                            className="mb-3 col-12 col-xxl-4"
+                            value={data.name}
+                            onHandleChange={onHandleChange}
+                        />
 
-                    <FloatInput
-                        id='email'
-                        labelText='email'
-                        className="mb-3"
-                        value={data.email}
-                        handleChange={onHandleChange}
-                        errors={props.errors}
-                    />
+                        <FloatInput
+                            id='email'
+                            labelText='email'
+                            className="mb-3 col-12 col-xxl-4"
+                            value={data.email}
+                            onHandleChange={onHandleChange}
+                        />
 
-                    <FloatSelect
-                        options={delyveryMethods}
-                        className="mb-3"
-                        labelText="Способ доставки"
-                        selectedOptionIds="Доставка курьером"
-                        id="delivery_method"
-                        handleChange={onHandleChange}
-                    />
-
-                    <FloatInput
-                        id='address'
-                        labelText='Адрес'
-                        className="mb-3"
-                        value={data.address}
-                        handleChange={onHandleChange}
-                        errors={props.errors}
-                    />
-
-                    <FloatInput
-                        id='post_index'
-                        labelText='Почтовый индекс'
-                        className="mb-3"
-                        inputClassName="d-none"
-                        value={data.post_index}
-                        handleChange={onHandleChange}
-                        errors={props.errors}
-                    />
-
-                    <RadioList
-                        id="storage_id"
-                        classNameContainer="d-none"
-                        storages={storages}
-                        handleChange={onHandleChange}
-                    />
+                        <FloatSelect
+                            options={delyveryMethods}
+                            className="mb-3 col-12 col-xxl-4"
+                            labelText="Способ доставки"
+                            selectedOptionIds="Доставка курьером"
+                            id="delivery_method"
+                            onHandleChange={changeDelivery}
+                        />
+                    </div>
+                    {data.test}
 
                     <FloatSelect
                         options={paymentMethods}
@@ -149,7 +132,7 @@ export default function OrderForm(props){
                         labelText="Способ оплаты"
                         selectedOptionIds="Оплата картой"
                         id="payment_method"
-                        handleChange={onHandleChange}
+                        onHandleChange={onHandleChange}
                     />
 
                     <FloatInput
@@ -157,8 +140,7 @@ export default function OrderForm(props){
                         labelText='Телефон'
                         className="mb-3"
                         value={data.phone}
-                        handleChange={onHandleChange}
-                        errors={props.errors}
+                        onHandleChange={onHandleChange}
                     />
 
                     <FloatInput

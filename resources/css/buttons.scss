@@ -1,0 +1,79 @@
+.bttn{
+    padding: 10px 20px;
+    border: none;
+    display: inline-block;
+    transition: 0.4s;
+    
+    &.red{
+        border: 1px solid $red;
+        @extend %red_box;
+
+        &:hover{
+            box-shadow: $red 0 0 7px 0;
+            border: 1px solid $red;
+            background: white;
+            color: $red;
+        }
+
+        &.inverted{
+            background-color: white;
+            color: $red;
+
+            &:hover{
+                @extend %red_box;
+            }
+        }
+    }
+
+    &.blue{
+        border: 1px solid $blue;
+        @extend %blue_box;
+
+        &:hover{
+            box-shadow: $blue 0 0 7px 0;
+            border: 1px solid $blue;
+            background: white;
+            color: $blue;
+        }
+
+        &.inverted{
+            background-color: white;
+            color: $blue;
+
+            &:hover{
+                @extend %blue_box;
+            }
+        }
+    }
+
+    &.green{
+        border: 1px solid $green;
+        @extend %green_box;
+
+        &:hover{
+            box-shadow: $green 0 0 7px 0;
+            border: 1px solid $green;
+            background: white;
+            color: $green;
+        }
+
+        &.inverted{
+            background-color: white;
+            color: $green;
+
+            &:hover{
+                @extend %green_box;
+            }
+        }
+    }
+
+    &[disabled]{
+        background: white;
+        color: black;
+        border: 1px solid black;
+    }
+
+    &.small{
+        padding: 5px 10px;
+    }
+}

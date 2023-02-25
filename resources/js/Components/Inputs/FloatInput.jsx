@@ -1,8 +1,10 @@
 import InputError from '@/Components/InputError';
+import {usePage} from '@inertiajs/inertia-react';
 
 export default function FloatInput({
     id,
     className = '',
+    inputClassName,
     type="text",
     name,
     labelText,
@@ -16,36 +18,38 @@ export default function FloatInput({
     readonly,
     value,
     autocomplete = "on",
-    inputClassName,
     isFocused,
-    handleChange,
-    errors,
+    onHandleChange,
 }){
-    return (
-        <div className={"form-floating " + className}>
-            <input
-                className={"form-control " + inputClassName}
-                id={id}
-                type={type}
-                name={name? name: id}
-                placeholder={placeholder}
-                min={min}
-                max={max}
-                minlength={minlength}
-                maxlength={maxlength}
-                required={required}
-                disabled={disabled}
-                readonly={readonly}
-                value={value}
-                autocomplete={autocomplete}
-                autofocus={isFocused}
-                onChange={(e) => handleChange(e)}
-                />
+    const {errors} = usePage().props;
 
-            <label htmlFor={id}>{labelText}</label>
-            {errors &&
-                <InputError message={errors[id]} />
-            }
+    return (
+        <div className={className}>
+            <div className="form-floating">
+                <input
+                    className={"form-control " + inputClassName}
+                    id={id}
+                    type={type}
+                    name={name? name: id}
+                    placeholder={placeholder}
+                    min={min}
+                    max={max}
+                    minlength={minlength}
+                    maxlength={maxlength}
+                    required={required}
+                    disabled={disabled}
+                    readonly={readonly}
+                    value={value}
+                    autocomplete={autocomplete}
+                    autofocus={isFocused}
+                    onChange={(e) => onHandleChange(e)}
+                    />
+
+                <label htmlFor={id}>{labelText}</label>
+                {errors &&
+                    <InputError message={errors[id]} />
+                }
+            </div>
         </div>
     );
 }

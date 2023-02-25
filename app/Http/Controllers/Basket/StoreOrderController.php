@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Basket;
 
 use App\Http\Controllers\Controller;
-use App\Domain\Basket\Basket;
-use App\Domain\Basket\Requests\StoreOrderRequest;
+use App\Classes\Basket\Basket;
+use App\Http\Requests\Order\StoreOrderRequest;
 
 class StoreOrderController extends Controller
 {
     public function __invoke(StoreOrderRequest $request)
     {
-        if ((new Basket())->storeOrder($request->safe()->all()))
+        if ((new Basket())->storeOrder($request->safe()->all())){
             session()->flash('message', __('info.order created'));
-        else
+        }else{
             session()->flash('message', __('info.order not created'));
+        }
 
         session()->forget('order');
 

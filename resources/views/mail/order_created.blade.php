@@ -13,14 +13,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($order->skus as $sku)
+        @foreach ($order->offers as $offer)
         <tr>
-            <td><img src="{{ Storage::url($sku->item->short_image) }}" width="200" alt="Изображение"></td>
-            <td><span class="basket-item-name">{{$sku->item->name}}</span></td>
+            <td><img src="{{ Storage::url($offer->item->short_image) }}" width="200" alt="Изображение"></td>
+            <td><span class="basket-item-name">{{$offer->item->name}}</span></td>
             <td>
-                <span>{{$sku->countInOrder}}</span>
+                <span>{{$offer->countInOrder}}</span>
             </td>
-            <td class="text-end"><span>{{$sku->price}} {{$order->currency->symbol}}</span></td>
+            <td class="text-end"><span>{{$offer->price}} {{$order->currency->symbol}}</span></td>
         </tr>
         @endforeach
     </tbody>

@@ -1,7 +1,7 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 
 export default function Show(props){
-    const category = props.item_category;
+    const {lang, category} = props;
     const fields = [];
 
     for (let field in category){
@@ -14,9 +14,7 @@ export default function Show(props){
     }
 
     return (
-        <AdminLayout
-            auth={props.auth}
-        >
+        <AdminLayout>
             <h3>Просмотр категории</h3>
             <table className="table table-striped">
                 <tbody>

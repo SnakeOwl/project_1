@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Services\CurrencyConverter;
@@ -49,19 +51,28 @@ class Order extends Model
         );
     }
 
-    public function currency()
+    public function currency(): BelongsTo
     {
         return $this->belongsTo(Currency::class);
     }
 
-    public function storage()
+    public function storage(): BelongsTo
     {
         return $this->belongsTo(Storage::class);
     }
 
-    public function users()
+    public function user(): BelongsTo
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
+    }
+    public function promocode(): BelongsTo
+    {
+        return $this->belongsTo(Promocode::class);
+    }
+
+    public function offers(): BelongsToMany
+    {
+        return $this->belongsToMany(Offer::class)->withPivot(['count', 'price'])->withTimestamps();
     }
 
     public function scopeActive($query)
@@ -69,17 +80,13 @@ class Order extends Model
         return $query->whereNull('date_delivered');
     }
 
-    public function skus()
-    {
-        return $this->belongsToMany(Sku::class)->withPivot(['count', 'price'])->withTimestamps();
-    }
 
     // return full price of the current order
     public function get_full_price()
     {
         $sum = 0;
-        foreach ($this->skus as $sku)
-            $sum += $sku->price * $sku->countInOrder;
+        foreach ($this->offers as $offer)
+            $sum += $offer->price * $offer->countInOrder;
 
         return $sum;
     }
@@ -114,11 +121,11 @@ class Order extends Model
             $this->users()->attach($params['user_id']);
 
 
-        foreach($this->skus as $skuInOrder)
+        foreach($this->offers as $offerInOrder)
         {
-            $this->skus()->attach($skuInOrder, [
-                'count' => $skuInOrder->countInOrder,
-                'price' => $skuInOrder->price,
+            $this->offers()->attach($offerInOrder, [
+                'count' => $offerInOrder->countInOrder,
+                'price' => $offerInOrder->price,
             ]);
         }
 

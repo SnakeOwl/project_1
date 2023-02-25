@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSubscriptionRequest;
 use App\Models\Subscription;
-use App\Models\Sku;
+use App\Models\Offer;
 
 class SubscriptionController extends Controller
 {
-    public function store(StoreSubscriptionRequest $request, Sku $sku)
+    public function store(StoreSubscriptionRequest $request, Offer $offer)
     {
         $params = $request->all();
-        $params['sku_id'] = $sku->id;
+        $params['offer_id'] = $offer->id;
         Subscription::create($params);
-        session()->flash('info', 'Вы были подписаны на рассылку, мы вас оповестим при поступлении товара');
+        session()->flash('message', __('user subscribed'));
 
         return redirect()->back();
     }

@@ -2,8 +2,7 @@ export default function RadioList({
     storages,
     name,
     id,
-    classNameContainer,
-    handleChange
+    classNameContainer
 }){
     name=name? name: id;
 

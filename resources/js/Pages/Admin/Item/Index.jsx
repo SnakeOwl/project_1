@@ -1,9 +1,11 @@
+import { Inertia } from '@inertiajs/inertia';
 import AdminLayout from '@/Layouts/AdminLayout';
-import RedButton from '@/Components/Buttons/RedButton'
-import BlueLink from '@/Components/Links/BlueLink'
-import { Inertia } from '@inertiajs/inertia'
+import RedButton from '@/Components/Buttons/RedButton';
+import BlueLink from '@/Components/Links/BlueLink';
+import Pagination from '@/Components/Paginations/Pagination';
 
 export default function Index(props){
+    const {lang} = props;
     const items = props.items.data.map((item) => {
         return(
             <tr>
@@ -12,16 +14,16 @@ export default function Index(props){
                 </td>
                 <td>{item.name}</td>
                 <td>
-                    <BlueLink href={route("items.skus.index", item)}>
+                    <BlueLink href={route("items.offers.index", item)}>
                         Товарные предложения
                     </BlueLink>
                 </td>
-                <td>{item.skus.length}</td>
+                <td>{item.offers.length}</td>
                 <td>
                     <BlueLink href={route('items.edit', item)}>
                         <i class="bi bi-gear-fill"></i>
                     </BlueLink>
-                    <RedButton handleClick={() => Inertia.delete(route('items.destroy', item))}>
+                    <RedButton onHandleClick={() => Inertia.delete(route('items.destroy', item))}>
                         <i class="bi bi-x"></i>
                     </RedButton>
                 </td>
@@ -30,25 +32,29 @@ export default function Index(props){
     });
 
     return (
-        <AdminLayout
-            auth={props.auth}
-            flash={props.flash}
-        >
-            <h2>Товары</h2>
-            <BlueLink href={route('items.create')} className="mb-3">Добавить товар</BlueLink>
+        <AdminLayout>
+            <h2>{lang["items management"]}</h2>
+            <BlueLink
+                href={route('items.create')}
+                className="mb-3 w-100 text-center">
+                <i class="bi bi-plus-lg"></i>
+            </BlueLink>
 
             <table className="table table-striped">
                 <thead>
                     <th>#</th>
-                    <th>Название</th>
-                    <th>Товарные предложения</th>
-                    <th>Количество товарных предложений</th>
-                    <th>Управление</th>
+                    <th>{lang["name"]}</th>
+                    <th>{lang["offers"]}</th>
+
+                    <th>{lang["count offers"]}</th>
+                    <th>{lang["management"]}</th>
                 </thead>
                 <tbody>
                     {items}
                 </tbody>
             </table>
+
+            <Pagination links={props.items.links} />
         </AdminLayout>
     );
 }

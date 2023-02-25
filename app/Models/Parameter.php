@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\belongsTo;
 
 class Parameter extends Model
 {
@@ -16,7 +17,9 @@ class Parameter extends Model
         'param_name',
         'param_value',
     ];
-    protected $hidden = ['id', 'item_id'];
 
-    protected $table = "parameters";
+    public function item(): belongsTo
+    {
+        return $this->belongsTo(Item::class);
+    }
 }

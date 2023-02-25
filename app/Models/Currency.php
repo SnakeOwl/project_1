@@ -9,16 +9,14 @@ class Currency extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'rate'
-    ];
+    protected $fillable = ['rate'];
 
     public function scopeByCode($query, $code)
     {
         return $query->where('code', $code);
     }
 
-    public function isMain()
+    public function isMain(): bool
     {
         return $this->is_main === 1;
     }

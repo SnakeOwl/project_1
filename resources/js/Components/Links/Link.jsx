@@ -2,6 +2,7 @@ export default function Link({
     children,
     href,
     className,
+    title,
     disabled=false
 }){
     className += disabled? " disabled": "";
@@ -9,6 +10,7 @@ export default function Link({
     return (
         <a
             href={href}
+            title={title}
             className={className}
         >
             {children}

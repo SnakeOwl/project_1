@@ -10,7 +10,8 @@ class ShowUserOrdersController extends Controller
 {
     public function __invoke()
     {
-        $orders = Auth::user()->orders()->paginate(25);
-        return Inertia::render('User/Order/Index', compact('orders'));
+        $orders = Auth::user()->orders()->with('currency')->paginate(25);
+
+        return Inertia::render('Auth/Order/Index', compact('orders'));
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Currency;
 
 class CurrencySeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class CurrencySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('currencies')->insert([
+        $currencies = [
             [
                 'code' => 'RUB',
                 'symbol' => '₽',
@@ -25,13 +26,20 @@ class CurrencySeeder extends Seeder
             [
                 'code' => 'USD',
                 'symbol' => '$',
-                'is_main' => '0',
             ],
             [
                 'code' => 'EUR',
                 'symbol' => '€',
-                'is_main' => '0',
             ],
-        ]);
+            [
+                'code' => 'BYN',
+                'symbol' => 'Byn',
+            ],
+        ];
+
+        foreach($currencies as $currency)
+            Currency::factory()
+                ->state($currency)
+                ->create();
     }
 }

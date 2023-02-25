@@ -1,6 +1,7 @@
 import { useForm } from '@inertiajs/inertia-react';
 
 export default function Input({
+    autocomplete = "on",
     id,
     className='',
     type="text",
@@ -14,10 +15,10 @@ export default function Input({
     disabled,
     readonly,
     value,
-    autocomplete = "on",
-    handleChange,
+    onHandleChange,
     isFocused,
     multiple,
+    step,
 }){
 
     return (
@@ -37,9 +38,10 @@ export default function Input({
                 readonly={readonly}
                 value={value}
                 autocomplete={autocomplete}
-                onChange={handleChange}
+                onChange={onHandleChange}
                 autofocus={isFocused}
                 multiple={multiple}
+                step={step}
             />
         </>
     );

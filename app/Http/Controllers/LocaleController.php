@@ -10,9 +10,8 @@ class LocaleController extends Controller
     public function change($locale)
     {
         $availableLocales = ['ru', 'en'];
-        if (!in_array($locale, $availableLocales)){
+        if (!in_array($locale, $availableLocales))
             $locale = config('app.locale');
-        }
 
         session(['locale' => $locale]);
         App::setLocale($locale);

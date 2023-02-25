@@ -1,27 +1,24 @@
 import React from 'react';
 import { useForm } from '@inertiajs/inertia-react';
 import MainLayout from '@/Layouts/MainLayout';
-import SkuCard from './Components/SkuCard';
+import OfferCard from './Components/OfferCard';
 import Filter from './Components/Filter';
 import Searcher from './Components/Searcher';
 import Pagination from '@/Components/Paginations/Pagination';
 
-const LocaleContext = React.createContext("ru");
-
-export default function Catalog(props) {
+export default function(props) {
+    console.log(props);
     const filterData = props.filter;
     const {data, setData, get} = useForm({
         priceFrom:  filterData? filterData.priceFrom:  0,
         priceTo:    filterData? filterData.priceTo:  0,
         category:   filterData? filterData.category:  0,
-        isNew:      filterData? filterData.isNew === "true" : true,
-        isPopular:  filterData? filterData.isPopular === "true": false,
     });
 
-    const showedSkus = props.skus.data.map((sku) => {
-        return <SkuCard sku={sku} /> ;
+    const offers = props.offers.data.map((offer) => {
+        return <OfferCard offer={offer} /> ;
     });
-    
+
     function useFilter(){
         get(route('catalog'));
     }
@@ -33,11 +30,10 @@ export default function Catalog(props) {
 
     return (
         <MainLayout>
-            <div className="row catalog">
-                <div className="col-2">
+            <div className="row">
+                <div className="col-2 px-3">
                     <Searcher />
                     <Filter
-                        className="px-2"
                         values={data}
                         handleChange={onHandleChange}
                         useFilter={useFilter}
@@ -46,13 +42,11 @@ export default function Catalog(props) {
 
                 <div className="col-10 container">
                     <div className="row justify-content-around">
-                        {showedSkus}
+                        {offers}
                     </div>
+
                     <div className="row">
-                    <Pagination
-                        className="justify-content-center"
-                        links={props.skus.links}
-                     />
+                        <Pagination links={props.offers.links} />
                     </div>
                 </div>
             </div>

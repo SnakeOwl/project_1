@@ -22,7 +22,7 @@ export default function Register() {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 
-    const submit = (e) => {
+    const onHandeSubmit = (e) => {
         e.preventDefault();
 
         post(route('register'));
@@ -32,7 +32,7 @@ export default function Register() {
         <MainLayout>
             <Head title="Register" />
 
-            <form className="form-signin" onSubmit={submit}>
+            <form className="form-signin" onSubmit={onHandeSubmit}>
                 <FloatInput
                     id="name"
                     labelText="Имя"
@@ -40,8 +40,7 @@ export default function Register() {
                     autoComplete="email"
                     className="mb-3"
                     isFocused={true}
-                    handleChange={onHandleChange}
-                    errors={errors}
+                    onHandleChange={onHandleChange}
                     required
                 />
 
@@ -52,8 +51,7 @@ export default function Register() {
                     className="mb-3"
                     value={data.email}
                     autoComplete="name"
-                    handleChange={onHandleChange}
-                    errors={errors}
+                    onHandleChange={onHandleChange}
                     required
                 />
 
@@ -63,20 +61,19 @@ export default function Register() {
                     type="password"
                     value={data.password}
                     autoComplete="off"
-                    handleChange={onHandleChange}
-                    errors={errors}
+                    className="mb-2"
+                    onHandleChange={onHandleChange}
                     required
                 />
 
                 <FloatInput
-                    id="password_confirmation"
                     labelText="Подтвердите пароль"
+                    id="password_confirmation"
                     type="password"
                     className="mb-3"
                     value={data.password_confirmation}
                     autoComplete="off"
-                    handleChange={onHandleChange}
-                    errors={errors}
+                    onHandleChange={onHandleChange}
                     required
                 />
 

@@ -17,9 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('email');
             $table->boolean('status')->default(0);
-            $table->foreignId('sku_id');
-
-            $table->timestamps();
+            $table->foreignId('offer_id');
         });
     }
 

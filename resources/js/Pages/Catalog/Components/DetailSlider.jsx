@@ -3,6 +3,15 @@ import Img from "@/Components/Img";
 
 
 export default function DetailSlider({id="Carousel", images}){
+    if (images == null)
+    {
+        images = [
+            {url: 'system/default_img.jpg'},
+            {url: 'system/default_img.jpg'},
+            {url: 'system/default_img.jpg'}
+        ];
+    }
+
     const {open, setOpen} = useState(false);
 
     function toggleOpen(){
@@ -12,14 +21,13 @@ export default function DetailSlider({id="Carousel", images}){
     let i = 0;
     const indicators = [];
     const slides = images.map((img)=>{
-
         indicators.push(
             <button type="button" data-bs-target={"#"+id} data-bs-slide-to={i} className={(i++ == 0)? "active": "" } aria-current="true"></button>
         );
 
         return (
             <div class={"carousel-item " + (i==1? "active" : '')}>
-                <Img src={img.image} className="d-block w-100" />
+                <Img src={img.url} className="d-block w-100" />
             </div>
         )
     });

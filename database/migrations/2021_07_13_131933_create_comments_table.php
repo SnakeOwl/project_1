@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->unsignedTinyInteger('rating');
             $table->text('comment')->nullable();
-            $table->foreignId('item_id')->constrained('items');
+            $table->foreignId('item_id');
         });
     }
 
@@ -30,4 +30,4 @@ class CreateCommentsTable extends Migration
     {
         Schema::dropIfExists('comments');
     }
-}
+};

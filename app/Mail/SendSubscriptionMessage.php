@@ -6,21 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\sku;
+use App\Models\Offer;
 
 class SendSubscriptionMessage extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $sku;
+    protected $offer;
 
-    public function __construct(Sku $sku)
+    public function __construct(Offer $offer)
     {
-        $this->sku = $sku;
+        $this->offer = $offer;
     }
 
     public function build()
     {
-        return $this->view('mail.subscription', ['sku' => $this->sku]);
+        return $this->view('mail.subscription', ['offer' => $this->offer]);
     }
 }

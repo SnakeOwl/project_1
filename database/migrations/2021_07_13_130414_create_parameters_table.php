@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParametersTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateParametersTable extends Migration
     {
         Schema::create('parameters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained('items');
+            $table->foreignId('item_id');
             $table->string("param_name");
             $table->string("param_value")->nullable();
         });
@@ -30,4 +30,4 @@ class CreateParametersTable extends Migration
     {
         Schema::dropIfExists('parameters');
     }
-}
+};

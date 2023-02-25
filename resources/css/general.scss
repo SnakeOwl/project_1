@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('/fonts/Comfortaa-VariableFont_wght.ttf');
+}
+*{
+    font-family: 'Comfortaa';
+}
+
+a.disabled{
+    pointer-events: none;
+}
+
+%red_box{
+    background-color: $red;
+    color: white;
+}
+%blue_box{
+    background-color: $blue;
+    color: white;
+}
+%green_box{
+    background-color: $green;
+    color: white;
+}
+
+.red-box{
+    @extend %red_box;
+}
+.blue-box{
+    @extend %blue_box;
+}
+.bgreen-box{
+    @extend %green_box;
+}
+
+
+.text-justify{
+    text-align: justify !important;
+}
+
+.color-red{
+    color: $red;
+}
+.color-blue{
+    color: $blue;
+}
+.color-green{
+    color: $green;
+}
+
+a{
+    color:black;
+    text-decoration: none;
+    &:hover{
+        color: $red;
+    }
+}
+
+ul.list-style-inside{
+    list-style: inside;
+}
+
+footer{
+    a{
+        color:white;
+    }
+}
