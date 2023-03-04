@@ -8,6 +8,11 @@ use App\Http\Middleware\HandleInertiaRequests as Middleware;
 use App\Models\Item;
 use App\Models\Offer;
 use App\Models\Order;
+use App\Models\Storage;
+use App\Models\User;
+use App\Models\Subscription;
+use App\Models\Message;
+use App\Models\Category;
 
 class AdminCounter extends Middleware
 {
@@ -18,7 +23,12 @@ class AdminCounter extends Middleware
             "menuInfo" =>[
                 "countItems" => Item::count(),
                 "countOffers" => Offer::count(),
-                "countOrders" => Order::count()
+                "countOrders" => Order::count(),
+                "countStorages" => Storage::count(),
+                "countUsers" => User::count(),
+                "countSubscribers" => Subscription::count(),
+                "countMessages" => Message::count(),
+                "countCategories" => Category::count(),
             ]
         ]);
     }

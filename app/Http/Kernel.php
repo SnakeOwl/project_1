@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'catalogInformation' => \App\Http\Middleware\CatalogInformation::class,
         'adminCounter' => \App\Http\Middleware\AdminCounter::class,
         'set_locale' => \App\Http\Middleware\SetLocale::class,
         'basket_not_empty' => \App\Http\Middleware\BasketIsNotEmpty::class,

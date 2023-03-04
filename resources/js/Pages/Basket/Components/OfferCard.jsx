@@ -32,12 +32,15 @@ export default function OfferCard({offer}) {
 
             <div className="card-footer py-2">
                 <div className="d-flex justify-content-between">
-                    <BlueLink href={route('basket-remove-offer', offer)}>
+                    <BlueLink
+                        className="inversed"
+                        href={route('basket-remove-offer', offer)}
+                    >
                         -
                     </BlueLink>
 
                     <RedLink
-                        className={"rounded"}
+                        className="rounded"
                         href={route('basket-add-offer', offer)}
                     >
                         {lang["more"]}

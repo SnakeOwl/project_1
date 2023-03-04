@@ -14,7 +14,7 @@ export default function FloatSelect ({
     selectedOptionIds = null, // maybe one id
     multiple,
     disabled,
-    inputClassName,
+    classNameInput,
     onHandleChange,
 }){
     const {errors} = usePage().props;
@@ -42,7 +42,7 @@ export default function FloatSelect ({
                 <select
                     id={id}
                     name={name? name: id}
-                    class={"form-select " + inputClassName}
+                    class={"form-select " + classNameInput}
                     multiple={multiple}
                     disabled={disabled}
                     onChange={onHandleChange} >

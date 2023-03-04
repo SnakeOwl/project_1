@@ -13,12 +13,12 @@ class FilterRequest extends FormRequest
 
     public function rules()
     {
+        // при передаче get запроса нельзя определить значение boolean
         return [
             'priceFrom' => 'numeric|min:0',
             'priceTo' => 'numeric|min:0',
-            'categy' => 'numeric|min:1',
-            'isNew' => 'string|max:5', // boolean не подходит
-            'isPopular' => 'string|max:5', // boolean не подходит
+            'isNew' => 'nullable|string|max:5',
+            'isPopular' => 'nullable|string|max:5',
         ];
     }
 }

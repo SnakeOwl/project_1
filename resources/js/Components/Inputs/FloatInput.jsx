@@ -4,7 +4,7 @@ import {usePage} from '@inertiajs/inertia-react';
 export default function FloatInput({
     id,
     className = '',
-    inputClassName,
+    classNameInput,
     type="text",
     name,
     labelText,
@@ -27,7 +27,7 @@ export default function FloatInput({
         <div className={className}>
             <div className="form-floating">
                 <input
-                    className={"form-control " + inputClassName}
+                    className={"form-control " + classNameInput}
                     id={id}
                     type={type}
                     name={name? name: id}

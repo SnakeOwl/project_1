@@ -1,13 +1,13 @@
 import { usePage } from '@inertiajs/inertia-react';
 import { useState } from 'react';
 import FloatInput from '@/Components/Inputs/FloatInput';
-import BlueButton from '@/Components/Buttons/BlueButton';
+import RedButton from '@/Components/Buttons/RedButton';
 import Checkbox from '@/Components/Inputs/Checkbox';
 import PriceFilter from './Filter/PriceFilter';
 
 export default function Filter({
     values,
-    handleChange,
+    onHandleChange,
     useFilter,
     className="",
 }){
@@ -16,21 +16,21 @@ export default function Filter({
     return (
         <div className={"filter " + className}>
             <div className="filter-price mb-3">
-                <span>{lang["price"]}</span>
+                <h5 className="text-center">{lang["price"]}</h5>
 
                 <PriceFilter
                     priceFrom={values.priceFrom}
                     priceTo={values.priceTo}
-                    handleChange={handleChange}
+                    onHandleChange={onHandleChange}
                  />
             </div>
 
-            <BlueButton
-                className="w-100"
-                handleClick={useFilter}
+            <RedButton
+                className="w-100 inverted"
+                onHandleClick={useFilter}
             >
                 {lang["doFilter"]}
-            </BlueButton>
+            </RedButton>
         </div>
     );
 }

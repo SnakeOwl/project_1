@@ -11,6 +11,7 @@ class Subscription extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $fillable =['email', 'offer_id'];
 
     public function scopeByOfferId($query, $offerId)

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Catalog;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSubscriptionRequest extends FormRequest
+class SubscriptionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,7 @@ class StoreSubscriptionRequest extends FormRequest
     public function rules()
     {
         return [
+            'offer_id' => 'required|numeric',
             'email' => 'required|email:rfc,dns'
         ];
     }

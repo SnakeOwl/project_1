@@ -2,17 +2,16 @@ import React from 'react';
 import { useForm } from '@inertiajs/inertia-react';
 import MainLayout from '@/Layouts/MainLayout';
 import OfferCard from './Components/OfferCard';
+import Categories from './Components/Categories';
 import Filter from './Components/Filter';
 import Searcher from './Components/Searcher';
 import Pagination from '@/Components/Paginations/Pagination';
 
 export default function(props) {
-    console.log(props);
     const filterData = props.filter;
     const {data, setData, get} = useForm({
         priceFrom:  filterData? filterData.priceFrom:  0,
         priceTo:    filterData? filterData.priceTo:  0,
-        category:   filterData? filterData.category:  0,
     });
 
     const offers = props.offers.data.map((offer) => {
@@ -24,20 +23,21 @@ export default function(props) {
     }
 
     function onHandleChange (event){
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        setData(event.target.name, event.target.value);
     };
-
 
     return (
         <MainLayout>
             <div className="row">
                 <div className="col-2 px-3">
-                    <Searcher />
+                    <Searcher className="mb-3" />
                     <Filter
+                        className="mb-3"
                         values={data}
-                        handleChange={onHandleChange}
+                        onHandleChange={onHandleChange}
                         useFilter={useFilter}
                     />
+                    <Categories className="mb-3"/>
                 </div>
 
                 <div className="col-10 container">

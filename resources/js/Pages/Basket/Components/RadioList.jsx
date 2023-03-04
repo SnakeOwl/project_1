@@ -2,7 +2,8 @@ export default function RadioList({
     storages,
     name,
     id,
-    classNameContainer
+    onHandleChange,
+    className
 }){
     name=name? name: id;
 
@@ -10,7 +11,7 @@ export default function RadioList({
         return (
             <div class="card mb-3">
                 <div class="card-header">
-                    <input type="radio" name={name} value={storage.id} id={storage.id} onChange={handleChange} />
+                    <input type="radio" name={name} value={storage.id} id={storage.id} onChange={onHandleChange} />
                     <label for={storage.id}>&nbsp;{storage.name}</label>
                 </div>
                 <div class="card-body">
@@ -25,7 +26,7 @@ export default function RadioList({
         );
     });
     return (
-        <div className={"container " + classNameContainer} id={id}>
+        <div className={"container " + className} id={id}>
             {cards}
         </div>
     );

@@ -16,12 +16,14 @@ export default function OrderForm(props){
         address: null,
         post_index: null,
         storage_id: null,
-        test: ["231"],
     });
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.value);
     };
+    const showData = (event)=>{
+        console.log(data);
+    }
 
     const delyveryMethods = [
         {
@@ -41,32 +43,28 @@ export default function OrderForm(props){
     // при изменении способа доставки нужно изменять видимые поля
     const changeDelivery = (event)=>{
         const value = event.target.options[event.target.selectedIndex].value;
-        console.log("selected data:");
-        console.log(event.target.options[event.target.selectedIndex].value);
-
 
         switch (value) {
             case "post":
-                data.test.push(
-                    "111"
-                );
+                address.classList.remove("d-none");
+                post_index.classList.remove("d-none");
+                storage_id.classList.add("d-none");
+            break;
+
             case "courier":
-                data.test.push(
-                    "222"
-                );
+                address.classList.remove("d-none");
+                post_index.classList.add("d-none");
+                storage_id.classList.add("d-none");
             break;
 
             case "storage":
-                data.test.push(
-                    "333"
-                );
+                address.classList.add("d-none");
+                post_index.classList.add("d-none");
+                storage_id.classList.remove("d-none");
             break;
         }
 
         setData("delivery_method", value);
-
-        setData("test", data.test);
-
     }
 
     const paymentMethods = [
@@ -81,20 +79,14 @@ export default function OrderForm(props){
 
     ];
 
-
-
     function onHandleSubmit(e){
         e.preventDefault();
-        console.log(data);
-        // post(route('order-store'));
+        post(route('order-store'));
     }
-
-
-
 
     return (
         <MainLayout title="Корзина">
-        {data.delivery_method}
+    <RedButton onHandleClick={showData}>check</RedButton>
             <div className="container">
                 <h3>Оформление заказа</h3>
                 <form onSubmit={onHandleSubmit}>
@@ -124,7 +116,31 @@ export default function OrderForm(props){
                             onHandleChange={changeDelivery}
                         />
                     </div>
-                    {data.test}
+
+                    <FloatInput
+                        id='address'
+                        labelText='Адрес'
+                        className="mb-3"
+                        value={data.address}
+                        onHandleChange={onHandleChange}
+                    />
+
+                    <FloatInput
+                        id='post_index'
+                        labelText='Почтовый индекс'
+                        className="mb-3"
+                        classNameInput="d-none"
+                        value={data.post_index}
+                        onHandleChange={onHandleChange}
+                    />
+
+                    
+                    <RadioList
+                        id="storage_id"
+                        storages={storages}
+                        className="d-none"
+                        onHandleChange={onHandleChange}
+                    />
 
                     <FloatSelect
                         options={paymentMethods}

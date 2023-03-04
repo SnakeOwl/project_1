@@ -5,9 +5,11 @@ import SubscribeForm from './Components/SubscribeForm';
 import CarouselWithIndicators from './Components/DetailSlider';
 
 export default function (props) {
-    const offer = props.offer;
-console.log(props);
+    const {offer, lang} = props;
     const offerProperties = offer.shapeOptions.map( (option)=>{
+        if (option.shape == null || option == null)
+            return false;
+
         return(
             <tr>
             <td>{option.shape.name}</td>
@@ -27,16 +29,16 @@ console.log(props);
 
     const offerAvailable = (props.offerIsAvailable)
     ?
-        <RedLink href={route('add-offer-to-basket', offer)} >
-            В корзину
-        </RedLink>
+        <div className="text-center">
+            <RedLink
+                className="rounded"
+                href={route('basket-add-offer', offer)}
+            >
+                {lang['toBasket']}
+            </RedLink>
+        </div>
     :
-        <>
-            <span>Товара нет в наличии</span>
-            <br />
-            <span>Сообщить вам о поступлении товара? </span>
-            <SubscribeForm className="d-inline ms-auto" />
-        </>
+        <SubscribeForm offer_id={offer.id} />
     ;
 
     return (
@@ -65,15 +67,15 @@ console.log(props);
 
                 <div className="row">
                     <div className="col-12">
-                        <h3>Характеристики предмета</h3>
+                        <h3>{lang['item field parameters']}</h3>
                         <table className="table">
                             { itemProperties }
                         </table>
                     </div>
                 </div>
 
-                <div className="row text-center">
-                    <div className="col-12 mx-auto">
+                <div className="row">
+                    <div className="col-4 mx-auto">
                         { offerAvailable }
                     </div>
                 </div>

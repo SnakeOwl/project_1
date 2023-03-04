@@ -1,10 +1,11 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 import BlueButton from '@/Components/Buttons/BlueButton'
-import StandartInput from '@/Components/Inputs/StandartInput'
-import StandartTextarea from '@/Components/Inputs/StandartTextarea'
+import FloatInput from '@/Components/Inputs/FloatInput'
+import FloatTextarea from '@/Components/Inputs/FloatTextarea'
 import { useForm } from '@inertiajs/inertia-react';
 
 export default function Form(props){
+    const {lang} = props;
     const storage = props.storage? props.storage: null;
     const { data, setData, post, patch, errors, reset } = useForm({
         address:    storage? storage.address : "",
@@ -13,70 +14,64 @@ export default function Form(props){
         schedule:   storage? storage.schedule: "",
     });
 
-    function handleSubmit(e){
+    function onHandleSubmit(e){
         e.preventDefault();
-        if (storage == null){
+        if (storage == null)
             post(route('storages.store'));
-        }else{
+        else
             patch(route('storages.update', storage));
-        }
-
-        e.target.reset();
     }
 
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        setData(event.target.name, event.target.value);
     };
 
     return (
-        <AdminLayout
-            auth={props.auth}
-            flash={props.flash}
-        >
-            <h3>Форма Точки самовывоза</h3>
-            <form className="col-12 col-lg-3 mb-3" onSubmit={handleSubmit}>
-                <StandartInput
-                    id="address"
-                    value={data.address}
-                    labelText="Адрес"
-                    handleChange={onHandleChange}
-                    errors={errors}
-                    isFocused={true}
-                    required
-                />
+        <AdminLayout>
+            <div className="col-12 col-xxl-4 mx-auto">
+                <h1 className="text-center">{lang['storage h']}</h1>
+                <form onSubmit={onHandleSubmit}>
+                    <FloatInput
+                        id="address"
+                        value={data.address}
+                        className="mb-3"
+                        labelText={lang['address']}
+                        onHandleChange={onHandleChange}
+                        isFocused={true}
+                        required
+                    />
 
-                <StandartInput
-                    id="name"
-                    value={data.name}
-                    labelText="Название"
-                    handleChange={onHandleChange}
-                    errors={errors}
-                    required
-                />
+                    <FloatInput
+                        id="name"
+                        value={data.name}
+                        className="mb-3"
+                        labelText={lang['storages name']}
+                        onHandleChange={onHandleChange}
+                        required
+                    />
 
-                <StandartInput
-                    id="phone"
-                    value={data.phone}
-                    labelText="Телефон"
-                    handleChange={onHandleChange}
-                    errors={errors}
-                    required
-                />
+                    <FloatInput
+                        id="phone"
+                        value={data.phone}
+                        className="mb-3"
+                        labelText={lang['phone']}
+                        onHandleChange={onHandleChange}
+                        required
+                    />
 
+                    <FloatTextarea
+                        id="schedule"
+                        value={data.schedule}
+                        className="mb-3"
+                        labelText={lang['schedule']}
+                        rows="3"
+                        onHandleChange={onHandleChange}
+                        required
+                    />
 
-
-                <StandartTextarea
-                    id="schedule"
-                    value={data.schedule}
-                    labelText="Расписание"
-                    rows="3"
-                    handleChange={onHandleChange}
-                    errors={errors}
-                    required
-                />
-
-                <BlueButton>Сохранить</BlueButton>
-            </form>
+                    <BlueButton className="w-100">{lang['submit']}</BlueButton>
+                </form>
+            </div>
         </AdminLayout>
     );
 }

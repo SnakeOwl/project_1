@@ -4,7 +4,7 @@ import Input from '@/Components/Inputs/Input';
 export default function PriceFilter ({
     priceFrom,
     priceTo,
-    handleChange
+    onHandleChange
 }){
     const {currentCurrecy} = usePage().props;
 
@@ -14,24 +14,21 @@ export default function PriceFilter ({
                 <div class="input-group mb-3">
                     <Input
                         placeholder="от"
-                        name="priceFrom"
+                        id="priceFrom"
                         type="number"
                         value={priceFrom}
                         step="5"
-                        handleChange={handleChange}/>
+                        onHandleChange={onHandleChange}/>
                     <span class="input-group-text">{currentCurrecy.symbol}</span>
                     <Input
                         placeholder="до"
-                        name="priceTo"
+                        id="priceTo"
                         type="number"
                         value={priceTo}
                         step="5"
-                        handleChange={handleChange}/>
+                        onHandleChange={onHandleChange}/>
                 </div>
             </div>
-
-
-
         </div>
     );
 }

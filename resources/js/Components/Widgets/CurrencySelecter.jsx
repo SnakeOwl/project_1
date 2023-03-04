@@ -1,16 +1,23 @@
 import {usePage} from '@inertiajs/inertia-react';
 
-export default function CurrencySelecter(){
+export default function CurrencySelecter({
+    className=""
+}){;
     const {currencies, currentCurrecy} = usePage().props;
 
     const buttonSide = (
-        <button className="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <button className="bttn red inverted small rounded dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        >
             {currentCurrecy.symbol}
         </button>
     );
 
     const list = currencies.map((currency)=>{
-        if (currency.id == currentCurrecy)
+        if (currency.id == currentCurrecy.id)
             return false;
 
     	return (
@@ -24,7 +31,7 @@ export default function CurrencySelecter(){
     });
 
     return (
-        <div className="dropdown">
+        <div className={"dropdown " + className}>
             {buttonSide}
 
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">

@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Catalog\IndexController;
 use App\Http\Controllers\Catalog\ShowOfferDetailController;
+use App\Http\Controllers\Catalog\SubscribeController;
+use App\Http\Controllers\Catalog\SearchController;
+
 use App\Http\Controllers\Messages\StoreMessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CurrencyController;
@@ -23,23 +26,27 @@ use App\Http\Controllers\User\PersonalDataController;
 use App\Http\Controllers\User\PersonalDataUpdateController;
 
 use App\Http\Controllers\Locale\SetLocaleController;
-use App\Http\Controllers\Catalog\SearchController;
-
-
-
 
 
 Route::redirect('/', '/catalog/')->name('index');
 
+Route::prefix('catalog')
+    ->group(function(){
+    Route::middleware('catalogInformation')->group(function(){
+        Route::get('/', IndexController::class)
+            ->name('catalog');
 
-Route::prefix('catalog')->group(function(){
-    Route::get('/', IndexController::class)
-        ->name('catalog');
+        Route::get('{category_alias}', IndexController::class)
+            ->name('category-offers');
 
-    Route::get('category/{category_alias}/{item_alias}/{offer}', ShowOfferDetailController::class)
-        ->name('catalog-offer-details');
+        Route::get('{category_alias}/{item_alias}/{offer}', ShowOfferDetailController::class)
+            ->name('catalog-offer-details');
+    });
     Route::get("search/{name}", SearchController::class)
         ->name("search");
+
+    Route::post('subscribe', SubscribeController::class)
+        ->name('subscribe');
 });
 
 Route::prefix('user')

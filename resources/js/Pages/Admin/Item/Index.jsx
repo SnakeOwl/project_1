@@ -36,7 +36,8 @@ export default function Index(props){
             <h2>{lang["items management"]}</h2>
             <BlueLink
                 href={route('items.create')}
-                className="mb-3 w-100 text-center">
+                className="mb-3 w-100 text-center"
+            >
                 <i class="bi bi-plus-lg"></i>
             </BlueLink>
 

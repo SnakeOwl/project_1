@@ -11,14 +11,9 @@ class PersonalDataUpdateController extends Controller
 {
     public function __invoke(PersonalUpdateUserRequest $request)
     {
-        $validated = $request->validated();
         $user = Auth::user();
+        $user->update($request->validated());
 
-        if (isset($validated['phone']) && $user->phone != $validated['phone'])
-            $user->update(['phone' => $validated['phone']]);
-
-        session()->flash('info', __('dataHasBeenChanged'));
-
-        return redirect()->route("personal-page");
+        session()->flash('message', __('info.personal data changed'));
     }
 }

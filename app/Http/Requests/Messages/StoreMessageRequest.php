@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\FormsMessages;
+namespace App\Http\Requests\Messages;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,9 +14,8 @@ class StoreMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:2|max:255',
+            'email' => 'required|email:rfc,dns',
             'message' => 'required|min:8|max:255',
-            'email' => 'required|email:rfc,dns'
         ];
     }
 }

@@ -1,42 +1,34 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 import BlueButton from '@/Components/Buttons/BlueButton'
-import BlueLink from '@/Components/Links/BlueLink'
 import { Inertia } from '@inertiajs/inertia'
+import Pagination from '@/Components/Paginations/Pagination';
 
-export default function MessageIndex(props){
-    const messages = [];
-
-    function handleReadClick(messageId){
-        Inertia.post( route('message-read', messageId) );
-    }
-
-    props.messages.data.forEach((message) => {
-        messages.push(
+export default function Index(props){
+    const {lang} = props;
+    const messages = props.messages.data.map((message)=>{
+        return (
             <tr>
                 <td>{message.id}</td>
-                <td>{message.name}</td>
                 <td>{message.email}</td>
                 <td>{message.message}</td>
                 <td>
-                    <BlueButton handleClick={() => handleReadClick(message.id)}>
+                    <BlueButton onHandleClick={() => Inertia.delete(route('messages.destroy', message.id))}>
                         Прочитано
                     </BlueButton>
                 </td>
             </tr>
-        );
+
+        )
     });
 
+
     return (
-        <AdminLayout
-            auth={props.auth}
-            flash={props.flash}
-        >
-            <h2>Письма пользователей</h2>
+        <AdminLayout title={lang['messages h']}>
+            <h1 className="text-center">{lang['messages h']}</h1>
 
             <table className="table table-striped">
                 <thead>
                     <th>#</th>
-                    <th>Имя</th>
                     <th>email</th>
                     <th>Сообщение</th>
                 </thead>
@@ -44,6 +36,7 @@ export default function MessageIndex(props){
                     {messages}
                 </tbody>
             </table>
+            <Pagination links={props.messages.links} />
         </AdminLayout>
     );
 }

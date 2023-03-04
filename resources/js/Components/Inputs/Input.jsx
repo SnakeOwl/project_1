@@ -24,7 +24,7 @@ export default function Input({
     return (
         <>
             <input
-                className={'form-control' + className}
+                className={'form-control ' + className}
                 id={id}
                 type={type}
                 name={name? name: id}

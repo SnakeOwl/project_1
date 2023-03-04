@@ -14,7 +14,7 @@ use App\Classes\Currency\CurrencyConverter;
 
 class OfferFilter extends Filter
 {
-    public const CATEGORY = 'categy';
+    public const CATEGORY = 'category';
     public const PRICE_FROM = 'priceFrom';
     public const PRICE_TO = 'priceTo';
     public const IS_NEW = "isNew";
@@ -45,18 +45,22 @@ class OfferFilter extends Filter
     // ---- функции на обработку приходящих полей
     public function category(Builder $builder, $value)
     {
-        $builder->where('category_id', $value);
+        $builder->whereHas('item', function(Builder $query) use($value) {
+            $query->where('category_id', $value);
+        });
     }
 
     public function priceTo(Builder $builder, $value)
     {
         // Если пользователь укажет фильтр по цене в иностранной валюте.
         // Нужен перевод в рубли, так как это основная валюта и по ней ведётся поиск в БД.
-        if (CurrencyConverter::getCurrencyCodeFromSession() != CurrencyConverter::DEFAULT_CURRENCY_CODE){
-            $value = CurrencyConverter::convert($value,
-                CurrencyConverter::getCurrencyCodeFromSession(),
-                CurrencyConverter::DEFAULT_CURRENCY_CODE);
-        }
+        if (CurrencyConverter::getCurrencyCodeFromSession()
+            != CurrencyConverter::DEFAULT_CURRENCY_CODE)
+            {
+                $value = CurrencyConverter::convert($value,
+                    CurrencyConverter::getCurrencyCodeFromSession(),
+                    CurrencyConverter::DEFAULT_CURRENCY_CODE);
+            }
 
         $builder->where('price', '<=', $value);
     }
@@ -65,11 +69,13 @@ class OfferFilter extends Filter
     {
         // Если пользователь укажет фильтр по цене в иностранной валюте.
         // Нужен перевод в рубли, так как это основная валюта и по ней ведётся поиск в БД.
-        if (CurrencyConverter::getCurrencyCodeFromSession() != CurrencyConverter::DEFAULT_CURRENCY_CODE){
-            $value = CurrencyConverter::convert($value,
-                CurrencyConverter::getCurrencyCodeFromSession(),
-                CurrencyConverter::DEFAULT_CURRENCY_CODE);
-        }
+        if (CurrencyConverter::getCurrencyCodeFromSession()
+            != CurrencyConverter::DEFAULT_CURRENCY_CODE)
+            {
+                $value = CurrencyConverter::convert($value,
+                    CurrencyConverter::getCurrencyCodeFromSession(),
+                    CurrencyConverter::DEFAULT_CURRENCY_CODE);
+            }
 
         $builder->where('price', '>=', $value);
     }
@@ -92,69 +98,5 @@ class OfferFilter extends Filter
                 $query->where('hit', 1);
             });
         }
-
-    }
-    // функции на обработку приходящих полей ----
-
-    public function getUsedCategory()
-    {
-        return $this->used_category;
-    }
-
-    public function old_filter($params)
-    {
-
-        $offerQuery = Offer::with('item', 'item.category');
-        return $offerQuery;
-
-        $this->used_category = session('used_category') ?? null;
-
-        // работает либо фильтр, либо поисковик по имени
-        if($params->filled('search'))
-        {
-            //либо работает поисковик
-            $offerQuery->whereHas('item', function ($query) use ($params){
-                $query->where('name', 'LIKE', '%'.$params->search.'%');
-            });
-        }
-        else
-        {
-            if (isset($category_alias))
-            {
-                $offerQuery->whereHas('item.category', function ($query) use ($category_alias){
-                    $query->where('alias', $category_alias);
-                } );
-                $currentCategory = $category_alias;
-            }
-            elseif ($params->has('category_alias'))
-            {
-                $offerQuery->whereHas('item.category', function ($query) use ($category_alias){
-                    $query->where('alias', $category_alias);
-                } );
-                $currentCategory = $params->category_alias;
-            }
-
-            if ($params->filled('price_from'))
-            {
-                $offerQuery->where('price', '>=', $params->price_from);
-            }
-
-            if ($params->filled('price_to'))
-            {
-                $offerQuery->where('price', '<=', $params->price_to);
-            }
-
-            foreach(['hit', 'new'] as $field)
-            {
-                if($params->has($field))
-                {
-                    $offerQuery->whereHas('item', function ($query) use ($field){
-                        $query->where($field, 1);
-                    });
-                }
-            }
-        }
-
-        return $offerQuery;
     }
 }

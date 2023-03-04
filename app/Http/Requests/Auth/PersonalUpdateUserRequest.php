@@ -16,7 +16,7 @@ class PersonalUpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "phone" => "nullable|string|max:12",
+            "phone" => "required|string|max:15|min:7",
         ];
     }
 }

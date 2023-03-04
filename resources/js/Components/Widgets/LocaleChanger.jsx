@@ -1,7 +1,9 @@
 import { usePage } from '@inertiajs/inertia-react';
 import BlueLink from '@/Components/Links/BlueLink';
 
-export default function LocaleChanger(){
+export default function LocaleChanger({
+    className=""
+}){
     const {currentLocale} = usePage().props;
     const availableLocales = [
         {
@@ -18,16 +20,17 @@ export default function LocaleChanger(){
         if (currentLocale != locale.locale)
             return  (
             <BlueLink
-                className="rounded small"
-                href={route('set-locale', locale.locale)}>
+                className="small rounded inverted"
+                href={route('set-locale', locale.locale)}
+            >
                 {locale.label}
             </BlueLink>
         )
     });
 
     return (
-        <>
+        <div className={className}>
             {locales}
-        </>
+        </div>
     )
 }

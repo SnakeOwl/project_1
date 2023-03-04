@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\Categories\Shapes\Options\ShapeOptionController;
 use App\Http\Controllers\Admin\Items\ItemController;
 use App\Http\Controllers\Admin\Merchants\MerchantController;
 use App\Http\Controllers\Admin\Messages\MessageController;
-use App\Http\Controllers\Admin\Messages\MessageReadController;
 use App\Http\Controllers\Admin\Offers\OfferController;
 use App\Http\Controllers\Admin\Orders\IndexOrderController;
 use App\Http\Controllers\Admin\Orders\EditOrderController;
@@ -16,6 +15,7 @@ use App\Http\Controllers\Admin\Orders\SetOrderStatusController;
 use App\Http\Controllers\Admin\Orders\OrderDeliveredController;
 use App\Http\Controllers\Admin\Orders\OrderPaidController;
 use App\Http\Controllers\Admin\Storages\StorageController;
+use App\Http\Controllers\Admin\Subscribers\SubscribersController;
 use App\Http\Controllers\Admin\Users\UserController;
 
 Route::prefix('admin')
@@ -41,9 +41,7 @@ Route::prefix('admin')
     });
 
     Route::resource('messages', MessageController::class)
-        ->only('index');
-    Route::post('messages/{message}/read', MessageReadController::class)
-        ->name('message-read');
+        ->only(['index', 'destroy']);
 
     Route::resource('items', ItemController::class);
 
@@ -57,6 +55,8 @@ Route::prefix('admin')
     Route::resource('users', UserController::class)
         ->except(['create', 'store']);
 
+    Route::resource('subscribers', SubscribersController::class)
+        ->only(['index' ,'destroy']);
     Route::resource('categories', CategoryController::class);
     Route::resource('shapes', ShapeController::class)
         ->only(['store', 'update', 'destroy']);

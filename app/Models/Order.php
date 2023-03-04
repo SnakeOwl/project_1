@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use App\Services\CurrencyConverter;
+use App\Classes\Currency\CurrencyConverter;
 
 class Order extends Model
 {
@@ -16,6 +16,7 @@ class Order extends Model
     public $fillable = [
         'payment_status',
         'status',
+        'price',
         'payment_method',
         'delivery_method',
         'address',
@@ -24,6 +25,7 @@ class Order extends Model
         'name',
         'storage_id',
         'currency_id',
+        'user_id',
         'date_delivered',
     ];
 
@@ -72,7 +74,7 @@ class Order extends Model
 
     public function offers(): BelongsToMany
     {
-        return $this->belongsToMany(Offer::class)->withPivot(['count', 'price'])->withTimestamps();
+        return $this->belongsToMany(Offer::class)->withPivot(['count', 'price']);
     }
 
     public function scopeActive($query)
@@ -91,47 +93,19 @@ class Order extends Model
         return $sum;
     }
 
-    public function save_order($params)
+    public function customStore($params)
     {
-        $this->currency_id = CurrencyConverter::getCurrentCurrencyFromSession()->id;
-        $this->name = $params['name'];
-        $this->phone = $params['phone'];
-        $this->delivery_method = $params['delivery_method'];
-        $this->payment_method = $params['payment_method'];
+        $params['currency_id'] = CurrencyConverter::getCurrentCurrencyFromSession()->id;
+        $params['price'] = $this->get_full_price();
 
-        if($params['delivery_method'] === 'Доставка курьером')
-        {
-            $this->address = $params['address'];
-        }
-        elseif($params['delivery_method'] === 'Доставка почтой')
-        {
-            $this->post_index = $params['post_index'];
-            $this->address = $params['address'];
-        }
-        elseif($params['delivery_method'] === 'Доставка до точки самовывоза')
-        {
-            $this->storage_id = $params['storage_id'] ?? null;
-        }
-
-        unset($this->fullPrice);
-        $this->price = $this->get_full_price();
-        $this->save();
-
-        if (isset($params['user_id']))
-            $this->users()->attach($params['user_id']);
-
+        $order = $this->create($params);
 
         foreach($this->offers as $offerInOrder)
-        {
-            $this->offers()->attach($offerInOrder, [
+            $order->offers()->attach($offerInOrder, [
                 'count' => $offerInOrder->countInOrder,
                 'price' => $offerInOrder->price,
             ]);
-        }
 
         return true;
     }
-
-
-
 }

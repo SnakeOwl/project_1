@@ -13,6 +13,10 @@ class Category extends Model
 
     public $timestamps = false;
 
+    public function scopeByAlias($query, $code)
+    {
+        return $query->where('alias', $code)->first();
+    }
     // old style
     public function getName()
     {

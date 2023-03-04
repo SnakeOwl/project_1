@@ -6,10 +6,8 @@ import BlueButton from '@/Components/Buttons/BlueButton';
 export default function PersonalPage(props) {
     const lang = props.lang;
     const user = props.auth.user;
-    const {data, setData, post, errors} = useForm({
-        password:               "",
-        password_confirmation:  "",
-        phone:                  user.phone,
+    const {data, setData, post} = useForm({
+        phone: user.phone,
     });
 
     const onHandleChange = (event) => {
@@ -19,46 +17,45 @@ export default function PersonalPage(props) {
 
     const onHandeSubmit = (event) => {
         event.preventDefault();
-
         post( route("personal-data-update") );
     };
 
     return (
-        <UserCabinetLayout title={lang['personalPage']}>
-            <h1>{lang['personalData']}</h1>
-            <form className="row" onSubmit={onHandeSubmit}>
-                <FloatInput
-                    boxClassName="col-12 col-xxl-6 mb-3"
-                    labelText="id"
-                    id="id"
-                    value={user.id}
-                    handleChange={onHandleChange}
-                    disabled="1" />
+        <UserCabinetLayout title={lang['personal data']}>
+            <h1 className="text-center">{lang['personal data']}</h1>
+            <form onSubmit={onHandeSubmit}>
+                <div className="row">
+                    <FloatInput
+                        className="col-12 col-xxl-6 mb-3"
+                        labelText="id"
+                        value={user.id}
+                        disabled
+                    />
 
-                <FloatInput
-                    boxClassName="col-12 col-xxl-6 mb-3"
-                    labelText={lang["name"]}
-                    id="name"
-                    value={user.name}
-                    handleChange={onHandleChange}
-                    disabled="1" />
+                    <FloatInput
+                        className="col-12 col-xxl-6 mb-3"
+                        labelText={lang["name"]}
+                        value={user.name}
+                        disabled
+                    />
 
-                <FloatInput
-                    boxClassName="col-12 col-xxl-6 mb-3"
-                    labelText="email"
-                    id="email"
-                    value={user.email}
-                    handleChange={onHandleChange}
-                    disabled="1" />
+                    <FloatInput
+                        className="col-12 col-xxl-6 mb-3"
+                        labelText="email"
+                        value={user.email}
+                        disabled
+                    />
 
-                <FloatInput
-                    boxClassName="col-12 col-xxl-6 mb-3"
-                    labelText={lang["phone"]}
-                    id="phone"
-                    value={data.phone}
-                    handleChange={onHandleChange} />
+                    <FloatInput
+                        className="col-12 col-xxl-6 mb-3"
+                        labelText={lang["phone"]}
+                        id="phone"
+                        value={data.phone}
+                        onHandleChange={onHandleChange}
+                    />
+                </div>
 
-                <BlueButton className="w-100">{lang['changeData']}</BlueButton>
+                <BlueButton className="w-100">{lang['submit']}</BlueButton>
             </form>
         </UserCabinetLayout>
     );

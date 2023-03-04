@@ -14,7 +14,7 @@ export default function MessageForm(props){
 
     const {lang} = usePage().props;
 
-    function handleSubmit (e){
+    function onHandleSubmit (e){
         e.preventDefault();
         post(route('message-store'));
         e.target.reset();
@@ -27,24 +27,13 @@ export default function MessageForm(props){
     return (
         <MainLayout title={lang["contact form"]}>
             <div className="col-12 col-xxl-6 mx-auto">
-                <form className="mb-3" onSubmit={handleSubmit}>
-                    <h2>{lang["contactForm"]}</h2>
+                <h1 className="text-center">{lang["contact form h"]}</h1>
+                <form className="mb-3" onSubmit={onHandleSubmit}>
                     <div className="row mb-3">
                         <FloatInput
-                            id="name"
-                            boxClassName="col-12 col-lg-6 mb-3"
-                            handleChange={onHandleChange}
-                            value={data.name}
-                            labelText={lang["name"]}
-                            placeholder="Viktor"
-                            required="required"
-                            errors={errors}
-                        />
-
-                        <FloatInput
                             id="email"
-                            boxClassName="col-12 col-lg-6 mb-3"
-                            handleChange={onHandleChange}
+                            className="col-12 mb-3"
+                            onHandleChange={onHandleChange}
                             type="email"
                             labelText="email"
                             placeholder="myEmail@gmail.com"
@@ -54,8 +43,8 @@ export default function MessageForm(props){
 
                         <FloatTextarea
                             id="message"
-                            boxClassName="col-12"
-                            handleChange={onHandleChange}
+                            className="col-12"
+                            onHandleChange={onHandleChange}
                             value={data.message}
                             labelText={lang["message"]}
                             rows="5"

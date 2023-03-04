@@ -9,10 +9,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCreated;
-use App\Services\CurrencyConverter;
+use App\Classes\Currency\CurrencyConverter;
+
 
 class Basket
 {
+    // Пока товар в корзине, запросов в БД не происходит.
+    // всё храниться во временном заказе привязанном к сессии
     protected $order;
 
     public function __construct($createOrder = false)
@@ -35,6 +38,11 @@ class Basket
 
     public function addOffer(Offer $offer)
     {
+        if ($offer->count == 0)
+        {
+            return __('info.offer no have count');
+        }
+
         if($this->order->offers->contains($offer))
         {
             $pivotRow = $this->order->offers->where('id', $offer->id)->first();
@@ -59,7 +67,6 @@ class Basket
         foreach ($this->order->offers as $offer)
         {
             $DBoffer = Offer::findOrFail($offer->id);
-
             if ($DBoffer->count < $offer->countInOrder)
             {
                 session()->forget('order');
@@ -84,7 +91,9 @@ class Basket
         if (!$this->countAvailable(true))
             return false;
 
-        $this->order->save_order($params);
+        $params['user_id'] = Auth::check()? Auth::user()->id: null;
+        
+        $this->order->customStore($params);
 
         $email = Auth::check() ? Auth::user()->email: $params['email'];
         Mail::to($email)->send(new OrderCreated($this->getOrder()));
@@ -109,6 +118,4 @@ class Basket
                 $pivotRow->countInOrder--;
         }
     }
-
-
 }

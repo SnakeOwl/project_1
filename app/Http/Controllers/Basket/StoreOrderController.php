@@ -10,11 +10,10 @@ class StoreOrderController extends Controller
 {
     public function __invoke(StoreOrderRequest $request)
     {
-        if ((new Basket())->storeOrder($request->safe()->all())){
+        if ((new Basket())->storeOrder($request->validated()))
             session()->flash('message', __('info.order created'));
-        }else{
+        else
             session()->flash('message', __('info.order not created'));
-        }
 
         session()->forget('order');
 

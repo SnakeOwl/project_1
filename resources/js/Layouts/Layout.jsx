@@ -6,7 +6,7 @@ import FlashMessage from '@/Components/Widgets/FlashMessage';
 export default function Layout({
     children,
     className="",
-    title="Mono Polo"
+    title="Shower"
 })
 {
     return (
@@ -14,7 +14,7 @@ export default function Layout({
             <Head title={title} />
             <Header />
 
-            <main className={"py-4 " + className}>
+            <main className={"" + className}>
                 <FlashMessage />
                 {children}
             </main>

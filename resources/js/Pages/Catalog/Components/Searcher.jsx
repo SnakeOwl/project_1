@@ -7,30 +7,29 @@ import FloatInput from '@/Components/Inputs/FloatInput';
 export default function Searcher({className=""}){
     const [name, setName]       = useState("");
     const [matches, setMatches] = useState([]);
-    const {lang}                = usePage().props;
+    const {lang, currentCurrecy} = usePage().props;
 
     const onHandleChange = (event) => {
         setName(event.target.value);
-        if (name.length > 2){
+
+        if (name.length > 2)
             fetch(route("search", name))
                 .then(response => response.json())
                 .then(result => setMatches(result));
-        }
     };
 
-
-    const skus = (matches.length > 0)?
-        matches.map(function(sku){
+    const offers = (matches.length > 0)?
+        matches.map(function(offer){
             return (
-                <Link href={route('catalog-sku-details', [sku.item.category.alias, sku.item.alias, sku.id])}>
+                <Link href={route('catalog-offer-details', [offer.item.category.alias, offer.item.alias, offer.id])}>
                     <div className="p-1 my-2 match border">
                         <div className="row">
                             <div className="col-3">
-                                <Img className="image w-100" src={sku.item.short_image} />
+                                <Img className="image w-100" src={offer.short_image} />
                             </div>
                             <div className="col-9">
-                                <h5>{sku.item.name}</h5>
-                                <p className="description">{sku.item.description}</p>
+                                <h5>{offer.item.name}</h5>
+                                <p>{offer.price} {currentCurrecy.symbol}</p>
                             </div>
                         </div>
                     </div>
@@ -41,20 +40,17 @@ export default function Searcher({className=""}){
         <div></div>
     ;
 
-
-
-
     return (
         <div className={className} >
             <FloatInput
                 id="name"
                 labelText={lang["search"]}
                 value={name}
-                handleChange={onHandleChange}
+                onHandleChange={onHandleChange}
             />
 
             <div id="matches">
-                {skus}
+                {offers}
             </div>
         </div>
     );

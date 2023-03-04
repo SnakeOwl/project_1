@@ -23,13 +23,13 @@ a.disabled{
     color: white;
 }
 
-.red-box{
+.box-red{
     @extend %red_box;
 }
-.blue-box{
+.box-blue{
     @extend %blue_box;
 }
-.bgreen-box{
+.box-green{
     @extend %green_box;
 }
 

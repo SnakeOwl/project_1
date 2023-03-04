@@ -20,7 +20,7 @@ class ContentSeeder extends Seeder
         $count_shapes_per_category = 4;             // шейпы будут рандомно привязаны к категориям
         $count_shape_options_per_shape = 4;    // опции будут рандомно привязаны к шейпам
         $count_items = 64;             // предметы будут рандомно привязаны к категориям
-        $COUNT_OFFERS_PER_ITEM_AND_SHAPES = 2;    // перемножит количество предметов и шейпов, потом создаст заданное число записей
+        $COUNT_OFFERS_PER_ITEM_AND_SHAPES = 1;    // перемножит количество предметов и шейпов, потом создаст заданное число записей
         $count_parameters_per_item = 8; // уникальные параметры для каждого предмета
         /*
             Если создавать эти модели внутри других фабрик (->recycle(Shape::factory ...)),

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\belongsToMany;
+use Illuminate\Database\Eloquent\Relations\hasMany;
 
 
 class User extends Authenticatable
@@ -38,9 +38,9 @@ class User extends Authenticatable
         return true;
     }
 
-    public function orders(): belongsToMany
+    public function orders(): hasMany
     {
-        return $this->belongsToMany(Order::class);
+        return $this->hasMany(Order::class);
     }
 
     public function scopeCouriers($query)

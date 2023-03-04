@@ -3,8 +3,7 @@ import Pagination from '@/Components/Paginations/Pagination';
 import BlueLink from '@/Components/Links/BlueLink';
 
 export default function PersonalPage(props) {
-    const lang = props.lang;
-console.log(props);
+    const {lang} = props;
 
     const activeOrders = props.activeOrders.data.map((order)=> {
         return (
@@ -23,33 +22,28 @@ console.log(props);
     });
 
     return (
-        <UserCabinetLayout title={lang['personalPage']}>
+        <UserCabinetLayout title={lang['personal page']}>
 
-            <h1>{lang['personalPage']}</h1>
+            <h1 className="text-center">{lang['personal page']}</h1>
 
-            <div className="col-12 ">
-                <table className="table table-striped table-hover">
+            <table className="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{lang['deliveryMethod']}</th>
+                        <th>{lang['status']}</th>
+                        <th>{lang['price']}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {activeOrders}
+                </tbody>
+            </table>
 
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>{lang['deliveryMethod']}</th>
-                            <th>{lang['status']}</th>
-                            <th>{lang['price']}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {activeOrders}
-                    </tbody>
-                </table>
-
-                <div className="row">
-                    <Pagination
-                        className="justify-content-center"
-                        links={props.activeOrders.links}
-                     />
-                </div>
-            </div>
+            <Pagination
+                className="justify-content-center"
+                links={props.activeOrders.links}
+             />
 
         </UserCabinetLayout>
     );
