@@ -18,7 +18,6 @@ class OfferFactory extends Factory
     {
         return [
             'item_id' => Item::factory(),
-            'short_image' => config('storage.default_image_path'),
             'count' => 4,
             'price' => 10000
         ];
