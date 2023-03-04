@@ -6,7 +6,6 @@ import CarouselWithIndicators from './Components/DetailSlider';
 
 export default function (props) {
     const {offer, lang} = props;
-    console.log(offer);
 
     const offerProperties = offer.shapeOptions.map( (option)=>{
         if (option.shape == null || option == null)
