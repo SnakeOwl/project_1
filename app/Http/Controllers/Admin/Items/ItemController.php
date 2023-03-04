@@ -74,7 +74,7 @@ class ItemController extends Controller
 
     public function destroy(Item $item)
     {
-        // $item->offers()->delete();
+        $item->offers()->delete();
         $item->delete();
 
         session()->flash('message', __('item has destroyed'));

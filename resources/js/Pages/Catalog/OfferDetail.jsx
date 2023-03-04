@@ -6,6 +6,8 @@ import CarouselWithIndicators from './Components/DetailSlider';
 
 export default function (props) {
     const {offer, lang} = props;
+    console.log(offer);
+
     const offerProperties = offer.shapeOptions.map( (option)=>{
         if (option.shape == null || option == null)
             return false;
@@ -46,7 +48,7 @@ export default function (props) {
             <div className="container catalog-show">
                 <div className="row mb-4">
                     <div className="col-12 col-xl-6 mb-2">
-                        <CarouselWithIndicators images={offer.item.images} />
+                        <CarouselWithIndicators images={offer.images} />
                     </div>
 
                     <div className="col-12 col-xl-6">

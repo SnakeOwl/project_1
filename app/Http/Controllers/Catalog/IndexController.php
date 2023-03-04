@@ -25,7 +25,7 @@ class IndexController extends Controller
         }
 
         $filter = new OfferFilter( array_filter($params) );
-        $offers = Offer::filter($filter)->with('item', 'item.category')->paginate(15)->withQueryString();
+        $offers = Offer::filter($filter)->with('item')->paginate(15)->withQueryString();
 
         return Inertia::render('Catalog/Catalog', [
             'offers' => $offers,

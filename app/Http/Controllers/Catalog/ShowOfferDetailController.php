@@ -7,7 +7,7 @@ use Inertia\Inertia;
 
 class ShowOfferDetailController extends Controller
 {
-    public function __invoke($category_alias, $item_alias, Offer $offer)
+    public function __invoke($item_alias, Offer $offer)
     {
         if ($offer->item->alias != $item_alias)
             abort(404);

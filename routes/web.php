@@ -39,7 +39,7 @@ Route::prefix('catalog')
         Route::get('{category_alias}', IndexController::class)
             ->name('category-offers');
 
-        Route::get('{category_alias}/{item_alias}/{offer}', ShowOfferDetailController::class)
+        Route::get('{item_alias}/{offer}', ShowOfferDetailController::class)
             ->name('catalog-offer-details');
     });
     Route::get("search/{name}", SearchController::class)

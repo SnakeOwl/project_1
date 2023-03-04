@@ -32,7 +32,7 @@ export default function Register() {
         <MainLayout>
             <Head title="Register" />
 
-            <form className="form-signin" onSubmit={onHandeSubmit}>
+            <form className="col-12 col-xxl-3 mx-auto" onSubmit={onHandeSubmit}>
                 <FloatInput
                     id="name"
                     labelText="Имя"
@@ -83,7 +83,7 @@ export default function Register() {
 
                 <div className="text-center">
                     <a href={route('login')} className="mb-3">
-                        Already registered?
+                        Есть аккаунт?
                     </a>
                 </div>
 

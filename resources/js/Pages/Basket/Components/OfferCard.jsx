@@ -14,7 +14,7 @@ export default function OfferCard({offer}) {
 
             <div className="card-body">
                 <h5 className="title">
-                    <Link href={route('catalog-offer-details', [offer.item.category.alias, offer.item.alias, offer.id])} >
+                    <Link href={route('catalog-offer-details', [ offer.item.alias, offer.id])} >
                         {offer.item.name}
                     </Link>
                 </h5>

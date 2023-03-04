@@ -23,6 +23,14 @@ class ShapeController extends Controller
 
     public function destroy(Shape $shape)
     {
+        foreach($shape->shapeOptions as $option)
+        {
+            foreach ($option->offers as $offer)
+                $option->offers()->detach($offer);
+
+            $option->delete();
+        }
+        
         $shape->delete();
 
         session()->flash('message', __('shape has destroyed'));

@@ -15,7 +15,6 @@ export default function OfferCard({
         offer_id: offer.id,
         email: ""
     });
-
     const onHandleSubmit = (event) => {
         event.preventDefault();
         post(route('subscribe'));
@@ -25,14 +24,14 @@ export default function OfferCard({
     return (
         <div className="col-12 col-md-6 col-lg-3 col-xxl-2 me-xl-1 mb-3 p-1 card">
             <div class="img-wrapper position-relative">
-                <Link href={route('catalog-offer-details', [offer.item.category.alias, offer.item.alias, offer.id])}>
-                    <Img className="rounded" src={offer.short_image} alt="image"/>
+                <Link href={route('catalog-offer-details', [ offer.item.alias, offer.id])}>
+                    <Img className="rounded" src={offer.short_image? offer.short_image: "system/default_img.jpg"} alt="image"/>
                 </Link>
             </div>
 
             <div className="card-body">
                 <h5 className="title fw-bold">
-                    <Link href={route('catalog-offer-details', [offer.item.category.alias, offer.item.alias, offer.id])}>
+                    <Link href={route('catalog-offer-details', [ offer.item.alias, offer.id])}>
                         {offer.item.name}
                     </Link>
                 </h5>

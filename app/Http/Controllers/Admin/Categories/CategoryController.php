@@ -53,7 +53,20 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        foreach ($category->shapes as $shape)
+        {
+            foreach($shape->shapeOptions as $option)
+            {
+                foreach ($option->offers as $offer)
+                    $option->offers()->detach($offer);
+
+                $option->delete();
+            }
+            $shape->delete();
+        }
         $category->delete();
+
+
 
         session()->flash('message', __("category has removed"));
 

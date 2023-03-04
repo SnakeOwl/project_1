@@ -24,6 +24,9 @@ class ShapeOptionController extends Controller
 
     public function destroy(ShapeOption $shapeOption)
     {
+        foreach ($shapeOption->offers as $offer)
+            $shapeOption->offers()->detach($offer);
+
         $shapeOption->delete();
 
         session()->flash('message', __('option has destroyed'));
