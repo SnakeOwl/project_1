@@ -1,3 +1,4 @@
+import { Inertia } from '@inertiajs/inertia'
 import Logo from '@/Components/Logo';
 import Img from '@/Components/Img';
 import { usePage } from '@inertiajs/inertia-react';
@@ -17,7 +18,7 @@ export default function Footer(){
 
                     <div className="col-12 col-xxl-5 px-3">
                         <h4>{lang['support']}</h4>
-                        <a href={route('message-form')}>{lang['contact form']}</a>
+                        <a onClick={ ()=>Inertia.get(route('message-form')) } href="#" >{lang['contact form']}</a>
                     </div>
                     <div className="col-12 col-xxl-4 px-3">
                         <h4>{lang['contacts']}</h4>
@@ -30,14 +31,14 @@ export default function Footer(){
                 </div>
                 <div className="row">
                     <div className="col-12 text-center">
-                        Powered by &nbsp;
-                        <a href="https://getbootstrap.com/">
+                        Powered with &nbsp;
+                        <a href="https://getbootstrap.com/" target="_blank">
                             <Img className="me-2" src="system/logo_bootstrap.svg" width="24"/>
                         </a>
-                        <a href="https://laravel.com/">
+                        <a href="https://laravel.com/" target="_blank">
                             <Img className="me-2" src="system/logo_laravel.svg" width="24"/>
                         </a>
-                        <a href="https://reactjs.org/">
+                        <a href="https://reactjs.org/" target="_blank">
                             <Img className="me-2" src="system/logo_react.jpg" width="24"/>
                         </a>
                     </div>

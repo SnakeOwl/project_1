@@ -1,8 +1,8 @@
-import {usePage} from '@inertiajs/inertia-react';
-import BlueLink from '@/Components/Links/BlueLink';
-import RedLink from '@/Components/Links/RedLink';
-import Link from '@/Components/Links/Link';
-import Img from '@/Components/Img';
+import { Inertia } from '@inertiajs/inertia'
+import {usePage} from '@inertiajs/inertia-react'
+import BlueButton from '@/Components/Buttons/BlueButton'
+import RedButton from '@/Components/Buttons/RedButton'
+import Img from '@/Components/Img'
 
 export default function OfferCard({offer}) {
     const {lang} = usePage().props;
@@ -14,9 +14,12 @@ export default function OfferCard({offer}) {
 
             <div className="card-body">
                 <h5 className="title">
-                    <Link href={route('catalog-offer-details', [ offer.item.alias, offer.id])} >
+                    <a
+                        onClick={()=>Inertia.get(route('catalog-offer-details', [ offer.item.alias, offer.id]))}
+                        href="#"
+                    >
                         {offer.item.name}
-                    </Link>
+                    </a>
                 </h5>
                 <div className="d-flex">
                     <span>{lang['price']}:</span>
@@ -32,19 +35,20 @@ export default function OfferCard({offer}) {
 
             <div className="card-footer py-2">
                 <div className="d-flex justify-content-between">
-                    <BlueLink
+
+                    <BlueButton
                         className="inversed"
-                        href={route('basket-remove-offer', offer)}
+                        onHandleClick={ ()=> Inertia.get(route('basket-remove-offer', offer)) }
                     >
                         -
-                    </BlueLink>
+                    </BlueButton>
 
-                    <RedLink
+                    <RedButton
                         className="rounded"
-                        href={route('basket-add-offer', offer)}
+                        onHandleClick={ ()=> Inertia.get(route('basket-add-offer', offer)) }
                     >
                         {lang["more"]}
-                    </RedLink>
+                    </RedButton>
                 </div>
             </div>
         </div>

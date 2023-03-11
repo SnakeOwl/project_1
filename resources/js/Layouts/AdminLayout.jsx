@@ -3,7 +3,7 @@ import NavigationMenu from './Components/Admin/NavigationMenu';
 
 export default function AdminLayout({
     children,
-    title="admin"
+    title="Management"
 }){
 
     return (
@@ -14,6 +14,7 @@ export default function AdminLayout({
                 </div>
 
                 <div className="col-12 col-lg-10 px-2">
+                    <h1 className="text-center">{title}</h1>
                     {children}
                 </div>
             </div>

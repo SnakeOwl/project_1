@@ -1,11 +1,11 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 import BlueButton from '@/Components/Buttons/BlueButton'
-import StandartInput from '@/Components/Inputs/StandartInput'
+import FloatInput from '@/Components/Inputs/FloatInput'
 import StandartTextarea from '@/Components/Inputs/StandartTextarea'
 import { useForm } from '@inertiajs/inertia-react';
 
 export default function Form(props){
-    const user = props.user? props.user: null;
+    const {lang, user} = props;
     const { data, setData, post, patch, errors, reset } = useForm({
         name:   user? user.name : "",
         email:  user? user.email: "",
@@ -18,11 +18,7 @@ export default function Form(props){
     function handleSubmit(e){
         e.preventDefault();
 
-        if (user == null){
-            post(route('users.store'));
-        }else{
-            patch(route('users.update', user));
-        }
+        patch(route('users.update', user));
     }
 
     const onHandleChange = (event) => {
@@ -30,63 +26,59 @@ export default function Form(props){
     };
 
     return (
-        <AdminLayout
-            auth={props.auth}
-            flash={props.flash}
-        >
-            <h3>Форма Пользователя</h3>
-            <form className="col-12 col-lg-3 mb-3" onSubmit={handleSubmit}>
-                <StandartInput
+        <AdminLayout title={lang['user form']}>
+            <form className="col-12 col-lg-3 mx-auto" onSubmit={handleSubmit}>
+                <FloatInput
                     id="name"
                     value={data.name}
                     labelText="Название"
-                    handleChange={onHandleChange}
-                    errors={errors}
+                    className="mb-3"
+                    onHandleChange={onHandleChange}
                     isFocused={true}
                     required
                 />
 
-                <StandartInput
+                <FloatInput
                     id="email"
                     type="email"
                     value={data.email}
                     labelText="Email"
-                    handleChange={onHandleChange}
-                    errors={errors}
+                    className="mb-3"
+                    onHandleChange={onHandleChange}
                     required
                 />
 
-                <StandartInput
+                <FloatInput
                     id="phone"
                     type="tel"
                     value={data.phone}
                     labelText="Телефон"
-                    handleChange={onHandleChange}
-                    errors={errors}
+                    className="mb-3"
+                    onHandleChange={onHandleChange}
                 />
 
-                <StandartInput
+                <FloatInput
                     id="rights"
                     type="number"
                     max="10"
                     value={data.rights}
-                    labelText="Права"
-                    handleChange={onHandleChange}
-                    errors={errors}
+                    labelText={lang['right']}
+                    className="mb-3"
+                    onHandleChange={onHandleChange}
                     required
                 />
 
-                <StandartInput
+                <FloatInput
                     id="password"
                     type="password"
+                    className="mb-3"
                     value={data.password}
-                    labelText="Новый пароль (вводить при необходимости)"
-                    handleChange={onHandleChange}
-                    errors={errors}
+                    labelText={lang['new password field']}
+                    onHandleChange={onHandleChange}
                     maxlenght="32"
                 />
 
-                <BlueButton>Сохранить</BlueButton>
+                <BlueButton className="w-100">{lang['submit']}</BlueButton>
             </form>
         </AdminLayout>
     );

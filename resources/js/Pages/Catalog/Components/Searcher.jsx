@@ -1,3 +1,4 @@
+import {Inertia} from '@inertiajs/inertia';
 import {useState} from 'react';
 import {usePage} from '@inertiajs/inertia-react';
 import Img from '@/Components/Img';
@@ -21,7 +22,7 @@ export default function Searcher({className=""}){
     const offers = (matches.length > 0)?
         matches.map(function(offer){
             return (
-                <Link href={route('catalog-offer-details', [offer.item.category.alias, offer.item.alias, offer.id])}>
+                <a onClick={()=>Inertia.get(route('catalog-offer-details', [offer.item.alias, offer.id]))} href="#">
                     <div className="p-1 my-2 match border">
                         <div className="row">
                             <div className="col-3">
@@ -33,7 +34,7 @@ export default function Searcher({className=""}){
                             </div>
                         </div>
                     </div>
-                </Link>
+                </a>
             )
         })
     :

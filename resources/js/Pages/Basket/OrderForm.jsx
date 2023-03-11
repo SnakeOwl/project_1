@@ -21,9 +21,6 @@ export default function OrderForm(props){
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.value);
     };
-    const showData = (event)=>{
-        console.log(data);
-    }
 
     const delyveryMethods = [
         {
@@ -46,20 +43,20 @@ export default function OrderForm(props){
 
         switch (value) {
             case "post":
-                address.classList.remove("d-none");
-                post_index.classList.remove("d-none");
+                address.parentElement.parentElement.classList.remove("d-none");
+                post_index.parentElement.parentElement.classList.remove("d-none");
                 storage_id.classList.add("d-none");
             break;
 
             case "courier":
-                address.classList.remove("d-none");
-                post_index.classList.add("d-none");
+                address.parentElement.parentElement.classList.remove("d-none");
+                post_index.parentElement.parentElement.classList.add("d-none");
                 storage_id.classList.add("d-none");
             break;
 
             case "storage":
-                address.classList.add("d-none");
-                post_index.classList.add("d-none");
+                address.parentElement.parentElement.classList.add("d-none");
+                post_index.parentElement.parentElement.classList.add("d-none");
                 storage_id.classList.remove("d-none");
             break;
         }
@@ -85,10 +82,9 @@ export default function OrderForm(props){
     }
 
     return (
-        <MainLayout title="Корзина">
-    <RedButton onHandleClick={showData}>check</RedButton>
+        <MainLayout title={lang["checkout"]}>
             <div className="container">
-                <h3>Оформление заказа</h3>
+                <h1 className="text-center">{lang['checkout']}</h1>
                 <form onSubmit={onHandleSubmit}>
                     <div className="row">
                         <FloatInput
@@ -107,6 +103,25 @@ export default function OrderForm(props){
                             onHandleChange={onHandleChange}
                         />
 
+                        <FloatInput
+                            id='phone'
+                            labelText='Телефон'
+                            className="mb-3 col-12 col-xxl-4"
+                            value={data.phone}
+                            onHandleChange={onHandleChange}
+                        />
+
+                        <FloatSelect
+                            options={paymentMethods}
+                            className="mb-3 col-12 col-xxl-4"
+                            labelText="Способ оплаты"
+                            selectedOptionIds="Оплата картой"
+                            id="payment_method"
+                            onHandleChange={onHandleChange}
+                        />
+                    </div>
+
+                    <div className="row">
                         <FloatSelect
                             options={delyveryMethods}
                             className="mb-3 col-12 col-xxl-4"
@@ -115,47 +130,28 @@ export default function OrderForm(props){
                             id="delivery_method"
                             onHandleChange={changeDelivery}
                         />
+
+                        <FloatInput
+                            id='address'
+                            labelText='Адрес'
+                            className="mb-3 col-12 col-xxl-4"
+                            value={data.address}
+                            onHandleChange={onHandleChange}
+                        />
+
+                        <FloatInput
+                            id='post_index'
+                            labelText='Почтовый индекс'
+                            className="mb-3 col-12 col-xxl-4 d-none"
+                            value={data.post_index}
+                            onHandleChange={onHandleChange}
+                        />
                     </div>
 
-                    <FloatInput
-                        id='address'
-                        labelText='Адрес'
-                        className="mb-3"
-                        value={data.address}
-                        onHandleChange={onHandleChange}
-                    />
-
-                    <FloatInput
-                        id='post_index'
-                        labelText='Почтовый индекс'
-                        className="mb-3"
-                        classNameInput="d-none"
-                        value={data.post_index}
-                        onHandleChange={onHandleChange}
-                    />
-
-                    
                     <RadioList
                         id="storage_id"
                         storages={storages}
                         className="d-none"
-                        onHandleChange={onHandleChange}
-                    />
-
-                    <FloatSelect
-                        options={paymentMethods}
-                        className="mb-3"
-                        labelText="Способ оплаты"
-                        selectedOptionIds="Оплата картой"
-                        id="payment_method"
-                        onHandleChange={onHandleChange}
-                    />
-
-                    <FloatInput
-                        id='phone'
-                        labelText='Телефон'
-                        className="mb-3"
-                        value={data.phone}
                         onHandleChange={onHandleChange}
                     />
 
@@ -165,11 +161,9 @@ export default function OrderForm(props){
                         value={order.fullPrice}
                         disabled={1}
                     />
-                    <p className="text-center">
-                    <RedButton>
-                        Оформить
+                    <RedButton className="w-100">
+                        {lang['submit']}
                     </RedButton>
-                    </p>
                 </form>
             </div>
 

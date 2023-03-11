@@ -14,8 +14,9 @@ use App\Http\Controllers\Admin\Orders\EditOrderController;
 use App\Http\Controllers\Admin\Orders\SetOrderStatusController;
 use App\Http\Controllers\Admin\Orders\OrderDeliveredController;
 use App\Http\Controllers\Admin\Orders\OrderPaidController;
-use App\Http\Controllers\Admin\Storages\StorageController;
+use App\Http\Controllers\Admin\OneClickForm\OneClickFormController;
 use App\Http\Controllers\Admin\Subscribers\SubscribersController;
+use App\Http\Controllers\Admin\Storages\StorageController;
 use App\Http\Controllers\Admin\Users\UserController;
 
 Route::prefix('admin')
@@ -40,11 +41,13 @@ Route::prefix('admin')
             ->name('order-paid');
     });
 
+    Route::resource('oneClickForm', OneClickFormController::class)
+        ->only(['index', 'destroy']);
+
     Route::resource('messages', MessageController::class)
         ->only(['index', 'destroy']);
 
     Route::resource('items', ItemController::class);
-
     Route::resource('items.offers', OfferController::class)
         ->except("update");
         // через put и path картинки в js не загружаются (при установки картинки, данные вообще не приходят).
@@ -52,11 +55,13 @@ Route::prefix('admin')
         ->name('offer-update');
 
     Route::resource('storages', StorageController::class);
+
     Route::resource('users', UserController::class)
         ->except(['create', 'store']);
 
     Route::resource('subscribers', SubscribersController::class)
         ->only(['index' ,'destroy']);
+
     Route::resource('categories', CategoryController::class);
     Route::resource('shapes', ShapeController::class)
         ->only(['store', 'update', 'destroy']);

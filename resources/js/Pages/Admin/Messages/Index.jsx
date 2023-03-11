@@ -1,6 +1,6 @@
+import { Inertia } from '@inertiajs/inertia'
 import AdminLayout from '@/Layouts/AdminLayout';
 import BlueButton from '@/Components/Buttons/BlueButton'
-import { Inertia } from '@inertiajs/inertia'
 import Pagination from '@/Components/Paginations/Pagination';
 
 export default function Index(props){
@@ -12,8 +12,8 @@ export default function Index(props){
                 <td>{message.email}</td>
                 <td>{message.message}</td>
                 <td>
-                    <BlueButton onHandleClick={() => Inertia.delete(route('messages.destroy', message.id))}>
-                        Прочитано
+                    <BlueButton onHandleClick={()=>Inertia.delete(route('messages.destroy', message.id))}>
+                        {lang['is read']}
                     </BlueButton>
                 </td>
             </tr>
@@ -24,19 +24,20 @@ export default function Index(props){
 
     return (
         <AdminLayout title={lang['messages h']}>
-            <h1 className="text-center">{lang['messages h']}</h1>
 
             <table className="table table-striped">
                 <thead>
                     <th>#</th>
                     <th>email</th>
-                    <th>Сообщение</th>
+                    <th>{lang["messages h"]}</th>
                 </thead>
                 <tbody>
                     {messages}
                 </tbody>
             </table>
+
             <Pagination links={props.messages.links} />
+
         </AdminLayout>
     );
 }

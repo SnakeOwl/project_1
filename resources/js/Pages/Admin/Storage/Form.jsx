@@ -27,9 +27,9 @@ export default function Form(props){
     };
 
     return (
-        <AdminLayout>
+        <AdminLayout title={lang['storage h']}>
+        
             <div className="col-12 col-xxl-4 mx-auto">
-                <h1 className="text-center">{lang['storage h']}</h1>
                 <form onSubmit={onHandleSubmit}>
                     <FloatInput
                         id="address"
@@ -72,6 +72,7 @@ export default function Form(props){
                     <BlueButton className="w-100">{lang['submit']}</BlueButton>
                 </form>
             </div>
+            
         </AdminLayout>
     );
 }

@@ -1,7 +1,7 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 
 export default function Show(props){
-    const user = props.user;
+    const {user, lang} = props;
     const fields = [];
 
     for (let field in user){
@@ -14,15 +14,14 @@ export default function Show(props){
     }
 
     return (
-        <AdminLayout
-            auth={props.auth}
-        >
-            <h3>Просмотр пользователя</h3>
+        <AdminLayout title={lang['user show']}>
+
             <table className="table table-striped">
                 <tbody>
                     {fields}
                 </tbody>
             </table>
+
         </AdminLayout>
     );
 }

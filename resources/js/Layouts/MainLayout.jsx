@@ -13,6 +13,7 @@ export default function MainLayout({
             title={title}
         >
             {children}
+            
             {(!basketIsEmpty && basketIsEmpty !=null) &&
                 <BasketButton className="position-fixed bottom-0 end-0 me-4 mb-4">
                     <i class="bi bi-cart-fill"></i>

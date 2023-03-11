@@ -13,7 +13,5 @@ class OrderPaidController extends Controller
         $order->update(['payment_status' => 1]);
 
         session()->flash('message', 'Товар оплачен');
-
-        return redirect()->back();
     }
 }

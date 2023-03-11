@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         Category::create($request->safe()->all());
 
-        session()->flash('message', __("category has added"));
+        session()->flash('message', __("info.category has added"));
 
         return redirect()->route('categories.index');
     }
@@ -46,9 +46,7 @@ class CategoryController extends Controller
     {
         $category->update($request->safe()->all());
 
-        session()->flash('message', __("category has changed"));
-
-        return redirect()->route('categories.index');
+        session()->flash('message', __("info.category has changed"));
     }
 
     public function destroy(Category $category)
@@ -66,10 +64,6 @@ class CategoryController extends Controller
         }
         $category->delete();
 
-
-
-        session()->flash('message', __("category has removed"));
-
-        return redirect()->route('categories.index');
+        session()->flash('message', __("info.category has removed"));
     }
 }

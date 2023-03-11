@@ -23,9 +23,6 @@ export default function Index(props){
 
     return (
         <AdminLayout title={lang['subscribers h']}>
-            <h1 className="text-center">{lang['subscribers h']}</h1>
-
-
             <table className="table table-striped">
                 <thead>
                     <th>#</th>

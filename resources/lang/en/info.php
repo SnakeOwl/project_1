@@ -1,5 +1,13 @@
 <?php
 return [
+    "oneClickForm destroyed"    => "Form data was destroyed",
+
+    "storage has destroyed"  => "Storage has destroyed",
+    "storage has updated"  => "Storage has updated",
+    "storage has added"    => "Storage has added",
+    "category has removed"  => "Category has removed",
+    "category has changed"  => "Category has changed",
+    "category has added"    => "Category has added",
     'personal data changed' => 'Your personal data has changed',
     'thanks for the message' => 'Thanks you for your message! (ɔ◔‿◔)ɔ ♥',
     'message destroyed' => 'Message has destroyed',

@@ -3,6 +3,8 @@ import UserCabinetLayout from '@/Layouts/UserCabinetLayout';
 
 export default function Show(props) {
     const {lang, currencies, order} = props;
+    console.log(props);
+    
     const offers = order.offers.map((offer)=>{
         return (
             <tr>

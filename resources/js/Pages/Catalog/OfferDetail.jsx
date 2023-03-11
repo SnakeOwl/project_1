@@ -1,8 +1,9 @@
-import MainLayout from '@/Layouts/MainLayout';
-import RedLink from '@/Components/Links/RedLink';
-import Img from '@/Components/Img';
-import SubscribeForm from './Components/SubscribeForm';
-import CarouselWithIndicators from './Components/DetailSlider';
+import { Inertia } from '@inertiajs/inertia'
+import MainLayout from '@/Layouts/MainLayout'
+import RedButton from '@/Components/Buttons/RedButton'
+import Img from '@/Components/Img'
+import SubscribeForm from './Components/OfferDetail/SubscribeForm'
+import CarouselWithIndicators from './Components/OfferDetail/DetailSlider'
 
 export default function (props) {
     const {offer, lang} = props;
@@ -31,19 +32,19 @@ export default function (props) {
     const offerAvailable = (props.offerIsAvailable)
     ?
         <div className="text-center">
-            <RedLink
+            <RedButton
                 className="rounded"
-                href={route('basket-add-offer', offer)}
+                onHandleClick={()=>Inertia.get(route('basket-add-offer', offer))}
             >
                 {lang['toBasket']}
-            </RedLink>
+            </RedButton>
         </div>
     :
         <SubscribeForm offer_id={offer.id} />
     ;
 
     return (
-        <MainLayout title={offer.item.name + "Купить"} >
+        <MainLayout title={offer.item.name + " Купить"} >
             <div className="container catalog-show">
                 <div className="row mb-4">
                     <div className="col-12 col-xl-6 mb-2">
@@ -53,16 +54,18 @@ export default function (props) {
                     <div className="col-12 col-xl-6">
                         <h1>{offer.item.name}</h1>
 
-                        <h4>Опции торгового предложения:</h4>
+                        <h4>{lang['offers options']}:</h4>
                         <table className="table mb-3">
                             {offerProperties}
                         </table>
 
-                        <div className="text-justify mb-3">
-                            {offer.item.description}
-                        </div>
+                        <p>{lang['price']}: {offer.price}</p>
+                    </div>
+                </div>
 
-                        <p>Цена: {offer.price}</p>
+                <div className="row">
+                    <div className="text-justify mb-3">
+                        {offer.item.description}
                     </div>
                 </div>
 

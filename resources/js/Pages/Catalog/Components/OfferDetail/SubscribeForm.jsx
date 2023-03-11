@@ -14,12 +14,12 @@ export default function ({
 
     const onHandleSubmit = (event)=>{
         event.preventDefault();
-        post(route);
+        post(route('subscribe'));
     }
 
     return (
         <div className={className}>
-            <p className="text-center">Подпишитесь и мы сообщим вам о поступлении товара</p>
+            <p className="text-center">{lang['subscribe text']}</p>
 
             <form onSubmit={onHandleSubmit}>
                 <FloatInput

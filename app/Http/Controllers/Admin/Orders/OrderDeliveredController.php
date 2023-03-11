@@ -15,7 +15,5 @@ class OrderDeliveredController extends Controller
         ]);
 
         session()->flash('message', 'Заказ доставлен');
-
-        return redirect()->back();
     }
 }

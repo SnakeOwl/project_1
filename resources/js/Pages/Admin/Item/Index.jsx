@@ -1,8 +1,8 @@
-import { Inertia } from '@inertiajs/inertia';
-import AdminLayout from '@/Layouts/AdminLayout';
-import RedButton from '@/Components/Buttons/RedButton';
-import BlueLink from '@/Components/Links/BlueLink';
-import Pagination from '@/Components/Paginations/Pagination';
+import { Inertia } from '@inertiajs/inertia'
+import AdminLayout from '@/Layouts/AdminLayout'
+import RedButton from '@/Components/Buttons/RedButton'
+import BlueButton from '@/Components/Buttons/BlueButton'
+import Pagination from '@/Components/Paginations/Pagination'
 
 export default function Index(props){
     const {lang} = props;
@@ -14,16 +14,16 @@ export default function Index(props){
                 </td>
                 <td>{item.name}</td>
                 <td>
-                    <BlueLink href={route("items.offers.index", item)}>
+                    <BlueButton onHandleClick={()=>Inertia.get(route('items.offers.index', item))}>
                         Товарные предложения
-                    </BlueLink>
+                    </BlueButton>
                 </td>
                 <td>{item.offers.length}</td>
                 <td>
-                    <BlueLink href={route('items.edit', item)}>
+                    <BlueButton onHandleClick={()=>Inertia.get(route('items.edit', item))}>
                         <i class="bi bi-gear-fill"></i>
-                    </BlueLink>
-                    <RedButton onHandleClick={() => Inertia.delete(route('items.destroy', item))}>
+                    </BlueButton>
+                    <RedButton onHandleClick={()=>Inertia.delete(route('items.destroy', item))}>
                         <i class="bi bi-x"></i>
                     </RedButton>
                 </td>
@@ -32,14 +32,13 @@ export default function Index(props){
     });
 
     return (
-        <AdminLayout>
-            <h2>{lang["items management"]}</h2>
-            <BlueLink
-                href={route('items.create')}
+        <AdminLayout title={lang["goods"]}>
+            <BlueButton
+                onHandleClick={()=>Inertia.get(route('items.create'))}
                 className="mb-3 w-100 text-center"
             >
                 <i class="bi bi-plus-lg"></i>
-            </BlueLink>
+            </BlueButton>
 
             <table className="table table-striped">
                 <thead>

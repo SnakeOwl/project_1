@@ -24,7 +24,7 @@ class StorageController extends Controller
     {
         Storage::create($request->safe()->all());
 
-        session()->flash('message', __('info.object added'));
+        session()->flash('message', __('info.storage has added'));
 
         return redirect()->route('storages.index');
     }
@@ -43,7 +43,7 @@ class StorageController extends Controller
     {
         $storage->update($request->safe()->all());
 
-        session()->flash('message', 'Склад (магазин) изменен.');
+        session()->flash('message', 'info.storage has changed');
 
         return redirect()->route('storages.index');
     }
@@ -52,8 +52,6 @@ class StorageController extends Controller
     {
         $storage->delete();
 
-        session()->flash('message', 'Склад (магазин) удален.');
-
-        return redirect()->route('storages.index');
+        session()->flash('message', 'info.storage has destroyed');
     }
 }

@@ -1,3 +1,4 @@
+import {Inertia} from '@inertiajs/inertia';
 import {usePage} from '@inertiajs/inertia-react';
 
 export default function CurrencySelecter({
@@ -22,7 +23,10 @@ export default function CurrencySelecter({
 
     	return (
             <li>
-                <a href={route("currency-change", currency.code)} className="dropdown-item"
+                <a
+                    onClick={()=>Inertia.get(route("currency-change", currency.code))}
+                    href="#"
+                    className="dropdown-item"
                 >
                     {currency.symbol}
                 </a>

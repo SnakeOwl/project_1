@@ -1,7 +1,7 @@
-import AdminLayout from '@/Layouts/AdminLayout';
+import AdminLayout from '@/Layouts/AdminLayout'
 
 export default function Show(props){
-    const item = props.item;
+    const {item, lang} = props;
     const fields = [];
 
     for (let field in item){
@@ -14,13 +14,14 @@ export default function Show(props){
     }
 
     return (
-        <AdminLayout>
-            <h3>Просмотр товара</h3>
+        <AdminLayout title={lang['item show']}>
+
             <table className="table table-striped">
                 <tbody>
                     {fields}
                 </tbody>
             </table>
+
         </AdminLayout>
     );
 }

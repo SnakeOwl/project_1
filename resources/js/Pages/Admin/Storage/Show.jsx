@@ -14,15 +14,14 @@ export default function Show(props){
     }
 
     return (
-        <AdminLayout
-            auth={props.auth}
-        >
-            <h3>Просмотр свойства торговых предложений</h3>
+        <AdminLayout title={lang['storage show']}>
+
             <table className="table table-striped">
                 <tbody>
                     {fields}
                 </tbody>
             </table>
+            
         </AdminLayout>
     );
 }

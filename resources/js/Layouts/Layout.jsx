@@ -14,7 +14,7 @@ export default function Layout({
             <Head title={title} />
             <Header />
 
-            <main className={"" + className}>
+            <main className={className}>
                 <FlashMessage />
                 {children}
             </main>

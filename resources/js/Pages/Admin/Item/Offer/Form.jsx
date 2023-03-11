@@ -1,9 +1,11 @@
-import { useForm }      from '@inertiajs/inertia-react';
-import AdminLayout      from '@/Layouts/AdminLayout';
+import { Inertia }      from '@inertiajs/inertia'
+import { useForm }      from '@inertiajs/inertia-react'
+import AdminLayout      from '@/Layouts/AdminLayout'
 import BlueButton       from '@/Components/Buttons/BlueButton'
+import FloatInput       from '@/Components/Inputs/FloatInput'
 import StandartInput    from '@/Components/Inputs/StandartInput'
-import GaleryManager    from '../Components/GaleryManager';
-import ShapeCard        from '../Components/ShapeCard';
+import GaleryManager    from '../Components/GaleryManager'
+import ShapeCard        from '../Components/ShapeCard'
 import Img              from '@/Components/Img'
 
 
@@ -12,12 +14,7 @@ export default function Form(props){
     const {shapes} = item.category;
 
     const selectedOptionIds = (offer != null)?
-        offer.shape_options.map((option)=>{
-            return option.id;
-        })
-        :
-        null
-        ;
+        offer.shape_options.map( (option)=>{ return option.id} ) : null;
 
     const { data, setData, post } = useForm({
         item_id: item.id,
@@ -55,8 +52,6 @@ export default function Form(props){
         );
     });
 
-
-
     function removeImageFromGalery(number){
         data.galery.splice(number, 1);
         setData("galery", data.galery);
@@ -77,11 +72,10 @@ export default function Form(props){
 
 
     return (
-        <AdminLayout>
-            <h3>{lang["offer form h"]}: {item.name}</h3>
+        <AdminLayout title={lang["offer form h"] +": "+item.name}>
             <form onSubmit={onHandleSubmit}>
                 <div className="row mb-3">
-                    <StandartInput
+                    <FloatInput
                         id="price"
                         value={data.price}
                         type="number"
@@ -92,7 +86,7 @@ export default function Form(props){
                         required
                     />
 
-                    <StandartInput
+                    <FloatInput
                         id="count"
                         value={data.count}
                         type="number"
@@ -106,28 +100,30 @@ export default function Form(props){
 
                 <div className="row mb-3">
                     <div className="col-12 col-xxl-3">
-                    <h4>{lang['offer short image']}</h4>
+                    <h2 className="text-center">{lang['offer short image']}</h2>
                         {offer &&
-                            <Img className="w-100" src={offer.short_image}/>
+                            <>
+                                <Img className="w-100" src={offer.short_image}/>
+                                <span className="text-secondary">{lang['offer form message 1']}</span>
+                            </>
                         }
                         <StandartInput
                             id="shortImage"
                             className="text-secondary"
-                            labelText={lang['offer form message 1']}
                             onHandleChange={(e) => setData(e.target.name, e.target.files[0])}
                             type="file"
                         />
                     </div>
                 </div>
 
-                <h4>{lang["offer shape options h"]}</h4>
+                <h2 className="text-center">{lang['offer shape options h']}</h2>
                 <div className="row mb-3">
                     { shapeOptionsChoise }
                 </div>
 
                 <div className="row mb-3">
                     <div className="col-12">
-                        <h3>Управление галереей</h3>
+                        <h2 className="text-center">{lang['galery management']}</h2>
                         <StandartInput
                             name="newGaleryImages"
                             onHandleChange={(e) => setData(e.target.name, e.target.files)}

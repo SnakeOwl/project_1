@@ -14,13 +14,14 @@ export default function Show(props){
     }
 
     return (
-        <AdminLayout>
-            <h3>Просмотр категории</h3>
+        <AdminLayout title={lang['category show']}>
+
             <table className="table table-striped">
                 <tbody>
                     {fields}
                 </tbody>
             </table>
+
         </AdminLayout>
     );
 }

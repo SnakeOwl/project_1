@@ -2,6 +2,7 @@ import { usePage } from '@inertiajs/inertia-react';
 import { Inertia } from '@inertiajs/inertia';
 import BlueLink from '@/Components/Links/BlueLink';
 import RedButton from '@/Components/Buttons/RedButton';
+import BlueButton from '@/Components/Buttons/BlueButton';
 
 export default function UserLinks ({
     className=""
@@ -10,20 +11,21 @@ export default function UserLinks ({
 
     const userButtons = (auth.user)?
         <>
-            <BlueLink
+            <BlueButton
                 className="rounded inverted small me-2"
-                href={route("personal-page")}
+                onHandleClick={()=> Inertia.get(route("personal-page"))}
+                title={lang['personal page']}
             >
                 <i class="bi bi-person-fill"></i>
-            </BlueLink>
+            </BlueButton>
 
             {auth.userIsEditor &&
-                <BlueLink
+                <BlueButton
                     className="rounded small me-2"
-                    href={route('supervisor')}
+                    onHandleClick={()=> Inertia.get(route("supervisor"))}
                 >
                     <i class="bi bi-nut-fill"></i>
-                </BlueLink>
+                </BlueButton>
             }
 
             <RedButton
@@ -36,12 +38,12 @@ export default function UserLinks ({
         </>
     :
         <>
-            <BlueLink
+            <BlueButton
                 className="rounded inverted small"
-                href={route('login')}
+                onHandleClick={()=> Inertia.get(route("login"))}
             >
                 {lang["login"]}
-            </BlueLink>
+            </BlueButton>
         </>
     ;
 

@@ -12,8 +12,6 @@ class BasketRemoveOfferController extends Controller
     {
         (new Basket())->removeOffer($offer);
         session()->flash('message', __('info.item removed') );
-
-        return redirect()->route('basket');
     }
 
 }

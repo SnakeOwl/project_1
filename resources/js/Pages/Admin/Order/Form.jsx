@@ -1,11 +1,12 @@
+import { Inertia } from '@inertiajs/inertia'
 import AdminLayout from '@/Layouts/AdminLayout';
 import BlueButton from '@/Components/Buttons/BlueButton'
-import Checkbox from '@/Components/Inputs/Checkbox'
 import StandartInput from '@/Components/Inputs/StandartInput'
 import { useForm } from '@inertiajs/inertia-react';
 
 export default function Form(props){
-    const order = props.order;
+    const {lang, order} = props;
+
     const { data, setData, post, get, errors} = useForm({
         status: order? order.status: "",
     });
@@ -25,52 +26,48 @@ export default function Form(props){
     };
 
     return (
-        <AdminLayout
-            auth={props.auth}
-        >
-            <h1>Обработка заказа</h1>
-            <h3>Параметры заказа</h3>
+        <AdminLayout title={lang["order form"]}>
+
             <table className="table table-striped">
                 <tbody>
                     {fields}
                 </tbody>
             </table>
 
-            <h3>Закрепление курьера</h3>
-            <p className="text-danger">Нужно переделать весь механизм курьеров чтобы по нормальному уже с ними работать</p>
-
-            <h3>Изменение статуса заказа</h3>
-            <div className="col-6 mb-3">
+            <div className="text-center my-3">
+                <h2>{lang['change order status']}</h2>
                 <StandartInput
-                    className="col-6"
-                    handleChange={onHandleChange}
+                    className="col-12 col-lg-4 mx-auto mb-3"
+                    onHandleChange={onHandleChange}
                     id="status"
                     value={data.status}
-                    labelText="Статус заказа"
+                    labelText={lang['order status']}
                     errors={errors}
                 />
 
                 <BlueButton
-                    className="mb-3"
-                    handleClick={ () => get(route('set-order-status', [order, data.status])) }
+                    onHandleClick={ ()=>get(route('set-order-status', [order, data.status])) }
                 >
-                    Изменить статус
+                    {lang['change order status']}
                 </BlueButton>
             </div>
 
-            <h3>Изменение статуса доставки заказа</h3>
+            <div className="text-center my-3">
+                <h2>{lang['change order delivery']}</h2>
                 <BlueButton
-                    handleClick={() => get(route('order-delivered', order))}
+                    onHandleClick={()=>get(route('order-delivered', order))}
                 >
-                    Заказ доставлен
+                    {lang['order delivered']}
                 </BlueButton>
+            </div>
 
-            <h3>Оплата заказа</h3>
-                <BlueButton
-                    handleClick={ () => get(route('order-paid', order))}
-                >
-                    Оплатить товар (установить статус на "Оплачено")!
+            <div className="text-center my-3">
+                <h2>{lang['order payment']}</h2>
+                <BlueButton onHandleClick={()=>get(route('order-paid', order))} >
+                    {lang["pay order"]}!
                 </BlueButton>
+            </div>
+
         </AdminLayout>
     );
 }

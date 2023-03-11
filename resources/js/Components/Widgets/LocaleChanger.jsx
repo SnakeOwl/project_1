@@ -1,5 +1,6 @@
-import { usePage } from '@inertiajs/inertia-react';
-import BlueLink from '@/Components/Links/BlueLink';
+import { Inertia } from '@inertiajs/inertia'
+import { usePage } from '@inertiajs/inertia-react'
+import BlueButton from '@/Components/Buttons/BlueButton'
 
 export default function LocaleChanger({
     className=""
@@ -19,12 +20,12 @@ export default function LocaleChanger({
     const locales = availableLocales.map((locale)=>{
         if (currentLocale != locale.locale)
             return  (
-            <BlueLink
+            <BlueButton
                 className="small rounded inverted"
-                href={route('set-locale', locale.locale)}
+                onHandleClick={()=>Inertia.get(route('set-locale', locale.locale))}
             >
                 {locale.label}
-            </BlueLink>
+            </BlueButton>
         )
     });
 

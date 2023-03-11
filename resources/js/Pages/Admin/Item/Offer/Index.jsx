@@ -1,7 +1,7 @@
+import { Inertia } from '@inertiajs/inertia'
 import AdminLayout from '@/Layouts/AdminLayout';
 import RedButton from '@/Components/Buttons/RedButton'
-import BlueLink from '@/Components/Links/BlueLink'
-import { Inertia } from '@inertiajs/inertia'
+import BlueButton from '@/Components/Buttons/BlueButton'
 
 export default function Index(props){
     const {item, lang} = props;
@@ -10,15 +10,20 @@ export default function Index(props){
         return(
             <tr>
                 <td>
-                    <a href={route('items.offers.show', [item, offer])}> {offer.id} </a>
+                    <a
+                        onClick={()=>Inertia.get(route('items.offers.show', [item, offer]))}
+                        href="#"
+                    >
+                        {offer.id}
+                    </a>
                 </td>
                 <td>{offer.count}</td>
                 <td>{offer.price}</td>
                 <td>
-                    <BlueLink href={route('items.offers.edit', [item, offer])}>
+                    <BlueButton onHandleClick={()=>Inertia.get(route('items.offers.edit', [item, offer]))}>
                         <i class="bi bi-gear-fill"></i>
-                    </BlueLink>
-                    <RedButton onHandleClick={() => Inertia.delete(route('items.offers.destroy', [item, offer]))}>
+                    </BlueButton>
+                    <RedButton onHandleClick={()=>Inertia.delete(route('items.offers.destroy', [item, offer]))}>
                         <i class="bi bi-x"></i>
                     </RedButton>
                 </td>
@@ -27,14 +32,14 @@ export default function Index(props){
     });
 
     return (
-        <AdminLayout>
-            <h2>{lang["offers for item"]}: (Item id: {item.id})</h2>
-            <BlueLink
-                href={route('items.offers.create', item)}
+        <AdminLayout title={lang["offers for item"] +" (Item id:"+ item.id +")"}>
+
+            <BlueButton
+                onHandleClick={()=>Inertia.get(route('items.offers.create', item))}
                 className="mb-3 w-100 text-center"
             >
                     <i class="bi bi-plus-lg"></i>
-            </BlueLink>
+            </BlueButton>
 
             <table className="table table-striped">
                 <thead>

@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/inertia-react';
 import Input from '@/Components/Inputs/Input';
 import BlueButton from '@/Components/Buttons/BlueButton';
 import RedButton from '@/Components/Buttons/RedButton';
@@ -10,13 +11,13 @@ export default function ParametersManager({
     name,
     values, // array [id: [left column, right column] ]
     arrayName, // ARRAY NAME for submit (exapmle: "parameters")
-    leftColumnName="Характеристика",
-    rightColumnName="Значение",
     disabled=false,
     onHandleChange,
     addRow,
     removeRow,
 }){
+    const {lang} = usePage().props;
+
     const tbody = values.map((item, i) => {
         if (!disabled){
             return (
@@ -39,6 +40,7 @@ export default function ParametersManager({
                         <RedButton
                             type="button"
                             onHandleClick={() => removeRow(i)}
+                            className="small"
                         >
                             <i class="bi bi-x-lg"></i>
                         </RedButton>
@@ -59,13 +61,14 @@ export default function ParametersManager({
         <>
             <table className="table table-striped">
                 <thead>
-                    <th>{leftColumnName}</th>
-                    <th>{rightColumnName}</th>
+                    <th>{lang["parameters field name"]}</th>
+                    <th>{lang["parameters field value"]}</th>
                 </thead>
                 <tbody>
                     {tbody}
                 </tbody>
             </table>
+
             <BlueButton
                 type="button"
                 onHandleClick={addRow}

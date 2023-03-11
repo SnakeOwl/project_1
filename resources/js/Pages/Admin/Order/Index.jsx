@@ -1,51 +1,47 @@
-import AdminLayout from '@/Layouts/AdminLayout';
+import { Inertia } from '@inertiajs/inertia'
+import AdminLayout from '@/Layouts/AdminLayout'
 import BlueButton from '@/Components/Buttons/BlueButton'
 
 export default function Index(props){
-console.log(props);
+    const {lang} = props;
     const orders = props.orders.data.map((order) => {
         return (
             <tr>
                 <td>{order.id}</td>
-                <td>{order.delivery_method}</td>
                 <td>
                     <span className={order.payment_status? "text-success": "text-danger"}>
-                        {order.payment_status ? "Оплачено" : "Не оплачено"}
+                        {order.payment_status ? lang["is paid"] : lang["is not paid"]}
                     </span>
                 </td>
                 <td>{order.phone}</td>
                 <td>{order.price + " " + order.currency.symbol}</td>
                 <td>{order.created_at}</td>
                 <td>
-                    <a href={route('edit-order', order)}>
-                        <BlueButton>
-                            <i class="bi bi-gear-fill"></i>
-                        </BlueButton>
-                    </a>
+                    <BlueButton onHandleClick={()=>Inertia.get(route('edit-order', order))}>
+                        <i class="bi bi-gear-fill"></i>
+                    </BlueButton>
                 </td>
             </tr>
         );
     });
 
     return (
-        <AdminLayout
-            auth={props.auth}
-        >
-            <h2>Заказы</h2>
+        <AdminLayout title={lang['orders h']}>
 
             <table className="table table-striped">
                 <thead>
                     <th>#</th>
-                    <th>Способ доставки</th>
-                    <th>Статус оплаты</th>
-                    <th>Телефон</th>
-                    <th>Сумма</th>
-                    <th>Дата заказа</th>
+                    <th>{lang["payment status"]}</th>
+                    <th>{lang["phone"]}</th>
+                    <th>{lang['price']}</th>
+                    <th>{lang["order created_at"]}</th>
                 </thead>
                 <tbody>
                     {orders}
                 </tbody>
             </table>
+
+            <Pagination links={props.orders.links} />
 
         </AdminLayout>
     );

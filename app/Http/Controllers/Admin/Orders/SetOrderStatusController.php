@@ -15,7 +15,5 @@ class SetOrderStatusController extends Controller
         $order->update(['status' => $status]);
 
         session()->flash('message', 'Заказ доставлен');
-
-        return redirect()->back();
     }
 }

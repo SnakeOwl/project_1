@@ -1,24 +1,32 @@
-import AdminLayout from '@/Layouts/AdminLayout';
-import RedButton from '@/Components/Buttons/RedButton'
-import BlueLink from '@/Components/Links/BlueLink'
 import { Inertia } from '@inertiajs/inertia'
+import AdminLayout from '@/Layouts/AdminLayout'
+import RedButton from '@/Components/Buttons/RedButton'
+import BlueButton from '@/Components/Buttons/BlueButton'
+import Pagination from '@/Components/Paginations/Pagination'
 
 export default function Index(props){
+    const {lang} = props;
+
     const users = props.users.data.map((user) => {
         return (
             <tr>
                 <td>
-                    <a href={route('users.show', user)}> {user.id} </a>
+                    <a
+                        onClick={()=> Inertia.get(route('users.show', user))}
+                        href="#"
+                    >
+                        {user.id}
+                    </a>
                 </td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
                 <td>{user.rights}</td>
                 <td>
-                    <BlueLink href={route('users.edit', user)}>
+                    <BlueButton onHandleClick={() => Inertia.get(route('users.edit', user))}>
                         <i class="bi bi-gear-fill"></i>
-                    </BlueLink>
-                    <RedButton handleClick={() => Inertia.delete(route('users.destroy', user))}>
+                    </BlueButton>
+                    <RedButton onHandleClick={() => Inertia.delete(route('users.destroy', user))}>
                         <i class="bi bi-x-octagon"></i>
                     </RedButton>
                 </td>
@@ -27,25 +35,23 @@ export default function Index(props){
     });
 
     return (
-        <AdminLayout
-            auth={props.auth}
-            flash={props.flash}
-        >
-            <h2>Пользователи</h2>
+        <AdminLayout title={lang["users"]}>
 
             <table className="table table-striped">
                 <thead>
                     <th>#</th>
-                    <th>Имя</th>
+                    <th>{lang['name']}</th>
                     <th>Email</th>
-                    <th>Телефон</th>
-                    <th>Права</th>
-                    <th>Управление</th>
+                    <th>{lang['phone']}</th>
+                    <th>{lang['right']}</th>
                 </thead>
                 <tbody>
                     {users}
                 </tbody>
             </table>
+
+            <Pagination links={props.users.links} />
+
         </AdminLayout>
     );
 }

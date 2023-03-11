@@ -1,10 +1,10 @@
-import {useForm} from '@inertiajs/inertia-react';
-import UserCabinetLayout from '@/Layouts/UserCabinetLayout';
-import FloatInput from '@/Components/Inputs/FloatInput';
-import BlueButton from '@/Components/Buttons/BlueButton';
+import {useForm} from '@inertiajs/inertia-react'
+import UserCabinetLayout from '@/Layouts/UserCabinetLayout'
+import FloatInput from '@/Components/Inputs/FloatInput'
+import BlueButton from '@/Components/Buttons/BlueButton'
 
 export default function PersonalPage(props) {
-    const lang = props.lang;
+    const {lang} = props;
     const user = props.auth.user;
     const {data, setData, post} = useForm({
         phone: user.phone,
@@ -13,7 +13,6 @@ export default function PersonalPage(props) {
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.value);
     };
-
 
     const onHandeSubmit = (event) => {
         event.preventDefault();

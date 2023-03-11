@@ -1,6 +1,7 @@
-import UserCabinetLayout from '@/Layouts/UserCabinetLayout';
-import Pagination from '@/Components/Paginations/Pagination';
-import BlueLink from '@/Components/Links/BlueLink';
+import {Inertia} from "@inertiajs/inertia"
+import UserCabinetLayout from '@/Layouts/UserCabinetLayout'
+import Pagination from '@/Components/Paginations/Pagination'
+import BlueButton from '@/Components/Buttons/BlueButton'
 
 export default function PersonalPage(props) {
     const {lang} = props;
@@ -13,9 +14,12 @@ export default function PersonalPage(props) {
                 <td>{order.status}</td>
                 <td>{order.price + " " + order.currency.symbol}</td>
                 <td>
-                    <BlueLink href={route('show-personal-order', order)} title={lang['about']}>
+                    <BlueButton
+                        onHandleClick={()=>Inertia.get(route('show-personal-order', order))}
+                        title={lang['about']}
+                    >
                         <i class="bi bi-clipboard-pulse"></i>
-                    </BlueLink>
+                    </BlueButton>
                 </td>
             </tr>
         )

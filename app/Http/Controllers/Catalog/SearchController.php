@@ -11,10 +11,9 @@ class SearchController extends Controller
 {
     public function __invoke(string $name)
     {
-        // dd($name);
         $offers = Offer::whereHas("item", function(Builder $query) use ($name) {
             $query->where('name', "LIKE", "%".$name."%");
-        })->limit(6)->with('item','item.category')->get();
+        })->limit(6)->with('item')->get();
 
         return $offers;
     }

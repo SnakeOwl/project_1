@@ -8,6 +8,7 @@ use App\Http\Controllers\Catalog\IndexController;
 use App\Http\Controllers\Catalog\ShowOfferDetailController;
 use App\Http\Controllers\Catalog\SubscribeController;
 use App\Http\Controllers\Catalog\SearchController;
+use App\Http\Controllers\Catalog\OneClickFormStoreController;
 
 use App\Http\Controllers\Messages\StoreMessageController;
 use App\Http\Controllers\UserController;
@@ -32,18 +33,23 @@ Route::redirect('/', '/catalog/')->name('index');
 
 Route::prefix('catalog')
     ->group(function(){
+
+    Route::get("search/{name}", SearchController::class)
+        ->name("search");
+
+    Route::post("oneClickForm", OneClickFormStoreController::class)
+        ->name('one-click-form-store');
+        
     Route::middleware('catalogInformation')->group(function(){
         Route::get('/', IndexController::class)
             ->name('catalog');
 
-        Route::get('{category_alias}', IndexController::class)
+        Route::get('{category_alias}/', IndexController::class)
             ->name('category-offers');
 
         Route::get('{item_alias}/{offer}', ShowOfferDetailController::class)
             ->name('catalog-offer-details');
     });
-    Route::get("search/{name}", SearchController::class)
-        ->name("search");
 
     Route::post('subscribe', SubscribeController::class)
         ->name('subscribe');

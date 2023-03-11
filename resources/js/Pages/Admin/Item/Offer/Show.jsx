@@ -1,7 +1,7 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 
 export default function Show(props){
-    const {offer} = props;
+    const {offer, lang} = props;
     const fields = [];
 
     for (let field in offer){
@@ -14,13 +14,14 @@ export default function Show(props){
     }
 
     return (
-        <AdminLayout>
-            <h3>{lang['offer show h']} #: {offer.id}</h3>
+        <AdminLayout title={lang['offer show h'] +" #: "+ offer.id}>
+
             <table className="table table-striped">
                 <tbody>
                     {fields}
                 </tbody>
             </table>
+
         </AdminLayout>
     );
 }

@@ -35,11 +35,10 @@ export default function Edit(props){
     };
 
     return (
-        <AdminLayout>
-            <h3>{lang["category management"]}</h3>
+        <AdminLayout title={lang["category management"]}>
             <div className="row">
                 {/* форма с категорией*/}
-                <div className="col-12 col-xxl-3 px-3 mb-3">
+                <div className="col-12 col-lg-3 px-3 mb-3">
                     <form  onSubmit={onHandleSubmit}>
                         <FloatInput
                             id="name"
@@ -77,7 +76,7 @@ export default function Edit(props){
                 {shapes}
 
                 {createShape &&
-                    <div className="col-12 col-xxl-3 px-3 mb-3">
+                    <div className="col-12 col-lg-3 px-3 mb-3">
                         <div className="card h-100">
                             <ShapeForm category={category}/>
                             <div className="card-footer">

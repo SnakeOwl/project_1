@@ -12,8 +12,5 @@ class BasketAddOfferController extends Controller
     {
         $msg = (new Basket(true))->addOffer($offer);
         session()->flash('message', $msg);
-
-        return redirect()->back();
     }
-
 }

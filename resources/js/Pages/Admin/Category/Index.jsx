@@ -1,7 +1,8 @@
-import AdminLayout from '@/Layouts/AdminLayout';
-import RedButton from '@/Components/Buttons/RedButton'
-import BlueLink from '@/Components/Links/BlueLink'
 import { Inertia } from '@inertiajs/inertia'
+import AdminLayout from '@/Layouts/AdminLayout'
+import RedButton from '@/Components/Buttons/RedButton'
+import BlueButton from '@/Components/Buttons/BlueButton'
+import BlueLink from '@/Components/Links/BlueLink'
 
 export default function Index(props){
     const {lang} = props;
@@ -15,9 +16,9 @@ export default function Index(props){
                 <td>{category.name_en}</td>
                 <td>{category.alias}</td>
                 <td>
-                    <BlueLink href={route('categories.edit', category)}>
+                    <BlueButton onHandleClick={()=>Inertia.get(route('categories.edit', category))}>
                         <i class="bi bi-gear-fill"></i>
-                    </BlueLink>
+                    </BlueButton>
                     <RedButton onHandleClick={() => Inertia.delete(route('categories.destroy', category))}>
                         <i class="bi bi-x-octagon"></i>
                     </RedButton>
@@ -27,13 +28,13 @@ export default function Index(props){
     });
 
     return (
-        <AdminLayout>
-            <h2>Категории товаров</h2>
-            <BlueLink
-                href={route('categories.create')}
-                className="mb-3 w-100 text-center">
+        <AdminLayout title={lang['categories']}>
+            <BlueButton
+                onHandleClick={()=>Inertia.get(route('categories.create'))}
+                className="mb-3 w-100 text-center"
+            >
                 <i class="bi bi-plus-lg"></i>
-            </BlueLink>
+            </BlueButton>
 
             <table className="table table-striped">
                 <thead>
