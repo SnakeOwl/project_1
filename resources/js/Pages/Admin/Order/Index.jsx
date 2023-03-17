@@ -1,6 +1,7 @@
 import { Inertia } from '@inertiajs/inertia'
 import AdminLayout from '@/Layouts/AdminLayout'
 import BlueButton from '@/Components/Buttons/BlueButton'
+import Pagination from '@/Components/Paginations/Pagination'
 
 export default function Index(props){
     const {lang} = props;

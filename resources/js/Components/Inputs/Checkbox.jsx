@@ -8,6 +8,7 @@ export default function Checkbox({
     labelText,
     className,
     checked,
+    disabled
 }) {
     const {errors} = usePage().props;
 
@@ -20,6 +21,7 @@ export default function Checkbox({
                 className={"form-check-input " + className}
                 onChange={(e) => onHandleChange(e)}
                 checked={checked}
+                disabled={disabled}
             />
             <label className="form-check-label" htmlFor={id}>{labelText}</label>
 

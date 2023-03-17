@@ -20,6 +20,10 @@ class Shape extends Model
         'global',
     ];
 
+    public function options(): hasMany
+    {
+        return $this->hasMany(ShapeOption::class);
+    }
     public function shapeOptions(): hasMany
     {
         return $this->hasMany(ShapeOption::class);

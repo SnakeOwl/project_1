@@ -8,10 +8,11 @@ use App\Models\Traits\Translatable;
 use Database\Factories\ItemFactory;
 use Illuminate\Database\Eloquent\Relations\belongsTo;
 use Illuminate\Database\Eloquent\Relations\hasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Item extends Model
 {
-    use SoftDeletes, HasFactory;
+    use SoftDeletes, HasFactory, Translatable;
 
 
     protected $fillable = [
@@ -28,7 +29,6 @@ class Item extends Model
         'deleted_at',
         'updated_at',
     ];
-
 
     public function createUniqueParameters($parameters)
     {

@@ -3,27 +3,24 @@
 namespace App\Models\Traits;
 use Illuminate\Support\Facades\App;
 
-// old style
 trait Translatable
 {
     protected $defaultLocale = "ru";
 
-    public function __($originFieldName)
+    public function __($originFieldName, $defaultValue)
     {
         $locale = App::getLocale() ?? $this->defaultLocale ;
         if ($locale === "en")
             $fieldName = $originFieldName . '_en';
-        else
-            $fieldName = $originFieldName;
-
 
         if (!array_key_exists($originFieldName, $this->attributes))
             throw new \LogicException('No such attribute for model.' . get_class($this));
 
+        if ($locale  === 'en')
+            return $this->$fieldName;
 
-        if ($locale  === 'en' && (is_null($this->$fieldName) || empty($this->$fieldName)) )
-            return $this->$originFieldName;
-
-        return $this->$fieldName;
+        // с верии laravel 9, я не могу получить один из артрибутов объекта.
+        // могу получить другие свойства, но то, к которому идёт обращение не могу.
+        return $defaultValue;
     }
 }

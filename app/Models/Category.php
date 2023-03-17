@@ -13,22 +13,17 @@ class Category extends Model
 
     public $timestamps = false;
 
-    public function scopeByAlias($query, $code)
-    {
-        return $query->where('alias', $code)->first();
-    }
-    // old style
-    public function getName()
-    {
-        return  $this->__('name');
-    }
-
     protected $fillable = [
         'name',
         'name_en',
         'alias',
     ];
 
+    public function scopeByAlias($query, $code)
+    {
+        return $query->where('alias', $code)->first();
+    }
+    
     public function shapes(): hasMany
     {
         return $this->hasMany(Shape::class);

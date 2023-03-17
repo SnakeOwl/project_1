@@ -39,9 +39,7 @@ class Basket
     public function addOffer(Offer $offer)
     {
         if ($offer->count == 0)
-        {
             return __('info.offer no have count');
-        }
 
         if($this->order->offers->contains($offer))
         {
@@ -92,7 +90,7 @@ class Basket
             return false;
 
         $params['user_id'] = Auth::check()? Auth::user()->id: null;
-        
+
         $this->order->customStore($params);
 
         $email = Auth::check() ? Auth::user()->email: $params['email'];

@@ -27,6 +27,7 @@ export default function ParametersManager({
                             name={i + ',param_name'}
                             onHandleChange={onHandleChange}
                             value={item.param_name}
+                            required
                         />
                     </td>
                     <td>
@@ -34,6 +35,21 @@ export default function ParametersManager({
                             name={i + ',param_value'}
                             onHandleChange={onHandleChange}
                             value={item.param_value}
+                        />
+                    </td>
+                    <td>
+                        <Input
+                            name={i + ',param_name_en'}
+                            onHandleChange={onHandleChange}
+                            value={item.param_name_en}
+                            required
+                        />
+                    </td>
+                    <td>
+                        <Input
+                            name={i + ',param_value_en'}
+                            onHandleChange={onHandleChange}
+                            value={item.param_value_en}
                         />
                     </td>
                     <td>
@@ -63,6 +79,8 @@ export default function ParametersManager({
                 <thead>
                     <th>{lang["parameters field name"]}</th>
                     <th>{lang["parameters field value"]}</th>
+                    <th>{lang["parameters field name en"]}</th>
+                    <th>{lang["parameters field value en"]}</th>
                 </thead>
                 <tbody>
                     {tbody}

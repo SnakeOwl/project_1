@@ -23,7 +23,7 @@ export default function Header(){
                     </h1>
 
                 </div>
-                <div className="col-12 col-lg-4 d-flex align-items-center justify-content-end">
+                <div className="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end">
                     <UserLinks className="me-2"/>
                     <CurrencySelecter className="me-2"/>
                     <LocaleChanger className="me-2"/>

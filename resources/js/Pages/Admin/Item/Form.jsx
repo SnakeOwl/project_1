@@ -14,7 +14,10 @@ export default function Form(props){
         description:        item? item.description : "",
         description_en:     item? item.description_en: "",
         category_id:        item? item.category_id: categories[0].id,
-        parameters:         item? item.parameters: [{param_name: "", param_value: ""}],
+        parameters:         item? item.parameters: [{
+            param_name: "", param_value: "",
+            param_name_en: "", param_value_en: ""
+        }],
     });
 
     function onHandleParamsRemoveRowClick(rowNumber){
@@ -23,7 +26,10 @@ export default function Form(props){
     }
 
     function onHandeParamsAddRowClick(){
-        data.parameters.push( {param_name: "", param_value: ""} );
+        data.parameters.push( {
+            param_name: "", param_value: "",
+            param_name_en: "", param_value_en: ""
+        } );
         setData("parameters", data.parameters);
     }
 

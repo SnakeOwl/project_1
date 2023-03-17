@@ -3,7 +3,7 @@ import Img from "@/Components/Img";
 
 
 export default function DetailSlider({id="Carousel", images}){
-    if (images.length == 0)
+    if (images == null || images.length == 0)
     {
         images = [
             {url: 'system/default_img.jpg'},

@@ -9,13 +9,13 @@ import Pagination from '@/Components/Paginations/Pagination'
 import OneClickBuyForm from './Components/OneClickBuyForm'
 
 export default function(props) {
+    const {activeCategory, filter} = props;
     const [showOneClickForm, setShowOneClickForm] = useState(false);
     const [oneClickOfferId, setOneClickOfferId] = useState(null);
-    const filterData = props.filter;
     const {data, setData, get} = useForm({
-        priceFrom:  filterData.priceFrom? filterData.priceFrom:  0,
-        priceTo:    filterData.priceTo? filterData.priceTo:  0,
-        selectedShapeOptions: filterData.selectedShapeOptions? filterData.selectedShapeOptions:  [],
+        priceFrom:  filter.priceFrom? filter.priceFrom:  0,
+        priceTo:    filter.priceTo? filter.priceTo:  0,
+        options: filter.options? filter.options.map(($value)=>{return $value*1}): [],
     });
 
     function onHandleOneClickButtonClick (offerId){
@@ -37,21 +37,29 @@ export default function(props) {
         />
         :null;
 
+    function useFilter(){
+        if (activeCategory === null)
+            get(route('catalog'));
+        else
+            get(route('category-offers', activeCategory.alias));
+    }
+
     function onHandleSelectOptions (event){
         const id = event.target.id * 1;
 
-        if (data.selectedShapeOptions.includes(id))
-            delete data.selectedShapeOptions[data.selectedShapeOptions.find(elem => elem == id) - 1] ;
+        if (data.options.includes(id))
+            delete data.options[ data.options.findIndex(elem => elem == id) ];
         else
-            data.selectedShapeOptions.push(id);
+            data.options.push(id);
 
-        setData("selectedShapeOptions", data.selectedShapeOptions);
+        data.options = data.options.flat();
+        setData("options", data.options);
+
+        useFilter()
     }
 
 
-    function useFilter(){
-        get(route('catalog'));
-    }
+
 
     function onHandleChange (event){
         setData(event.target.name, event.target.value);
@@ -69,7 +77,7 @@ export default function(props) {
                         useFilter={useFilter}
                     />
                     <Categories
-                        selectedShapeOptions={data.selectedShapeOptions}
+                        selectedOptions={data.options}
                         onHandleSelectOptions={onHandleSelectOptions}
                         className="mb-3"
                     />

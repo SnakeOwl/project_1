@@ -5,7 +5,7 @@ import RedButton from '@/Components/Buttons/RedButton'
 import Img from '@/Components/Img'
 
 export default function OfferCard({offer}) {
-    const {lang} = usePage().props;
+    const {lang, currentLocale} = usePage().props;
     return (
         <div className="col-12 col-md-6 col-lg-3 me-xl-1 mb-3 p-1 card">
             <div class="img-wrapper position-relative">
@@ -18,7 +18,7 @@ export default function OfferCard({offer}) {
                         onClick={()=>Inertia.get(route('catalog-offer-details', [ offer.item.alias, offer.id]))}
                         href="#"
                     >
-                        {offer.item.name}
+                        {currentLocale == "en"? offer.item.name_en: offer.item.name}
                     </a>
                 </h5>
                 <div className="d-flex">

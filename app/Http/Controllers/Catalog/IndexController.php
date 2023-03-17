@@ -10,28 +10,45 @@ use App\Models\Category;
 use App\Classes\Filters\OfferFilter;
 use App\Classes\Filters\Filter;
 use Inertia\Inertia;
+use App\Classes\Filters\CategoryOptionsFilter;
 
 class IndexController extends Controller
 {
-    public function __invoke(FilterRequest $request, $category_alias=null)
+    public function __invoke(FilterRequest $request, $category_alias=false)
     {
         $params = $request->validated();
-
         $activeCategory = null;
-        if ($category_alias !== null)
+        $availableOptions = null;
+        $availableOffers = null;
+
+        if ($category_alias !== false)
         {
-            $activeCategory = Category::byAlias($category_alias)->load('shapes.shapeOptions');
-            $params['category'] = $activeCategory->id;
+            $filter = new CategoryOptionsFilter($category_alias);
+            $activeCategory = $filter->getActiveCategory()->load('shapes.shapeOptions');
+
+            if (isset($params["options"]))
+            {
+                $filter->filterByOption($params["options"]);
+                unset($params["options"]);
+            }
+
+            $availableOffers = $filter->getAvailableOffers();
+            $availableOptions = $filter->getAvailableOfferShapeOptionsId();
         }
 
         $filter = new OfferFilter( array_filter($params) );
-        $offers = Offer::filter($filter)->with('item')->paginate(15)->withQueryString();
+        $offers = ( ($category_alias)? $availableOffers->toQuery()->filter($filter)
+            : Offer::filter($filter) )
+            ->with('item')
+            ->paginate(15)
+            ->withQueryString();
 
         return Inertia::render('Catalog/Catalog', [
             'offers' => $offers,
             'search' => ($request->filled('search'))? $request->search : null,
-            'filter' => $params,
+            'filter' => $request->validated(),
             'activeCategory' => $activeCategory,
+            'availableOptions' => $availableOptions,
         ]);
     }
 }

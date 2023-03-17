@@ -1,3 +1,5 @@
+import { usePage } from '@inertiajs/inertia-react'
+
 export default function RadioList({
     storages,
     name,
@@ -6,6 +8,7 @@ export default function RadioList({
     className
 }){
     name=name? name: id;
+    const {lang} = usePage().props;
 
     const cards = storages.map((storage)=>{
         return (
@@ -16,15 +19,16 @@ export default function RadioList({
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                        Адрес: {storage.address} <br/>
-                        Телефон: {storage.phone} <br/>
+                        {lang["address"]}: {storage.address} <br/>
+                        {lang["phone"]}: {storage.phone} <br/>
 
-                        Время работы: <span dangerouslySetInnerHTML={{__html: storage.schedule}}></span>
+                        {lang["schedule"]}: <span dangerouslySetInnerHTML={{__html: storage.schedule}}></span>
                     </p>
                 </div>
             </div>
         );
     });
+
     return (
         <div className={"container " + className} id={id}>
             {cards}

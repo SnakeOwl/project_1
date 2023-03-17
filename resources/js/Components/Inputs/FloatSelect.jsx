@@ -2,7 +2,7 @@ import InputError from '@/Components/InputError';
 import {usePage} from '@inertiajs/inertia-react';
 
 /*
-    options - array with "id" and "name"
+    options - array with "id" and "name" (there are name_en)
     selectedOptionIds - one id, or array of ids
 */
 export default function FloatSelect ({
@@ -17,7 +17,7 @@ export default function FloatSelect ({
     classNameInput,
     onHandleChange,
 }){
-    const {errors} = usePage().props;
+    const {errors, currentLocale} = usePage().props;
 
     const list = options.map((option) => {
         return(
@@ -30,7 +30,7 @@ export default function FloatSelect ({
                     && "selected"
                 }
             >
-                {option.name}
+                {currentLocale=="en"? option.name_en: option.name}
             </option>
         );
     });

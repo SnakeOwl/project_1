@@ -1,12 +1,12 @@
-import MainLayout from '@/Layouts/MainLayout';
-import RedButton from '@/Components/Buttons/RedButton';
-import FloatInput from '@/Components/Inputs/FloatInput';
-import FloatSelect from '@/Components/Inputs/FloatSelect';
-import { useForm } from '@inertiajs/inertia-react';
+import MainLayout from '@/Layouts/MainLayout'
+import RedButton from '@/Components/Buttons/RedButton'
+import FloatInput from '@/Components/Inputs/FloatInput'
+import FloatSelect from '@/Components/Inputs/FloatSelect'
+import { useForm } from '@inertiajs/inertia-react'
 import RadioList from './Components/RadioList'
 
 export default function OrderForm(props){
-    const {storages, order, lang} = props;
+    const {storages, order, lang, currentLocale} = props;
     const {data, setData, errors, post} = useForm({
         name: "",
         phone: "",
@@ -26,14 +26,17 @@ export default function OrderForm(props){
         {
             id: "courier",
             name: "Доставка курьером",
+            name_en: "Courier delivery",
         },
         {
             id: "post",
             name: "Доставка почтой",
+            name_en: "Post delivery",
         },
         {
             id: "storage",
             name: "Доставка до точки самовывоза",
+            name_en: "Storage delivery",
         }
     ];
 
@@ -66,12 +69,14 @@ export default function OrderForm(props){
 
     const paymentMethods = [
         {
-            id: "Оплата при получении",
+            id: "cashe",
             name: "Оплата при получении",
+            name_en: "Payment upon receipt",
         },
         {
-            id: "Оплата картой",
+            id: "card",
             name: "Оплата картой",
+            name_en: "Card pay",
         },
 
     ];
@@ -89,7 +94,7 @@ export default function OrderForm(props){
                     <div className="row">
                         <FloatInput
                             id='name'
-                            labelText='Ваше Имя'
+                            labelText={lang['name']}
                             className="mb-3 col-12 col-xxl-4"
                             value={data.name}
                             onHandleChange={onHandleChange}
@@ -105,7 +110,7 @@ export default function OrderForm(props){
 
                         <FloatInput
                             id='phone'
-                            labelText='Телефон'
+                            labelText={lang["phone"]}
                             className="mb-3 col-12 col-xxl-4"
                             value={data.phone}
                             onHandleChange={onHandleChange}
@@ -114,8 +119,8 @@ export default function OrderForm(props){
                         <FloatSelect
                             options={paymentMethods}
                             className="mb-3 col-12 col-xxl-4"
-                            labelText="Способ оплаты"
-                            selectedOptionIds="Оплата картой"
+                            labelText={lang["payment method"]}
+                            selectedOptionIds="card"
                             id="payment_method"
                             onHandleChange={onHandleChange}
                         />
@@ -125,15 +130,15 @@ export default function OrderForm(props){
                         <FloatSelect
                             options={delyveryMethods}
                             className="mb-3 col-12 col-xxl-4"
-                            labelText="Способ доставки"
-                            selectedOptionIds="Доставка курьером"
+                            labelText={lang["delivery method"]}
+                            selectedOptionIds="courier"
                             id="delivery_method"
                             onHandleChange={changeDelivery}
                         />
 
                         <FloatInput
                             id='address'
-                            labelText='Адрес'
+                            labelText={lang["address"]}
                             className="mb-3 col-12 col-xxl-4"
                             value={data.address}
                             onHandleChange={onHandleChange}
@@ -141,7 +146,7 @@ export default function OrderForm(props){
 
                         <FloatInput
                             id='post_index'
-                            labelText='Почтовый индекс'
+                            labelText={lang['post index']}
                             className="mb-3 col-12 col-xxl-4 d-none"
                             value={data.post_index}
                             onHandleChange={onHandleChange}
@@ -156,7 +161,7 @@ export default function OrderForm(props){
                     />
 
                     <FloatInput
-                        labelText='Сумма для оплаты'
+                        labelText={lang["price"]}
                         className="mb-3"
                         value={order.fullPrice}
                         disabled={1}

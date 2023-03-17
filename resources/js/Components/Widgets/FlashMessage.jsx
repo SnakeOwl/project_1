@@ -1,16 +1,18 @@
-import {usePage} from '@inertiajs/inertia-react';
+import {usePage} from '@inertiajs/inertia-react'
+import {useState} from 'react'
 
 export default function FlashMessage(){
     const {flash} = usePage().props;
-
+    const [hidden, setHidden] = useState(false);
     return (
         <>
-        {flash.message &&
-            <div className="container p-4 my-2 box-blue ">
-                <div className="row">
-                    <div className="col-12 text-center">
-                        {flash.message}
-                    </div>
+        {(flash.message && !hidden) &&
+            <div
+                className="fixed-bottom m-4"
+                onClick={()=>setHidden(true)}
+                >
+                <div className="col-6 col-lg-3 text-center box-blue rounded p-5">
+                    {flash.message}
                 </div>
             </div>
         }

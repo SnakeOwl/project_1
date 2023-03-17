@@ -108,6 +108,12 @@ class Offer extends Model
         return $this->price;
     }
 
+    public function scopeByCategory($query, $category_id)
+    {
+        return $query->whereHas('item', function($query) use($category_id) {
+            $query->where('category_id', $category_id);
+        });
+    }
 
     public function scopeAvailable($query)
     {
@@ -129,6 +135,10 @@ class Offer extends Model
     {
         return $this->belongsToMany(ShapeOption::class)->withTimestamps();
     }
+    public function options(): belongsToMany
+    {
+        return $this->belongsToMany(ShapeOption::class)->withTimestamps();
+    }
 
     public function images(): hasMany
     {
@@ -138,10 +148,5 @@ class Offer extends Model
     public function getPriceAttribute($value): float
     {
         return round(CurrencyConverter::convert($value), 2);
-    }
-
-    public function getItemNameAttribute($value): string
-    {
-        return $this->item->name;
     }
 }

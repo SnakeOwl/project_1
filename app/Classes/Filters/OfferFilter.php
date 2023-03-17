@@ -14,18 +14,12 @@ use App\Classes\Currency\CurrencyConverter;
 
 class OfferFilter extends Filter
 {
+    public const OPTIONS = 'options';
     public const CATEGORY = 'category';
     public const PRICE_FROM = 'priceFrom';
     public const PRICE_TO = 'priceTo';
     public const IS_NEW = "isNew";
     public const IS_POPULAR = "isPopular";
-
-    protected $used_category;
-
-    public function __constructor()
-    {
-        $this->used_category = session('used_category') ?? null;
-    }
 
     /*
         Возвращает массив.
@@ -34,6 +28,7 @@ class OfferFilter extends Filter
     protected function getCallbacks():array
     {
         return [
+            self::OPTIONS => [$this, 'options'],
             self::CATEGORY => [$this, 'category'],
             self::PRICE_FROM => [$this, 'priceFrom'],
             self::PRICE_TO => [$this, 'priceTo'],
@@ -42,7 +37,17 @@ class OfferFilter extends Filter
         ];
     }
 
+
+
     // ---- функции на обработку приходящих полей
+    public function options(Builder $builder, $array)
+    {
+        foreach ($array as $value)
+            $builder->whereHas('options', function(Builder $query) use($value){
+                $query->where('shape_option_id', $value);
+            });
+    }
+
     public function category(Builder $builder, $value)
     {
         $builder->whereHas('item', function(Builder $query) use($value) {

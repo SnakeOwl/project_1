@@ -51,7 +51,7 @@ class CurrencyConverter
         if ($originCurrency->rate == 0 || $originCurrency->updated_at->startOfDay() != $today ||
             $targetCurrency->rate == 0 || $targetCurrency->updated_at->startOfDay() != $today )
         {
-            CurrencyRates::getRates();
+            // CurrencyRates::getRates();
             self::loadContainter();
             $originCurrency = self::$container[$originCurrencyCode];
             $targetCurrency = self::$container[$targetCurrencyCode];

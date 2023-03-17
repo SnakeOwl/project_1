@@ -10,7 +10,7 @@ export default function OfferCard({
     offer,
     oneClickBuyHandler
 }) {
-    const {currencies, lang, currentCurrecy} = usePage().props;
+    const {currencies, lang, currentCurrecy, currentLocale} = usePage().props;
     const [subscription, setSubscription] = useState(false);
     const {data, setData, post} = useForm({
         offer_id: offer.id,
@@ -39,7 +39,7 @@ export default function OfferCard({
                         onClick={()=>Inertia.get(route('catalog-offer-details', [ offer.item.alias, offer.id]))}
                         href="#"
                     >
-                        {offer.item.name}
+                        {currentLocale == "en"? offer.item.name_en: offer.item.name}
                     </a>
                 </h5>
 

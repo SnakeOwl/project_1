@@ -1,5 +1,5 @@
 {
-    "one click form text"   : "Заполните форму и вам обязательно позвонят",
+    "one click form text"   : "Fill out the form and you will be called",
 
     "one click form submit" : "Call me",
     "one click form h"      : "Buy one click form",
@@ -69,8 +69,10 @@
     "offer shape options h" : "Shape options management",
     "offers for item"       : "Offers for Item",
     "count"                 : "Count",
-    "parameters field value": "Parameter",
-    "parameters field name" : "Value",
+    "parameters field value en" : "Value (eng)",
+    "parameters field name en"  : "Parameter (eng)",
+    "parameters field value": "Value",
+    "parameters field name" : "Parameter",
     "message need create category"   : "You need to create a Category at first",
     "item form"             : "Item form",
     "item field parameters" : "Parameters",

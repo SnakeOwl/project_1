@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class ContentSeeder extends Seeder
         $count_shapes_per_category = 4;             // шейпы будут рандомно привязаны к категориям
         $count_shape_options_per_shape = 2;    // опции будут рандомно привязаны к шейпам
         $count_items = 32;             // предметы будут рандомно привязаны к категориям
-        $COUNT_OFFERS_PER_ITEM_AND_SHAPES = 4;    // перемножит количество предметов и шейпов, потом создаст заданное число записей
+        $COUNT_OFFERS_PER_ITEM = 4;    // перемножит количество предметов и шейпов, потом создаст заданное число записей
         $count_parameters_per_item = 4; // уникальные параметры для каждого предмета
         /*
             Если создавать эти модели внутри других фабрик (->recycle(Shape::factory ...)),
@@ -54,16 +55,22 @@ class ContentSeeder extends Seeder
 
         foreach ($items as $item)
         {
-            foreach($item->category->shapes as $shape)
+            $item->load("category.shapes.options");
+
+            $shapeOptions = ShapeOption::whereHas('shape', function(Builder $query) use($item){
+                $query->where('category_id', $item->category->id);
+            })->get();
+
+            for($i=0; $i < $COUNT_OFFERS_PER_ITEM; $i++)
+            {
+                $params = ['price' => ($i+1)*1000*2];
+
                 Offer::factory()
-                    ->count($COUNT_OFFERS_PER_ITEM_AND_SHAPES)
-                    ->sequence(
-                        ['price' => 4000],
-                        ['price' => 8000],
-                        ['price' => 16000])
+                    ->sequence($params)
                     ->for($item)
-                    ->hasAttached($shape->shapeOptions)
+                    ->hasAttached($shapeOptions->random(4))
                     ->create();
+            }
 
             Parameter::factory()
                 ->count($count_parameters_per_item)
