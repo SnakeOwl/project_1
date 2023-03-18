@@ -16,15 +16,22 @@ export default function ShapeBlock({className ="", category, shape=null}){
         Inertia.delete(route('shapes.destroy', shape));
     }
 
-    const resetStates = () =>{
+    function resetStates(){
         setDestroy(0);
         setEditShape(0);
         setEditShapeOption(0);
+        setSelectedOption(0);
     }
 
-    const selectOptionToEdit = (option) =>{
+    function selectOptionToEdit(option){
+        resetStates();
         setEditShapeOption(1);
         setSelectedOption(option)
+    }
+
+    function createOption (){
+        resetStates();
+        setEditShapeOption(1);
     }
 
     const controlButtons = (destroy == editShape && editShapeOption == 0)
@@ -82,6 +89,7 @@ export default function ShapeBlock({className ="", category, shape=null}){
     : (editShape)?
         /*Состояник когда ведется работа с формой Shape*/
         <ShapeForm
+            pastSubmit={resetStates}
             category={category}
             shape={shape}
         />
@@ -89,6 +97,7 @@ export default function ShapeBlock({className ="", category, shape=null}){
     : (editShapeOption)?
         /*Состояник когда ведется работа с формой Option*/
         <ShapeOptionForm
+            pastSubmit={resetStates}
             shape={shape}
             option={selectedOption}
         />
@@ -105,7 +114,7 @@ export default function ShapeBlock({className ="", category, shape=null}){
                 <div className="list-group-item">
                     <BlueButton
                         className="w-100 inverted"
-                        onHandleClick={()=>setEditShapeOption(1)}>
+                        onHandleClick={createOption}>
                         <i class="bi bi-plus"></i>
                     </BlueButton>
                 </div>

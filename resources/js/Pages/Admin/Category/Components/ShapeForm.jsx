@@ -3,7 +3,11 @@ import FloatInput from '@/Components/Inputs/FloatInput';
 import Checkbox from '@/Components/Inputs/Checkbox';
 import BlueButton from '@/Components/Buttons/BlueButton';
 
-export default function ShapeForm({category, shape=null }){
+export default function ShapeForm({
+    category,
+    shape=null,
+    afterSubmit=()=>{return false;}
+}){
     const {lang} = usePage().props;
     const {data, setData, post, patch} = useForm({
         category_id : category.id,
@@ -23,6 +27,8 @@ export default function ShapeForm({category, shape=null }){
             patch( route('shapes.update', shape) );
         else
             post( route('shapes.store') );
+
+        afterSubmit();
     }
 
     return (

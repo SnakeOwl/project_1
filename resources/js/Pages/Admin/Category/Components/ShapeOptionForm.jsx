@@ -2,7 +2,11 @@ import { usePage, useForm } from '@inertiajs/inertia-react';
 import FloatInput from '@/Components/Inputs/FloatInput';
 import BlueButton from '@/Components/Buttons/BlueButton';
 
-export default function ShapeOptionForm({shape, option=null }){
+export default function ShapeOptionForm({
+    shape,
+    option=null,
+    pastSubmit=()=>{return false;}
+}){
     const {lang} = usePage().props;
     const {data, setData, post, patch} = useForm({
         shape_id:   shape.id,
@@ -21,6 +25,8 @@ export default function ShapeOptionForm({shape, option=null }){
             patch( route('shape-options.update', option) );
         else
             post( route('shape-options.store') );
+
+        pastSubmit();
     }
 
     return (
