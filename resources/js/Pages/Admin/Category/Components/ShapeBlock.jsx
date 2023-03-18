@@ -74,7 +74,8 @@ export default function ShapeBlock({className ="", category, shape=null}){
         /*Состояник когда производится удаление Shape*/
         <RedButton
             className="w-100 h-100"
-            onHandleClick={submitDestroyShape}>
+            onHandleClick={submitDestroyShape}
+        >
             <i class="bi bi-x-circle"></i>
         </RedButton>
 
@@ -82,13 +83,15 @@ export default function ShapeBlock({className ="", category, shape=null}){
         /*Состояник когда ведется работа с формой Shape*/
         <ShapeForm
             category={category}
-            shape={shape} />
+            shape={shape}
+        />
 
     : (editShapeOption)?
         /*Состояник когда ведется работа с формой Option*/
         <ShapeOptionForm
             shape={shape}
-            option={selectedOption}/>
+            option={selectedOption}
+        />
 
     :
         /*Обычное состояние*/

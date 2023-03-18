@@ -34,7 +34,8 @@ export default function ShapeForm({category, shape=null }){
                     value={data.name}
                     labelText={lang['shape field name']}
                     onHandleChange={onHandleChange}
-                    required />
+                    required
+                />
 
                 <FloatInput
                     id="name_en"
@@ -42,14 +43,19 @@ export default function ShapeForm({category, shape=null }){
                     value={data.name_en}
                     labelText={lang['shape field name en']}
                     onHandleChange={onHandleChange}
-                    required />
+                    required
+                />
 
-                <Checkbox
-                    id="global"
-                    labelText={lang['shape field global']}
-                    value={data.global}
-                    onHandleChange={onHandleChange}
-                    checked={data.global && "checked"} />
+                <div className="d-none">
+                    <Checkbox
+                        id="global"
+
+                        labelText={lang['shape field global']}
+                        value={data.global}
+                        onHandleChange={onHandleChange}
+                        checked={data.global && "checked"}
+                    />
+                </div>
 
                 <BlueButton className="w-100">{lang['submit']}</BlueButton>
             </form>
