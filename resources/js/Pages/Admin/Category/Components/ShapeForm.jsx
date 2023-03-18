@@ -6,7 +6,7 @@ import BlueButton from '@/Components/Buttons/BlueButton';
 export default function ShapeForm({
     category,
     shape=null,
-    afterSubmit=()=>{return false;}
+    pastSubmit=()=>{return false;}
 }){
     const {lang} = usePage().props;
     const {data, setData, post, patch} = useForm({
@@ -28,7 +28,7 @@ export default function ShapeForm({
         else
             post( route('shapes.store') );
 
-        afterSubmit();
+        pastSubmit();
     }
 
     return (
