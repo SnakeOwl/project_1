@@ -12,7 +12,7 @@ class ThemeColor extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
-            "themeColor" => session("themeColor", "light")
+            "themeColor" => session("themeColor", "dark")
         ]);
     }
 }
