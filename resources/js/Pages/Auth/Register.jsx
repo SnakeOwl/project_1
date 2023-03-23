@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import BlueButton from '@/Components/Buttons/BlueButton';
 import MainLayout from '@/Layouts/MainLayout';
 import FloatInput from '@/Components/Inputs/FloatInput';
-import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import { Link, useForm } from '@inertiajs/inertia-react';
 
-export default function Register() {
+export default function Register(props) {
+    const {lang} = props;
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
@@ -29,13 +30,12 @@ export default function Register() {
     };
 
     return (
-        <MainLayout>
-            <Head title="Register" />
-
+        <MainLayout title={lang["register"]}>
+            <h1 className="text-center">{lang["registration"]}</h1>
             <form className="col-12 col-xxl-3 mx-auto" onSubmit={onHandeSubmit}>
                 <FloatInput
                     id="name"
-                    labelText="Имя"
+                    labelText={lang["name"]}
                     value={data.name}
                     autoComplete="email"
                     className="mb-3"
@@ -57,7 +57,7 @@ export default function Register() {
 
                 <FloatInput
                     id="password"
-                    labelText="Пароль"
+                    labelText={lang["password"]}
                     type="password"
                     value={data.password}
                     autoComplete="off"
@@ -67,7 +67,7 @@ export default function Register() {
                 />
 
                 <FloatInput
-                    labelText="Подтвердите пароль"
+                    labelText={lang["confirm password"]}
                     id="password_confirmation"
                     type="password"
                     className="mb-3"
@@ -78,15 +78,14 @@ export default function Register() {
                 />
 
                 <BlueButton className="mb-3 w-100">
-                    Регистрация
+                    {lang['submit']}
                 </BlueButton>
 
                 <div className="text-center">
-                    <a href={route('login')} className="mb-3">
-                        Есть аккаунт?
-                    </a>
+                    <Link href={route('login')} className="mb-3">
+                        {lang['has account']}?
+                    </Link>
                 </div>
-
             </form>
         </MainLayout>
     );

@@ -2,9 +2,11 @@ import { Inertia } from '@inertiajs/inertia'
 import Logo from '@/Components/Logo';
 import Img from '@/Components/Img';
 import { usePage } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/inertia-react';
 
 export default function Footer(){
     const {lang} = usePage().props;
+
     return (
         <footer className="container-fluid bg-dark text-light pt-5 pb-4 mt-5">
             <div className="container">
@@ -18,7 +20,7 @@ export default function Footer(){
 
                     <div className="col-12 col-xxl-5 px-3">
                         <h4>{lang['support']}</h4>
-                        <a onClick={ ()=>Inertia.get(route('message-form')) } href="#" >{lang['contact form']}</a>
+                        <Link href={route('message-form')} >{lang['contact form']}</Link>
                     </div>
                     <div className="col-12 col-xxl-4 px-3">
                         <h4>{lang['contacts']}</h4>

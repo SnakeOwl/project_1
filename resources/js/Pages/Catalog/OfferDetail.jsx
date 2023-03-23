@@ -1,9 +1,9 @@
 import { Inertia } from '@inertiajs/inertia'
 import MainLayout from '@/Layouts/MainLayout'
 import RedButton from '@/Components/Buttons/RedButton'
-import Img from '@/Components/Img'
 import SubscribeForm from './Components/OfferDetail/SubscribeForm'
 import DetailSlider from './Components/OfferDetail/DetailSlider'
+import { RedLink } from '@/Components/Links'
 
 export default function OfferDetail (props) {
     const {offer, item, itemOffersLinks, lang, currentLocale, offerIsAvailable} = props;
@@ -21,12 +21,12 @@ export default function OfferDetail (props) {
             options.push(
                 <td>
                     {!activeButton &&
-                        <RedButton
-                            onHandleClick={()=>Inertia.get(route("catalog-offer-details", [option.itemAlias, option.offerId]))}
+                        <RedLink
+                            href={route("catalog-offer-details", [option.itemAlias, option.offerId])}
                             className="rounded inverted"
                         >
                             {currentLocale == "en"? option.value_en: option.value }
-                        </RedButton>
+                        </RedLink>
 
                     }
                     {activeButton &&

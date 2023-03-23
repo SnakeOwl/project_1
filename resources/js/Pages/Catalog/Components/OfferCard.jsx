@@ -5,6 +5,7 @@ import BlueButton from '@/Components/Buttons/BlueButton';
 import RedButton from '@/Components/Buttons/RedButton';
 import Img from '@/Components/Img';
 import Input from '@/Components/Inputs/Input';
+import { Link } from '@inertiajs/inertia-react';
 
 export default function OfferCard({
     offer,
@@ -25,22 +26,17 @@ export default function OfferCard({
     return (
         <div className="col-12 col-md-6 col-lg-3 col-xxl-2 me-xl-1 mb-3 p-1 card">
             <div class="img-wrapper position-relative">
-                <a
-                    onClick={()=>Inertia.get(route('catalog-offer-details', [ offer.item.alias, offer.id]))}
-                    href="#"
-                >
+                <Link href={route('catalog-offer-details', [ offer.item.alias, offer.id])}>
                     <Img className="rounded" src={offer.short_image} alt="image"/>
-                </a>
+                </Link>
             </div>
 
             <div className="card-body">
                 <h5 className="title fw-bold">
-                    <a
-                        onClick={()=>Inertia.get(route('catalog-offer-details', [ offer.item.alias, offer.id]))}
-                        href="#"
-                    >
+                    <Link href={route('catalog-offer-details', [ offer.item.alias, offer.id])}>
+
                         {currentLocale == "en"? offer.item.name_en: offer.item.name}
-                    </a>
+                    </Link>
                 </h5>
 
                 <div className="d-flex">

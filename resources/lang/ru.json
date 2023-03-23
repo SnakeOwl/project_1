@@ -1,5 +1,5 @@
 {
-    
+    "has account"           : "Есть аккаунт",
     "one click form text"   : "Заполните форму и вам обязательно позвонят",
     "one click form submit" : "Заказать звонок",
     "one click form h"      : "Форма покупки в один клик",
@@ -15,7 +15,6 @@
     "order status"          : "Статус заказа",
     "pay order"             : "Оплатить товар (установить статус на 'Оплачено')",
     "order payment"         : "Оплата заказа",
-    "order delivered"       : "Заказ доставлен",
     "change order delivery" : "Изменение статуса доставки заказа",
     "order delivered"       : "Заказ доставлен",
     "change order status"   : "Изменение статуса заказа",
@@ -60,7 +59,6 @@
     "offer show h"          : "Просмотр торгового предложения",
     "offer form message 2"  : "Добавьте сюда новые изображения для галереи",
     "offer form message 1"  : "При загрузке новой картинки, она затрет старую",
-    "count offers"          : "Count offers",
     "offer form h"          : "Торговое предложение товара",
     "offer short image"     : "Маленькая картинка",
     "offer has destroyed"   : "Предложение удалено",
@@ -102,7 +100,6 @@
     "management"            : "Управление",
     "category creating"     : "Создание категории",
     "category management"   : "Управление категорией",
-    "submit"                : "Отправить",
     "category field alias"  : "Алиас (для ссылок)",
     "category field name en": "Название категории (eng)",
     "category field name"   : "Название категории",
@@ -148,6 +145,7 @@
     "sign in"               : "Войдите",
     "phone"                 : "Телефон",
     "password"              : "Пароль",
+    "confirm password"      : "Подтвердите пароль",
     "confirmPassword"       : "Подтвердите пароль",
     "testlang"              : "тестланг"
 }

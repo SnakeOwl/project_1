@@ -22,6 +22,7 @@ export default function OrderForm(props){
         setData(event.target.name, event.target.value);
     };
 
+    // по хорошему всё это можно в базу перенести
     const delyveryMethods = [
         {
             id: "courier",

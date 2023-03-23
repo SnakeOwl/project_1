@@ -3,7 +3,8 @@
     border: none;
     display: inline-block;
     transition: 0.4s;
-
+    background-color: var(--bs-body-bg, inherit);
+    color: var(--bs-link-hover-color-rgb);
     &.red{
         border: 1px solid $red;
         @extend %red_box;
@@ -11,12 +12,12 @@
         &:hover{
             box-shadow: $red 0 0 7px 0;
             border: 1px solid $red;
-            background: white;
+            background: var(--bs-body-bg, inherit);
             color: $red;
         }
 
         &.inverted, &.reversed{
-            background-color: white;
+            background-color: var(--bs-body-bg, inherit);
             color: $red;
 
             &:hover{
@@ -32,12 +33,12 @@
         &:hover{
             box-shadow: $blue 0 0 7px 0;
             border: 1px solid $blue;
-            background: white;
+            background: var(--bs-body-bg, inherit);
             color: $blue;
         }
 
         &.inverted, &.reversed{
-            background-color: white;
+            background-color: var(--bs-body-bg, inherit);
             color: $blue;
 
             &:hover{
@@ -53,12 +54,12 @@
         &:hover{
             box-shadow: $green 0 0 7px 0;
             border: 1px solid $green;
-            background: white;
+            background: var(--bs-body-bg, inherit);
             color: $green;
         }
 
         &.inverted, &.reversed{
-            background-color: white;
+            background-color: var(--bs-body-bg, inherit);
             color: $green;
 
             &:hover{
@@ -68,7 +69,7 @@
     }
 
     &[disabled]{
-        background: white;
+        background: var(--bs-body-bg, inherit);
         color: black;
         border: 1px solid black;
     }

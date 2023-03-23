@@ -1,5 +1,6 @@
 import {Inertia} from '@inertiajs/inertia';
 import {usePage} from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/inertia-react';
 
 export default function CurrencySelecter({
     className=""
@@ -7,7 +8,7 @@ export default function CurrencySelecter({
     const {currencies, currentCurrecy} = usePage().props;
 
     const buttonSide = (
-        <button className="bttn red inverted small rounded dropdown-toggle"
+        <button className="bttn green inverted small rounded dropdown-toggle"
             type="button"
             id="dropdownMenuButton1"
             data-bs-toggle="dropdown"
@@ -23,13 +24,12 @@ export default function CurrencySelecter({
 
     	return (
             <li>
-                <a
-                    onClick={()=>Inertia.get(route("currency-change", currency.code))}
-                    href="#"
+                <Link
+                    href={route("currency-change", currency.code)}
                     className="dropdown-item"
                 >
                     {currency.symbol}
-                </a>
+                </Link>
             </li>
         )
     });

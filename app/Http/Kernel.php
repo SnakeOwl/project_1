@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\HandleInertiaRequests::class,
             \App\Http\Middleware\SetLocale::class,
             \App\Http\Middleware\SetCurrenCurrency::class,
+            \App\Http\Middleware\ThemeColor::class,
         ],
 
         'api' => [

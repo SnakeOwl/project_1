@@ -9,6 +9,9 @@ export default function Layout({
     title="Shower"
 })
 {
+    const {themeColor} = usePage().props;
+    document.getElementById("html").setAttribute("data-bs-theme", themeColor);
+    
     return (
         <>
             <Head title={title} />

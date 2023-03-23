@@ -1,4 +1,6 @@
+
 {
+    "has account"           : "Has account",
     "one click form text"   : "Fill out the form and you will be called",
 
     "one click form submit" : "Call me",
@@ -15,7 +17,6 @@
     "order status"          : "Order status",
     "pay order"             : "Pay for the goods (set the status to 'Paid')",
     "order payment"          : "Order payment",
-    "order delivered"       : "Order delivered",
     "change order delivery" : "Change order delivery status",
     "order delivered"       : "Order delivered",
     "change order status"   : "Change order status",
@@ -60,7 +61,6 @@
     "offer show h"          : "View trade offer",
     "offer form message 2"  : "Add new gallery images here",
     "offer form message 1"  : "A new picture comes, it will overwrite the old one",
-    "count offers"          : "Count offers",
     "offer form h"          : "Offer form for Item",
     "offer short image"     : "Short image",
     "offer has destroyed"   : "Offer has destroyed",
@@ -131,7 +131,6 @@
     "new"                   : "New",
     "popular"               : "Popular",
     "contact form message"  : "You can send the form above and we'll ansver back!",
-    "submit"                : "Submit",
     "name"                  : "Name",
     "message"               : "Message",
     "contact form"          : "Support form",
@@ -149,6 +148,7 @@
     "sign in"               : "Sign in",
     "phone"                 : "Phone",
     "password"              : "Password",
+    "confirm password"      : "Confirm password",
     "confirmPassword"       : "Confirm password",
     "testlang"              : "testlang"
 }

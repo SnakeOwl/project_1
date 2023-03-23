@@ -13,6 +13,7 @@ use App\Http\Controllers\Catalog\OneClickFormStoreController;
 use App\Http\Controllers\Messages\StoreMessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\ThemeChangerController;
 
 use App\Http\Controllers\Basket\BasketAddOfferController;
 use App\Http\Controllers\Basket\BasketRemoveOfferController;
@@ -98,6 +99,8 @@ Route::get('currency/{currencyCode}', CurrencyController::class )
 Route::get("set-locale/{target_locale}", SetLocaleController::class)
     ->name("set-locale");
 
+Route::get("change-theme", ThemeChangerController::class)
+    ->name("change-theme");
 
 
 
