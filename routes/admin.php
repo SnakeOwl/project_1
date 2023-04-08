@@ -20,8 +20,7 @@ use App\Http\Controllers\Admin\Storages\StorageController;
 use App\Http\Controllers\Admin\Users\UserController;
 
 Route::prefix('admin')
-    ->middleware(['is_editor', 'auth'])
-    ->middleware('adminCounter')
+    ->middleware(['auth', 'isEditor', 'adminCounter'])
     ->group(function (){
 
     Route::get('/', SupervisorController::class)

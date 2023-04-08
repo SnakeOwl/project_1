@@ -2,7 +2,7 @@ import InputError from '@/Components/InputError';
 import {usePage} from '@inertiajs/inertia-react';
 
 
-export default function FloatInput({
+export default function FloatTextarea({
     id,
     className='',
     name,

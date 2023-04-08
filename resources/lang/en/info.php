@@ -22,4 +22,5 @@ return [
     'item is not available' => 'No more item',
     'basket is empty' => 'Your basket is empty',
 
+    'access denied' => 'Access denied',
 ];

@@ -5,9 +5,7 @@ import GreenButton from '@/Components/Buttons/GreenButton';
 import Link from '@/Components/Links/Link';
 import Checkbox from '@/Components/Inputs/Checkbox';
 import MainLayout from '@/Layouts/MainLayout';
-import InputError from '@/Components/InputError';
 import FloatInput from '@/Components/Inputs/FloatInput';
-import Logo from '@/Components/Logo'
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, errors, reset } = useForm({
@@ -25,7 +23,6 @@ export default function Login({ status, canResetPassword }) {
     }, []);
 
     const onHandleChange = (event) => {
-        console.log(event.target.name);
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 

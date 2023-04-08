@@ -18,10 +18,12 @@ class CheckUsersRights
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
+
         if(! $user->is_editor())
         {
-            session()->flash('info', __('Access denied'));
-            return redirect()->route('index');
+            session()->flash('message', __('info.access denied'));
+
+            return redirect()->route('catalog');
         }
 
         return $next($request);

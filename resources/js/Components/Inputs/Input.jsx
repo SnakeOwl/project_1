@@ -1,5 +1,3 @@
-import { useForm } from '@inertiajs/inertia-react';
-
 export default function Input({
     autocomplete = "on",
     id,

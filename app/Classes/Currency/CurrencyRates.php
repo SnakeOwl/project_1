@@ -13,6 +13,9 @@ class CurrencyRates
     */
     public static function getRates(): void
     {
+        if (config('currency_rates.update_rates' === false))
+            return ;
+
         $BaseCurrencyCode = (CurrencyConverter::getBaseCurrency())->code;
         $url = config('currency_rates.api_url') . "base=$BaseCurrencyCode";
         $client = new Client();

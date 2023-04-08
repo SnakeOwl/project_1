@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use Symfony\Component\HttpFoundation\Response;
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -36,8 +38,8 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

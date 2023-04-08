@@ -8,10 +8,10 @@ class ThemeChangerController extends Controller
 {
     public function __invoke()
     {
-        if (session("themeColor") == "dark")
-            session(["themeColor" => "light"]);
-        else
+        if (session("themeColor") == "light")
             session(["themeColor" => "dark"]);
+        else
+            session(["themeColor" => "light"]);
     }
 
 }

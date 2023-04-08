@@ -40,12 +40,14 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\SetLocale::class,
             \App\Http\Middleware\SetCurrenCurrency::class,
             \App\Http\Middleware\ThemeColor::class,
+
         ],
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\SetLocale::class,
         ],
     ];
 
@@ -59,10 +61,9 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'catalogInformation' => \App\Http\Middleware\CatalogInformation::class,
         'adminCounter' => \App\Http\Middleware\AdminCounter::class,
-        'set_locale' => \App\Http\Middleware\SetLocale::class,
         'basket_not_empty' => \App\Http\Middleware\BasketIsNotEmpty::class,
-        'is_editor' => \App\Http\Middleware\CheckUsersRights::class,
-        'is_admin' => \App\Http\Middleware\CheckForAdmin::class,
+        'isEditor' => \App\Http\Middleware\CheckUsersRights::class,
+        'isAdmin' => \App\Http\Middleware\CheckForAdmin::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

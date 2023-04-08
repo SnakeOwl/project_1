@@ -10,7 +10,7 @@ export default function FlashMessage(){
             <div
                 className="fixed-bottom m-4"
                 onClick={()=>setHidden(true)}
-                >
+            >
                 <div className="col-6 col-lg-3 text-center box-blue rounded p-5">
                     {flash.message}
                 </div>

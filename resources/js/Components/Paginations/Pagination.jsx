@@ -17,7 +17,7 @@ export default function Pagination({
     });
 
     return (
-        <ul class={"pagination justify-content-center " + className}>
+        <ul className={"pagination justify-content-center " + className}>
             {showedLinks}
         </ul>
     )

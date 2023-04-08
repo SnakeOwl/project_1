@@ -26,7 +26,7 @@ export default function MessageForm(props){
 
     return (
         <MainLayout title={lang["contact form"]}>
-            <div className="col-12 col-xxl-6 mx-auto">
+            <div className="col-12 col-xxl-4 mx-auto">
                 <h1 className="text-center">{lang["contact form h"]}</h1>
                 <form className="mb-3" onSubmit={onHandleSubmit}>
                     <div className="row mb-3">
@@ -38,7 +38,6 @@ export default function MessageForm(props){
                             labelText="email"
                             placeholder="myEmail@gmail.com"
                             required="required"
-                            errors={errors}
                         />
 
                         <FloatTextarea
@@ -49,7 +48,6 @@ export default function MessageForm(props){
                             labelText={lang["message"]}
                             rows="5"
                             required="required"
-                            errors={errors}
                         />
                     </div>
 

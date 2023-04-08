@@ -20,4 +20,6 @@ return[
     'order not created'     => 'Ваш заказ не был принят',
     'item is not available' => 'Больше нельзя добавить товар в корзину из-за его отсутствия',
     'your basket is empty'  => 'Ваша корзина пуста',
+    'access denied' => 'Доступ запрещен',
+
 ];

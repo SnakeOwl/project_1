@@ -49,7 +49,7 @@ a.disabled{
 }
 
 a{
-    color:var(--bs-heading-color, inherit);
+    color: var(--bs-heading-color, inherit);
     text-decoration: none;
     &:hover{
         color: $red;
