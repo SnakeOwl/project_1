@@ -60,12 +60,20 @@ ul.list-style-inside{
     list-style: inside;
 }
 
-.bg-modal-container{
+.modal-container{
     background-color: rgba(0, 0, 0, 0.3);
+    .modal-area{
+        background-color: var(--bs-body-bg);
+    }
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }
 
 footer{
     a{
         color: white;
+        text-decoration: underline;
     }
 }

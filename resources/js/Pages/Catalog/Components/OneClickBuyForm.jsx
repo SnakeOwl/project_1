@@ -29,11 +29,11 @@ export default function OneClickBuyForm({
     return (
         <div
             onClick={hideFormHandler}
-            className={"position-fixed w-100 h-100  top-0 start-0 bg-modal-container " }
+            className={"position-fixed w-100 h-100 top-0 start-0 modal-container" }
         >
             <div
                 onClick={(event)=>event.stopPropagation()}
-                className="position-relative col-12 col-lg-3 top-50 start-50 translate-middle p-5 bg-white rounded">
+                className="modal-area position-relative col-12 col-lg-3 top-50 start-50 translate-middle p-5 rounded">
                 <form onSubmit={onHandleSubmit}>
                     <p className="text-center">{lang['one click form text']}</p>
                     <FloatInput

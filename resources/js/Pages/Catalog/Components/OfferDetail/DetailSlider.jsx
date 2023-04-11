@@ -39,7 +39,7 @@ export default function DetailSlider({id="Carousel", images}){
             <div className="carousel-indicators">
                 {indicators}
             </div>
-            <div className="carousel-inner" style={{ height: 600+"px" }}>
+            <div className="carousel-inner">
                 {slides}
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target={"#"+id} data-bs-slide="prev">

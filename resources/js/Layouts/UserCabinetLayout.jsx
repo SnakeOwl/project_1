@@ -11,10 +11,10 @@ export default function UserCabinetLayout({
             title={title}
         >
             <div className="row">
-                <div className="col-2">
+                <div className="col-12 col-lg-2 mb-3">
                     <LeftMenu />
                 </div>
-                <div className="col-10">
+                <div className="col-12 col-lg-10 overflow-x-auto">
                     {children}
                 </div>
             </div>

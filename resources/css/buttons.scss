@@ -5,6 +5,7 @@
     transition: 0.4s;
     background-color: var(--bs-body-bg, inherit);
     color: var(--bs-link-hover-color-rgb);
+    
     &.red{
         border: 1px solid $red;
         @extend %red_box;

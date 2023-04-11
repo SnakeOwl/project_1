@@ -66,7 +66,7 @@ export default function OfferDetail (props) {
     ?
         <div className="text-center">
             <RedButton
-                className="rounded"
+                className="rounded w-100"
                 onHandleClick={()=>Inertia.get(route('basket-add-offer', offer))}
             >
                 {lang['toBasket']}
@@ -103,7 +103,7 @@ export default function OfferDetail (props) {
                 </div>
 
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 overflow-x-auto">
                         <h3>{lang['item field parameters']}</h3>
                         <table className="table">
                             { itemProperties }
@@ -111,7 +111,7 @@ export default function OfferDetail (props) {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-4 mx-auto">
+                    <div className="col-12 col-lg-3 mx-auto">
                         { buttonBuy }
                     </div>
                 </div>

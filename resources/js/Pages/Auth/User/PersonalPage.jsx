@@ -30,19 +30,21 @@ export default function PersonalPage(props) {
 
             <h1 className="text-center">{lang['personal page']}</h1>
 
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>{lang['deliveryMethod']}</th>
-                        <th>{lang['status']}</th>
-                        <th>{lang['price']}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {activeOrders}
-                </tbody>
-            </table>
+            <div className="overflow-x-auto mb-2">
+                <table className="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{lang['deliveryMethod']}</th>
+                            <th>{lang['status']}</th>
+                            <th>{lang['price']}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {activeOrders}
+                    </tbody>
+                </table>
+            </div>
 
             <Pagination
                 className="justify-content-center"

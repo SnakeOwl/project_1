@@ -28,19 +28,21 @@ export default function Index(props) {
     return (
         <UserCabinetLayout title={lang['personal orders']}>
             <h1 className="text-center">{lang['personal orders']}</h1>
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>{lang['deliveryMethod']}</th>
-                        <th>{lang['status']}</th>
-                        <th>{lang['price']}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {orders}
-                </tbody>
-            </table>
+            <div className="overflow-x-auto mb-2">
+                <table className="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{lang['deliveryMethod']}</th>
+                            <th>{lang['status']}</th>
+                            <th>{lang['price']}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {orders}
+                    </tbody>
+                </table>
+            </div>
 
             <Pagination
                 links={props.orders.links}
