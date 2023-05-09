@@ -1,5 +1,9 @@
 <?php
 return[
+    "removed to cart"       => "Удалено из корзины",
+    "added to cart"         => "Добавлено в корзину",
+    "offers not found"      => "Предложений не найдено :(",
+    "email or address is incorrect" => "Предоставленные данные не подходят",
     "oneClickForm destroyed"    => "Данные с формы удалены",
     "storage has destroyed"     => "Склад удален",
     "storage has updated"   => "Склад изменен",
@@ -7,7 +11,7 @@ return[
     "category has removed"  => "Категория удалена",
     "category has changed"  => "Категория изменена",
     "category has added"    => "Категория добавлена",
-    'personal data changed' => 'Ваши персональные данные были изменены',
+    'personal data changed' => 'Ваши персональные данные ыли изменены',
     'thanks for the message'    => 'Спасибо за сообщение! (ɔ◔‿◔)ɔ ♥',
     'message destroyed'     => 'Сообщение удалено',
     'subscriber destroyed'  => 'Подписчик удалён',

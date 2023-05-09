@@ -58,9 +58,6 @@ export default function(props) {
         useFilter()
     }
 
-
-
-
     function onHandleChange (event){
         setData(event.target.name, event.target.value);
     };

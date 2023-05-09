@@ -11,8 +11,11 @@ class ThemeColor extends Middleware
     // Inertia's method sharing data
     public function share(Request $request)
     {
+        $theme = session("themeColor", "light");
+        session(["themeColor" => $theme]);
+
         return array_merge(parent::share($request), [
-            "themeColor" => session("themeColor", "dark")
+            "themeColor" => $theme
         ]);
     }
 }

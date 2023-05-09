@@ -21,27 +21,37 @@ class IndexController extends Controller
         $availableOptions = null;
         $availableOffers = null;
 
-        if ($category_alias !== false)
-        {
-            $filter = new CategoryOptionsFilter($category_alias);
-            $activeCategory = $filter->getActiveCategory()->load('shapes.shapeOptions');
-
-            if (isset($params["options"]))
+        try{
+            if ($category_alias !== false)
             {
-                $filter->filterByOption($params["options"]);
-                unset($params["options"]);
+                $filter = new CategoryOptionsFilter($category_alias);
+                $activeCategory = $filter->getActiveCategory()->load('shapes.shapeOptions');
+
+                unset($params["priceFrom"], $params["priceTo"]);
+
+                if (isset($params["options"]))
+                {
+                    $filter->filterByOption($params["options"]);
+                    unset($params["options"]);
+                }
+
+                $availableOffers = $filter->getAvailableOffers();
+                
+                if (count($availableOffers) === 0)
+                    return response(['message'=> __("info.offers not found")], 404);
+
+                $availableOptions = $filter->getAvailableOfferShapeOptionsId();
             }
 
-            $availableOffers = $filter->getAvailableOffers();
-            $availableOptions = $filter->getAvailableOfferShapeOptionsId();
+            $filter = new OfferFilter( array_filter($params) );
+            $offers = ( ($category_alias)? $availableOffers->toQuery()->filter($filter)
+                : Offer::filter($filter) )
+                ->with('item')
+                ->paginate(15)
+                ->withQueryString();
+        }catch(Exception $e){
+            dd($e);
         }
-
-        $filter = new OfferFilter( array_filter($params) );
-        $offers = ( ($category_alias)? $availableOffers->toQuery()->filter($filter)
-            : Offer::filter($filter) )
-            ->with('item')
-            ->paginate(15)
-            ->withQueryString();
 
         return Inertia::render('Catalog/Catalog', [
             'offers' => $offers,

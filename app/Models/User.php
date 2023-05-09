@@ -44,6 +44,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function scopeByEmail($query, $email)
+    {
+        return $query->where('email', $email);
+    }
+
     public function scopeCouriers($query)
     {
         return $query->where('rights', User::RIGHTS['courier']);

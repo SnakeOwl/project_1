@@ -22,11 +22,28 @@ class CategoryOptionsFilter
 
     public function filterByOption($shapeOptionsIds)
     {
+        if (count($this->availableOffers) === 0)
+            return false;
+
         if (count($shapeOptionsIds) > 0)
         {
             $filter = new OfferFilter( array_filter(['options'=> $shapeOptionsIds]) );
-            $this->availableOffers = $this->categoryOffers->toQuery()->filter($filter)->get();
+            $this->availableOffers = $this->availableOffers->toQuery()->filter($filter)->get();
         }
+        
+    }
+
+    public function filterByPrice($priceFrom=0, $priceTo=0)
+    {
+        if (count($this->availableOffers) === 0)
+            return false;
+
+        $filter = new OfferFilter( array_filter([
+            'priceFrom'=> $priceFrom,
+            'priceTo'=> $priceTo
+        ]));
+        $this->availableOffers = $this->availableOffers->toQuery()->filter($filter)->get();
+      
     }
 
     // return array[optionId => countOffers]

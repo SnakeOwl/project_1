@@ -1,11 +1,10 @@
 import {Inertia} from '@inertiajs/inertia';
 import { usePage, useForm } from '@inertiajs/inertia-react';
-import RedLink from "@/Components/Links/RedLink";
 import CurrencySelecter from "@/Components/Widgets/CurrencySelecter";
 import Logo from '@/Components/Logo';
 import UserLinks from './Header/UserLinks';
 import LocaleChanger from '@/Components/Widgets/LocaleChanger';
-import ThemeChanger from '@/Components/Widgets/ThemeChanger';
+import ThemeChanger from './Header/ThemeChanger';
 
 export default function Header(){
     const {lang} = usePage().props;

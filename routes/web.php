@@ -106,4 +106,3 @@ Route::get("change-theme", ThemeChangerController::class)
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
-require __DIR__.'/testing.php';

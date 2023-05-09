@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCreated;
 use App\Classes\Currency\CurrencyConverter;
 
-
+// Корзина на сессиях. Изменение количества торговых предложений происходит по условию в функции.
 class Basket
 {
     // Пока товар в корзине, запросов в БД не происходит.

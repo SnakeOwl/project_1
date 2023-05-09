@@ -1,4 +1,18 @@
 {
+    "powered with"          : "Сделано с помощью",
+
+    "Something is wrong"    : "Что-то пошло не так :(",
+    "Your Order's number is": "Номер вашего заказа",
+
+    "order not created"     : "Заказ НЕ создан. Обратитесь в поддержку или закажите товар по телефону (покупка в один клик).",
+    "order created"         : "Заказ создан",
+    "sum to pay"            : "Сумма к оплате",
+    "offer not found"       : "Торговое предложение не найдено",
+    "offer removed from basket"     : "( ͡ಠ ʖ̯ ͡ಠ )",
+    "offer added to basket" : "Добавлено",
+    "no more offers"        : "Количество предложений иисякло",
+    "from"                  : "От",
+    "to"                    : "До",
     "has account"           : "Есть аккаунт",
     "one click form text"   : "Заполните форму и вам обязательно позвонят",
     "one click form submit" : "Заказать звонок",

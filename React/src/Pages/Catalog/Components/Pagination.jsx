@@ -1,21 +1,28 @@
-import NETWORK from "../config/network";
+import { useContext } from "react";
+import axiosClient from "/src/axios-client";
 
 export default function Pagination({
     className="",
     links,
-    onHandleClick
+    setOffers,
 })
 {
+    function changePage(url){
+        axiosClient.get(url)
+            .then(({data})=>{
+                setOffers(data.offers);
+            });
+    }
+    
     const showedLinks = links.map((link)=>{
     	return (
             <li key={link.label} className="page-item">
-                <a
+                <button
                     className={"page-link " + (link.active && 'disabled')}
-                    onClick={()=>onHandleClick(link.url)}
-                    href="#"
+                    onClick={()=>changePage(link.url)}
                 >
                     {link.label}
-                </a>
+                </button>
             </li>
         );
     });
@@ -24,5 +31,5 @@ export default function Pagination({
         <ul className={"pagination justify-content-center " + className}>
             {showedLinks}
         </ul>
-    )
+    );
 }

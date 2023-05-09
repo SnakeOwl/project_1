@@ -92,11 +92,13 @@ class Offer extends Model
                 $ids[] = $image["id"];
 
             foreach ($this->images()->get('id') as $image)
+            {
                 if( !in_array($image->id, $ids))
                 {
-                    // Storage::delete($image->image);
+                    Storage::delete($image->image); //удаление с диска
                     Galery::find($image->id)->first()->delete();
                 }
+            }
         }
     }
 
@@ -125,6 +127,10 @@ class Offer extends Model
         return ($this->count > 0) && !$this->item->trashed();
     }
 
+    public function baskets(): belongsToMany
+    {
+        return $this->belongsToMany(Basket::class)->withPivot('count');
+    }
 
     public function item(): belongsTo
     {

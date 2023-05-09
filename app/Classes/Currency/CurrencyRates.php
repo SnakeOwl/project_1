@@ -13,7 +13,7 @@ class CurrencyRates
     */
     public static function getRates(): void
     {
-        if (config('currency_rates.update_rates' === false))
+        if (config('currency_rates.update_rates') === false)
             return ;
 
         $BaseCurrencyCode = (CurrencyConverter::getBaseCurrency())->code;

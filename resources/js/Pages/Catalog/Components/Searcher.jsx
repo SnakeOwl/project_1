@@ -2,7 +2,6 @@ import {Inertia} from '@inertiajs/inertia';
 import {useState} from 'react';
 import {usePage} from '@inertiajs/inertia-react';
 import Img from '@/Components/Img';
-import Link from '@/Components/Links/Link';
 import FloatInput from '@/Components/Inputs/FloatInput';
 
 export default function Searcher({className=""}){

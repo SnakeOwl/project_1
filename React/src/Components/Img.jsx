@@ -1,12 +1,10 @@
-import NETWORK from "../config/network";
-
 export default function Img({
     className,
     src,
     alt,
 }){
+    src = src? src: import.meta.env.VITE_API_BASE_URL + '/storage/system/default_img.jpg';
     
-    src = src? src: NETWORK.APP_DEFAULT_IMAGE;
     return (
         <img className={className} src={src} alt={alt} />
     );

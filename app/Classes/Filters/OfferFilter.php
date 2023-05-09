@@ -15,7 +15,6 @@ use App\Classes\Currency\CurrencyConverter;
 class OfferFilter extends Filter
 {
     public const OPTIONS = 'options';
-    public const CATEGORY = 'category';
     public const PRICE_FROM = 'priceFrom';
     public const PRICE_TO = 'priceTo';
     public const IS_NEW = "isNew";
@@ -29,7 +28,6 @@ class OfferFilter extends Filter
     {
         return [
             self::OPTIONS => [$this, 'options'],
-            self::CATEGORY => [$this, 'category'],
             self::PRICE_FROM => [$this, 'priceFrom'],
             self::PRICE_TO => [$this, 'priceTo'],
             self::IS_NEW => [$this, 'isNew'],
@@ -46,13 +44,6 @@ class OfferFilter extends Filter
             $builder->whereHas('options', function(Builder $query) use($value){
                 $query->where('shape_option_id', $value);
             });
-    }
-
-    public function category(Builder $builder, $value)
-    {
-        $builder->whereHas('item', function(Builder $query) use($value) {
-            $query->where('category_id', $value);
-        });
     }
 
     public function priceTo(Builder $builder, $value)

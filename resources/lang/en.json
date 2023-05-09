@@ -1,8 +1,18 @@
-
 {
+    "powered with"          : "Powered with",
+    "Something is wrong"    : "Something is wrong :(",
+    "Your Order's number is": "Your Order's number is",
+    "order not created"     : "Order not created",
+    "order created"         : "Order created",
+    "sum to pay"            : "Full price",
+    "offer not found"       : "Offer not found",
+    "offer removed from basket"     : "Removed",
+    "offer added to basket" : "Added",
+    "no more offers"        : "No more offers",
+    "from"                  : "From",
+    "to"                    : "To",
     "has account"           : "Has account",
     "one click form text"   : "Fill out the form and you will be called",
-
     "one click form submit" : "Call me",
     "one click form h"      : "Buy one click form",
     "is read"               : "read",

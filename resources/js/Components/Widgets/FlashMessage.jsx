@@ -4,7 +4,7 @@ import {useState} from 'react'
 export default function FlashMessage(){
     const {flash} = usePage().props;
     const [hidden, setHidden] = useState(false);
-console.log(flash);
+
     return (
         <>
         {(flash.message && !hidden) &&

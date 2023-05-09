@@ -1,12 +1,13 @@
-import { Button } from "../Buttons";
+
 import { usePage } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
+import Button from "@/Components/Buttons";
 
 export default function ThemeChanger(){
     const {themeColor} = usePage().props;
 
     return(
-        <Button 
+        <Button
             className={"small rounded border"}
             onHandleClick={()=>Inertia.get(route("change-theme"))
         }>

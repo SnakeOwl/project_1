@@ -13,5 +13,4 @@ class ThemeChangerController extends Controller
         else
             session(["themeColor" => "light"]);
     }
-
 }

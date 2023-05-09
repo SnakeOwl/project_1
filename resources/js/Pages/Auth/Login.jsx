@@ -42,7 +42,6 @@ export default function Login({ status, canResetPassword }) {
     return (
         <MainLayout title={lang['login form title']}>
             <div className="col-12 col-xxl-2 mx-auto">
-                {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
                 <form  onSubmit={onHandleSubmit}>
                     <p className="h3 mb-2 text-center">{lang["sign in"]}</p>
 

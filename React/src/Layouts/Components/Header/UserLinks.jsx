@@ -2,26 +2,29 @@ import {BlueLink} from '../../../Components/Links';
 import { RedButton } from '../../../Components/Buttons';
 import { useContext } from 'react';
 import ContextGlobal from '../../../context/Global/ContextGlobal';
+import axiosClient from '../../../axios-client';
 
 export default function UserLinks ({
     className=""
 }){
-    const NETWORK = {
-        APP_API_URL: "/"
-    }
-    // const {stateGlobal} = useContext(ContextGlobal);
-    // const {user, lang} = stateGlobal;
-    const [user, lang] = [null, {}]
+    const {stateGlobal, dispatchGlobal} = useContext(ContextGlobal);
+    const {user, lang} = stateGlobal;
+
 
     function logout (){
-
+        axiosClient.post('logout')
+            .then(()=>{
+                dispatchGlobal({
+                    type: 'ERASE_USER_AND_TOKEN',
+                });
+            });
     }
 
     const userButtons = (user !== null)?
         <>
             <BlueLink
                 className="rounded inverted small me-2"
-                to={NETWORK.APP_API_URL + "personal-page"}
+                to={"personal-page"}
                 title={lang['personal page']}
             >
                 <i className="bi bi-person-fill"></i>
@@ -30,7 +33,7 @@ export default function UserLinks ({
             {user.userIsEditor &&
                 <BlueLink
                     className="rounded small me-2"
-                    to={NETWORK.APP_API_URL + "supervisor"}
+                    to={"supervisor"}
                 >
                     <i className="bi bi-nut-fill"></i>
                 </BlueLink>

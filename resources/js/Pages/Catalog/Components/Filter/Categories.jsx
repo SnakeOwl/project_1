@@ -13,7 +13,6 @@ export default function Categories({
     const activeCategoryFilter = (activeCategory != null)
     ?
         activeCategory.shapes.map((shape)=>{
-
             const options = shape.shape_options.map((option)=>{
                 return (
                     <li className="list-group-item d-flex justify-content-between align-items-center group-item-action">
@@ -41,7 +40,6 @@ export default function Categories({
             )
         })
     : false;
-
 
     const linksOfCategories = categories.map((category)=>{
         const sCategory = (activeCategory != null)? (category.id == activeCategory.id): false;

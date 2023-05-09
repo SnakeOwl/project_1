@@ -2,9 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Catalog\IndexController;
-use App\Http\Controllers\Api\GlobalVariablesController;
-use App\Http\Controllers\Api\Messages\StoreMessageController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -18,22 +15,37 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::get('test', function(){
-    return  response("hello", 200)->header('Access-Control-Allow-Origin', 'http://127.0.0.1');
-    });
 
-Route::middleware('web')
-    ->group(function (){
-        Route::post('login', [AuthenticatedSessionController::class, 'store']);
-        Route::get('global-variables', GlobalVariablesController::class);
-
+Route::prefix('basket')
+    ->group(function(){
+        Route::get('add/{offer}', App\Http\Controllers\Api\Basket\AddOfferController::class);
+        Route::get('remove/{offer}', App\Http\Controllers\Api\Basket\RemoveOfferController::class);
+        Route::get('index', App\Http\Controllers\Api\Basket\IndexController::class);
+        Route::get('create-order', App\Http\Controllers\Api\Basket\CreateOrderController::class);
+        Route::post('store-order',App\Http\Controllers\Api\Basket\OrderStoreController::class);
 });
 
+Route::post('message-store', App\Http\Controllers\Api\Messages\StoreMessageController::class);
+
+Route::get('lang/{lang}', App\Http\Controllers\Api\LocaleController::class);
+Route::get('catalog', App\Http\Controllers\Api\Catalog\IndexController::class);
+Route::get('catalog/{offer}', App\Http\Controllers\Api\Catalog\OfferController::class);
+Route::post('catalog/search', App\Http\Controllers\Api\Catalog\SearchController::class);
+Route::post('global-variables', App\Http\Controllers\Api\GlobalVariablesController::class);
 
 
-Route::get('catalog', IndexController::class);
 
-Route::post('message-store', StoreMessageController::class);
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });    
+    
+    Route::post('/logout', App\Http\Controllers\Api\Auth\LogoutController::class);
+
+});
+
+
+
+
+Route::post('/signup', App\Http\Controllers\Api\Auth\SighupController::class);
+Route::post('/login', App\Http\Controllers\Api\Auth\LoginController::class);

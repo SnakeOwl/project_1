@@ -4,8 +4,8 @@ import Logo from "../../Components/Logo";
 import ContextGlobal from "../../context/Global/ContextGlobal";
 
 export default function Footer(){
-    // const {stateGlobal} = useContext(ContextGlobal);
-    const lang =  {key: 11}; //stateGlobal;
+    const {stateGlobal} = useContext(ContextGlobal);
+    const {lang} = stateGlobal; //stateGlobal;
     
     return (
         <footer className="container-fluid bg-dark text-light pt-5 pb-4 mt-5">
@@ -20,10 +20,10 @@ export default function Footer(){
 
                     <div className="col-12 col-xxl-5 px-3">
                         <h4>support</h4>
-                        <Link to="/contact-form">Contact form</Link>
+                        <Link to="/contact-form">{lang['contact form']}</Link>
                     </div>
                     <div className="col-12 col-xxl-4 px-3">
-                        <h4>Contacts</h4>
+                        <h4>{lang['contacts']}</h4>
                         <p>
                             <a className="mb-3"  href="tel:375291234567" itemProp="telephone" content="375291234567"> 375 29 123 4567</a>
                         </p>
@@ -33,15 +33,15 @@ export default function Footer(){
                 </div>
                 <div className="row">
                     <div className="col-12 text-center">
-                        Powered with &nbsp;
+                        {lang['powered with']} &nbsp;
                         <a className="me-2" href="https://getbootstrap.com/" rel="noreferrer" target="_blank">
-                            <img width={24} src="/images/system/Bootstrap.svg" alt="" />
+                            <img width={24} src="/images/system/logo_bootstrap.svg" alt="" />
                         </a>
                         <a className="me-2" href="https://laravel.com/" rel="noreferrer" target="_blank">
-                            <img width={24} src="/images/system/Laravel.svg" alt="" />
+                            <img width={24} src="/images/system/logo_laravel.svg" alt="" />
                         </a>
                         <a className="me-2" href="https://reactjs.org/" rel="noreferrer" target="_blank">
-                            <img width={24} src="/images/system/React.png" alt="" />
+                            <img width={24} src="/images/system/logo_react.jpg" alt="" />
                         </a>
                     </div>
                 </div>

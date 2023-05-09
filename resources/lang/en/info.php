@@ -1,7 +1,10 @@
 <?php
 return [
+    "removed to cart"       => "Removed from cart",
+    "added to cart"         => "Added to cart",
+    "offers not found"      => "No offers :(",
+    "email or address is incorrect" => "Provided email or address is incorrect",
     "oneClickForm destroyed"    => "Form data was destroyed",
-
     "storage has destroyed"  => "Storage has destroyed",
     "storage has updated"  => "Storage has updated",
     "storage has added"    => "Storage has added",

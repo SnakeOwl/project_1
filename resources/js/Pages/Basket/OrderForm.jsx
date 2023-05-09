@@ -93,86 +93,85 @@ export default function OrderForm(props){
                 <h1 className="text-center">{lang['checkout']}</h1>
                 <form onSubmit={onHandleSubmit}>
                     <div className="row">
-                        <FloatInput
-                            id='name'
-                            labelText={lang['name']}
-                            className="mb-3 col-12 col-xxl-4"
-                            value={data.name}
-                            onHandleChange={onHandleChange}
-                        />
+                        <div className="col-12 col-lg-4 mx-auto">
+                            <FloatInput
+                                id='name'
+                                labelText={lang['name']}
+                                className="mb-3"
+                                value={data.name}
+                                onHandleChange={onHandleChange}
+                            />
 
-                        <FloatInput
-                            id='email'
-                            labelText='email'
-                            className="mb-3 col-12 col-xxl-4"
-                            value={data.email}
-                            onHandleChange={onHandleChange}
-                        />
+                            <FloatInput
+                                id='email'
+                                labelText='email'
+                                className="mb-3"
+                                value={data.email}
+                                onHandleChange={onHandleChange}
+                            />
 
-                        <FloatInput
-                            id='phone'
-                            labelText={lang["phone"]}
-                            className="mb-3 col-12 col-xxl-4"
-                            value={data.phone}
-                            onHandleChange={onHandleChange}
-                        />
+                            <FloatInput
+                                id='phone'
+                                labelText={lang["phone"]}
+                                className="mb-3"
+                                value={data.phone}
+                                onHandleChange={onHandleChange}
+                            />
 
-                        <FloatSelect
-                            options={paymentMethods}
-                            className="mb-3 col-12 col-xxl-4"
-                            labelText={lang["payment method"]}
-                            selectedOptionIds="card"
-                            id="payment_method"
-                            onHandleChange={onHandleChange}
-                        />
+                            <FloatSelect
+                                options={paymentMethods}
+                                className="mb-3"
+                                labelText={lang["payment method"]}
+                                selectedOptionIds="card"
+                                id="payment_method"
+                                onHandleChange={onHandleChange}
+                            />
+
+                            <FloatSelect
+                                options={delyveryMethods}
+                                className="mb-3"
+                                labelText={lang["delivery method"]}
+                                selectedOptionIds="courier"
+                                id="delivery_method"
+                                onHandleChange={changeDelivery}
+                            />
+
+                            <FloatInput
+                                id='address'
+                                labelText={lang["address"]}
+                                className="mb-3"
+                                value={data.address}
+                                onHandleChange={onHandleChange}
+                            />
+
+                            <FloatInput
+                                id='post_index'
+                                labelText={lang['post index']}
+                                className="mb-3 d-none"
+                                value={data.post_index}
+                                onHandleChange={onHandleChange}
+                            />
+
+                            <RadioList
+                                id="storage_id"
+                                storages={storages}
+                                className="d-none"
+                                onHandleChange={onHandleChange}
+                            />
+
+                            <FloatInput
+                                labelText={lang["price"]}
+                                className="mb-3"
+                                value={order.fullPrice}
+                                disabled={1}
+                            />
+                            <RedButton className="w-100">
+                                {lang['submit']}
+                            </RedButton>
+                        </div>
                     </div>
-
-                    <div className="row">
-                        <FloatSelect
-                            options={delyveryMethods}
-                            className="mb-3 col-12 col-xxl-4"
-                            labelText={lang["delivery method"]}
-                            selectedOptionIds="courier"
-                            id="delivery_method"
-                            onHandleChange={changeDelivery}
-                        />
-
-                        <FloatInput
-                            id='address'
-                            labelText={lang["address"]}
-                            className="mb-3 col-12 col-xxl-4"
-                            value={data.address}
-                            onHandleChange={onHandleChange}
-                        />
-
-                        <FloatInput
-                            id='post_index'
-                            labelText={lang['post index']}
-                            className="mb-3 col-12 col-xxl-4 d-none"
-                            value={data.post_index}
-                            onHandleChange={onHandleChange}
-                        />
-                    </div>
-
-                    <RadioList
-                        id="storage_id"
-                        storages={storages}
-                        className="d-none"
-                        onHandleChange={onHandleChange}
-                    />
-
-                    <FloatInput
-                        labelText={lang["price"]}
-                        className="mb-3"
-                        value={order.fullPrice}
-                        disabled={1}
-                    />
-                    <RedButton className="w-100">
-                        {lang['submit']}
-                    </RedButton>
                 </form>
             </div>
-
         </MainLayout>
     );
 }

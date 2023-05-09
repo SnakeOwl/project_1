@@ -15,6 +15,7 @@ export default function Footer(){
                         <h2 className="text-center"><Logo /></h2>
                         <p>{lang['footer text 1']}</p>
                         <p>{lang['footer text 2']}</p>
+                        <p className="text-end">2023</p>
                     </div>
 
                     <div className="col-12 col-xxl-5 mb-3 px-3 text-center text-lg-start">

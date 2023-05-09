@@ -1,13 +1,50 @@
 function ReducerGlobal (state, action) {
     switch(action.type){
-        
+
+        case 'ERASE_USER_AND_TOKEN':
+            localStorage.removeItem("ACCESS_TOKEN");
+            return {
+                ...state,
+                user: null,
+            }
+
+        case 'SET_LANG':
+            return {
+                ...state,
+                lang: action.lang,
+            }
+
+        case 'SET_USER':
+            return {
+                ...state,
+                user: action.user
+            }
+
+        case 'LOGIN':
+            if (action.csrf_token){
+                localStorage.setItem('ACCESS_TOKEN', action.csrf_token);
+            }else{
+                localStorage.removeItem('ACCESS_TOKEN');
+            }
+            
+            return {
+                ...state,
+                user: action.user,
+            }        
+
+        case 'SET_MESSAGE':
+            return {
+                ...state,
+                message: action.message,
+            }
+
         case 'CLELAR_MESSAGE':
             return {
                 ...state,
                 message: null,
             }
 
-        case 'FETCH_ERRORS':
+        case 'SET_ERRORS':
             return {
                 ...state,
                 errors: action.errors,
@@ -20,16 +57,13 @@ function ReducerGlobal (state, action) {
                 message: action.message
             }
 
-        case 'UPDATED': 
+        case 'INIT': 
             return {
                 ...state,
-                user: action.user,
-                themeColor: action.themeColor,
                 currencies: action.currencies,
                 currentLocale: action.currentLocale,
                 lang: action.lang,
-                currentCurrecy: action.currentCurrecy,
-                csrf_token: action.csrf_token,
+                currentCurrency: action.currentCurrency,
             }
 
         default:
