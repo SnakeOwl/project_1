@@ -1,6 +1,9 @@
 {
-    "powered with"          : "Сделано с помощью",
+    "success"               : "Успешно",
 
+    "user"                  : "Пользователь",
+    "message created"       : "Спасибо за сообщение :)",
+    "powered with"          : "Сделано с помощью",
     "Something is wrong"    : "Что-то пошло не так :(",
     "Your Order's number is": "Номер вашего заказа",
 

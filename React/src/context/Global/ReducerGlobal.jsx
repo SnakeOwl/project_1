@@ -60,10 +60,8 @@ function ReducerGlobal (state, action) {
         case 'INIT': 
             return {
                 ...state,
-                currencies: action.currencies,
                 currentLocale: action.currentLocale,
                 lang: action.lang,
-                currentCurrency: action.currentCurrency,
             }
 
         default:

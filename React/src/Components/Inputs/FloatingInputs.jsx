@@ -8,7 +8,6 @@ export function FloatInput({
     useRef,
     id,
     className = '',
-    classNameInput,
     type="text",
     name,
     labelText,
@@ -20,11 +19,12 @@ export function FloatInput({
     placeholder="something to work",
     disabled,
     readOnly,
-    value,
+    value=undefined,
     autoComplete = "on",
     isFocused,
     onHandleChange=()=>{},
 }){
+    const val = value === null? undefined: value; // чтобы консоль не ругала
     const {stateGlobal} = useContext(ContextGlobal);
     const {errors, currentLocale} = stateGlobal;
     
@@ -33,7 +33,7 @@ export function FloatInput({
             <div className="form-floating">
                 <input
                     ref={useRef}
-                    className={"form-control " + classNameInput}
+                    className="form-control"
                     id={id}
                     type={type}
                     name={name? name: id}
@@ -45,7 +45,7 @@ export function FloatInput({
                     required={required}
                     disabled={disabled}
                     readOnly={readOnly}
-                    value={value}
+                    value={val}
                     autoComplete={autoComplete}
                     autoFocus={isFocused}
                     onChange={(e) => onHandleChange(e)}
@@ -73,7 +73,7 @@ export  function FloatTextarea({
     rows,
     disabled,
     value,
-    onHandleChange,
+    onHandleChange=()=>{},
 }){
     const {stateGlobal} = useContext(ContextGlobal);
     const {errors, currentLocale} = stateGlobal;
@@ -93,7 +93,7 @@ export  function FloatTextarea({
                     autoFocus={autoFocus}
                     disabled={disabled}
                     value={value}
-                    onChange={(e) => onHandleChange(e)}
+                    onChange={onHandleChange}
                     />
                 <label htmlFor={id}>{labelText}</label>
 

@@ -1,10 +1,10 @@
-import { FloatInput } from "../Components/Inputs/FloatingInputs";
-import { BlueButton, GreenButton } from "../Components/Buttons";
-import { Checkbox } from "../Components/Inputs/Inputs";
+import { FloatInput } from "../../Components/Inputs/FloatingInputs";
+import { BlueButton, GreenButton } from "../../Components/Buttons";
+import { Checkbox } from "../../Components/Inputs/Inputs";
 import { useContext, useRef, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import ContextGlobal from "../context/Global/ContextGlobal";
-import axiosClient from "../axios-client";
+import ContextGlobal from "../../context/Global/ContextGlobal";
+import axiosClient from "../../axios-client";
 
 export default function Login(){
     
@@ -50,11 +50,8 @@ export default function Login(){
     }
 
     function loginAdmin(){
-        setData({
-            password: "administrator",
-            email: "administrator@gmail.com",
-            remember: ""
-        });
+        passRef.current.value="administrator";
+        emailRef.current.value="administrator@gmail.com";
     }
 
     return (

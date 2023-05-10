@@ -42,7 +42,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'auth' => [
                 'user' => Auth::user(),
-                'userIsAdmin' => (Auth::check() && Auth::user()->is_admin()),
+                'userIsAdmin' => (Auth::check() && Auth::user()->isAdmin()),
                 'userIsEditor' => (Auth::check() && Auth::user()->is_editor()),
             ],
             'ziggy' => function () use ($request) {

@@ -10,7 +10,6 @@ export default function UserLinks ({
     const {stateGlobal, dispatchGlobal} = useContext(ContextGlobal);
     const {user, lang} = stateGlobal;
 
-
     function logout (){
         axiosClient.post('logout')
             .then(()=>{
@@ -24,19 +23,20 @@ export default function UserLinks ({
         <>
             <BlueLink
                 className="rounded inverted small me-2"
-                to={"personal-page"}
+                to={"/user/"}
                 title={lang['personal page']}
             >
                 <i className="bi bi-person-fill"></i>
             </BlueLink>
 
-            {user.userIsEditor &&
-                <BlueLink
-                    className="rounded small me-2"
-                    to={"supervisor"}
+            {user.rights === 10 &&
+                <a
+                    className="bttn blue rounded small me-2"
+                    href={`${import.meta.env.VITE_BASE_ADMIN_ROUTE}`}
+                    target="_blank"
                 >
                     <i className="bi bi-nut-fill"></i>
-                </BlueLink>
+                </a>
             }
 
             <RedButton

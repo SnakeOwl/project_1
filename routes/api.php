@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +15,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 */
 
 
-Route::prefix('basket')
-    ->group(function(){
+
+Route::prefix('basket')->group(function(){
         Route::get('add/{offer}', App\Http\Controllers\Api\Basket\AddOfferController::class);
         Route::get('remove/{offer}', App\Http\Controllers\Api\Basket\RemoveOfferController::class);
         Route::get('index', App\Http\Controllers\Api\Basket\IndexController::class);
@@ -25,7 +24,7 @@ Route::prefix('basket')
         Route::post('store-order',App\Http\Controllers\Api\Basket\OrderStoreController::class);
 });
 
-Route::post('message-store', App\Http\Controllers\Api\Messages\StoreMessageController::class);
+Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreController::class);
 
 Route::get('lang/{lang}', App\Http\Controllers\Api\LocaleController::class);
 Route::get('catalog', App\Http\Controllers\Api\Catalog\IndexController::class);
@@ -36,12 +35,16 @@ Route::post('global-variables', App\Http\Controllers\Api\GlobalVariablesControll
 
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });    
+    
+    Route::prefix('user')->group(function(){
+        Route::get('', function (Request $request) {
+            return $request->user();
+        });
+
+        Route::post('update', App\Http\Controllers\Api\User\UpdateUserController::class);
+    });
     
     Route::post('/logout', App\Http\Controllers\Api\Auth\LogoutController::class);
-
 });
 
 

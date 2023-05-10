@@ -20,7 +20,7 @@ export default function Footer(){
 
                     <div className="col-12 col-xxl-5 px-3">
                         <h4>support</h4>
-                        <Link to="/contact-form">{lang['contact form']}</Link>
+                        <Link to="/contacts">{lang['contact form']}</Link>
                     </div>
                     <div className="col-12 col-xxl-4 px-3">
                         <h4>{lang['contacts']}</h4>

@@ -31,10 +31,9 @@ export default function Header(){
                             </RedLink>
                         }
                         
-                        <UserLinks className="me-2"/>
+                        <UserLinks className="me-3"/>
                         <LocaleChanger className="me-2 small rounded" />
                         <ThemeChanger />
-
                     </div>
                 </div>
             </div>

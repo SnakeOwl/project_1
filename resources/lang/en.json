@@ -1,4 +1,8 @@
 {
+    "success"               : "Success",
+    "user"                  : "User",
+
+    "message created"       : "Thank you for the message :)",
     "powered with"          : "Powered with",
     "Something is wrong"    : "Something is wrong :(",
     "Your Order's number is": "Your Order's number is",

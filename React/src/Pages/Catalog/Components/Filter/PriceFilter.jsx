@@ -8,7 +8,7 @@ export default function PriceFilter ({
     className
 }){
     const {stateGlobal} = useContext(ContextGlobal);
-    const {lang, currentCurrency} = stateGlobal;
+    const {lang} = stateGlobal;
 
     return (
         <div className={`filter-price ${className}`}>
@@ -24,7 +24,6 @@ export default function PriceFilter ({
                         type="number"
                         step="5"
                     />
-                    <span className="input-group-text">{currentCurrency.symbol}</span>
                     <Input
                         useRef={priceToRef}
                         placeholder={lang['to']}

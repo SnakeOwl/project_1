@@ -7,7 +7,7 @@ import axiosClient from "/src/axios-client";
 
 export default function OfferCard({className, offer}){
     const {stateGlobal, dispatchGlobal} = useContext(ContextGlobal);
-    const {currentCurrency, lang} = stateGlobal;
+    const {lang} = stateGlobal;
 
     function toCart(){
         axiosClient.get(`/basket/add/${offer.id}`, {
@@ -52,10 +52,6 @@ export default function OfferCard({className, offer}){
                     <p>
                         <span className="fs-5 fw-bold">
                             {offer.price}
-                        </span>
-                        &nbsp;
-                        <span>
-                            {currentCurrency.symbol}
                         </span>
                     </p>
                 </div>

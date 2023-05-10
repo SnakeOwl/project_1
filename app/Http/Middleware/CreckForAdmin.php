@@ -17,7 +17,7 @@ class CreckForAdmin
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if(! $user->is_admin())
+        if(! $user->isAdmin())
         {
             session()->flash('message', __('info.ccess denied'));
             return redirect()->route('index');

@@ -1,9 +1,9 @@
 import { useContext, useRef, useState } from "react";
-import { FloatInput } from "../Components/Inputs/FloatingInputs";
-import { BlueButton } from "../Components/Buttons";
-import ContextGlobal from "../context/Global/ContextGlobal";
+import { FloatInput } from "../../Components/Inputs/FloatingInputs";
+import { BlueButton } from "../../Components/Buttons";
+import ContextGlobal from "../../context/Global/ContextGlobal";
 import { Link, Navigate } from "react-router-dom";
-import axiosClient from "../axios-client";
+import axiosClient from "../../axios-client";
 
 export default function SighUp(){
     

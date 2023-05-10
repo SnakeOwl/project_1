@@ -28,7 +28,6 @@ export function Checkbox({
 
             {errors && <InputError message={errors[id]} />}
         </div>
-
     );
 }
 

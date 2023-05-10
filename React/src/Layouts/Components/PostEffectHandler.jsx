@@ -12,8 +12,6 @@ export default function PostEffectHandler(){
             .then(({data}) =>{
                 dispatchGlobal({
                     type: 'INIT',
-                    currencies: data.currencies,
-                    currentCurrency: data.currentCurrency,
                     currentLocale: data.currentLocale,
                     lang: data.lang,
                 });
@@ -35,7 +33,7 @@ export default function PostEffectHandler(){
                 .catch(error => {
                     const {response} = error;
                     console.log("Error getting user information.");
-                    console.log(error.response.data.message);
+                    console.log(response.data.message);
                 });
         }
     }, []); 

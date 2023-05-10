@@ -54,20 +54,20 @@ class User extends Authenticatable
         return $query->where('rights', User::RIGHTS['courier']);
     }
 
-    public function is_admin(): bool
+    public function isAdmin(): bool
     {
         return $this->rights === User::RIGHTS['admin'];
     }
 
     public function is_editor(): bool
     {
-        return $this->is_admin()
+        return $this->isAdmin()
             || $this->rights === User::RIGHTS['editor'];
     }
 
     public function is_courier(): bool
     {
-        return $this->is_admin()
+        return $this->isAdmin()
             || $this->is_editor()
             || $this->rights === User::RIGHTS['courier'];
     }

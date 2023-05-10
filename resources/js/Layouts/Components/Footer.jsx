@@ -35,7 +35,7 @@ export default function Footer(){
 
                 <div className="row">
                     <div className="col-12 text-center">
-                        Powered with &nbsp;
+                        {lang['powered with']} &nbsp;
                         <a href="https://getbootstrap.com/" target="_blank">
                             <Img className="me-2" src="system/logo_bootstrap.svg" width="24"/>
                         </a>
