@@ -128,15 +128,17 @@ export default function (){
                         <div className="col-12 col-lg-6">
                             <h1>{ currentLocale==="en"? offerData.item.name_en: offerData.item.name}</h1>
 
+                            
                             <h4>{lang['offers options']}:</h4>
-                            <table className="table table-sm table-borderless mb-3">
-                                <tbody>
-                                    {offerProperties}
-                                </tbody>
-                            </table>
+                            <div className="overflow-x-auto">
+                                <table className="table table-sm table-borderless mb-3">
+                                    <tbody>
+                                        {offerProperties}
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <p>{lang['price']}: {offerData.offer.price}</p>
-
                         </div>
                     </div>
 

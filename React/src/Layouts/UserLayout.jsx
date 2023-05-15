@@ -22,7 +22,7 @@ export default function UserLayout()
                 }
                 {user !== null &&
                     <div className="row">
-                        <div className="col-12 col-lg-3">
+                        <div className="col-12 col-lg-3 mb-4">
                             <UserLeftMenu />
                         </div>
                         <div className="col-12 col-lg-9">

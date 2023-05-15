@@ -47,7 +47,8 @@ export default function ContactForm(){
 
     return (
         <div className="col-12 col-lg-3 mx-auto">
-            <form onSubmit={handleSubmit}>
+            <h1>{lang["contact form h"]}</h1>
+            <form className="mb-2" onSubmit={handleSubmit}>
             <FloatInput
                 id="name"
                 labelText={lang['name']}
@@ -78,6 +79,10 @@ export default function ContactForm(){
                 {lang['submit']}
             </BlueButton>
              </form>
+             
+             <p className="text-center">
+                {lang["contact form message"]}
+             </p>
         </div>
     );
 }

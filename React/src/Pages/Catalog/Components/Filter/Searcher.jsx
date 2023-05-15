@@ -46,7 +46,7 @@ export default function Searcher({
                             </div>
                             <div className="col-9">
                                 <h5>{offer.item.name}</h5>
-                                <p>{offer.price} {currentCurrecy.symbol}</p>
+                                <p>{offer.price}</p>
                             </div>
                         </div>
                     </div>
