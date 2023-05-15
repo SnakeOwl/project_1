@@ -1,7 +1,17 @@
 {
+    "offer"                 : "Offer",
+    "order offers"          : "Order offers",
+    "form send"             : "Form send",
+
+    "general information"   : "General information",
+    "list of offers in order": "List of offers in Order",
+    "looking order"         : "Order",
+    "item"                  : "Item",
+    "no access"             : "No access",
+    "data not accepted"     : "No Order's data",
+    "can't upload orders"   : "Can't get orders",
     "success"               : "Success",
     "user"                  : "User",
-
     "message created"       : "Thank you for the message :)",
     "powered with"          : "Powered with",
     "Something is wrong"    : "Something is wrong :(",

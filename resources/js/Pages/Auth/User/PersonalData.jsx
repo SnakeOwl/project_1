@@ -1,7 +1,7 @@
 import {useForm} from '@inertiajs/inertia-react'
 import UserCabinetLayout from '@/Layouts/UserCabinetLayout'
 import FloatInput from '@/Components/Inputs/FloatInput'
-import BlueButton from '@/Components/Buttons/BlueButton'
+import {BlueButton} from '@/Components/Buttons'
 
 export default function PersonalPage(props) {
     const {lang} = props;
@@ -16,7 +16,7 @@ export default function PersonalPage(props) {
 
     const onHandeSubmit = (event) => {
         event.preventDefault();
-        post( route("personal-data-update") );
+        post("/user/data");
     };
 
     return (

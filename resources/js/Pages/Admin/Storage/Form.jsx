@@ -1,5 +1,5 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import BlueButton from '@/Components/Buttons/BlueButton'
+import {BlueButton} from '@/Components/Buttons'
 import FloatInput from '@/Components/Inputs/FloatInput'
 import FloatTextarea from '@/Components/Inputs/FloatTextarea'
 import { useForm } from '@inertiajs/inertia-react';
@@ -9,9 +9,12 @@ export default function Form(props){
     const storage = props.storage? props.storage: null;
     const { data, setData, post, patch, errors, reset } = useForm({
         address:    storage? storage.address : "",
+        address_en:    storage? storage.address_en : "",
         name:       storage? storage.name: "",
+        name_en:       storage? storage.name_en: "",
         phone:      storage? storage.phone: "",
         schedule:   storage? storage.schedule: "",
+        schedule_en:   storage? storage.schedule_en: "",
     });
 
     function onHandleSubmit(e){
@@ -40,12 +43,30 @@ export default function Form(props){
                         isFocused={true}
                         required
                     />
+                    <FloatInput
+                        id="address_en"
+                        value={data.address_en}
+                        className="mb-3"
+                        labelText={`${lang['address']}(eng)`}
+                        onHandleChange={onHandleChange}
+                        isFocused={true}
+                        required
+                    />
 
                     <FloatInput
                         id="name"
                         value={data.name}
                         className="mb-3"
                         labelText={lang['storages name']}
+                        onHandleChange={onHandleChange}
+                        required
+                    />
+
+                    <FloatInput
+                        id="name_en"
+                        value={data.name_en}
+                        className="mb-3"
+                        labelText={`${lang['storages name']} (eng)`}
                         onHandleChange={onHandleChange}
                         required
                     />
@@ -64,6 +85,16 @@ export default function Form(props){
                         value={data.schedule}
                         className="mb-3"
                         labelText={lang['schedule']}
+                        rows="3"
+                        onHandleChange={onHandleChange}
+                        required
+                    />
+
+                    <FloatTextarea
+                        id="schedule_en"
+                        value={data.schedule_en}
+                        className="mb-3"
+                        labelText={`${lang['schedule']} (eng)`}
                         rows="3"
                         onHandleChange={onHandleChange}
                         required

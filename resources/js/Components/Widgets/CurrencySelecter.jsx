@@ -25,7 +25,7 @@ export default function CurrencySelecter({
     	return (
             <li>
                 <Link
-                    href={route("currency-change", currency.code)}
+                    href={`/currency/${currency.code}`}
                     className="dropdown-item"
                 >
                     {currency.symbol}

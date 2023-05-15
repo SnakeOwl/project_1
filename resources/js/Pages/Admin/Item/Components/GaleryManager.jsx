@@ -1,6 +1,5 @@
 import Img from "@/Components/Img"
-import StandartInput from "@/Components/Inputs/StandartInput"
-import RedButton from "@/Components/Buttons/RedButton"
+import {RedButton} from "@/Components/Buttons"
 
 export default function GaleryManager ({
     removeImageHandler,

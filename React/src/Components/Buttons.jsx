@@ -1,5 +1,5 @@
-export function BlueButton({
-    className = '',
+export default function Button({
+    className,
     children,
     type,
     onHandleClick,
@@ -7,7 +7,7 @@ export function BlueButton({
 }){
     return (
         <button
-            className={'bttn blue ' + className}
+            className={`bttn ${className}`}
             type={type}
             onClick={onHandleClick}
             title={title}
@@ -16,43 +16,30 @@ export function BlueButton({
         </button>
     );
 }
-
-export function RedButton({
-    className = '',
-    children,
-    type,
-    onHandleClick,
-    title,
-}){
+export function BlueButton(props){
     return (
-        <button
-            className={'bttn red ' + className}
-            type={type}
-            onClick={onHandleClick}
-            title={title}
-            >
-            {children}
-        </button>
+        <Button
+            {...props}
+            className={`blue ${props.className}`}
+        />
     );
 }
 
-export function GreenButton({
-    className = '',
-    children,
-    type,
-    onHandleClick,
-    title,
-}){
+export function RedButton(props){
     return (
-        <button
-            className={'bttn green ' + className}
-            type={type}
-            onClick={onHandleClick}
-            title={title}
-            >
-            {children}
-        </button>
+        <Button
+            {...props}
+            className={`red ${props.className}`}
+        />
     );
 }
 
-export default BlueButton;
+export function GreenButton(props){
+    return (
+        <Button
+            {...props}
+            className={`green ${props.className}`}
+        />
+    );
+}
+

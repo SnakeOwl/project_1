@@ -9,7 +9,7 @@ export default function ThemeChanger(){
     return(
         <Button
             className={"small rounded border"}
-            onHandleClick={()=>Inertia.get(route("change-theme"))
+            onHandleClick={()=>Inertia.get("change-theme")
         }>
             {(themeColor == "dark") &&
                 <i className="bi bi-sun"></i>

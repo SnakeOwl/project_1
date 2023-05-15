@@ -28,6 +28,7 @@ class User extends Authenticatable
         'rights',
         'order_id',
     ];
+    
 
     // $password - is not hashed string
     public function updatePassword($password): bool

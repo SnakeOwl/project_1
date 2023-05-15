@@ -1,8 +1,5 @@
 import { usePage } from '@inertiajs/inertia-react';
-import { useState } from 'react';
-import FloatInput from '@/Components/Inputs/FloatInput';
-import RedButton from '@/Components/Buttons/RedButton';
-import Checkbox from '@/Components/Inputs/Checkbox';
+import {RedButton} from '@/Components/Buttons';
 import PriceFilter from './Filter/PriceFilter';
 
 export default function Filter({

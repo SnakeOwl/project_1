@@ -20,7 +20,7 @@ class CreckForAdmin
         if(! $user->isAdmin())
         {
             session()->flash('message', __('info.ccess denied'));
-            return redirect()->route('index');
+            return redirect('/');
         }
 
         return $next($request);

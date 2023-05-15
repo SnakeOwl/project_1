@@ -1,6 +1,6 @@
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import FloatInput from '@/Components/Inputs/FloatInput';
-import BlueButton from '@/Components/Buttons/BlueButton';
+import {BlueButton} from '@/Components/Buttons';
 
 export default function ShapeOptionForm({
     shape,

@@ -1,7 +1,6 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import BlueButton from '@/Components/Buttons/BlueButton'
+import {BlueButton} from '@/Components/Buttons'
 import FloatInput from '@/Components/Inputs/FloatInput'
-import StandartTextarea from '@/Components/Inputs/StandartTextarea'
 import { useForm } from '@inertiajs/inertia-react';
 
 export default function Form(props){

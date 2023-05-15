@@ -21,7 +21,7 @@ class StoreOrderRequest extends FormRequest
             'email' => 'nullable|email:rfc,dns',
             'address' => 'nullable|max:255|min:2',
             'post_index' => 'nullable|max:255|min:2',
-            'storage_id' => 'nullable|numeric',
+            'storage_id' => 'nullable|exists:storages,id',
         ];
     }
 }

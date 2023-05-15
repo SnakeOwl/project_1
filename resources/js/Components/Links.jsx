@@ -1,80 +1,55 @@
 import { InertiaLink } from '@inertiajs/inertia-react';
 
-export function Link({
-    children,
-    href,
+export function ILink({
     className,
+    href='#',
+    children,
     title,
-    disabled=false
+    disabled
 }){
-    className += disabled? " disabled": "";
-
     return (
         <InertiaLink
+            className={className}
             href={href}
             title={title}
-            className={className}
+            disabled={disabled}
         >
             {children}
         </InertiaLink>
-
     );
 }
 
-export function BlueLink({
-    className = '',
-    href='#',
-    children,
-    title,
-    disabled
-}){
+export function Link(props){
     return (
-        <Link
-            className={'bttn blue ' + className}
-            href={href}
-            title={title}
-            disabled={disabled}
-        >
-            {children}
-        </Link>
+        <ILink
+            {...props}
+        />
     );
 }
 
-export function GreenLink({
-    className = '',
-    href='#',
-    children,
-    title,
-    disabled
-}){
+export function BlueLink(props){
     return (
-        <Link
-            className={'bttn green ' + className}
-            href={href}
-            title={title}
-            disabled={disabled}
-        >
-            {children}
-        </Link>
+        <ILink
+            {...props}
+            className={`bttn blue ${props.className}`}
+        />
     );
 }
 
-export function RedLink({
-    className='',
-    href='#',
-    children,
-    title,
-    disabled,
-}){
+export function GreenLink(props){
     return (
-        <Link className={'bttn red ' + className}
-            href={href}
-            title={title}
-            disabled={disabled}
-        >
-            {children}
-        </Link>
+        <ILink
+            {...props}
+            className={`bttn green ${props.className}`}
+        />
     );
 }
 
-export default Link;
+export function RedLink(props){
+    return (
+        <ILink
+            {...props}
+            className={`bttn red ${props.className}`}
+        />
+    );
+}

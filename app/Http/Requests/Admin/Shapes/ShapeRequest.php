@@ -14,7 +14,7 @@ class ShapeRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'nullable|numeric',
+            'category_id' => 'nullable|exists:categories,id',
             'name' => 'required|max:255|min:2',
             'name_en' => 'required|max:255|min:2',
             'global' => 'required|boolean',

@@ -30,18 +30,11 @@ export default function(props) {
             />
     });
 
-    const oneClickForm = (showOneClickForm !== false)?
-        <OneClickBuyForm
-            hideFormHandler={()=>setShowOneClickForm(false)}
-            offerId={oneClickOfferId}
-        />
-        :null;
-
     function useFilter(){
         if (activeCategory === null)
-            get(route('catalog'));
+            get('/catalog');
         else
-            get(route('category-offers', activeCategory.alias));
+            get(`/catalog/${activeCategory.alias}`);
     }
 
     function onHandleSelectOptions (event){
@@ -91,7 +84,12 @@ export default function(props) {
                 </div>
             </div>
 
-            {oneClickForm}
+            {showOneClickForm !== false &&
+                <OneClickBuyForm
+                    hideFormHandler={()=>setShowOneClickForm(false)}
+                    offerId={oneClickOfferId}
+                />
+            }
         </MainLayout>
     );
 }

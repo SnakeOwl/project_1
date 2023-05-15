@@ -23,7 +23,7 @@ class CheckUsersRights
         {
             session()->flash('message', __('info.access denied'));
 
-            return redirect()->route('catalog');
+            return redirect('/');
         }
 
         return $next($request);

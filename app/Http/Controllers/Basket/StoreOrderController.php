@@ -17,6 +17,6 @@ class StoreOrderController extends Controller
 
         session()->forget('order');
 
-        return redirect()->route("catalog");
+        return redirect("/");
     }
 }

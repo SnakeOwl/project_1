@@ -9,11 +9,15 @@ import OfferCard from "./Components/OfferCard";
 import ContextGlobal from "/src/context/Global/ContextGlobal";
 import Categories from "./Components/Filter/Categories";
 import Pagination from "./Components/Pagination";
+import OneClickBuyForm from "./Components/OneClickBuyForm";
 
 export default function Catalog(){
     const {category} = useParams();
     const {stateGlobal, dispatchGlobal} = useContext(ContextGlobal);
     const {lang} = stateGlobal;
+
+    const [showModalOffer, setShowModalOffer] = useState(false);
+    const [oneClickOffer, setOneClickOffer] = useState(null);
 
     const [offers, setOffers] = useState(null);
     const [activeCategory, setActiveCategory] = useState(category);
@@ -52,10 +56,18 @@ export default function Catalog(){
                 setCategories(data.categories);
             })
             .catch(error => {
-                if (error.response.status === 404){
+                const {response} = error;
+                if (response.status === 422){
                     dispatchGlobal({
                         type: 'SET_MESSAGE',
                         message: error.response.data.message
+                    });
+                }
+
+                if (response.status === 404){
+                    dispatchGlobal({
+                        type: 'SET_MESSAGE',
+                        message: error.response.message
                     });
                     
                     priceFromRef.current.value = 0;
@@ -64,11 +76,17 @@ export default function Catalog(){
             });
     }, [category, filter.options]);
 
+    function onHandleOneClickButtonClick (offerId){
+        setOneClickOffer(offerId);
+        setShowModalOffer(true);
+    }
+
     let cards = "Загружаются предложения...";
     if (offers !== null){
         cards = offers.data.map((offer)=>{
             return <OfferCard
                 key={`offer ${offer.id}`}
+                oneClickHandler={()=>{onHandleOneClickButtonClick(offer.id)}}
                 offer={offer} 
                 className='col-12 col-md-6 col-lg-3 col-xxl-2 me-xl-1 mb-3'
             />
@@ -136,6 +154,13 @@ export default function Catalog(){
                             setOffers={setOffers}
                         />
                     </div>
+
+                    {showModalOffer !== false &&
+                        <OneClickBuyForm 
+                            offer={oneClickOffer} 
+                            hideFormHandler={()=>setShowModalOffer(false)} 
+                        />
+                    }
                 </div>
             </>
             }

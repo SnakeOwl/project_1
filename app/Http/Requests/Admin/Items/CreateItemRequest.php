@@ -18,7 +18,7 @@ class CreateItemRequest extends FormRequest
             'name_en' => "required|max:255|unique:items",
             'description' => "required|string",
             'description_en' => "required|string",
-            "category_id" => "required|numeric|min:1",
+            "category_id" => "required|exists:categories,id",
             'parameters' => 'nullable|array',
         ];
     }

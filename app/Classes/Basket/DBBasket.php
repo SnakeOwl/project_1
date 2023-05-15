@@ -14,6 +14,7 @@ class DBBasket
 {
     protected $basket;
 
+
     public function __construct($bKey=null)
     {
         $this->basket = $bKey !== null
@@ -108,6 +109,8 @@ class DBBasket
         }
 
         $order = Order::create($params);
+        
+        $this->basket->update(['order_id' => $order->id]);
 
         return $order->id;
     }

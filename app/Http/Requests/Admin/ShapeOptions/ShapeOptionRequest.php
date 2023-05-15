@@ -14,7 +14,7 @@ class ShapeOptionRequest extends FormRequest
     public function rules()
     {
         return [
-            'shape_id' => 'nullable|numeric',
+            'shape_id' => 'nullable|exists:shapes,id',
             'value' => 'required|max:255|min:2',
             'value_en' => 'required|max:255|min:2',
         ];

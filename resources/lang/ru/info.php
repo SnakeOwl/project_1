@@ -11,7 +11,7 @@ return[
     "category has removed"  => "Категория удалена",
     "category has changed"  => "Категория изменена",
     "category has added"    => "Категория добавлена",
-    'personal data changed' => 'Ваши персональные данные ыли изменены',
+    'personal data changed' => 'Ваши персональные данные были изменены',
     'thanks for the message'    => 'Спасибо за сообщение! (ɔ◔‿◔)ɔ ♥',
     'message destroyed'     => 'Сообщение удалено',
     'subscriber destroyed'  => 'Подписчик удалён',

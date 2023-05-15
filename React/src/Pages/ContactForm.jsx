@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
 import axiosClient from "../axios-client";
-import BlueButton from "../Components/Buttons";
+import {BlueButton} from "../Components/Buttons";
 import { FloatTextarea, FloatInput } from "../Components/Inputs/FloatingInputs";
 import ContextGlobal from "../context/Global/ContextGlobal";
 

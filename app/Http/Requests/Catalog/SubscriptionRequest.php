@@ -24,7 +24,7 @@ class SubscriptionRequest extends FormRequest
     public function rules()
     {
         return [
-            'offer_id' => 'required|numeric',
+            'offer_id' => 'required|exists:offers,id',
             'email' => 'required|email:rfc,dns'
         ];
     }

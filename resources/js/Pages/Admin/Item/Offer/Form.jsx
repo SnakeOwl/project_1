@@ -1,7 +1,6 @@
-import { Inertia }      from '@inertiajs/inertia'
 import { useForm }      from '@inertiajs/inertia-react'
 import AdminLayout      from '@/Layouts/AdminLayout'
-import BlueButton       from '@/Components/Buttons/BlueButton'
+import {BlueButton}       from '@/Components/Buttons'
 import FloatInput       from '@/Components/Inputs/FloatInput'
 import StandartInput    from '@/Components/Inputs/StandartInput'
 import GaleryManager    from '../Components/GaleryManager'
@@ -63,7 +62,7 @@ export default function Form(props){
         if (offer == null)
             post(route('items.offers.store', item));
         else
-            post(route('offer-update', [item, offer]));
+            post(`/admin/items/${item.id}/offers/${offer.id}/update`);
     }
 
     const onHandleChange = (event) => {

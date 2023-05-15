@@ -1,48 +1,47 @@
 import { Link } from "react-router-dom";
 
-export default Link;
-
-export function BlueLink({
+export function ILink({
     to, 
     className,
-    children
+    children,
+    title,
+    disabled
 }){
     return (
         <Link
             to={to}
-            className={"bttn blue " + className}
+            className={className}
+            title={title}
+            disabled={disabled}
         >
-            {children}
+        {children}
         </Link>
     );
 }
 
-export function GreenLink({
-    to, 
-    className,
-    children
-}){
+export function BlueLink(props){
     return (
-        <Link
-            to={to}
-            className={"bttn green " + className}
-        >
-            {children}
-        </Link>
+        <ILink
+            {...props}
+            className={`bttn blue ${props.className}`}
+        />
     );
 }
 
-export function RedLink({
-    to, 
-    className,
-    children
-}){
+export function GreenLink(props){
     return (
-        <Link
-            to={to}
-            className={"bttn red " + className}
-        >
-            {children}
-        </Link>
+        <ILink
+            {...props}
+            className={`bttn green ${props.className}`}
+        />
+    );
+}
+
+export function RedLink(props){
+    return (
+        <ILink
+            {...props}
+            className={`bttn red ${props.className}`}
+        />
     );
 }

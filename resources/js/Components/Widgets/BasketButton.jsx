@@ -1,4 +1,4 @@
-import RedLink from '@/Components/Links/RedLink';
+import { RedLink } from "../Links";
 
 export default function BasketButton({
     className,
@@ -6,8 +6,8 @@ export default function BasketButton({
 }){
     return (
         <RedLink
-            className={"text-red rounded " + className}
-            href={route('basket')}
+            className={`text-red rounded ${className}`}
+            href='/basket'
         >
             {children}
         </RedLink>

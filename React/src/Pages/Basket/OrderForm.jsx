@@ -122,6 +122,8 @@ export default function OrderForm(){
                     type: 'SET_MESSAGE',
                     message: `${lang[data.message]}. ${lang["Your Order's number is"]} ${data.orderId}`
                 });
+                
+                localStorage.removeItem('basketKey');
             })
             .catch(error=>{
                 dispatchGlobal({

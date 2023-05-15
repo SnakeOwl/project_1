@@ -1,4 +1,4 @@
-import Link from '@/Components/Links/Link';
+import {Link} from '../Links';
 
 export default function Pagination({
     className="",

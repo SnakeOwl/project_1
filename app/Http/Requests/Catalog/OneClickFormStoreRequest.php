@@ -26,7 +26,7 @@ class OneClickFormStoreRequest extends FormRequest
         return [
             'phone' => 'required|string|max:255|min:11',
             'name' => 'required|string|max:255',
-            'offer_id' => 'required|numeric|min:1'
+            'offer_id' => 'required|exists:offers,id'
         ];
     }
 }

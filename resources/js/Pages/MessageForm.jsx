@@ -2,8 +2,7 @@ import { useForm, usePage } from '@inertiajs/inertia-react';
 import MainLayout from '@/Layouts/MainLayout';
 import FloatInput from '@/Components/Inputs/FloatInput';
 import FloatTextarea from '@/Components/Inputs/FloatTextarea';
-import BlueButton from '@/Components/Buttons/BlueButton';
-import InputError from '@/Components/InputError';
+import { BlueButton } from '@/Components/Buttons';
 
 export default function MessageForm(props){
     const { data, setData, post, errors, reset } = useForm({
@@ -16,7 +15,7 @@ export default function MessageForm(props){
 
     function onHandleSubmit (e){
         e.preventDefault();
-        post(route('message-store'));
+        post('contact-form');
         e.target.reset();
     }
 
@@ -26,10 +25,19 @@ export default function MessageForm(props){
 
     return (
         <MainLayout title={lang["contact form"]}>
-            <div className="col-12 col-xxl-4 mx-auto">
+            <div className="col-12 col-xxl-3 mx-auto">
                 <h1 className="text-center">{lang["contact form h"]}</h1>
                 <form className="mb-3" onSubmit={onHandleSubmit}>
                     <div className="row mb-3">
+                        <FloatInput
+                            id="name"
+                            className="col-12 mb-3"
+                            onHandleChange={onHandleChange}
+                            type="name"
+                            labelText={lang["name"]}
+                            placeholder={lang["name"]}
+                            required="required"
+                        />
                         <FloatInput
                             id="email"
                             className="col-12 mb-3"

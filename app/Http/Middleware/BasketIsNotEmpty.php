@@ -18,6 +18,6 @@ class BasketIsNotEmpty
         session()->forget('order');
         session()->flash('message', __('info.basket is empty'));
 
-        return redirect()->route('catalog');
+        return redirect('/');
     }
 }

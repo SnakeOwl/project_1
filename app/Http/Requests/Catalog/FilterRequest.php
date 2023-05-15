@@ -18,8 +18,6 @@ class FilterRequest extends FormRequest
             'priceFrom' => 'numeric|min:0',
             'priceTo' => 'numeric|min:0',
             'options' => 'array',
-            'isNew' => 'nullable|string|max:5',
-            'isPopular' => 'nullable|string|max:5',
         ];
     }
 }

@@ -1,5 +1,5 @@
 import {Inertia} from '@inertiajs/inertia';
-import { usePage, useForm } from '@inertiajs/inertia-react';
+import { usePage } from '@inertiajs/inertia-react';
 import CurrencySelecter from "@/Components/Widgets/CurrencySelecter";
 import Logo from '@/Components/Logo';
 import UserLinks from './Header/UserLinks';

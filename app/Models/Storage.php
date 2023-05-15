@@ -13,9 +13,12 @@ class Storage extends Model
 
     protected $fillable = [
         'name',
+        'name_en',
         'address',
+        'address_en',
         'phone',
-        'schedule'
+        'schedule',
+        'schedule_en',
     ];
 
     protected function schedule(): Attribute

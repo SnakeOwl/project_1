@@ -1,8 +1,6 @@
-import {Inertia} from "@inertiajs/inertia"
 import UserCabinetLayout from '@/Layouts/UserCabinetLayout';
 import Pagination from '@/Components/Paginations/Pagination';
-import BlueButton from '@/Components/Buttons/BlueButton';
-
+import { BlueLink } from "@/Components/Links";
 export default function Index(props) {
     const {lang, currencies} = props;
     const orders = props.orders.data.map((order)=> {
@@ -13,12 +11,12 @@ export default function Index(props) {
                 <td>{order.status}</td>
                 <td>{order.price + " " + order.currency.symbol}</td>
                 <td>
-                    <BlueButton
-                        onHandleClick={()=>Inertia.get(route('show-personal-order', order))}
+                    <BlueLink
+                        href={`/user/orders/${order.id}`}
                         title={lang['about']}
                     >
                         <i class="bi bi-clipboard-pulse"></i>
-                    </BlueButton>
+                    </BlueLink>
                 </td>
             </tr>
         )

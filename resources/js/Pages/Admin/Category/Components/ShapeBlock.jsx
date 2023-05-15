@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia'
-import BlueButton from '@/Components/Buttons/BlueButton'
-import RedButton from '@/Components/Buttons/RedButton'
+import {BlueButton, RedButton} from '@/Components/Buttons'
 import ShapeForm from './ShapeForm';
 import ShapeOptionForm from './ShapeOptionForm';
 

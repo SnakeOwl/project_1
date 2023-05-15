@@ -1,5 +1,5 @@
 import MainLayout from '@/Layouts/MainLayout'
-import RedButton from '@/Components/Buttons/RedButton'
+import {RedButton} from '@/Components/Buttons'
 import FloatInput from '@/Components/Inputs/FloatInput'
 import FloatSelect from '@/Components/Inputs/FloatSelect'
 import { useForm } from '@inertiajs/inertia-react'
@@ -84,7 +84,7 @@ export default function OrderForm(props){
 
     function onHandleSubmit(e){
         e.preventDefault();
-        post(route('order-store'));
+        post('/basket/order-store');
     }
 
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import BlueButton from '@/Components/Buttons/BlueButton';
+import {BlueButton} from '@/Components/Buttons';
 import MainLayout from '@/Layouts/MainLayout';
 import StandartInput from '@/Components/Inputs/StandartInput';
 import { Head, useForm } from '@inertiajs/inertia-react';

@@ -1,8 +1,6 @@
 import { Inertia } from '@inertiajs/inertia'
 import AdminLayout from '@/Layouts/AdminLayout'
-import RedButton from '@/Components/Buttons/RedButton'
-import BlueButton from '@/Components/Buttons/BlueButton'
-import BlueLink from '@/Components/Links/BlueLink'
+import {RedButton, BlueButton} from '@/Components/Buttons'
 
 export default function Index(props){
     const {lang} = props;

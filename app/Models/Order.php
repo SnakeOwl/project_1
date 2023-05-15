@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Classes\Currency\CurrencyConverter;
@@ -72,10 +73,18 @@ class Order extends Model
         return $this->belongsTo(Promocode::class);
     }
 
+    // React DBBaskets
+    public function basket(): hasOne
+    {
+        return $this->hasOne(Basket::class);
+    }
+
+    // old-style Baskets. (on sessions)
     public function offers(): BelongsToMany
     {
         return $this->belongsToMany(Offer::class)->withPivot(['count', 'price']);
     }
+    
 
     public function scopeActive($query)
     {

@@ -12,11 +12,6 @@ npm install -S axios
 
 npm run dev
 
-# компиляция sass:
-npx sass --watch src/scss:src/compiled_scss //compile directory to directory
 
-# use it!
-npx sass --watch src/scss/App.scss src/scss/compiled/App.css	
-# npx sass --watch input.scss output.css	
 
 https://youtu.be/qJq9ZMB2Was?t=7601

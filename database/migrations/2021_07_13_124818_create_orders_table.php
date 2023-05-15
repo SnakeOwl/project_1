@@ -20,8 +20,6 @@ return new class extends Migration
             $table->decimal('price', 13, 2);
             $table->string('status');
             $table->dateTime('date_delivered')->nullable();
-            $table->decimal('current_rating', 2, 1)->default(0);
-
 
             $table->foreignId('user_id')->nullable();
             $table->foreignId('courier_id')->nullable();

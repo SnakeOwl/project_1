@@ -1,7 +1,5 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import RedButton from '@/Components/Buttons/RedButton'
-import BlueButton from '@/Components/Buttons/BlueButton'
-import BlueLink from '@/Components/Links/BlueLink'
+import {RedButton, BlueButton} from '@/Components/Buttons'
 import { Inertia } from '@inertiajs/inertia'
 import Pagination from '@/Components/Paginations/Pagination';
 

@@ -11,9 +11,12 @@ return new class extends Migration
         Schema::create('storages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_en');
             $table->string('address');
+            $table->string('address_en');
             $table->string('phone')->nullable();
             $table->text('schedule');
+            $table->text('schedule_en');
         });
     }
 

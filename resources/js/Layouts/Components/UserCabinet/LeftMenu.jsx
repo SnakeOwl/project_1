@@ -5,9 +5,9 @@ export default function LeftMenu(){
     const {lang} = usePage().props;
 
     const menu = [
-        {route: route("personal-page"),     name: lang["personal page"] },
-        {route: route("personal-orders"),   name: lang["personal orders"] },
-        {route: route("personal-data"),     name: lang["personal data"] }
+        {route: "/user/",     name: lang["personal page"] },
+        {route: "/user/orders",   name: lang["personal orders"] },
+        {route: "/user/data",     name: lang["personal data"] }
     ]
 
     const links = menu.map((element)=>{

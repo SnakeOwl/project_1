@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin\Storages;
 
-use App\Http\Requests\StorageRequest;
+use App\Http\Requests\Admin\Storages\StorageRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Storage;
 use Inertia\Inertia;
@@ -22,7 +22,7 @@ class StorageController extends Controller
 
     public function store(StorageRequest $request)
     {
-        Storage::create($request->safe()->all());
+        Storage::create($request->validated());
 
         session()->flash('message', __('info.storage has added'));
 
@@ -41,7 +41,7 @@ class StorageController extends Controller
 
     public function update(StorageRequest $request, Storage $storage)
     {
-        $storage->update($request->safe()->all());
+        $storage->update($request->validated());
 
         session()->flash('message', 'info.storage has changed');
 

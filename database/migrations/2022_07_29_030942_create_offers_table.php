@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('price', 11,2);
             $table->foreignId('item_id');
             $table->string('short_image')->nullable();
+            $table->decimal('current_rating', 2,1)->nullable();
             
             $table->timestamps();
             $table->softDeletes();

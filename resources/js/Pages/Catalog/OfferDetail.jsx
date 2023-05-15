@@ -1,6 +1,6 @@
 import { Inertia } from '@inertiajs/inertia'
 import MainLayout from '@/Layouts/MainLayout'
-import RedButton from '@/Components/Buttons/RedButton'
+import {RedButton} from '@/Components/Buttons'
 import SubscribeForm from './Components/OfferDetail/SubscribeForm'
 import DetailSlider from './Components/OfferDetail/DetailSlider'
 import { RedLink } from '@/Components/Links'
@@ -22,7 +22,7 @@ export default function OfferDetail (props) {
                 <td>
                     {!activeButton &&
                         <RedLink
-                            href={route("catalog-offer-details", [option.itemAlias, option.offerId])}
+                            href={`/catalog/${option.itemAlias}/${option.offerId}`}
                             className="rounded inverted"
                         >
                             {currentLocale == "en"? option.value_en: option.value }
@@ -67,7 +67,7 @@ export default function OfferDetail (props) {
         <div className="text-center">
             <RedButton
                 className="rounded w-100"
-                onHandleClick={()=>Inertia.get(route('basket-add-offer', offer))}
+                onHandleClick={()=>Inertia.get(`/basket/add/${offer.id}`)}
             >
                 {lang['toBasket']}
             </RedButton>

@@ -1,5 +1,5 @@
 import { useForm, usePage } from '@inertiajs/inertia-react'
-import RedButton from '@/Components/Buttons/RedButton'
+import {RedButton} from '@/Components/Buttons'
 import FloatInput from '@/Components/Inputs/FloatInput'
 
 export default function OneClickBuyForm({
@@ -16,7 +16,7 @@ export default function OneClickBuyForm({
 
     function onHandleSubmit(event){
         event.preventDefault();
-        post(route('one-click-form-store'));
+        post('/catalog/oneClickForm');
 
         if(errors.phone == null && errors.name == null)
             hideFormHandler();

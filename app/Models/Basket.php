@@ -17,6 +17,7 @@ class Basket extends Model
         'key',
         'status',
         'price',
+        "order_id",
     ];
 
     //The model's default values for attributes.
@@ -27,6 +28,11 @@ class Basket extends Model
     public function scopeByKey($query, $key)
     {
         return $query->where('key', $key)->first();
+    }
+
+    public function order(): belongsTo
+    {
+        return $this->belongsTo(Offer::class);
     }
 
     public function offers(): belongsToMany

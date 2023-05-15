@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedTinyInteger('rating');
             $table->text('comment')->nullable();
-            $table->foreignId('item_id');
+            $table->foreignId('offer_id');
         });
     }
 

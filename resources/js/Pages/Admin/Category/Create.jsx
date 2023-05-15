@@ -1,8 +1,7 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import BlueButton from '@/Components/Buttons/BlueButton'
 import FloatInput from '@/Components/Inputs/FloatInput'
-import StandartTextarea from '@/Components/Inputs/StandartTextarea'
 import { useForm} from '@inertiajs/inertia-react';
+import { BlueButton } from '@/Components/Buttons';
 
 export default function Create(props){
     const {lang} = props;

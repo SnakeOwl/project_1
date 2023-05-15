@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { Navigate, redirect, useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ContextGlobal from "/src/context/Global/ContextGlobal";
-import axiosClient from "/src/axios-client";
 import Preloader from "/src/Components/Preloader";
 import Carousel from "./Components/Carousel";
 import { RedLink } from "/src/Components/Links";
 import { RedButton } from "/src/Components/Buttons";
 import SubscribeForm from "./Components/SubscribeForm";
+import axiosClient from "/src/axios-client";
 
 export default function (){
     const {offerId} = useParams();

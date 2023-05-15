@@ -1,6 +1,6 @@
 import { useForm }      from '@inertiajs/inertia-react'
 import AdminLayout      from '@/Layouts/AdminLayout'
-import BlueButton       from '@/Components/Buttons/BlueButton'
+import {BlueButton}       from '@/Components/Buttons'
 import FloatInput       from '@/Components/Inputs/FloatInput'
 import FloatTextarea    from '@/Components/Inputs/FloatTextarea'
 import FloatSelect      from '@/Components/Inputs/FloatSelect'

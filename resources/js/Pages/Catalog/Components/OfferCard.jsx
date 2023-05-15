@@ -1,11 +1,9 @@
 import { Inertia } from '@inertiajs/inertia'
 import {useState} from 'react';
-import {usePage, useForm} from '@inertiajs/inertia-react';
-import BlueButton from '@/Components/Buttons/BlueButton';
-import RedButton from '@/Components/Buttons/RedButton';
+import {usePage, useForm, InertiaLink} from '@inertiajs/inertia-react';
+import {BlueButton, RedButton} from '@/Components/Buttons';
 import Img from '@/Components/Img';
 import Input from '@/Components/Inputs/Input';
-import { Link } from '@inertiajs/inertia-react';
 
 export default function OfferCard({
     offer,
@@ -19,24 +17,24 @@ export default function OfferCard({
     });
     const onHandleSubmit = (event) => {
         event.preventDefault();
-        post(route('subscribe'));
+        post('/catalog/subscribe');
         setSubscription(false);
     }
 
     return (
         <div className="col-12 col-md-6 col-lg-3 col-xxl-2 me-xl-1 mb-3 p-1 card">
             <div class="img-wrapper position-relative">
-                <Link href={route('catalog-offer-details', [ offer.item.alias, offer.id])}>
+                <InertiaLink href={`/catalog/${offer.item.alias}/${offer.id}`}>
                     <Img className="rounded" src={offer.short_image} alt="image"/>
-                </Link>
+                </InertiaLink>
             </div>
 
             <div className="card-body">
                 <h5 className="title fw-bold">
-                    <Link href={route('catalog-offer-details', [ offer.item.alias, offer.id])}>
+                    <InertiaLink href={`/catalog/${offer.item.alias}/${offer.id}`}>
 
                         {currentLocale == "en"? offer.item.name_en: offer.item.name}
-                    </Link>
+                    </InertiaLink>
                 </h5>
 
                 <div className="d-flex">
@@ -53,7 +51,7 @@ export default function OfferCard({
                     <div className="d-flex justify-content-between">
                         <RedButton
                             className="rounded"
-                            onHandleClick={ ()=>Inertia.get(route('basket-add-offer', offer)) }
+                            onHandleClick={()=>Inertia.get(`/basket/add/${offer.id}`)}
                         >
                             {lang['toBasket']}
                         </RedButton>
@@ -79,18 +77,18 @@ export default function OfferCard({
                 {subscription &&
                     <form onSubmit={onHandleSubmit}>
                         <Input
+                            id="email"
                             className="mb-1"
                             placeholder="email"
                             type="email"
+                            autocomplete='on'
                             onHandleChange={(e)=>setData("email", e.target.value)}
                         />
                         <BlueButton className="w-100">
                             {lang['submit']}
                         </BlueButton>
-
                     </form>
                 }
-
             </div>
         </div>
     );

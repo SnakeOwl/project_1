@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from "react";
-import BlueButton from "/src/Components/Buttons";
+import {BlueButton} from "/src/Components/Buttons";
 import FloatInput from "../../Components/Inputs/FloatingInputs";
 import ContextGlobal from "../../context/Global/ContextGlobal";
 import axiosClient from "/src/axios-client";
@@ -51,7 +51,7 @@ export default function PersonalData(){
             <h1 className="text-center"> 
                 {`${lang['user']} # ${user.id}`}
             </h1>
-            <form onSubmit={updateUser} className="col-12 col-lg-3 mx-auto">
+            <form onSubmit={updateUser} className="col-12 col-lg-4 mx-auto">
 
                 <FloatInput
                     className="mb-3"
@@ -84,7 +84,7 @@ export default function PersonalData(){
                     onHandleChange={(e)=>setPassword(e.target.value)}
                     value={password}
                 />
-                <BlueButton className="w-100">{lang["submit"]}</BlueButton>
+                <BlueButton className="w-100 reversed">{lang["submit"]}</BlueButton>
             </form>
 
         </div>

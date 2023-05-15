@@ -20,7 +20,7 @@ export default function Footer(){
 
                     <div className="col-12 col-xxl-5 mb-3 px-3 text-center text-lg-start">
                         <h4>{lang['support']}</h4>
-                        <Link href={route('message-form')} >{lang['contact form']}</Link>
+                        <Link href={'/contact-form'} >{lang['contact form']}</Link>
                     </div>
 
                     <div className="col-12 col-xxl-4 mb-3 px-3 text-center text-lg-start">

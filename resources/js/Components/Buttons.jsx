@@ -1,4 +1,4 @@
-export function BlueButton({
+export default function Button({
     className = '',
     children,
     type,
@@ -7,7 +7,7 @@ export function BlueButton({
 }){
     return (
         <button
-            className={'bttn blue ' + className}
+            className={`bttn ${className}`}
             type={type}
             onClick={onHandleClick}
             title={title}
@@ -17,62 +17,29 @@ export function BlueButton({
     );
 }
 
-export function GreenButton({
-    className = '',
-    children,
-    type,
-    onHandleClick,
-    title,
-}){
+export function BlueButton(props){
     return (
-        <button
-            className={'bttn green ' + className}
-            type={type}
-            onClick={onHandleClick}
-            title={title}
-            >
-            {children}
-        </button>
+        <Button
+            {...props}
+            className={`blue ${props.className}`}
+        />
     );
 }
 
-export function RedButton({
-    className = '',
-    children,
-    type,
-    onHandleClick,
-    title,
-}){
+export function GreenButton(props){
     return (
-        <button
-            className={'bttn red ' + className}
-            type={type}
-            onClick={onHandleClick}
-            title={title}
-            >
-            {children}
-        </button>
+        <Button
+            {...props}
+            className={`green ${props.className}`}
+        />
     );
 }
 
-
-export function Button({
-    className = '',
-    children,
-    type,
-    onHandleClick,
-    title,
-}){
+export function RedButton(props){
     return (
-        <button
-            className={'bttn ' + className}
-            type={type}
-            onClick={onHandleClick}
-            title={title}
-            >
-            {children}
-        </button>
+        <Button
+            {...props}
+            className={`red ${props.className}`}
+        />
     );
 }
-
-export default Button;

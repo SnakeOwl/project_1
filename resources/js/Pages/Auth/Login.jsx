@@ -1,11 +1,10 @@
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import React, { useEffect } from 'react';
-import BlueButton from '@/Components/Buttons/BlueButton';
-import GreenButton from '@/Components/Buttons/GreenButton';
-import Link from '@/Components/Links/Link';
+import {BlueButton, GreenButton} from '@/Components/Buttons';
 import Checkbox from '@/Components/Inputs/Checkbox';
 import MainLayout from '@/Layouts/MainLayout';
 import FloatInput from '@/Components/Inputs/FloatInput';
+import { Link } from '@/Components/Links';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, errors, reset } = useForm({

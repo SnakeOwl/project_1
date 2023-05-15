@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('item_id');
             $table->string("param_name");
+            $table->string("param_name_en");
             $table->string("param_value")->nullable();
+            $table->string("param_value_en")->nullable();
         });
     }
 

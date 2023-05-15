@@ -1,8 +1,7 @@
 import { usePage } from '@inertiajs/inertia-react';
 import Input from '@/Components/Inputs/Input';
-import BlueButton from '@/Components/Buttons/BlueButton';
-import RedButton from '@/Components/Buttons/RedButton';
-import React, { useState } from "react";
+import {BlueButton, RedButton} from '@/Components/Buttons';
+import React from "react";
 
 // для обновления данных в таблице, нужно в обработчике ловить индексы массива,
 //ибо я не ебу как использовать setData на один индекс и передачу весь массив

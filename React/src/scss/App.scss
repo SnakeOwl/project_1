@@ -49,15 +49,3 @@
         width: 100px;
     }
 }
-
-@keyframes spinner {
-    15%   {}
-    50%   {transform: rotateX(3turn)}
-    85%   {}
-}
-
-.preloader{
-    animation-name: spinner;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-}

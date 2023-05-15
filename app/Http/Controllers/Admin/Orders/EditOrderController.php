@@ -10,7 +10,17 @@ class EditOrderController extends Controller
 {
     public function __invoke(Order $order)
     {
-        $offers = $order->offers()->withTrashed()->get();
-        return Inertia::render('Admin/Order/Form', compact('offers', 'order'));
+        $offers = $order->offers()->withTrashed()->get(); 
+        if($offers->count() > 0)
+            $offers->load('item');
+
+        $basket = $order->basket;
+        if ($basket !== null)
+            $basket->load('offers.item');
+
+        unset($order['basket']); // Я не ебу почему, но если не удалить связь из этого объекта, то реакт выдает критическую
+        
+        return Inertia::render('Admin/Order/Form', 
+            compact('offers', 'order', 'basket'));
     }
 }

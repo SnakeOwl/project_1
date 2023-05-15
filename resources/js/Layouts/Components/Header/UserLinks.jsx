@@ -1,7 +1,7 @@
 import { usePage } from '@inertiajs/inertia-react';
 import { Inertia } from '@inertiajs/inertia';
-import BlueLink from '@/Components/Links/BlueLink';
 import {RedButton} from '@/Components/Buttons';
+import { BlueLink } from '@/Components/Links';
 
 export default function UserLinks ({
     className=""
@@ -12,18 +12,18 @@ export default function UserLinks ({
         <>
             <BlueLink
                 className="rounded inverted small me-2"
-                href={route("personal-page")}
+                href="/user"
                 title={lang['personal page']}
             >
-                <i class="bi bi-person-fill"></i>
+                <i className="bi bi-person-fill"></i>
             </BlueLink>
 
             {auth.userIsEditor &&
                 <BlueLink
                     className="rounded small me-2"
-                    href={route("supervisor")}
+                    href="/admin"
                 >
-                    <i class="bi bi-nut-fill"></i>
+                    <i className="bi bi-nut-fill"></i>
                 </BlueLink>
             }
 
@@ -32,7 +32,7 @@ export default function UserLinks ({
                 title={lang['exit']}
                 onHandleClick={()=> Inertia.post(route('logout'))}
             >
-                <i class="bi bi-box-arrow-up-right"></i>
+                <i className="bi bi-box-arrow-up-right"></i>
             </RedButton>
         </>
     :

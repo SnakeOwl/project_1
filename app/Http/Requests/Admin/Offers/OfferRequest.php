@@ -14,7 +14,7 @@ class OfferRequest extends FormRequest
     public function rules()
     {
         return [
-            'item_id' => 'required|numeric|min:1',
+            'item_id' => 'required|exists:items,id',
             'count' => 'required|numeric|min:0',
             'price' => 'required|numeric|min:1',
             'shapeOptions' => 'nullable|array',

@@ -1,6 +1,6 @@
 import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-react';
-import GreenButton from '@/Components/Buttons/GreenButton';
+import {GreenButton} from '@/Components/Buttons';
 import Checkbox from '@/Components/Inputs/Checkbox';
 
 export default function Categories({
@@ -49,7 +49,7 @@ export default function Categories({
                 {!sCategory &&
                     <GreenButton
                         className="w-100 text-center rounded inverted"
-                        onHandleClick={()=>Inertia.get(route('category-offers', category.alias))}
+                        onHandleClick={()=>Inertia.get(`/catalog/${category.alias}`)}
                     >
                         {category.name}
                     </GreenButton>

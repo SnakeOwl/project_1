@@ -1,7 +1,7 @@
 import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import OfferCard from './Components/OfferCard';
-import RedLink from '@/Components/Links/RedLink';
+import { RedLink } from '@/Components/Links';
 
 export default function Index(props) {
     const {order, lang} = props;
@@ -24,7 +24,7 @@ export default function Index(props) {
                         {lang['full price']}: {order.fullPrice}
                     </div>
                     <div className="col-12 text-center">
-                        <RedLink className="rouded" href={route('order-form')}>
+                        <RedLink className="rouded" href="/basket/order-form" >
                             {lang['making order']}
                         </RedLink>
                     </div>

@@ -1,12 +1,21 @@
 {
+    "offer"                 : "Предложение",
+    "order offers"          : "ТП заказа",
+    "form send"             : "Форма отправлена",
+    
+    "general information"   : "Общие сведения",
+    "list of offers in order": "Список торговых предложений в Заказе",
+    "looking order"         : "Просмотр заказа",
+    "item"                  : "Товар",
+    "no access"             : "Нет доступа",
+    "data not accepted"     : "Данные не получены",
+    "can't upload orders"   : "Получение заказов не удалось",
     "success"               : "Успешно",
-
     "user"                  : "Пользователь",
     "message created"       : "Спасибо за сообщение :)",
     "powered with"          : "Сделано с помощью",
     "Something is wrong"    : "Что-то пошло не так :(",
     "Your Order's number is": "Номер вашего заказа",
-
     "order not created"     : "Заказ НЕ создан. Обратитесь в поддержку или закажите товар по телефону (покупка в один клик).",
     "order created"         : "Заказ создан",
     "sum to pay"            : "Сумма к оплате",

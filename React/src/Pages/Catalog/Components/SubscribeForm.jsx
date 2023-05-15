@@ -1,22 +1,35 @@
 import { useContext, useRef } from "react"
-import { RedButton } from "/src/Components/Buttons";
+import { BlueButton } from "/src/Components/Buttons";
 import ContextGlobal from "/src/context/Global/ContextGlobal"
 import FloatInput from "/src/Components/Inputs/FloatingInputs"
+import axiosClient from "/src/axios-client";
 
 export default function SubscribeForm({className, offerId}){
-    const {stateGlobal} = useContext(ContextGlobal);
+    const {stateGlobal,dispatchGlobal} = useContext(ContextGlobal);
     const {lang} = stateGlobal;
     
     const emailRef = useRef();
 
-    function subscribe(){
-        const data = {
-            email: emailRef.current.value,
-            offerId: offerId,
-        } 
+    function subscribe(e){
+        e.preventDefault();
 
-        
+        axiosClient.post('/subscribe', {
+            email: emailRef.current.value,
+            offer_id: offerId
+        }).then(({data})=>{
+            dispatchGlobal({
+                type: 'SET_MESSAGE',
+                message: lang[data.message]
+            });
+            setSubscribeMode(false);
+        }).catch(error=>{
+            dispatchGlobal({
+                type: 'SET_MESSAGE',
+                message: error.response.data.message
+            });
+        });
     }
+        
 
     return (
         <div className={className}>
@@ -31,9 +44,9 @@ export default function SubscribeForm({className, offerId}){
                     labelText="email"
                     useRef={emailRef}
                 />
-                <RedButton className="inverted rounded w-100">
+                <BlueButton className="inverted rounded w-100">
                     {lang['submit']}
-                </RedButton>
+                </BlueButton>
             </form>
         </div>
     )

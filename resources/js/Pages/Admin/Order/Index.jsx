@@ -1,6 +1,6 @@
 import { Inertia } from '@inertiajs/inertia'
 import AdminLayout from '@/Layouts/AdminLayout'
-import BlueButton from '@/Components/Buttons/BlueButton'
+import {BlueButton} from '@/Components/Buttons'
 import Pagination from '@/Components/Paginations/Pagination'
 
 export default function Index(props){
@@ -18,7 +18,7 @@ export default function Index(props){
                 <td>{order.price + " " + order.currency.symbol}</td>
                 <td>{order.created_at}</td>
                 <td>
-                    <BlueButton onHandleClick={()=>Inertia.get(route('edit-order', order))}>
+                    <BlueButton onHandleClick={()=>Inertia.get(`/admin/orders/edit/${order.id}`)}>
                         <i class="bi bi-gear-fill"></i>
                     </BlueButton>
                 </td>

@@ -5,39 +5,48 @@ export default function NavigationMenu(){
     const {lang, menuInfo} = usePage().props;
 
     const menuData = [
-        {   route: route('supervisor'),
+        {   
+            route: '/admin/',
             name: lang['supervisor'],
             upperName: false,
         },
-        {   route: route('all-orders'),
+        {   
+            route: '/admin/orders',
             name: lang['orders'],
             upperName: menuInfo.countOrders,
         },
-        {   route: route('items.index'),
+        {   
+            route: '/admin/items',
             name: lang['goods'],
             upperName: menuInfo.countItems + "/" + menuInfo.countOffers,
         },
-        {   route: route('subscribers.index'),
+        {   
+            route: '/admin/subscribers',
             name: lang['subscribers'],
             upperName: menuInfo.countSubscribers,
         },
-        {   route: route('categories.index'),
+        {   
+            route: '/admin/categories',
             name: lang['categories'],
             upperName: menuInfo.countCategories,
         },
-        {   route: route('users.index'),
+        {   
+            route: '/admin/users',
             name: lang['users'],
             upperName: menuInfo.countUsers,
         },
-        {   route: route('storages.index'),
+        {   
+            route: '/admin/storages',
             name: lang['storages'],
             upperName: menuInfo.countStorages,
         },
-        {   route: route('messages.index'),
+        {   
+            route: '/admin/messages',
             name: lang['messages h'],
             upperName: menuInfo.countMessages,
         },
-        {   route: route('oneClickForm.index'),
+        {   
+            route: '/admin/oneClickForm',
             name: lang['one click form h'],
             upperName: false,
         }

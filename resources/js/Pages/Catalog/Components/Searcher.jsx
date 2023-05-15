@@ -1,6 +1,5 @@
-import {Inertia} from '@inertiajs/inertia';
 import {useState} from 'react';
-import {usePage} from '@inertiajs/inertia-react';
+import {usePage, InertiaLink} from '@inertiajs/inertia-react';
 import Img from '@/Components/Img';
 import FloatInput from '@/Components/Inputs/FloatInput';
 
@@ -13,7 +12,7 @@ export default function Searcher({className=""}){
         setName(event.target.value);
 
         if (name.length > 2)
-            fetch(route("search", name))
+            fetch(`/catalog/search/${name}`)
                 .then(response => response.json())
                 .then(result => setMatches(result));
     };
@@ -21,7 +20,7 @@ export default function Searcher({className=""}){
     const offers = (matches.length > 0)?
         matches.map(function(offer){
             return (
-                <a onClick={()=>Inertia.get(route('catalog-offer-details', [offer.item.alias, offer.id]))} href="#">
+                <InertiaLink href={`/catalog/${offer.item.alias}/${offer.id}`}>
                     <div className="p-1 my-2 match border">
                         <div className="row">
                             <div className="col-3">
@@ -33,7 +32,7 @@ export default function Searcher({className=""}){
                             </div>
                         </div>
                     </div>
-                </a>
+                </InertiaLink>
             )
         })
     :

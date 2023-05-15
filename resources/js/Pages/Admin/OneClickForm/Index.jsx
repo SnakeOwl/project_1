@@ -1,6 +1,6 @@
 import { Inertia } from '@inertiajs/inertia'
 import AdminLayout from '@/Layouts/AdminLayout'
-import RedButton from '@/Components/Buttons/RedButton'
+import {RedButton} from '@/Components/Buttons'
 import Pagination from '@/Components/Paginations/Pagination'
 
 export default function Index(props){

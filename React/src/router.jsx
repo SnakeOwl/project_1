@@ -12,6 +12,7 @@ import ContactForm from "./Pages/ContactForm";
 import UserLayout from "./Layouts/UserLayout";
 import ILayout from "./Layouts/ILayout";
 import PersonalData from "./Pages/User/PersonalData";
+import PersonalOrder from "./Pages/User/PersonalOrder";
 
 const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
                     {
                         path: 'data',
                         element: <PersonalData />
+                    },
+                    {
+                        path: 'orders/:orderId',
+                        element: <PersonalOrder />
                     },
                 ]
             },

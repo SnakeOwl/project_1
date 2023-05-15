@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import axiosClient from "/src/axios-client";
-import BlueButton from "/src/Components/Buttons";
+import {BlueButton} from "/src/Components/Buttons";
 import ContextGlobal from "/src/context/Global/ContextGlobal";
 
 export default function LocaleChanger({className}){

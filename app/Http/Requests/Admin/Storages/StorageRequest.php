@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\Storages;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,8 +26,11 @@ class StorageRequest extends FormRequest
         return [
             'phone' => 'nullable|max:255',
             'name' => 'required|max:255',
+            'name_en' => 'required|max:255',
             'address' => 'required|max:255',
-            'schedule' => 'required|max:255'
+            'address_en' => 'required|max:255',
+            'schedule' => 'required|max:255',
+            'schedule_en' => 'required|max:255',
         ];
     }
 }

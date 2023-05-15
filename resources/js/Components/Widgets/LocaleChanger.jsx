@@ -1,6 +1,6 @@
 import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-react'
-import BlueButton from '@/Components/Buttons/BlueButton'
+import { BlueButton } from '../Buttons';
 
 export default function LocaleChanger({
     className=""
@@ -22,7 +22,7 @@ export default function LocaleChanger({
             return  (
             <BlueButton
                 className="small rounded inverted"
-                onHandleClick={()=>Inertia.get(route('set-locale', locale.locale))}
+                onHandleClick={()=>Inertia.get(`/set-locale/${locale.locale}`)}
             >
                 {locale.label}
             </BlueButton>

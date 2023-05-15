@@ -5,8 +5,6 @@ export default function Supervisor(props){
     return (
         <AdminLayout>
         
-
-
         </AdminLayout>
     );
 }

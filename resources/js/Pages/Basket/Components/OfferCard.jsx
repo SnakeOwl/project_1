@@ -1,9 +1,7 @@
 import { Inertia } from '@inertiajs/inertia';
-import {usePage} from '@inertiajs/inertia-react';
-import BlueButton from '@/Components/Buttons/BlueButton';
-import RedButton from '@/Components/Buttons/RedButton';
+import {usePage, InertiaLink} from '@inertiajs/inertia-react';
+import {BlueButton, RedButton} from '@/Components/Buttons';
 import Img from '@/Components/Img';
-import { Link } from '@inertiajs/inertia-react';
 
 export default function OfferCard({offer}) {
     const {lang, currentLocale} = usePage().props;
@@ -16,9 +14,9 @@ export default function OfferCard({offer}) {
 
             <div className="card-body">
                 <h5 className="title">
-                    <Link href={route('catalog-offer-details', [ offer.item.alias, offer.id])}>
+                    <InertiaLink href={`/catalog/${offer.item.alias}/${offer.id}`}>
                         {currentLocale == "en"? offer.item.name_en: offer.item.name}
-                    </Link>
+                    </InertiaLink>
                 </h5>
                 <div className="d-flex">
                     <span>{lang['price']}:</span>
@@ -36,14 +34,14 @@ export default function OfferCard({offer}) {
                 <div className="d-flex justify-content-between">
                     <BlueButton
                         className="inversed"
-                        onHandleClick={ ()=> Inertia.get(route('basket-remove-offer', offer)) }
+                        onHandleClick={ ()=> Inertia.get(`/basket/remove/${offer.id}`) }
                     >
                         -
                     </BlueButton>
 
                     <RedButton
                         className="rounded"
-                        onHandleClick={ ()=> Inertia.get(route('basket-add-offer', offer)) }
+                        onHandleClick={ ()=>Inertia.get(`/basket/add/${offer.id}`) }
                     >
                         {lang["more"]}
                     </RedButton>

@@ -1,5 +1,5 @@
 import {useForm, usePage} from '@inertiajs/inertia-react';
-import RedButton from '@/Components/Buttons/RedButton';
+import {RedButton} from '@/Components/Buttons';
 import FloatInput from '@/Components/Inputs/FloatInput';
 
 export default function ({
@@ -14,7 +14,7 @@ export default function ({
 
     const onHandleSubmit = (event)=>{
         event.preventDefault();
-        post(route('subscribe'));
+        post('/catalog/subscribe');
     }
 
     return (

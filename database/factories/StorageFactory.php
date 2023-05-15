@@ -19,9 +19,12 @@ class StorageFactory extends Factory
     {
         return [
             'name' => Str::random(8),
+            'name_en' => Str::random(8),
             'address' => Str::random(16),
+            'address_en' => Str::random(16),
             'phone' => Str::random(8),
             'schedule' => Str::random(32),
+            'schedule_en' => Str::random(32),
         ];
     }
 }

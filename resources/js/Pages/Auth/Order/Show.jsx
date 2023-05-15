@@ -2,8 +2,7 @@ import FloatInput from '@/Components/Inputs/FloatInput';
 import UserCabinetLayout from '@/Layouts/UserCabinetLayout';
 
 export default function Show(props) {
-    const {lang, currencies, order} = props;
-    console.log(props);
+    const {lang, order} = props;
     
     const offers = order.offers.map((offer)=>{
         return (

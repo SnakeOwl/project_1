@@ -1,11 +1,10 @@
 import {useState} from 'react';
 import AdminLayout from '@/Layouts/AdminLayout';
-import BlueButton from '@/Components/Buttons/BlueButton'
 import FloatInput from '@/Components/Inputs/FloatInput'
-import StandartTextarea from '@/Components/Inputs/StandartTextarea'
 import { useForm} from '@inertiajs/inertia-react';
 import ShapeBlock from './Components/ShapeBlock';
 import ShapeForm from './Components/ShapeForm';
+import { BlueButton } from '@/Components/Buttons';
 
 export default function Edit(props){
     const [createShape, setCreateShape] = useState(false);
