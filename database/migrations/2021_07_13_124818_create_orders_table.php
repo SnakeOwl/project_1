@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('payment_method');
             $table->string('delivery_method');
             $table->string('address')->nullable();
-            $table->string('post_index', 12)->nullable();
-            $table->string('phone', 16);
+            $table->string('post_index')->nullable();
+            $table->string('phone');
             $table->decimal('price', 13, 2);
             $table->string('status');
             $table->dateTime('date_delivered')->nullable();
