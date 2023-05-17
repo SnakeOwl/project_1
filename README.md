@@ -36,22 +36,22 @@ npm install
 npm run build
 
 ### Если при перезагрузке страницы (вторая версия сайта) apache выдаёт 404, то эта конфигурация помогает
-<VirtualHost *:8080>
-  ServerName example.com
-  DocumentRoot /var/www/httpd/example.com
+    <VirtualHost *:8080>
+        ServerName example.com
+        DocumentRoot /var/www/httpd/example.com
 
-  <Directory "/var/www/httpd/example.com">
-    ...
+        <Directory "/var/www/httpd/example.com">
+            ...
 
-    RewriteEngine On
-    # Don't rewrite files or directories
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^ - [L]
-    # Rewrite everything else to index.html to allow html5 state links
-    RewriteRule ^ index.html [L]
-  </Directory>
-</VirtualHost> 
+            RewriteEngine On
+            # Don't rewrite files or directories
+            RewriteCond %{REQUEST_FILENAME} -f [OR]
+            RewriteCond %{REQUEST_FILENAME} -d
+            RewriteRule ^ - [L]
+            # Rewrite everything else to index.html to allow html5 state links
+            RewriteRule ^ index.html [L]
+        </Directory>
+    </VirtualHost> 
 
 ## В папке React/dist будут скомпиленные файлы, их нужно залить на сервер (или настроить сервер для восприятия этот папки как рутовой)
 
