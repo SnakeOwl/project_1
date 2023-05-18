@@ -13,8 +13,8 @@ export default function OfferCard({
     const {stateGlobal, dispatchGlobal} = useContext(ContextGlobal);
     const {lang} = stateGlobal;
 
-    function toCart(){
-        axiosClient.get(`/basket/add/${offer.id}`, {
+    async function toCart(){
+        await axiosClient.get(`/basket/add/${offer.id}`, {
             params: { key: localStorage.getItem("basketKey") }
         })
         .then( ({data})=>{
@@ -36,8 +36,8 @@ export default function OfferCard({
         updateFunction();
     }
     
-    function removeFromCart(){
-        axiosClient.get(`/basket/remove/${offer.id}`, {
+    async function removeFromCart(){
+        await axiosClient.get(`/basket/remove/${offer.id}`, {
             params: { key: localStorage.getItem("basketKey") }
         })
         .then( ({data})=>{

@@ -16,6 +16,8 @@ export default function OfferCard({
     const emailRef = useRef();
 
     async function toCart(){
+        const bkey = localStorage.getItem("basketKey", null);
+
         await axiosClient.get(`/basket/add/${offer.id}`, {
             params: { key: localStorage.getItem("basketKey") }
         })
@@ -24,7 +26,9 @@ export default function OfferCard({
                 type: 'SET_MESSAGE',
                 message: lang[data.message]
             });
-            localStorage.setItem("basketKey", data.bKey);
+            if(bkey === null){
+                localStorage.setItem("basketKey", data.bKey);
+            }
         })
         .catch(error => {
             console.log(error);
