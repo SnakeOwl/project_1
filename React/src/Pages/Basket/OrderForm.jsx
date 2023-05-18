@@ -69,6 +69,18 @@ export default function OrderForm(){
         .then(({data})=>{
             setStorages(data.storages);
             setBasket(data.basket);
+
+            
+            if(data.basket.offers.length === 0){
+                dispatchGlobal({
+                    type: "SET_MESSAGE",
+                    message: lang["Your basket is empty"]
+                });
+                
+                localStorage.removeItem("basketKey");
+
+                window.location.href = "/";
+            }
         })
         .catch(error=>{
             console.log(error);
@@ -100,7 +112,7 @@ export default function OrderForm(){
         }
     }
 
-    function handleSubmit(event){
+    async function handleSubmit(event){
         event.preventDefault();
         const rdata = {
             key: key,
@@ -116,7 +128,7 @@ export default function OrderForm(){
             storage_id: storage_idRef.current.value,
         }
 
-        axiosClient.post('basket/store-order', rdata)
+        await axiosClient.post('basket/store-order', rdata)
             .then(({data})=>{
                 dispatchGlobal({
                     type: 'SET_MESSAGE',

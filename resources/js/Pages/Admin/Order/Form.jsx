@@ -67,7 +67,6 @@ console.log(basket);
                         <tr>
                             <td>#</td>
                             <td>{lang["price"]} * {lang["count"]}</td>
-                            <td>{lang["offer"]}</td>
                         </tr>
                     </thead>
                     <tbody>

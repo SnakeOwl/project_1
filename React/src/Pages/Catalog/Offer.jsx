@@ -91,8 +91,8 @@ export default function (){
         });
     }
 
-    function addToCard(offerId){
-        axiosClient.get(`/basket/add/${offer.id}`, {
+    async function addToCard(offerId){
+        await axiosClient.get(`/basket/add/${offer.id}`, {
             params: { key: localStorage.getItem("basketKey") }
         })
         .then( ({data})=>{

@@ -17,7 +17,6 @@ class IndexController extends Controller
     {
         $params = $request->validated();
         $category_alias = $params['category'] ?? false;
-        // dd($category_alias);
         $activeCategory = null;
         $availableOptions = null;
         $availableOffers = null;

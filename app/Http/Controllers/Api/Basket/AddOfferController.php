@@ -20,6 +20,7 @@ class AddOfferController extends Controller
         $message = $basket->addOffer($offer);
 
         return response([
+            'basket' => $basket->getBasket(),
             'message' => $message,
             'bKey' => $basket->getKey(),
             'basketIsEmpty' => $basket->isEmpty()

@@ -15,8 +15,8 @@ export default function OfferCard({
     const [subscribeMode, setSubscribeMode] = useState(false);
     const emailRef = useRef();
 
-    function toCart(){
-        axiosClient.get(`/basket/add/${offer.id}`, {
+    async function toCart(){
+        await axiosClient.get(`/basket/add/${offer.id}`, {
             params: { key: localStorage.getItem("basketKey") }
         })
         .then( ({data})=>{
