@@ -28,6 +28,7 @@ class Order extends Model
         'currency_id',
         'user_id',
         'date_delivered',
+        'email',
     ];
 
     //The model's default values for attributes.

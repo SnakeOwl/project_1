@@ -57,4 +57,7 @@ npm run build
 
 
 # ----- Настройка APACHE -----
-https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-ru
+    https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-ru
+
+# Настройка почты по smtp
+    https://yandex.ru/support/mail/mail-clients/others.html

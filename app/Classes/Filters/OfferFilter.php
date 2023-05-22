@@ -9,7 +9,6 @@ use App\Models\Offer;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\OrderCreated;
 use App\Classes\Currency\CurrencyConverter;
 
 class OfferFilter extends Filter

@@ -8,7 +8,6 @@ use App\Models\Offer;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\OrderCreated;
 use App\Classes\Currency\CurrencyConverter;
 
 // Корзина на сессиях. Изменение количества торговых предложений происходит по условию в функции.
@@ -89,12 +88,15 @@ class Basket
         if (!$this->countAvailable(true))
             return false;
 
-        $params['user_id'] = Auth::check()? Auth::user()->id: null;
+        if (isset($params['email']))
+        {
+            $user = User::byEmail($params['email'])->first();
+
+            if ($user !== null)
+                $params['user_id'] = $user->id;
+        }
 
         $this->order->customStore($params);
-
-        $email = Auth::check() ? Auth::user()->email: $params['email'];
-        Mail::to($email)->send(new OrderCreated($this->getOrder()));
 
         return true;
     }

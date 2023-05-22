@@ -16,7 +16,9 @@ class OfferObserver
     {
         $oldCount = $offer->getOriginal('count');
         if ($oldCount == 0 && $offer->count > 0)
+        {
             Subscription::sendEmailToSubscriptions($offer);
+        }
     }
 
     public function deleted(Offer $offer)
