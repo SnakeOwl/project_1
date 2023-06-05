@@ -1,18 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 
 Route::prefix('basket')->group(function(){
@@ -27,10 +15,14 @@ Route::post('subscribe', App\Http\Controllers\Api\Subscribers\SubscribeControlle
 Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreController::class);
 
 Route::get('lang/{lang}', App\Http\Controllers\Api\LocaleController::class);
-Route::post('catalog/oneClickBuyStore', App\Http\Controllers\Api\Catalog\OneClickBuyStoreController::class);
-Route::get('catalog', App\Http\Controllers\Api\Catalog\IndexController::class);
-Route::get('catalog/{offer}', App\Http\Controllers\Api\Catalog\OfferController::class);
-Route::post('catalog/search', App\Http\Controllers\Api\Catalog\SearchController::class);
+Route::get('get-categories', App\Http\Controllers\Api\Catalog\GetCategoriesController::class);
+
+Route::prefix('catalog')->group(function(){
+    Route::get('/', App\Http\Controllers\Api\Catalog\IndexController::class);
+    Route::post('oneClickBuyStore', App\Http\Controllers\Api\Catalog\OneClickBuyStoreController::class);
+    Route::post('search', App\Http\Controllers\Api\Catalog\SearchController::class);
+    Route::get('{offer}', App\Http\Controllers\Api\Catalog\OfferController::class);
+});
 Route::post('global-variables', App\Http\Controllers\Api\GlobalVariablesController::class);
 
 

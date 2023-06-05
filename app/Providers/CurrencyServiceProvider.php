@@ -11,7 +11,7 @@ class CurrencyServiceProvider extends ServiceProvider
     public function boot()
     {
         Inertia::share([
-            'currencies' =>  CurrencyConverter::getCurrencies()
+            'currencies' => CurrencyConverter::getCurrencies()
         ]);
     }
 }

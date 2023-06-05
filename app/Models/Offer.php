@@ -88,15 +88,20 @@ class Offer extends Model
         if(count($this->images) != count($checkImages))
         {
             $ids = array();
-            foreach($checkImages as $image)
+            foreach($checkImages as $image){
                 $ids[] = $image["id"];
+            }
 
             foreach ($this->images()->get('id') as $image)
             {
                 if( !in_array($image->id, $ids))
                 {
-                    Storage::delete($image->image); //удаление с диска
                     Galery::find($image->id)->first()->delete();
+
+                    if ($image->image !== null)
+                    {
+                        Storage::delete($image->image); //удаление с диска
+                    }
                 }
             }
         }

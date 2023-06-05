@@ -19,7 +19,7 @@ class CurrencyConverter
     public static function loadContainter()
     {
         // Если не проверять на наличие таблицы, то даже php artisan migrate не запускает.
-        if (is_null(self::$container) && Schema::hasTable('currencies'))
+        if ( Schema::hasTable('currencies') && is_null(self::$container))
         {
             self::$normalContainer = Currency::get();
 

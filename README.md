@@ -11,7 +11,7 @@ git clone https://github.com/SnakeOwl/project_1.git toFolder
 ## сюда указать доступы к базе и url приложения
 cp .env.example .env 
 
-composer install
+composer update
 npm install
 php artisan key:generate
 php artisan storage:link

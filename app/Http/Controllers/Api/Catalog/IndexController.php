@@ -26,7 +26,8 @@ class IndexController extends Controller
             $filter = new CategoryOptionsFilter($category_alias);
             $activeCategory = $filter->getActiveCategory()->load('shapes.shapeOptions');
             
-            $filter->filterByPrice($params["priceFrom"], $params["priceTo"]);
+            
+            $filter->filterByPrice($params["priceFrom"] ?? 0, $params["priceTo"] ?? 0);
             unset($params["priceFrom"], $params["priceTo"]);
 
             if (isset($params["options"]))
