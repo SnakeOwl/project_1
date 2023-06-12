@@ -12,6 +12,8 @@ class OfferController extends Controller
         $item = $offer->item->load(["offers", 'offers.options.shape', 'parameters']);
         $offer->load(['options', 'images']);
 
+
+        // подготовка других Офферов Товара (переключение между Торговыми предложениями)
         $itemOffersLinks = [];
         foreach ($item->offers as $off) {
             foreach ($off->options as $option) {

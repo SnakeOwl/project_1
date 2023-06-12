@@ -16,14 +16,14 @@ class AddOfferController extends Controller
         $busket = null;
         $bKey = $request->validated()['key'] ?? null;
         
-        $basket = new DBBasket($bKey);
-        $message = $basket->addOffer($offer);
+        $basket = (new DBBasket($bKey));
+
+        if ($basket->addOffer($offer) === false)
+            return response("", 500);
+
 
         return response([
-            'basket' => $basket->getBasket(),
-            'message' => $message,
-            'bKey' => $basket->getKey(),
-            'basketIsEmpty' => $basket->isEmpty()
+            'bkey' => $basket->getKey()
         ]);
     }
 }

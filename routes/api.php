@@ -15,11 +15,13 @@ Route::post('subscribe', App\Http\Controllers\Api\Subscribers\SubscribeControlle
 Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreController::class);
 
 Route::get('lang/{lang}', App\Http\Controllers\Api\LocaleController::class);
-Route::get('get-categories', App\Http\Controllers\Api\Catalog\GetCategoriesController::class);
 
 Route::prefix('catalog')->group(function(){
     Route::get('/', App\Http\Controllers\Api\Catalog\IndexController::class);
-    Route::post('oneClickBuyStore', App\Http\Controllers\Api\Catalog\OneClickBuyStoreController::class);
+    Route::get('get-categories', App\Http\Controllers\Api\Catalog\GetCategoriesController::class);
+    Route::get('category/{category}/options', App\Http\Controllers\Api\Catalog\GetCategoryOptionsController::class);
+
+    Route::post('oneClickBuy', App\Http\Controllers\Api\Catalog\OneClickBuyStoreController::class);
     Route::post('search', App\Http\Controllers\Api\Catalog\SearchController::class);
     Route::get('{offer}', App\Http\Controllers\Api\Catalog\OfferController::class);
 });

@@ -16,8 +16,6 @@ class OfferFilter extends Filter
     public const OPTIONS = 'options';
     public const PRICE_FROM = 'priceFrom';
     public const PRICE_TO = 'priceTo';
-    public const IS_NEW = "isNew";
-    public const IS_POPULAR = "isPopular";
 
     /*
         Возвращает массив.
@@ -29,8 +27,6 @@ class OfferFilter extends Filter
             self::OPTIONS => [$this, 'options'],
             self::PRICE_FROM => [$this, 'priceFrom'],
             self::PRICE_TO => [$this, 'priceTo'],
-            self::IS_NEW => [$this, 'isNew'],
-            self::IS_POPULAR => [$this, 'isPopular'],
         ];
     }
 
@@ -73,25 +69,5 @@ class OfferFilter extends Filter
             }
 
         $builder->where('price', '>=', $value);
-    }
-
-    public function isNew(Builder $builder, $value)
-    {
-        if ( filter_var($value, FILTER_VALIDATE_BOOLEAN) )
-        {
-            $builder->whereHas('item', function(Builder $query) {
-                $query->where('new', 1);
-            });
-        }
-    }
-
-    public function isPopular(Builder $builder, $value)
-    {
-        if ( filter_var($value, FILTER_VALIDATE_BOOLEAN) )
-        {
-            $builder->whereHas('item', function(Builder $query) {
-                $query->where('hit', 1);
-            });
-        }
     }
 }

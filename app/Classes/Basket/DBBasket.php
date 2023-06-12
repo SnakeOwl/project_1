@@ -51,7 +51,8 @@ class DBBasket
     public function addOffer(Offer $offer)
     {
         if ($offer->count == 0)
-            return 'no more offers';
+            return false;
+
 
         if($this->basket->offers->contains($offer))
         {
@@ -68,7 +69,7 @@ class DBBasket
             $this->basket->offers()->attach($offer, ['count' => 1]);
         }
 
-        return "offer added to basket";
+        return true;
     }
 
     public function removeOffer(Offer $offer)
