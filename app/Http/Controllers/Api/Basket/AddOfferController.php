@@ -19,7 +19,7 @@ class AddOfferController extends Controller
         $basket = (new DBBasket($bKey));
 
         if ($basket->addOffer($offer) === false)
-            return response("", 500);
+            return response("No mo offers", 404);
 
 
         return response([

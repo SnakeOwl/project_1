@@ -16,9 +16,11 @@ class OrderStoreController extends Controller
         $key = $request->validated()['key'];
         $orderId = (new DBBasket($key))->storeOrder($request->validated()); 
 
+        
         if ($orderId)
-            return ["message" =>'order created', 'orderId' => $orderId];
-        else
-            return ["message" => 'order not created'];
+            return response(['orderId' => $orderId], 200);
+        
+
+        return response("", 400);
     }
 }

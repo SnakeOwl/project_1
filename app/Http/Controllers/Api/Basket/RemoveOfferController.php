@@ -12,10 +12,12 @@ class RemoveOfferController extends Controller
     public function __invoke(BasketRequest $request, Offer $offer)
     {
         $basket = new DBBasket($request->validated()['key']);
-        $message = $basket->removeOffer($offer);
+        
+        if ( !$basket->removeOffer($offer) )
+            return response("", 500);
+
 
         return [
-            'message' => $message,
             'basketIsEmpty' => $basket->isEmpty()
         ];
     }

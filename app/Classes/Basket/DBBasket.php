@@ -15,13 +15,13 @@ class DBBasket
     protected $basket;
 
 
-    public function __construct($bKey=null)
+    public function __construct($bKey = null)
     {
         $this->basket = $bKey !== null
             ? Basket::byKey($bKey)
             : Basket::create([
                 'key' => Str::random(64),
-                'price' => 0, 
+                'price' => 0,
             ]);
     }
 
@@ -37,7 +37,7 @@ class DBBasket
             Если апдейтить при удалении/добавлении оффера, 
             то не видно только что добавленный/удаленный оффер.
             Из-за этого цена не правильная.
-        */ 
+        */
         $this->updatePrice();
 
         return $this->basket;
@@ -54,18 +54,16 @@ class DBBasket
             return false;
 
 
-        if($this->basket->offers->contains($offer))
-        {
+        if ($this->basket->offers->contains($offer)) {
             $pivotRow = $this->basket->offers->find($offer->id)->pivot;
 
-            $this->basket->offers()->updateExistingPivot($offer->id ,[
-                'count' => $pivotRow->count +1
+            $this->basket->offers()->updateExistingPivot($offer->id, [
+                'count' => $pivotRow->count + 1
             ]);
 
-            $offer->update(['count' => $offer->count -1]);
-        }else
-        {
-            $offer->update(['count' => $offer->count-1]);
+            $offer->update(['count' => $offer->count - 1]);
+        } else {
+            $offer->update(['count' => $offer->count - 1]);
             $this->basket->offers()->attach($offer, ['count' => 1]);
         }
 
@@ -74,25 +72,23 @@ class DBBasket
 
     public function removeOffer(Offer $offer)
     {
-        if($this->basket->offers->contains($offer))
-        {
+        if ($this->basket->offers->contains($offer)) {
             $pivotRow = $this->basket->offers->find($offer->id)->pivot;
 
-            if ($pivotRow->count > 1)
-            {
-                $this->basket->offers()->updateExistingPivot($offer->id ,[
-                    'count' => $pivotRow->count -1
+            if ($pivotRow->count > 1) {
+                $this->basket->offers()->updateExistingPivot($offer->id, [
+                    'count' => $pivotRow->count - 1
                 ]);
-            }else
-            {
+            } else {
                 $this->basket->offers()->detach($offer->id);
             }
 
-            $offer->update(['count' => $offer->count +1]);
+            $offer->update(['count' => $offer->count + 1]);
         }
+        
         $this->updatePrice();
 
-        return "offer removed from basket";
+        return true;
     }
 
     public function storeOrder($params): int
@@ -101,8 +97,7 @@ class DBBasket
         $params['currency_id'] = 1;
         $params['price'] = $this->basket->price;
 
-        if (isset($params['email']))
-        {
+        if (isset($params['email'])) {
             $user = User::byEmail($params['email'])->first();
 
             if ($user !== null)
@@ -110,7 +105,7 @@ class DBBasket
         }
 
         $order = Order::create($params);
-        
+
         $this->basket->update(['order_id' => $order->id]);
 
         return $order->id;
@@ -124,19 +119,19 @@ class DBBasket
 
         return true;
     }
-    
+
     public function getFullPrice(): float
     {
         $result = 0;
         $this->basket->offers;
-        
-        $mul = $this->basket->offers->map(function ($offer){
+
+        $mul = $this->basket->offers->map(function ($offer) {
             return ($offer->price * $offer->pivot->count);
         });
 
         foreach ($mul as $multiply)
             $result += $multiply;
-        
+
         return $result;
     }
 }
