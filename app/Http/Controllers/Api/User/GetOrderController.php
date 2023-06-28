@@ -16,8 +16,9 @@ class GetOrderController extends Controller
         $user = $request->user();
         $order = $user->orders()->find($order->id);
         if ($order === null)
-            return ['message' => 'no access'];
+            return response("", 404);
         
+
         $order->load('basket.offers.item');
         return ['order' => $order];
     }

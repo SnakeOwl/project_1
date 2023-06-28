@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\User\UpdateUserRequest;
-use Illuminate\Http\Request;
 use App\Models\User;
 
 class UpdateUserController extends Controller
@@ -13,17 +12,10 @@ class UpdateUserController extends Controller
     {
         $user = $request->user();
 
-        $params = $request->validated();
-        $user->update([
-            'phone' => $params['phone'],
-            'name' => $params['name']
-        ]);
+        $user->update($request->validated());
 
-        $user->updatePassword($params['password']);
+        // $user->updatePassword($params['password']);
 
-        return [
-            "message" => "success",
-            "user" => $user
-        ];
+        return response("", 204);
     }
 }

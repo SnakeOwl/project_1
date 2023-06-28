@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('lang/{lang}', App\Http\Controllers\Api\LocaleController::class);
 
 Route::prefix('basket')->group(function(){
     Route::get('add/{offer}', App\Http\Controllers\Api\Basket\AddOfferController::class);
@@ -11,10 +12,11 @@ Route::prefix('basket')->group(function(){
     Route::post('store-order',App\Http\Controllers\Api\Basket\OrderStoreController::class);
 });
 
+
 Route::post('subscribe', App\Http\Controllers\Api\Subscribers\SubscribeController::class);
 Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreController::class);
 
-Route::get('lang/{lang}', App\Http\Controllers\Api\LocaleController::class);
+
 
 Route::prefix('catalog')->group(function(){
     Route::get('/', App\Http\Controllers\Api\Catalog\IndexController::class);
@@ -25,20 +27,22 @@ Route::prefix('catalog')->group(function(){
     Route::post('search', App\Http\Controllers\Api\Catalog\SearchController::class);
     Route::get('{offer}', App\Http\Controllers\Api\Catalog\OfferController::class);
 });
-Route::post('global-variables', App\Http\Controllers\Api\GlobalVariablesController::class);
 
 
 Route::middleware('auth:sanctum')->group(function(){
     
     Route::prefix('user')->group(function(){
         Route::get('', App\Http\Controllers\Api\User\GetUserController::class);
+        Route::post('update', App\Http\Controllers\Api\User\UpdateUserController::class);
+
+        Route::get('active-orders', App\Http\Controllers\Api\User\GetActiveOrdersController::class);
         Route::get('orders', App\Http\Controllers\Api\User\GetOrdersController::class);
         Route::get('orders/{order}', App\Http\Controllers\Api\User\GetOrderController::class);
-        Route::post('update', App\Http\Controllers\Api\User\UpdateUserController::class);
     });
     
     Route::post('/logout', App\Http\Controllers\Api\Auth\LogoutController::class);
 });
+
 
 Route::post('/signup', App\Http\Controllers\Api\Auth\SighupController::class);
 Route::post('/login', App\Http\Controllers\Api\Auth\LoginController::class);

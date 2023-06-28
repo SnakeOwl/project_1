@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Order;
 
-class GetOrdersController extends Controller
+class GetActiveOrdersController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -14,7 +13,7 @@ class GetOrdersController extends Controller
     public function __invoke(Request $request)
     {
         return [
-            "orders" => $request->user()->orders()->paginate(16)
+            "orders" => $request->user()->orders()->active()->paginate(16)
         ];
     }
 }
