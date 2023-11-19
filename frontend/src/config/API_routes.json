@@ -1,0 +1,5 @@
+{
+    "BASE_URL": "http://127.0.0.1:8000",
+    "BASE_ADMIN_ROUTE": "http://127.0.0.1:8000/login",
+    "API_IMAGES_STORAGE": "http://127.0.0.1:8000/storage"
+}

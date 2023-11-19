@@ -61,6 +61,13 @@ class Item extends Model
         $item->createUniqueParameters($parameters);
     }
 
+
+    // owner, partner
+    public function user(): belongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function offers(): hasMany
     {
         return $this->hasMany(Offer::class);

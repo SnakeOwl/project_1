@@ -6,13 +6,11 @@
 
 # ----- Installing -----
 ## до этого вы должны были создать БД
-git clone https://github.com/SnakeOwl/project_1.git toFolder
+composer install
 
 ## сюда указать доступы к базе и url приложения
 cp .env.example .env 
 
-composer update
-npm install
 php artisan key:generate
 php artisan storage:link
 php artisan migrate --seed
@@ -22,6 +20,7 @@ sudo find  /var/www/project_1 -type d -exec chmod 775 {} \;     # права н�
 sudo chmod -R 777 storage/  # без этого лог файл не создаётся
 
 ## после этого заработает первая версия сайта
+npm install
 npm run build 
 
 

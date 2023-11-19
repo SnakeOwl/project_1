@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/catalog/')->name('index');
 
-Route::prefix('catalog')
-    ->group(function(){
+Route::prefix('catalog')->group(function(){
 
     Route::get("search/{name}", App\Http\Controllers\Catalog\SearchController::class);
     Route::post("oneClickForm", App\Http\Controllers\Catalog\OneClickFormStoreController::class);

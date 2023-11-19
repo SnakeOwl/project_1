@@ -19,15 +19,21 @@ class UserSeeder extends Seeder
             [
                 [
                     'name' => 'administrator',
-                    'email' => 'administrator@gmail.com',
+                    'email' => 'administrator@email.com',
                     'password' => bcrypt('administrator'),
                     'rights' => '10'
                 ],
                 [
                     'name' => 'SuperCourier',
-                    'login' => 'SuperCourier@gmail.com',
+                    'email' => 'SuperCourier@email.com',
                     'password' => bcrypt('SuperCourier'),
                     'rights' => '3'
+                ],
+                [
+                    'name' => 'SuperPartner',
+                    'email' => 'SuperPartner@email.com',
+                    'password' => bcrypt('SuperPartner'),
+                    'rights' => '6'
                 ]
             ]
         );

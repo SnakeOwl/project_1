@@ -1,8 +1,31 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+use App\Models\Item;
 
-Route::get('lang/{lang}', App\Http\Controllers\Api\LocaleController::class);
+Route::get("/", function (){ return response("Api is working", 200); });
+
+
+
+Route::get("testing", function (){
+    $var = 5;
+    (function(){ $var=55; echo $var;})();
+    var_dump($var);
+
+    
+});
+
+
+Route::prefix("get")->group(function(){
+    Route::get("categories", App\Http\Controllers\Api\getters\GetCategoriesController::class);
+    Route::get("item/{item}", App\Http\Controllers\Api\getters\GetItemController::class);
+    Route::get("options-by-item/{item}", App\Http\Controllers\Api\getters\GetOptionsByItemIDController::class);
+    
+    Route::resource("items.offers", App\Http\Controllers\Api\Partner\OffersController::class)->only(["index", "edit"]);
+
+});
+
 
 Route::prefix('basket')->group(function(){
     Route::get('add/{offer}', App\Http\Controllers\Api\Basket\AddOfferController::class);
@@ -14,8 +37,9 @@ Route::prefix('basket')->group(function(){
 
 
 Route::post('subscribe', App\Http\Controllers\Api\Subscribers\SubscribeController::class);
-Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreController::class);
 
+
+Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreController::class);
 
 
 Route::prefix('catalog')->group(function(){
@@ -38,6 +62,14 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('active-orders', App\Http\Controllers\Api\User\GetActiveOrdersController::class);
         Route::get('orders', App\Http\Controllers\Api\User\GetOrdersController::class);
         Route::get('orders/{order}', App\Http\Controllers\Api\User\GetOrderController::class);
+
+        Route::prefix("partner")->group(function(){
+            Route::resource("items", App\Http\Controllers\Api\Partner\ItemsController::class)->except(["create", "edit", "show"]);
+
+            // при использовании методов PUT/PATCH картинки не передаются.
+            Route::resource("items.offers", App\Http\Controllers\Api\Partner\OffersController::class)->only(["destroy", "store"]);
+            Route::post("items/{item}/offers/{offer}", [App\Http\Controllers\Api\Partner\OffersController::class, "update"]);
+        });
     });
     
     Route::post('/logout', App\Http\Controllers\Api\Auth\LogoutController::class);

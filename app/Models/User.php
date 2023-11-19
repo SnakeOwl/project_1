@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\hasMany;
-
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class User extends Authenticatable
 {
@@ -17,7 +17,8 @@ class User extends Authenticatable
     const RIGHTS = [
         'admin' => 10,
         'editor' => 5,
-        'courier' => 3
+        'courier' => 3,
+        "partner" => 6
     ];
 
     protected $fillable = [
@@ -38,6 +39,18 @@ class User extends Authenticatable
 
         $this->update(['password' => bcrypt($password)]);
         return true;
+    }
+
+    // partner's items
+    public function items(): hasMany
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    // partner's offers
+    public function offers(): HasManyThrough
+    {
+        return $this->hasManyThrough(Offer::class, Item::class);
     }
 
     public function orders(): hasMany
@@ -71,6 +84,11 @@ class User extends Authenticatable
         return $this->isAdmin()
             || $this->is_editor()
             || $this->rights === User::RIGHTS['courier'];
+    }
+    public function isPartner(): bool
+    {
+        return $this->isAdmin()
+            || $this->rights === User::RIGHTS["partner"];
     }
 
     protected $hidden = [

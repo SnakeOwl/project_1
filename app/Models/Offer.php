@@ -35,17 +35,17 @@ class Offer extends Model
     {
         $params['short_image'] = $this->storeImage($params['shortImage']);
         $offer = $this->create($params);
-        $offer->shapeOptions()->sync($params['shapeOptions']);
+        $offer->shapeOptions()->sync($params['optionsIDs']);
         $offer->uploadGalery($params['newGaleryImages'] ?? array());
     }
 
     public function customUpdate($params)
     {
-        if ($params['shortImage'] !== null)
+        if(isset($params['shortImage']))
              $this->updateShortImage($params['shortImage']);
 
         $this->update($params);
-        $this->shapeOptions()->sync($params['shapeOptions']);
+        $this->shapeOptions()->sync($params['optionsIDs']);
         $this->autocleanGalery($params['galery'] ?? array());
         $this->uploadGalery($params['newGaleryImages'] ?? array());
     }
@@ -155,6 +155,7 @@ class Offer extends Model
     {
         return $this->hasMany(Galery::class);
     }
+
 
     public function getPriceAttribute($value): float
     {

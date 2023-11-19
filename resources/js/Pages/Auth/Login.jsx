@@ -33,7 +33,7 @@ export default function Login({ status, canResetPassword }) {
 
 // функция для отладки, в продакшне удалить!!!
     const loginAdmin = () => {
-        data.email='administrator@gmail.com';
+        data.email='administrator@email.com';
         data.password='administrator';
         post(route('login'));
     }

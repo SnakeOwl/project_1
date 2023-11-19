@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "bootstrap-icons";
+
+.clip-0{
+    clip: rect(0,0,0,0);
+}
