@@ -2,11 +2,11 @@ import { getDictionary } from "@/utils/get-dictionary";
 import { Locale } from "@/i18n-config";
 import axiosClient from "@/axios-client";
 import IOffer from "@/interfaces/IOffer";
-import ILinkToOffer from "./Conmponents/ILinkToOffer";
-import Galery from "./Conmponents/Galery";
-import ToBusketButton from "@/Components/Buttons/ToBusketButton";
-import SubscribeArea from "@/app/[lang]/Components/SubscribeArea";
-import LinksToTheOtherOffers from "./Conmponents/LinksToTheOtherOffers";
+import ILinkToOffer from "./_Conmponents/ILinkToOffer";
+import Galery from "./_Conmponents/Galery";
+import ToBusketButton from "@/_Components/Buttons/ToBusketButton";
+import SubscribeArea from "@/app/[lang]/_Components/SubscribeArea";
+import LinksToTheOtherOffers from "./_Conmponents/LinksToTheOtherOffers";
 
 
 // getting data from API
@@ -46,6 +46,10 @@ export default async function OfferPage({
     const dict = await getDictionary(lang);
     const [offer, linksToOffers] = await getOffer(offerId);
 
+    if(offer.item == undefined)
+        throw new Error("Error. Can't find Item for Offer");
+
+
     return (
         <main className="w-full mx-auto xl:w-3/4">
             {/* top of page */}
@@ -61,7 +65,7 @@ export default async function OfferPage({
                         <LinksToTheOtherOffers
                             dict={dict}
                             linksToOffers={linksToOffers}
-                            offerOptions={offer.options}
+                            offerOptions={offer.options? offer.options: [] }
                         />
 
                     }
@@ -89,7 +93,7 @@ export default async function OfferPage({
 
 
             {/* Galery */}
-            {offer.images !== null && offer.images.length > 0 &&
+            {offer.images !== undefined && offer.images.length > 0 &&
                 <div className="w-full my-8">
                     <h2 className="text-center my-3">{dict["galery"]}</h2>
                     <Galery images={offer.images} />
@@ -111,8 +115,7 @@ export default async function OfferPage({
 
                     <table className="w-full">
                         <tbody>
-                            {
-                                offer.item.parameters?.map(parameter => {
+                            {offer.item.parameters?.map(parameter => {
                                     return (
                                         <tr key={parameter.id}>
                                             <td>
@@ -167,11 +170,11 @@ export async function generateMetadata({
 
     return {
         openGraph:{
-            title: `${dict["buy"]} ${offer.item.name}`,
+            title: `${dict["buy"]} ${offer.item?.name}`,
             images: [offer.short_image] ,
             url: 'https://nextjs.org'
         },
         
-        title: `${dict["buy"]} ${offer.item.name}`,
+        title: `${dict["buy"]} ${offer.item?.name}`,
     }
 }

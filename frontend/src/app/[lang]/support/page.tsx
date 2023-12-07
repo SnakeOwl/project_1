@@ -1,5 +1,5 @@
 import { getDictionary } from "@/utils/get-dictionary"
-import SupportForm from "./components/SupportForm"
+import SupportForm from "./_Сomponents/SupportForm"
 import { Locale } from "@/i18n-config"
 
 

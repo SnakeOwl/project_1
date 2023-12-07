@@ -1,13 +1,13 @@
 "use client"
 
 import StateCatalog from "@/context/Catalog/StateCatalog";
-import LeftSide from "./Components/LeftSide";
+import LeftSide from "./_Components/LeftSide";
 import getDictionaryStatic from "@/utils/get-dictionary-static";
 import { Locale } from "@/i18n-config";
 import { useReducer } from "react";
 import ReducerCatalog from "@/context/Catalog/ReducerCatalog";
 import ContextCatalog from "@/context/Catalog/ContextCatalog";
-import MobileMenuArea from "@/Components/menu/MobileMenuArea";
+import MobileMenuArea from "@/_Components/menu/MobileMenuArea";
 
 export default function Layout({
     params,

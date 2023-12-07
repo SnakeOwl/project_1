@@ -1,6 +1,6 @@
 import "server-only"
 import { Locale } from "@/i18n-config";
-import OfferList from "./Components/OffersList";
+import OfferList from "./_Components/OffersList";
 import { getDictionary } from "@/utils/get-dictionary";
 
 

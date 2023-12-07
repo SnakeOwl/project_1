@@ -1,7 +1,10 @@
 "use client"
-import { BlueButtonReversed, RedButtonReversed } from "@/Components/Buttons/ColoredButtons";
-import { Input } from "@/Components/Inputs/Input";
+import { BlueButtonReversed, RedButtonReversed } from "@/_Components/Buttons/ColoredButtons";
+import { Input } from "@/_Components/Inputs/Input";
 import IParameter from "@/interfaces/IParameter";
+
+
+
 
 
 interface IParams {

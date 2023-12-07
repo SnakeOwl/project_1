@@ -58,6 +58,8 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        "UIsAdmin" =>\App\Http\Middleware\UIsAdmin::class,
+
         'catalogInformation' => \App\Http\Middleware\CatalogInformation::class,
         'adminCounter' => \App\Http\Middleware\AdminCounter::class,
         'basket_not_empty' => \App\Http\Middleware\BasketIsNotEmpty::class,

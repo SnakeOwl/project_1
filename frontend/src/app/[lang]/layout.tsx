@@ -2,16 +2,17 @@
 import "./globals.css";
 
 import localFont from "next/font/local";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
+import Footer from "./_Components/Footer";
+import Header from "./_Components/Header";
 import { Locale, i18n } from '@/i18n-config'
 import getDictionaryStatic from "@/utils/get-dictionary-static";
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import ReducerUser from "@/context/User/ReducerUser";
 import ContextUser from "@/context/User/ContextUser";
 import UserContextType from "@/context/User/UserContextType";
-import FunctionalOnlyComponent from "./Components/FunctionalOnlyComponent";
-
+import FunctionalOnlyComponent from "./_Components/FunctionalOnlyComponent";
+import Loading from "./loading";
+import { Suspense } from 'react'
 
 
 const comfortaa = localFont({
@@ -58,11 +59,17 @@ export default function RootLayout({
                 <meta property="og:url" content="https://nextjs.org" />
             </head>
             <body className={`${comfortaa.className} bg-white dark:bg-gray-950 dark:text-gray-300 px-4 xl:px-0`}>
+                
+
                 <ContextUser.Provider value={{ stateUser, dispatchUser }}>
                     <FunctionalOnlyComponent />
                     <Header dict={dict} />
 
-                    {children}
+
+                    <Suspense fallback={<Loading />}>
+                        {children}
+                    </Suspense>
+
 
                     <Footer dict={dict}/>
                 </ ContextUser.Provider>

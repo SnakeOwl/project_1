@@ -3,7 +3,7 @@ import "server-only"
 import Link from "next/link";
 import { getDictionary } from "@/utils/get-dictionary";
 import { Locale } from "@/i18n-config";
-import LoginForm from "./Components/LoginForm";
+import LoginForm from "./_Components/LoginForm";
 
 
 interface IProps {

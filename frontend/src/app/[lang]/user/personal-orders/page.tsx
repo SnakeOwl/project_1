@@ -1,7 +1,7 @@
 import "server-only"
 import { getDictionary } from "@/utils/get-dictionary";
 import { Locale } from "@/i18n-config";
-import OrdersList from "./Components/OrdersList";
+import OrdersList from "./_Components/OrdersList";
 
 
 export default async function PersonalOrders({

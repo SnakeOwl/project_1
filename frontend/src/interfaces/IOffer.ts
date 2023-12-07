@@ -3,13 +3,13 @@ import IItem from "./IItem";
 import IOption from "./IOption";
 
 export default interface IOffer {
-    id: string,
-    short_image?: string,
-    price: number,
-    count: number,
+    readonly id: string
+    short_image?: string
+    price: number
+    count: number
 
-    item?: IItem,
-    options?: IOption[],
+    item?: IItem
+    options?: IOption[]
 
     pivot?: {
         basket_id: number

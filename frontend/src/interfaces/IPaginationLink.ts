@@ -1,5 +1,5 @@
 export default interface IPaginationLink {
-    url: string,
-    label: string,
-    active: boolean
+    readonly url: string
+    readonly label: string
+    readonly active: boolean
 }

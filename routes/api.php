@@ -8,22 +8,28 @@ Route::get("/", function (){ return response("Api is working", 200); });
 
 
 
-Route::get("testing", function (){
-    $var = 5;
-    (function(){ $var=55; echo $var;})();
-    var_dump($var);
-
-    
-});
-
-
 Route::prefix("get")->group(function(){
-    Route::get("categories", App\Http\Controllers\Api\getters\GetCategoriesController::class);
     Route::get("item/{item}", App\Http\Controllers\Api\getters\GetItemController::class);
     Route::get("options-by-item/{item}", App\Http\Controllers\Api\getters\GetOptionsByItemIDController::class);
     
-    Route::resource("items.offers", App\Http\Controllers\Api\Partner\OffersController::class)->only(["index", "edit"]);
+    Route::get("storages", [App\Http\Controllers\Api\Admin\StoragesController::class, "index"]);
+    Route::get("storage/{storage}", [App\Http\Controllers\Api\Admin\StoragesController::class, "show"]);
 
+    Route::get("categories", [App\Http\Controllers\Api\Admin\CategoriesController::class, "index"]);
+    Route::get("category/{category}", [App\Http\Controllers\Api\Admin\CategoriesController::class, "show"]);
+
+    Route::get("categories", [App\Http\Controllers\Api\Admin\CategoriesController::class, "index"]);
+    Route::get("category/{category}", [App\Http\Controllers\Api\Admin\CategoriesController::class, "show"]);
+
+    Route::get("categories/{category}/shapes", [App\Http\Controllers\Api\Admin\ShapesController::class, "index"]);
+    Route::get("categories/{category}/shapes/{shape}", [App\Http\Controllers\Api\Admin\ShapesController::class, "show"]);
+
+    Route::get("shapeOption/{options}", [App\Http\Controllers\Api\Admin\ShapeOptionsController::class, "show"]);
+
+    Route::get("messages", [App\Http\Controllers\Api\Admin\MessagesController::class, "index"]);
+
+
+    Route::resource("items.offers", App\Http\Controllers\Api\Partner\OffersController::class)->only(["index", "edit"]);
 });
 
 
@@ -38,12 +44,11 @@ Route::prefix('basket')->group(function(){
 
 Route::post('subscribe', App\Http\Controllers\Api\Subscribers\SubscribeController::class);
 
-
 Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreController::class);
 
 
 Route::prefix('catalog')->group(function(){
-    Route::get('/', App\Http\Controllers\Api\Catalog\IndexController::class);
+    Route::get('', App\Http\Controllers\Api\Catalog\IndexController::class);
     Route::get('get-categories', App\Http\Controllers\Api\Catalog\GetCategoriesController::class);
     Route::get('category/{category}/options', App\Http\Controllers\Api\Catalog\GetCategoryOptionsController::class);
 
@@ -54,6 +59,8 @@ Route::prefix('catalog')->group(function(){
 
 
 Route::middleware('auth:sanctum')->group(function(){
+
+    Route::post('/logout', App\Http\Controllers\Api\Auth\LogoutController::class);
     
     Route::prefix('user')->group(function(){
         Route::get('', App\Http\Controllers\Api\User\GetUserController::class);
@@ -71,8 +78,20 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::post("items/{item}/offers/{offer}", [App\Http\Controllers\Api\Partner\OffersController::class, "update"]);
         });
     });
-    
-    Route::post('/logout', App\Http\Controllers\Api\Auth\LogoutController::class);
+
+
+    Route::prefix("admin")->middleware("UIsAdmin")->group(function (){
+            Route::apiResources([
+                "users" => App\Http\Controllers\Api\Admin\UsersController::class,
+                "storages" => App\Http\Controllers\Api\Admin\StoragesController::class,
+                "orders" => App\Http\Controllers\Api\Admin\OrdersController::class,
+                "categories" => App\Http\Controllers\Api\Admin\CategoriesController::class,
+                "categories.shapes" => App\Http\Controllers\Api\Admin\ShapesController::class,
+                "shapes.options" => App\Http\Controllers\Api\Admin\ShapeOptionsController::class,
+                "messages" => App\Http\Controllers\Api\Admin\MessagesController::class,
+                "subscriptions" => App\Http\Controllers\Api\Admin\SubscriptionsController::class,
+            ]);
+        });
 });
 
 

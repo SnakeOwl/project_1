@@ -1,7 +1,7 @@
 import { Locale } from "@/i18n-config";
 import { getDictionary } from "@/utils/get-dictionary";
 import "server-only"
-import DataForm from "./Components/DataForm";
+import DataForm from "./_Components/DataForm";
 
 
 export default async function PersonalDataPage({

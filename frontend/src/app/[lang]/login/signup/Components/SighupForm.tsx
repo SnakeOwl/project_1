@@ -2,10 +2,10 @@
 
 import { useContext, useState } from "react"
 import axiosClient from "@/axios-client";
-import { BlueButton } from "@/Components/Buttons/ColoredButtons";
-import { Input } from "@/Components/Inputs/Inputs";
+import { BlueButton } from "@/_Components/Buttons/ColoredButtons";
+import { Input } from "@/_Components/Inputs/Inputs";
 import ContextUser from "@/context/User/ContextUser";
-import ReCaptchaGoogleV3 from "@/Components/recaptches/ReCaptchaGoogleV3";
+import ReCaptchaGoogleV3 from "@/_Components/recaptches/ReCaptchaGoogleV3";
 
 export default function SighupForm({
     dictionary

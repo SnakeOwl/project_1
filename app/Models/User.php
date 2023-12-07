@@ -16,9 +16,9 @@ class User extends Authenticatable
 
     const RIGHTS = [
         'admin' => 10,
+        "partner" => 6,
         'editor' => 5,
         'courier' => 3,
-        "partner" => 6
     ];
 
     protected $fillable = [

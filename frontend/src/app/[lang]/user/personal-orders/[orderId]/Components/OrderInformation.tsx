@@ -3,8 +3,8 @@ import IOrder from "@/interfaces/IOrder";
 import GeneralInfo from "./GeneralInfo"
 import ListOfOffers from "./ListOfOffers"
 import axiosClient from "@/axios-client";
-import { useContext, useEffect, useState } from "react";
-import Preloader from "@/Components/Preloader";
+import { useEffect, useState } from "react";
+import Preloader from "@/_Components/Preloader";
 
 
 // не могу получить информацию на серверных компонентах, так как нужно localStorage

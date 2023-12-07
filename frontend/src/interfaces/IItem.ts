@@ -3,7 +3,7 @@ import IOffer from "./IOffer"
 import IParameter from "./IParameter"
 
 export default interface IItem {
-    id: string
+    readonly id: string
     name: string
     name_en: string
     description: string

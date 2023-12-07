@@ -1,7 +1,7 @@
 import { Locale } from "@/i18n-config"
 import { getDictionary } from "@/utils/get-dictionary"
 import "server-only"
-import CardList from "./Components/CardList"
+import CardList from "./_Components/CardList"
 
 
 interface IProps {

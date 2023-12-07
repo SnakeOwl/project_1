@@ -2,7 +2,7 @@ import "server-only"
 
 import { Locale } from "@/i18n-config";
 import { getDictionary } from "@/utils/get-dictionary";
-import CheckoutForm from "./Components/CheckoutForm";
+import CheckoutForm from "./_Components/CheckoutForm";
 
 
 // metadata. server only!

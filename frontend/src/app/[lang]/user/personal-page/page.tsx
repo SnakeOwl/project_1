@@ -1,4 +1,4 @@
-import ActiveOrdersList from "./Components/ActiveOrdersList";
+import ActiveOrdersList from "./_Components/ActiveOrdersList";
 import { getDictionary } from "@/utils/get-dictionary";
 import { Locale } from "@/i18n-config";
 
