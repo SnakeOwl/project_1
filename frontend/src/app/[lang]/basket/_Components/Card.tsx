@@ -1,5 +1,6 @@
 import { BlueButtonReversed, RedButton } from "@/_Components/Buttons/ColoredButtons";
 import Img from "@/_Components/Img";
+import { BlueText } from "@/_Components/text/borderedText";
 import axiosClient from "@/axios-client";
 import ContextUser from "@/context/User/ContextUser";
 import IOffer from "@/interfaces/IOffer";
@@ -18,26 +19,25 @@ export default function Card({
     offer,
     updateOffers,
     dict
-}: IProps ) {
+}: IProps) {
 
-    const {dispatchUser} = useContext(ContextUser);
+    const { dispatchUser } = useContext(ContextUser);
 
 
-    // вычитание предмета из козины
-    async function rmFromBasket() {
-        const {data} = await axiosClient.get(`/basket/remove/${offer.id}`, {
+    async function removeFromBasket() {
+        const { data } = await axiosClient.get(`/basket/remove/${offer.id}`, {
             params: { key: localStorage.getItem("bkey") }
         });
 
         // Если из корзины убирают последний товар, то стереть корзину
-        if (data.basketIsEmpty == true){
+        if (data.basketIsEmpty == true) {
             localStorage.removeItem("bkey");
-            
+
             dispatchUser({
                 type: "SET_BKEY",
                 bkey: undefined
             })
-        } else{
+        } else {
             updateOffers();
         }
     }
@@ -77,7 +77,7 @@ export default function Card({
 
             <div className="flex justify-around mt-2 ">
                 <BlueButtonReversed
-                    onClick={rmFromBasket}
+                    onClick={removeFromBasket}
                     className="py-1 px-3 rounded "
                 >
                     -
@@ -97,12 +97,9 @@ export default function Card({
                         </RedButton>
                     </div>
                     :
-                    <BlueButtonReversed 
-                        onClick={rmFromBasket}
-                        className="px-2 py-1"
-                    >
+                    <BlueText>
                         <span>{dict["no more offers"]}</span>
-                    </BlueButtonReversed>
+                    </BlueText>
                 }
             </div>
         </div>
