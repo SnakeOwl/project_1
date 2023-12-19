@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react";
-import { BlueButton } from '@/Components/Buttons/ColoredButtons'
-import { Input } from "@/Components/Inputs/Inputs"
+import { BlueButton } from '@/_Components/Buttons/ColoredButtons'
+import { Input } from "@/_Components/Inputs/Input"
 import axiosClient from '@/axios-client'
-import ReCaptchaGoogleV3 from "@/Components/recaptches/ReCaptchaGoogleV3";
-import { Textarea } from "@/Components/Inputs/Textarea";
+import ReCaptchaGoogleV3 from "@/_Components/recaptches/ReCaptchaGoogleV3";
+import { Textarea } from "@/_Components/Inputs/Textarea";
 
 
 export default function SupportForm({ dictionary }) {
@@ -90,8 +90,8 @@ export default function SupportForm({ dictionary }) {
             </div>
 
             <Input
-                className="mb-3"
-                labelText={dictionary["name"]}
+                className="mb-4"
+                label={dictionary["name"]}
                 id="name"
                 value={data.name}
 
@@ -102,8 +102,8 @@ export default function SupportForm({ dictionary }) {
             />
 
             <Input
-                className="mb-3"
-                labelText={dictionary["email"]}
+                className="mb-4"
+                label={dictionary["email"]}
                 id="email"
                 type="email"
 

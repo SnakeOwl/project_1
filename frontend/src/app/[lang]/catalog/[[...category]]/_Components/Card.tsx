@@ -3,7 +3,7 @@ import Img from "@/_Components/Img"
 import Link from "next/link"
 import ToBusketButton from "@/_Components/Buttons/ToBusketButton"
 import IOffer from "@/interfaces/IOffer"
-import SubscribeArea from "../../../_Components/SubscribeArea"
+import { BlueLink } from "@/_Components/Links/ColoredLinks"
 
 
 interface IProps{
@@ -70,9 +70,12 @@ export default function Card({
                         </RedButtonReversed>
                     </div>
                     :
-                    <SubscribeArea 
-                        dict={dict}
-                        offerID={offer.id} />
+                    <BlueLink 
+                        className="w-full py-2 text-center rounded-lg"
+                        href={`/subscribe/${offer.id}`}
+                    >
+                        {dict["subscribe"]}
+                    </BlueLink>
                 }
             </div>
         </div>

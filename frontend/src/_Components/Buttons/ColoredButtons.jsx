@@ -42,7 +42,7 @@ export function RedButton(props) {
             text-white \
             bg-red-500 \
             hover:bg-inherit \
-            borde border-red-500 \
+            border border-red-500 \
             hover:text-red-500 \
             duration-300 \
              " + props.className}>

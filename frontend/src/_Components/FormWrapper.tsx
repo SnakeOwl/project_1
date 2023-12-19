@@ -6,7 +6,7 @@ import { BlueButton } from "./Buttons/ColoredButtons";
 interface IProps {
     children: React.ReactNode
     data: any
-    submitText?: string
+    submitText?: string | React.ReactNode
     successText?: string
     
     // переключение между create | update элемента

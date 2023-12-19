@@ -15,6 +15,6 @@ class SubscribeController extends Controller
     {
         Subscription::create($request->validated());
 
-        return ['message'=> 'user subscribed'];
+        return response("", 204);
     }
 }

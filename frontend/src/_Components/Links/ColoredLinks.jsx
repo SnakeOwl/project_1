@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export function BlueLink({
     children,
-    className="",
+    className = "",
     href,
     target = "_self"
 }) {
@@ -11,9 +11,8 @@ export function BlueLink({
             className={" \
             text-white \
             bg-blue-600 \
+            border border-blue-600 \
             hover:bg-inherit \
-            hover:ring-1 \
-            hover:ring-blue-600 \
             hover:text-blue-600 \
             duration-300 \
              " + className}
@@ -26,7 +25,7 @@ export function BlueLink({
 }
 export function BlueLinkReversed({
     children,
-    className="",
+    className = "",
     href,
     target = "_self"
 }) {
@@ -34,11 +33,9 @@ export function BlueLinkReversed({
         <Link
             className={" \
             text-blue-600 \
-             \
+            border border-blue-600 \
             hover:text-white \
             hover:bg-blue-600 \
-            ring-1 \
-            ring-blue-600 \
             duration-300 \
              " + className}
             href={href}
@@ -52,7 +49,7 @@ export function BlueLinkReversed({
 
 export function RedLink({
     children,
-    className="",
+    className = "",
     href,
     target = "_self"
 }) {
@@ -61,9 +58,8 @@ export function RedLink({
             className={" \
             text-white \
             bg-red-500 \
+            border border-red-500 \
             hover:bg-inherit \
-            hover:ring-1 \
-            hover:ring-red-500 \
             hover:text-red-500 \
             duration-300 \
              " + className}
@@ -76,7 +72,7 @@ export function RedLink({
 }
 export function RedLinkReversed({
     children,
-    className="",
+    className = "",
     href,
     target = "_self"
 }) {
@@ -84,11 +80,9 @@ export function RedLinkReversed({
         <Link
             className={" \
             text-red-500 \
-             \
             hover:text-white \
             hover:bg-red-500 \
-            ring-1 \
-            ring-red-500 \
+            border border-red-500 \
             duration-300 \
              " + className}
             href={href}

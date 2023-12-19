@@ -6,7 +6,7 @@ import Footer from "./_Components/Footer";
 import Header from "./_Components/Header";
 import { Locale, i18n } from '@/i18n-config'
 import getDictionaryStatic from "@/utils/get-dictionary-static";
-import { useReducer } from "react";
+import { ReactNode, useReducer } from "react";
 import ReducerUser from "@/context/User/ReducerUser";
 import ContextUser from "@/context/User/ContextUser";
 import UserContextType from "@/context/User/UserContextType";
@@ -30,15 +30,13 @@ export async function generateStaticParams() {
 }
 
 
-export default function RootLayout({
-    children,
-    params: { lang },
-}: {
-    params: { lang: Locale }
-    children: React.ReactNode;
+export default function RootLayout(props: {
+    children: ReactNode,
+    modal: ReactNode,
+    lang: Locale
 }) {
 
-    const dict = getDictionaryStatic(lang);
+    const dict = getDictionaryStatic(props.lang);
 
     // todo: глянуть как делают Контексты на TS
     const updatedStateUser: UserContextType = {
@@ -51,7 +49,7 @@ export default function RootLayout({
 
     // todo: придумать как можно обойтись без этих двух контекстов, чтобы перенести этот код на серверную часть.
     return (
-        <html lang={lang}>
+        <html lang={props.lang}>
             <head>
                 <meta property="og:title" content={dict["og:title"]} />
                 <meta property="og:description" content={dict["og:description"]} />
@@ -67,7 +65,8 @@ export default function RootLayout({
 
 
                     <Suspense fallback={<Loading />}>
-                        {children}
+                        {props.children}
+                        {props.modal}
                     </Suspense>
 
 
