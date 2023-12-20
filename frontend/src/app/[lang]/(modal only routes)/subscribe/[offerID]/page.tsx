@@ -3,10 +3,17 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export default function SubscribePage() {
+
+export default function SubscribePage({
+    params: {offerID}
+}: {
+    params: {
+        offerID: string
+    }
+}) {
     const router = useRouter();
     
     useEffect( ()=>{
-        router.replace("/offer/1")
+        router.replace(`/offer/${offerID}`);
     } , [])
 }

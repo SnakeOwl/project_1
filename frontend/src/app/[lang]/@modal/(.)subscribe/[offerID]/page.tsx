@@ -31,19 +31,20 @@ export default function SubscribePage({
 
     dict["subscribe text"];
     return (
-        <Modal>
+        <Modal className="w-full 2xl:w-1/4">
             <FormWrapper
                 data={data}
-                createMode={true} 
+                createMode={true}
                 createURL="subscribe"
                 updateURL=""
                 setGeneralErrors={setErrors}
                 submitText={<i className="bi bi-envelope-check-fill"></i>}
             >
+
                 <Input
                     id="email"
                     type="email"
-                    onChange={e=>{setData({...data, email: e.target.value})}}
+                    onChange={e => { setData({ ...data, email: e.target.value }) }}
                     value={data.email}
                     label={`${dict["email"]}:`}
                     placeholder="WalterWhite@gmail.com"

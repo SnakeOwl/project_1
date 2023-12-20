@@ -10,14 +10,14 @@ import ICategory from "@/interfaces/ICategory";
 import Preloader from "@/_Components/Preloader";
 
 export default function Categories({
-    dictionary
+    dict
 }: {
-    dictionary: any
+    dict: any
 }) {
 
     const { stateCatalog } = useContext(ContextCatalog)
     const { activeCategoryAlias } = stateCatalog;
-    
+
     const [categories, setCategories] = useState<ICategory[]>();
 
     useEffect(() => {
@@ -37,13 +37,13 @@ export default function Categories({
                 return (activeCategoryAlias === category.alias) ?
                     <div key={category.id} >
                         <BlueButton className={"py-2 text-center mb-3 w-full"} >
-                            {category.name}
+                            {dict["cl"] === "ru" ? category.name : category.name_en}
                         </BlueButton>
 
-                        <Options 
-                            dictionary={dictionary}
-                            categoryId={category.id} 
-                            />
+                        <Options
+                            dict={dict}
+                            categoryId={category.id}
+                        />
                     </div>
                     :
                     <BlueLinkReversed
@@ -51,7 +51,7 @@ export default function Categories({
                         href={`/catalog/${category.alias}`}
                         className={"py-2 text-center mb-3 rounded"}
                     >
-                        {category.name}
+                        {dict["cl"] === "ru" ? category.name : category.name_en}
                     </BlueLinkReversed>
             })}
         </div>

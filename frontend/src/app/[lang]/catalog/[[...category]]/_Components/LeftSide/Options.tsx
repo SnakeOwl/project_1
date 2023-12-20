@@ -8,13 +8,13 @@ import Checkbox from "@/_Components/Inputs/Checkbox";
 
 interface IProps {
     categoryId: string
-    dictionary: any
+    dict: any
 }
 
 
 export default function Options({
     categoryId,
-    dictionary
+    dict
 }: IProps) {
     const { dispatchCatalog } = useContext(ContextCatalog);
 
@@ -85,7 +85,7 @@ export default function Options({
 
                         <div key={`${shape.name}`} className="mb-4">
 
-                            <span>{dictionary["cl"] === "ru" ? shape.name : shape.name_en}</span>
+                            <span>{dict["cl"] === "ru" ? shape.name : shape.name_en}</span>
                             {
                                 shape.options?.map(option => {
                                     return (
@@ -95,7 +95,7 @@ export default function Options({
                                                 <>
                                                     <Checkbox
                                                         id={`${option.id}`}
-                                                        label={dictionary["cl"] === "ru" ? option.value : option.value_en}
+                                                        label={dict["cl"] === "ru" ? option.value : option.value_en}
                                                         checked={foptions.includes( Number(option.id) )}
                                                         className=""
                                                         onChange={optionChanged}
@@ -106,7 +106,7 @@ export default function Options({
                                                 </>
                                                 :
                                                 <span className="text-gray-500">
-                                                    {dictionary["cl"] === "ru" ? option.value : option.value_en}
+                                                    {dict["cl"] === "ru" ? option.value : option.value_en}
                                                 </span>
                                             }
                                         </div>

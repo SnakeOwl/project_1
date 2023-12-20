@@ -3,7 +3,7 @@ import Img from "@/_Components/Img"
 import Link from "next/link"
 import ToBusketButton from "@/_Components/Buttons/ToBusketButton"
 import IOffer from "@/interfaces/IOffer"
-import { BlueLink } from "@/_Components/Links/ColoredLinks"
+import { BlueLink, RedLinkReversed } from "@/_Components/Links/ColoredLinks"
 
 
 interface IProps{
@@ -18,13 +18,6 @@ export default function Card({
 }: IProps) {
 
     const offerLink = `/offer/${offer.id}`;
-
-
-    //todo: сделать формочку
-    function fastBuy() {
-        alert("В разработке")
-    }
-    
 
     return (
         <div className="p-2 pb-4 ml-1 mb-8 w-full xl:w-1/6 ring-1 rounded-lg ring-gray-800">
@@ -62,12 +55,12 @@ export default function Card({
                             {dict["to basket"]}
                         </ToBusketButton>
 
-                        <RedButtonReversed
+                        <RedLinkReversed
                             className={"py-2 px-3 rounded-md"}
-                            onClick={fastBuy}
+                            href={`/one-click-form/${offer.id}`}
                         >
                             <i className="bi bi-hand-index-thumb"></i>
-                        </RedButtonReversed>
+                        </RedLinkReversed>
                     </div>
                     :
                     <BlueLink 

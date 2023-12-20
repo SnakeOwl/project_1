@@ -33,11 +33,12 @@ export async function generateStaticParams() {
 export default function RootLayout(props: {
     children: ReactNode,
     modal: ReactNode,
-    lang: Locale
+    params: {
+        lang: Locale
+    }
 }) {
 
-    const dict = getDictionaryStatic(props.lang);
-
+    const dict = getDictionaryStatic(props.params.lang);
     // todo: глянуть как делают Контексты на TS
     const updatedStateUser: UserContextType = {
         token: undefined,
@@ -49,7 +50,7 @@ export default function RootLayout(props: {
 
     // todo: придумать как можно обойтись без этих двух контекстов, чтобы перенести этот код на серверную часть.
     return (
-        <html lang={props.lang}>
+        <html lang={props.params.lang}>
             <head>
                 <meta property="og:title" content={dict["og:title"]} />
                 <meta property="og:description" content={dict["og:description"]} />

@@ -5,16 +5,13 @@ import { i18n } from "@/i18n-config"
 import { BlueLinkReversed } from '@/_Components/Links/ColoredLinks'
 
 
-interface IProps {
-    dict: any
-}
-
-
-export default function LangChanger({dict}: IProps) {
+export default function LangChanger({dict}: {dict: any}) {
     const pathName = usePathname()
 
     const redirectedPathName = (locale: string) => {
-        if (!pathName) return '/'
+        if (!pathName) 
+            return '/'
+
         const segments = pathName.split('/')
         segments[1] = locale
 

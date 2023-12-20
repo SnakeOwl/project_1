@@ -43,7 +43,7 @@ Route::prefix('basket')->group(function(){
 
 
 Route::post('subscribe', App\Http\Controllers\Api\Subscribers\SubscribeController::class);
-
+Route::post("one-click-request", [App\Http\Controllers\Api\Resources\OneClickRequestController::class, "store"]);
 Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreController::class);
 
 
@@ -90,6 +90,7 @@ Route::middleware('auth:sanctum')->group(function(){
                 "shapes.options" => App\Http\Controllers\Api\Admin\ShapeOptionsController::class,
                 "messages" => App\Http\Controllers\Api\Admin\MessagesController::class,
                 "subscriptions" => App\Http\Controllers\Api\Admin\SubscriptionsController::class,
+                "one-click-requests" => App\Http\Controllers\Api\Resources\OneClickRequestController::class,
             ]);
         });
 });

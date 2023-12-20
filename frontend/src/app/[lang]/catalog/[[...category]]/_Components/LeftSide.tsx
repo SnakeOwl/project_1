@@ -10,7 +10,7 @@ export default function LeftSide({
         <div className="lx:w-1/6 px-3">
             <Searcher dictionary={dictionary} />
 
-            <Categories dictionary={dictionary} />
+            <Categories dict={dictionary} />
         </div>
     )
 }

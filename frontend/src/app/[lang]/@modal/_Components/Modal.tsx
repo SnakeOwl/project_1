@@ -6,7 +6,13 @@ import { useRouter } from 'next/navigation'
 // компонент зависит от ссылки в браузере.
 // ВАЖНО: при перезагрузке страницы, нужно тестировать поведение.
 // нужно дублировать пути (иначе при перезагрузке страницы, эта форма зависнет и перестанет закрываться (чувствительна к редиректам))
-export default function Modal({ children }: { children: React.ReactNode }) {
+export default function Modal({ 
+    children,
+    className
+}: { 
+    children: React.ReactNode,
+    className?: string
+}) {
     const overlay = useRef(null)
     const wrapper = useRef(null)
     const router = useRouter()
@@ -44,7 +50,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         >
             <div
                 ref={wrapper}
-                className="bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-10/12 md:w-8/12 lg:w-1/2 p-6"
+                className={ className + " bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:w-10/12 md:w-8/12 p-6"}
             >
                 {children}
             </div>

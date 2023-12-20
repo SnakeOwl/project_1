@@ -1,6 +1,6 @@
 "use client"
 import { RedButton } from "@/_Components/Buttons/ColoredButtons";
-import { Input } from "@/_Components/Inputs/Inputs";
+import { Input } from "@/_Components/Inputs/Input";
 import axiosClient from "@/axios-client";
 import ContextUser from "@/context/User/ContextUser";
 import { useContext, useState } from "react";
@@ -95,11 +95,10 @@ export default function CheckoutForm({
 
     return (
         <div>
-
             <form onSubmit={handleSubmit}>
                 <Input
                     className="mb-4"
-                    labelText={dictionary["name"]}
+                    label={dictionary["name"]}
                     id={"name"}
                     value={data.name}
                     onChange={_setData}
@@ -109,7 +108,7 @@ export default function CheckoutForm({
 
                 <Input
                     className="mb-4"
-                    labelText={dictionary["phone"]}
+                    label={dictionary["phone"]}
                     id={"phone"}
                     value={data.phone}
                     onChange={_setData}
@@ -121,7 +120,7 @@ export default function CheckoutForm({
                 <Input
                     className="mb-4"
                     type="email"
-                    labelText={dictionary["email"]}
+                    label={dictionary["email"]}
                     id={"email"}
                     value={data.email}
                     onChange={_setData}
@@ -130,7 +129,7 @@ export default function CheckoutForm({
 
                 <Input
                     className="mb-4"
-                    labelText={dictionary["delivery method"]}
+                    label={dictionary["delivery method"]}
                     id={"delivery_method"}
                     value={data.delivery_method}
                     onChange={_setData}
@@ -141,7 +140,7 @@ export default function CheckoutForm({
 
                 <Input
                     className="mb-4"
-                    labelText={dictionary["payment method"]}
+                    label={dictionary["payment method"]}
                     id={"payment_method"}
                     value={data.payment_method}
                     onChange={_setData}
@@ -152,7 +151,7 @@ export default function CheckoutForm({
 
                 <Input
                     className="mb-4"
-                    labelText={dictionary["address"]}
+                    label={dictionary["address"]}
                     id={"address"}
                     value={data.address}
                     onChange={_setData}
