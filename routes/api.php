@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
-use App\Models\Item;
+
 
 Route::get("/", function (){ return response("Api is working", 200); });
 

@@ -4,12 +4,7 @@ import {memo} from 'react';
 import PoweredWithBlock from './Footer/PoweredWithBlock';
 
 
-interface Props{
-    dict: any
-}
-
-
-const Footer = ({dict}: Props) =>  {
+const Footer = ({dict}: {dict: any}) =>  {
     return (
         <footer className="text-gray-200 text-center  py-4 px-4 mt-8 xl:px-96 bg-gray-950 border-t-2 border-gray-900">
             <div className="flex flex-wrap">
@@ -36,5 +31,6 @@ const Footer = ({dict}: Props) =>  {
         </footer>
     );
 }
+
 
 export default memo(Footer);

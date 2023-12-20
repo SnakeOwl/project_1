@@ -13,6 +13,7 @@ import UserContextType from "@/context/User/UserContextType";
 import FunctionalOnlyComponent from "./_Components/FunctionalOnlyComponent";
 import Loading from "./loading";
 import { Suspense } from 'react'
+import CookieSection from "./_Components/CookieSection";
 
 
 const comfortaa = localFont({
@@ -70,9 +71,10 @@ export default function RootLayout(props: {
                         {props.modal}
                     </Suspense>
 
-
-                    <Footer dict={dict}/>
                 </ ContextUser.Provider>
+
+                <Footer dict={dict}/>
+                <CookieSection dict={dict} />
             </body>
         </html>
     );

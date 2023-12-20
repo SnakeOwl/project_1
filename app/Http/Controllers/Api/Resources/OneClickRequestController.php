@@ -29,26 +29,26 @@ class OneClickRequestController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OneClickForm $oneClickForm)
+    public function show(OneClickForm $one_click_request)
     {
-        return $$oneClickForm;
+        return $one_click_request;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOneClickFormRequest $request, OneClickForm $oneClickForm)
+    public function update(UpdateOneClickFormRequest $request, OneClickForm $one_click_request)
     {
-        $oneClickForm->update($request->validated());
+        $one_click_request->update($request->validated());
         return response("", 204);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OneClickForm $oneClickForm)
+    public function destroy(OneClickForm $one_click_request)
     {
-        $oneClickForm->delete();
+        $one_click_request->delete();
         return response("", 204);
     }
 }

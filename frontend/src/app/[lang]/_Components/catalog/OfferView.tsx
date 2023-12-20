@@ -53,8 +53,11 @@ export default function OfferView({
                         </div>
                         :
 
-                        <div className="w-full xl:w-1/2 mx-auto">
-                            <BlueLink href={`/subscribe/${offer.id}`}>
+                        <div className="w-full 2xl:w-1/3 mx-auto">
+                            <BlueLink 
+                                className="w-full text-center py-2 rounded-lg" 
+                                href={`/subscribe/${offer.id}`}
+                                >
                                 {dict["subscribe"]}
                             </BlueLink>
                         </div>
@@ -116,8 +119,11 @@ export default function OfferView({
                 </div>
                 :
                 <div className="w-full flex justify-center">
-                    <div className="w-full xl:w-1/4 ">
-                        <BlueLink href={`/subscribe/${offer.id}`}>
+                    <div className="w-full 2xl:w-1/5 ">
+                        <BlueLink 
+                            className="w-full text-center py-2 rounded-lg"
+                            href={`/subscribe/${offer.id}`}
+                        >
                             {dict["subscribe"]}
                         </BlueLink>
                     </div>
