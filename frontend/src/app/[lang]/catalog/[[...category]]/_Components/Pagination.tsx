@@ -1,6 +1,7 @@
-import { BlueButtonReversed } from "@/_Components/Buttons/ColoredButtons"
+import { BlueButton, BlueButtonReversed } from "@/_Components/Buttons/ColoredButtons"
 import axiosClient from "@/axios-client"
 import ContextCatalog from "@/context/Catalog/ContextCatalog"
+import Link from "next/link"
 import { useContext } from "react"
 
 
@@ -46,21 +47,25 @@ export default function Pagination({
     }
 
 
+    const classes = "text-sm xl:text-base py-1 2xl:px-3 px-2 first:rounded-l-md last:rounded-r-md border border-gray-300";
 
     return (
-        <div className="w-fit flex mx-auto">
+        <div className="w-fit flex mx-auto ">
             {
 
                 links.map(link => {
-                    const activeC = link.active === true ? "ring-blue-950 cursor-default" : "";
+                    if (link.active === true)
+                        return <button className={`${classes} bg-gray-200`} key={link.label} type="button">{link.label}</button>
+                        
+                    
                     return (
-                        <BlueButtonReversed
+                        <button
                             key={link.label}
-                            className={`text-sm xl:text-base py-1 px-3 first:rounded-l-md last:rounded-r-md ${activeC}`}
+                            className={classes}
                             onClick={() => handleClick(link.url)}
                         >
                             {link.label}
-                        </BlueButtonReversed>
+                        </button>
                     )
                 })
             }

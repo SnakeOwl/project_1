@@ -32,24 +32,21 @@ export default function Galery({
 
 
     return (
-        <>
-            <LightGallery
-                speed={500}
-                plugins={[lgZoom]}
-                elementClassNames='flex flex-wrap'
-            >
-                {
-                    images.map(image => {
-                        const link = `${apiStorage}/${image.url}`;
+        <LightGallery
+            speed={500}
+            plugins={[lgZoom]}
+            elementClassNames='flex flex-wrap'
+        >
+            {images.map(image => {
+                    const link = `${apiStorage}/${image.url}`;
 
-                        return (
-                            <a key={image.id} className='w-1/2 xl:w-1/4 px-2' href={link}>
-                                <Img className='' alt="img1" src={link} />
-                            </a>
-                        )
-                    })
-                }
-            </LightGallery>
-        </>
+                    return (
+                        <a key={image.id} className='w-1/2 xl:w-1/4 px-2' href={link}>
+                            <Img className='' alt="img1" src={link} />
+                        </a>
+                    )
+                })
+            }
+        </LightGallery>
     )
 }

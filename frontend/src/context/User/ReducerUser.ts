@@ -1,10 +1,14 @@
+import IUser from "@/interfaces/IUser";
 import UserContextType from "./UserContextType";
 
 
 type Action =
+    | { type: 'SET', token: string, bkey: string, user: IUser }
     | { type: 'SET_TOKEN', token: string }
+    | { type: 'SET_TOKEN_BKEY', token: string, bkey: string }
     | { type: 'SET_BKEY', bkey: string }
-    | { type: 'SET', token:string , bkey: string };
+    | { type: 'SET_USER', user: IUser }
+    | { type: 'CLEAR' }
 
 
 export default function ReducerUser(
@@ -12,10 +16,11 @@ export default function ReducerUser(
     action: Action
 ): UserContextType {
     switch (action.type) {
-        case "SET":{
+        case "SET": {
             return {
                 token: action.token,
-                bkey: action.bkey
+                bkey: action.bkey,
+                user: action.user
             }
         }
 
@@ -29,6 +34,19 @@ export default function ReducerUser(
             return {
                 ...action,
                 bkey: action.bkey
+            }
+
+        case "SET_USER":
+            return {
+                ...action,
+                user: action.user
+            }
+
+        case "CLEAR":
+            return {
+                token: undefined,
+                bkey: undefined,
+                user: undefined
             }
 
         default:

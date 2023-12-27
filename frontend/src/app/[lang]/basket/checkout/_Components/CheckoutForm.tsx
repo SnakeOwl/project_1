@@ -1,7 +1,6 @@
 "use client"
-import { RedButton } from "@/_Components/Buttons/ColoredButtons";
+import FormWrapper from "@/_Components/FormWrapper";
 import { Input } from "@/_Components/Inputs/Input";
-import axiosClient from "@/axios-client";
 import ContextUser from "@/context/User/ContextUser";
 import { useContext, useState } from "react";
 
@@ -11,33 +10,16 @@ export default function CheckoutForm({
 }: { dictionary: any }) {
     const { stateUser, dispatchUser } = useContext(ContextUser);
 
-
     // данные для доп отрисовки частей формы
-    const [side, setSide] = useState({
-        errors: {
-            name: undefined,
-            email: undefined,
-            phone: undefined,
-            payment_method: undefined,
-
-            delivery_method: undefined,
-            address: undefined,
-            post_index: undefined,
-            storage_id: undefined,
-        },
-        critical: false,
-
-        success: false,
-        successOrderId: ""
-    });
+    const [errors, setErrors] = useState<any>();
 
 
     // данные для отправки формы
     const [data, setData] = useState({
         key: stateUser.bkey,
 
-        name: "",
-        email: "",
+        name: stateUser.user?.name || "",
+        email: stateUser.user?.email || "",
         phone: "",
         payment_method: "card",
 
@@ -56,53 +38,33 @@ export default function CheckoutForm({
     }
 
 
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-
-        await axiosClient.post("basket/store-order", data)
-            .then(({ data }) => {
-                setSide({
-                    ...side,
-                    success: true,
-                    successOrderId: data.orderId
-                });
-
-
-                // чистка данных корзины
-                localStorage.removeItem('basketKey');
-                dispatchUser({
-                    type: "SET_BKEY",
-                    bkey: undefined
-                })
-            })
-            .catch(({ response }) => {
-                console.log(response);
-
-                // 422 - ошибка валидации данных в бэке
-                if (response.status === 422) {
-                    setSide({
-                        ...side,
-                        errors: response.data.errors
-                    })
-                } else {
-                    setSide({
-                        ...side,
-                        critical: true
-                    });
-                }
-            });
-    }
-
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <FormWrapper
+                data={data}
+                submitText={dictionary["submit"]}
+                successText={"I can't help falling in love with you ❤"}
+                createURL="basket/store-order"
+                createMode={true}
+                setGeneralErrors={setErrors}
+
+                successCallback = {() => {
+                    // чистка данных корзины
+                    localStorage.removeItem('basketKey');
+                    dispatchUser({
+                        type: "SET_BKEY",
+                        bkey: undefined
+                    });
+                }}
+            >
+
                 <Input
                     className="mb-4"
                     label={dictionary["name"]}
                     id={"name"}
                     value={data.name}
                     onChange={_setData}
-                    error={side.errors["name"]}
+                    error={errors?.name}
                     required
                 />
 
@@ -112,7 +74,7 @@ export default function CheckoutForm({
                     id={"phone"}
                     value={data.phone}
                     onChange={_setData}
-                    error={side.errors["phone"]}
+                    error={errors?.phone}
                     required
 
                 />
@@ -124,7 +86,7 @@ export default function CheckoutForm({
                     id={"email"}
                     value={data.email}
                     onChange={_setData}
-                    error={side.errors["email"]}
+                    error={errors?.email}
                 />
 
                 <Input
@@ -133,7 +95,7 @@ export default function CheckoutForm({
                     id={"delivery_method"}
                     value={data.delivery_method}
                     onChange={_setData}
-                    error={side.errors["delivery_method"]}
+                    error={errors?.email}
 
                     disabled
                 />
@@ -144,7 +106,7 @@ export default function CheckoutForm({
                     id={"payment_method"}
                     value={data.payment_method}
                     onChange={_setData}
-                    error={side.errors["payment_method"]}
+                    error={errors?.email}
 
                     disabled
                 />
@@ -155,25 +117,11 @@ export default function CheckoutForm({
                     id={"address"}
                     value={data.address}
                     onChange={_setData}
-                    error={side.errors["address"]}
+                    error={errors?.email}
                 />
 
-                {side.success !== false ?
-                    <p className="py-4 mt-3 text-center border-2 border-green-400 text-green-500 radius-2 rounded-xl">
-                        {dictionary["thank for order"]}
-                        <br />
-                        {`${dictionary["your order's number is"]} ${side.successOrderId}`}
-                    </p>
-                    :
-                    <RedButton className="w-full py-4" >
-                        {dictionary["submit"]}
-                    </RedButton>
-                }
-            </form>
+            </FormWrapper>
 
-            {side.critical &&
-                <p className="ring-red-600 ">{dictionary["critical error"]}</p>
-            }
         </div>
 
     )

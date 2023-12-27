@@ -2,20 +2,18 @@ import { RedButton } from "@/_Components/Buttons/ColoredButtons";
 import { RedLinkReversed } from "@/_Components/Links/ColoredLinks";
 import ILinkToOffer from "./ILinkToOffer";
 import IOption from "@/interfaces/IOption";
+import { memo } from "react";
 
 
-interface IProps{
-    linksToOffers: ILinkToOffer[],
-    offerOptions: IOption[],
-    dict: any
-}
-
-
-export default function LinksToTheOtherOffers({
+const LinksToTheOtherOffers = ({
     linksToOffers, // подготовленные ссылки из API
     offerOptions, // текущие (выбранные) опции ТП
     dict
-}: IProps) {
+}: {
+    linksToOffers: ILinkToOffer[],
+    offerOptions: IOption[],
+    dict: any
+}) => {
 
 
     // создание ссылок на другие Офферы текущего Товара
@@ -70,3 +68,6 @@ export default function LinksToTheOtherOffers({
 
     return <> {linksToItemOffers} </> 
 }
+
+
+export default memo(LinksToTheOtherOffers)

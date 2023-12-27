@@ -22,8 +22,8 @@ class UpdateShapeOptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255|min:2',
-            'name_en' => 'required|max:255|min:2',
+            'value' => 'required|max:255|min:2',
+            'value_en' => 'required|max:255|min:2',
         ];
     }
 }

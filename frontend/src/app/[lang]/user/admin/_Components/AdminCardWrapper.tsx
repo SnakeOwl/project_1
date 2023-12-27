@@ -5,19 +5,18 @@ import { BlueLinkReversed } from "@/_Components/Links/ColoredLinks"
 import { RedText } from "@/_Components/text/borderedText"
 import axiosClient from "@/axios-client"
 import { useState } from "react"
+import CardWrapper  from "@/_Components/CardWrapper"
 
 
-interface IProps {
-    removeAPIPath: string
-    editLink: string
-    children: React.ReactNode
-}
-
-export default function CardWrapper({
+export default function AdminCardWrapper({
     removeAPIPath,
     editLink,
     children,
-}: IProps) {
+}: {
+    removeAPIPath: string
+    editLink: string
+    children: React.ReactNode
+}) {
     const [removed, setRemoved] = useState<boolean>(false);
 
 
@@ -32,11 +31,11 @@ export default function CardWrapper({
 
 
     if (removed)
-        return <RedText> Удалено </RedText>;
+        return <RedText>Удалено</RedText>;
 
 
     return (
-        <div className={`rounded-lg border border-gray-500 p-2`}>
+        <CardWrapper>
 
             {children}
 
@@ -54,6 +53,6 @@ export default function CardWrapper({
                     <i className="bi bi-x-lg"></i>
                 </RedButtonReversed>
             </div>
-        </div>
+        </CardWrapper>
     )
 }

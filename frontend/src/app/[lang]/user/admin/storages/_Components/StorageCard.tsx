@@ -1,7 +1,7 @@
 "use client"
 
 import IStorage from "@/interfaces/IStorage";
-import CardWrapper from "../../_Components/CardWrapper";
+import CardWrapper from "../../_Components/AdminCardWrapper";
 
 interface IProps {
     storage: IStorage

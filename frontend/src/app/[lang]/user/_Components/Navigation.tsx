@@ -1,18 +1,12 @@
 "use client"
-import IUser from "@/interfaces/IUser";
 import getUser from "@/utils/getUser";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
-interface IProps {
-    dict: any
-}
-
-
 export default function Navigation({
     dict
-}: IProps) {
+}: {dict: any}) {
 
     const [rights, setRights] = useState(3);
 

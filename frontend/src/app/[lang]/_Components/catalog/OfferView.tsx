@@ -36,7 +36,6 @@ export default function OfferView({
                             linksToOffers={linksToOffers}
                             offerOptions={offer.options ? offer.options : []}
                         />
-
                     }
 
                     <p className="text-xl">{`${dict["price"]}: ${offer.price}`}</p>
@@ -89,18 +88,16 @@ export default function OfferView({
 
                     <table className="w-full">
                         <tbody>
-                            {offer.item?.parameters?.map(parameter => {
-                                return (
-                                    <tr key={parameter.id}>
-                                        <td>
-                                            {dict["cl"] === "ru" ? parameter.param_name : parameter.param_name_en}
-                                        </td>
-                                        <td>
-                                            {dict["cl"] === "ru" ? parameter.param_value : parameter.param_value_en}
-                                        </td>
-                                    </tr>
-                                )
-                            })
+                            {offer.item?.parameters?.map(parameter =>
+                                <tr key={parameter.id}>
+                                    <td>
+                                        {dict["cl"] === "ru" ? parameter.param_name : parameter.param_name_en}
+                                    </td>
+                                    <td>
+                                        {dict["cl"] === "ru" ? parameter.param_value : parameter.param_value_en}
+                                    </td>
+                                </tr>
+                            )
                             }
                         </tbody>
                     </table>

@@ -9,15 +9,15 @@ export default async function SupportPage({
     params: { lang: Locale }
 }) {
 
-    const dictionary = await getDictionary(lang)
+    const dict = await getDictionary(lang)
 
     return (
         <>
-            <main className="mx-auto text-center xl:w-1/4">
-                <h1>{dictionary['contact form']}</h1>
+            <main className="mx-auto xl:w-1/4">
+                <h1 className="text-center">{dict['contact form']}</h1>
 
                 <SupportForm
-                    dictionary={dictionary}
+                    dict={dict}
                 />
             </main>
         </>

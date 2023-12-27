@@ -6,21 +6,19 @@ import ShapeOptionsList from "./_Components/ShapeOptionsList";
 
 
 async function getShape(categoryID: string, shapeID: string): Promise<IShape>{
-    const {data} = await axiosClient.get(`admin/categories/${categoryID}/shapes/${shapeID}`);
+    const {data} = await axiosClient.get(`get/categories/${categoryID}/shapes/${shapeID}`);
     return data;
 }
 
 
-interface IProps{
+export default async function ShapesFormPage({
+    params:{ categoryID, shapeID }
+}: {
     params: {
         categoryID: string
         shapeID: string
     }
-}
-
-export default async function ShapesFormPage({
-    params:{ categoryID, shapeID }
-}: IProps){
+}){
 
     const shape = shapeID? await getShape(categoryID, shapeID): undefined  ;
 

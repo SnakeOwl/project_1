@@ -17,7 +17,7 @@ export function Input({
     ...other
 }: IProps) {
     const classes = "p-3 w-full rounded-md text-inherit bg-inherit \
-        border-2 border-gray-150 \
+        border-2 border-gray-200 \
         dark:border-gray-700 \
         focus:border-gray-300 ";
 

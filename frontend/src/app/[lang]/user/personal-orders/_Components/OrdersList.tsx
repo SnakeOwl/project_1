@@ -1,7 +1,7 @@
 "use client"
 import Pagination from "@/_Components/Paginations/Pagination";
 import axiosClient from "@/axios-client";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import IPaginationLink from "@/interfaces/IPaginationLink";
 import IOrder from "@/interfaces/IOrder";
 import Link from "next/link";
@@ -22,12 +22,7 @@ function updateActiveOrders(
 }
 
 
-interface IProps {
-    dict: any
-}
-
-
-export default function OrdersList({dict}: IProps) {
+export default function OrdersList({ dict }: {dict: any}) {
 
     const [orders, setOrders] = useState<IOrder[]>([]);
     const [links, setLinks] = useState<IPaginationLink[]>([]);
@@ -54,20 +49,18 @@ export default function OrdersList({dict}: IProps) {
                 </thead>
 
                 <tbody>
-                    { orders.map(order => {
-                            return (
-                                <tr key={order.id}>
-                                    <td className={tdClasses}>
-                                        <Link href={`/user/personal-orders/${order.id}`}>
-                                            {order.id}
-                                        </Link>
-                                    </td>
-                                    <td className={tdClasses}>{order.delivery_method}</td>
-                                    <td className={tdClasses}>{order.status}</td>
-                                    <td className={tdClasses}>{order.price}</td>
-                                </tr>
-                            )
-                        })
+                    {orders.map(order =>
+                        <tr key={order.id}>
+                            <td className={tdClasses}>
+                                <Link href={`/user/personal-orders/${order.id}`}>
+                                    {order.id}
+                                </Link>
+                            </td>
+                            <td className={tdClasses}>{order.delivery_method}</td>
+                            <td className={tdClasses}>{order.status}</td>
+                            <td className={tdClasses}>{order.price}</td>
+                        </tr>
+                    )
                     }
 
                 </tbody>

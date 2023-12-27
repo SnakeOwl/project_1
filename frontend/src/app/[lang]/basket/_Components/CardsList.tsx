@@ -6,30 +6,25 @@ import Preloader from "@/_Components/Preloader";
 import axiosClient from "@/axios-client";
 
 
-interface IProps {
-    dict: any
-}
+export default function CardsList({ dict }: { dict: any }) {
 
-
-export default function CardsList({ dict }: IProps) {
-    
     const [offers, setOffers] = useState<IOffer[]>([]);
 
-    async function updateOffers(){
+    async function updateOffers() {
         await axiosClient.get("/basket/index", {
             params: { key: localStorage.getItem("bkey") }
         })
-        .then(({data})=>{
-            setOffers( ()=>{return data.offers} );
-        })
-        .catch(error=>{
-            console.log(error);
-        });
+            .then(({ data }) => {
+                setOffers(() => { return data.offers });
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     useEffect(() => {
         updateOffers();
-    },[])
+    }, [])
 
 
     // заглушка на первичную подгрузку корзины
@@ -40,16 +35,14 @@ export default function CardsList({ dict }: IProps) {
     return (
         <div className="flex justify-around">
             {
-                offers.map(offer => {
-                    return (
-                        <Card 
-                            key={offer.id} 
-                            offer={offer} 
-                            updateOffers={updateOffers}
-                            dict={dict}
-                        />
-                    );
-                })
+                offers.map(offer =>
+                    <Card
+                        key={offer.id}
+                        offer={offer}
+                        updateOffers={updateOffers}
+                        dict={dict}
+                    />
+                )
             }
         </div>
     )

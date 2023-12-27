@@ -12,22 +12,29 @@ interface IProps {
     // переключение между create | update элемента
     createMode: boolean
     createURL: string
-    updateURL: string
+    updateURL?: string
 
     // связывает этот компонент с делегирующим, чтобы в Input отправить ошибку
     setGeneralErrors: Function 
+
+    // callback after success result.
+    successCallback?: Function
+
 }
 
 export default function FormWrapper({
     children,
     data,
-    submitText="Отправить",
-    successText="Успешно",
+    submitText="Submit",
+    successText="Success",
+
     createMode=true,
     createURL,
-    updateURL,
+    updateURL="",
 
-    setGeneralErrors
+    setGeneralErrors,
+
+    successCallback
 }: IProps) {
 
     // данные для визуализации формы
@@ -49,10 +56,11 @@ export default function FormWrapper({
         }
 
         Promise.resolve(request)
-            .then(({ status }) => {
-                if (status === 204) {
-                    setSide({ ...side, success: true });
-                }
+            .then(() => {
+                setSide({ errMessage: undefined, success: true });
+
+                if (successCallback !== undefined)
+                    successCallback();
             })
             .catch(error => {
                 // если нет респонса, значит нет ответа от сервера

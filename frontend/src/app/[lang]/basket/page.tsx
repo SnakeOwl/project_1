@@ -5,16 +5,11 @@ import { Locale } from "@/i18n-config";
 import { getDictionary } from "@/utils/get-dictionary";
 
 
-interface IProps {
-    params: {
-        lang:Locale
-    }
-}
-
-
 export default async function BasketPage({
     params: { lang }
-}: IProps ) {
+}: {
+    params: { lang:Locale }
+} ) {
 
     const dict = await getDictionary(lang);
     

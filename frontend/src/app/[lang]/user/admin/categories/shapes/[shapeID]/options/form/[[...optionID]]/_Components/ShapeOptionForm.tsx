@@ -40,7 +40,8 @@ export default function ShapeOptionForm({ option, shapeID }: IProps) {
                     setData({ ...data, value: e.target.value })
                 }}
 
-                error={errors.value}
+                className="mb-2"
+                error={errors?.value}
                 required
             />
 
@@ -51,8 +52,9 @@ export default function ShapeOptionForm({ option, shapeID }: IProps) {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setData({ ...data, value_en: e.target.value })
                 }}
-
-                error={errors.value_en}
+                
+                className="mb-2"
+                error={errors?.value_en}
                 required
             />
         </FormWrapper>

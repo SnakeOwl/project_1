@@ -9,13 +9,15 @@ interface IProps {
 
 export default function ShapesList({categoryID, shapes}: IProps){
     return (
-        <div className="flex space-x-4 flex-wrap">
+        <div className="flex flex-wrap gap-2">
         	<div className="2xl:w-1/6">
-            <BigPlusLink href={`user/admin/categories/${categoryID}/shapes/form`} />
-</div>
-            {shapes?.map(shape=>{
-                return <ShapeCard shape={shape} categoryID={categoryID} />
-            })
+                <BigPlusLink href={`user/admin/categories/${categoryID}/shapes/form`} />
+            </div>
+
+            { shapes?.map(shape => <div className="2xl:w-1/6">
+                    <ShapeCard shape={shape} categoryID={categoryID} />
+                </div>
+            )
             }
         </div>
     )

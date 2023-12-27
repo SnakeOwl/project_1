@@ -22,11 +22,7 @@ function updateActiveOrders(
 }
 
 
-export default function ActiveOrdersList({
-    dictionary
-}:{
-    dictionary:any
-}) {
+export default function ActiveOrdersList({ dict}: { dict: any}) {
 
     const [orders, setOrders] = useState<IOrder[]>([]);
     const [links, setLinks] = useState<IPaginationLink[]>([]);
@@ -47,29 +43,26 @@ export default function ActiveOrdersList({
                     <thead>
                         <tr>
                             <td className={tdClasses}>#</td>
-                            <td className={tdClasses}>{dictionary["delivery method"]}</td>
-                            <td className={tdClasses}>{dictionary["status"]}</td>
-                            <td className={tdClasses}>{dictionary["price"]}</td>
+                            <td className={tdClasses}>{dict["delivery method"]}</td>
+                            <td className={tdClasses}>{dict["status"]}</td>
+                            <td className={tdClasses}>{dict["price"]}</td>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {orders.map(order => {
-                            return (
-                                <tr key={order.id}>
-                                    <td className={tdClasses}>
-                                        <Link href={`/user/personal-orders/${order.id}`}>
-                                            {order.id}
-                                        </Link>
-                                    </td>
-                                    <td className={tdClasses}>{order.delivery_method}</td>
-                                    <td className={tdClasses}>{order.status}</td>
-                                    <td className={tdClasses}>{order.price}</td>
-                                </tr>
-                            )
-                        })
+                        {orders.map(order =>
+                            <tr key={order.id}>
+                                <td className={tdClasses}>
+                                    <Link href={`/user/personal-orders/${order.id}`}>
+                                        {order.id}
+                                    </Link>
+                                </td>
+                                <td className={tdClasses}>{order.delivery_method}</td>
+                                <td className={tdClasses}>{order.status}</td>
+                                <td className={tdClasses}>{order.price}</td>
+                            </tr>
+                        )
                         }
-
                     </tbody>
                 </table>
             </div>

@@ -9,20 +9,12 @@ import { useRouter } from "next/navigation";
 import MobileMenuArea from "@/_Components/menu/MobileMenuArea";
 
 
-interface IProps {
+export default function UserLayout(props: {
     children: React.ReactNode,
-    params: {
-        lang: Locale
-    }
-}
+    params: {lang: Locale}
+}) {
 
-
-export default function UserLayout({
-    children,
-    params: {lang}
-}: IProps ) {
-
-    const dict = getDictionaryStatic(lang);
+    const dict = getDictionaryStatic(props.params.lang);
 
 
     const { stateUser } = useContext(ContextUser);
@@ -46,7 +38,7 @@ export default function UserLayout({
             </div>
 
             <div className="w-full xl:w-3/4">
-                {children}
+                {props.children}
             </div>
         </div>
     )

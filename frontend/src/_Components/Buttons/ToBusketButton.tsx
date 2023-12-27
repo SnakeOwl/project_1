@@ -5,18 +5,15 @@ import ContextUser from "@/context/User/ContextUser";
 import { useContext, useState } from "react"
 
 
-interface IProps {
-    offerID: string | number
-    className?: string
-    children: React.ReactNode
-}
-
-
 export default function ToBusketButton({
     offerID,
     className,
     children
-}: IProps) {
+}: {
+    offerID: string | number
+    className?: string
+    children: React.ReactNode
+}) {
     
     const [inBasket, setInBasket] = useState(false);
     const [error, setError] = useState(false);

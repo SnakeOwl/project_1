@@ -11,7 +11,7 @@ class StoreShapeOptionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreShapeOptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "value" => "required|string",
+            "value_en" => "required|string"
         ];
     }
 }

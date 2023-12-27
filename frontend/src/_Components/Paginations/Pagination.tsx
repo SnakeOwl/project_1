@@ -38,8 +38,6 @@ export default function Pagination({
     }
 
 
-
-
     return (
         <div className={`${className} w-fit flex mx-auto`}>
             {
@@ -49,7 +47,7 @@ export default function Pagination({
                     return (
                         <BlueButtonReversed
                             key={link.label}
-                            className={`py-1 px-3 first:rounded-l-md last:rounded-r-md ${activeC}`}
+                            className={`py-1 px-1 2xl:px-3 first:rounded-l-md last:rounded-r-md ${activeC}`}
                             onClick={() => handleClick(link.url)}
                         >
                             {link.label}

@@ -8,16 +8,13 @@ import axiosClient from "@/axios-client";
 import ContextCatalog from "@/context/Catalog/ContextCatalog";
 
 
-interface IProps {
-    category: string[]
-    dict: any
-}
-
-
 export default function OfferList({
     dict,
     category
-}: IProps ) {
+}: {
+    dict: any
+    category?: string[]
+}) {
 
     const { stateCatalog, dispatchCatalog } = useContext(ContextCatalog);
     const { offers } = stateCatalog;
@@ -40,17 +37,14 @@ export default function OfferList({
 
     return (
         <>
-            <main className="flex flex-wrap justify-around">
-                {
-                    offers.data.map((offer: IOffer) => {
-                        return (
-                            <Card
-                                key={`offer-${offer.id}`}
-                                offer={offer}
-                                dict={dict}
-                            />
-                        )
-                    })
+            <main className="flex flex-wrap justify-around space-x-1 gap-4 mb-4">
+                { offers.data.map((offer: IOffer) =>
+                        <Card
+                            key={`offer-${offer.id}`}
+                            offer={offer}
+                            dict={dict}
+                        />
+                    )
                 }
 
             </main>

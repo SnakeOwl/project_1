@@ -36,7 +36,8 @@ module.exports = {
             "margin-bottom": theme('margin.2') 
         },
         'a': {
-            display: "inline-block", // Без этого :first-letter не работает
+            // Без этого :first-letter не работает
+            display: "inline-block", 
         },
         'a:first-letter':{
             "text-decoration": "underline",

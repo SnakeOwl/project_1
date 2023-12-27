@@ -7,7 +7,7 @@ import { getDictionary } from "@/utils/get-dictionary";
 interface IProps {
     params: {
         lang: Locale
-        category: string[]
+        category?: string[]
     }
 }
 
@@ -29,9 +29,7 @@ export default async function CatalogPage({
 // metadata. server only!
 export async function generateMetadata({
     params: { lang },
-}: {
-    params: { lang: Locale }
-}) {
+}: IProps ) {
     const dict = await getDictionary(lang)
 
     return {

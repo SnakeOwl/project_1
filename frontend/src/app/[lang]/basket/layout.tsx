@@ -23,6 +23,5 @@ export default function BasketLayout({
         <div>
             {children}
         </div>
-
     )
 }

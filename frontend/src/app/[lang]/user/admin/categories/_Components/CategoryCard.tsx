@@ -1,5 +1,5 @@
 import ICategory from "@/interfaces/ICategory"
-import CardWrapper from "../../_Components/CardWrapper"
+import CardWrapper from "../../_Components/AdminCardWrapper"
 
 interface IProps {
     category: ICategory

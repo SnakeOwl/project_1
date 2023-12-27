@@ -23,7 +23,7 @@ Route::prefix("get")->group(function(){
     Route::get("categories/{category}/shapes", [App\Http\Controllers\Api\Admin\ShapesController::class, "index"]);
     Route::get("categories/{category}/shapes/{shape}", [App\Http\Controllers\Api\Admin\ShapesController::class, "show"]);
 
-    Route::get("shapeOption/{options}", [App\Http\Controllers\Api\Admin\ShapeOptionsController::class, "show"]);
+    Route::get("shape-option/{options}", [App\Http\Controllers\Api\Admin\ShapeOptionsController::class, "show"]);
 
     Route::get("messages", [App\Http\Controllers\Api\Admin\MessagesController::class, "index"]);
 

@@ -5,31 +5,32 @@ import ShapeOptionForm from "./_Components/ShapeOptionForm";
 
 
 async function getShapeOption(optionID: string): Promise<IOption>{
-    const response = await axiosClient.get("get/shapeOption/");
+    const response = await axiosClient.get(`get/shape-option/${optionID}`);
     const {data} = response;
 
     return data;
 }
 
 
-interface IProps {
+export default async function ShapeOptionFormPage({
+    params: {
+        shapeID,
+        optionID
+    }
+}: {params: {
     shapeID: string
     optionID?: string
-}
-
-
-export default async function ShapeOptionFormPage({
-    shapeID,
-    optionID
-}: IProps ){
+}}){
 
     const option = optionID? await getShapeOption(optionID): undefined;
 
     return (
         <main>
-            <h1>Форма Опции для Опции Категории</h1>
+            <h1 className="text-center">Форма Опции для Опции Категории</h1>
 
-            <ShapeOptionForm option={option} shapeID={shapeID} />
+            <div className="2xl:w-1/3 mx-auto">
+                <ShapeOptionForm option={option} shapeID={shapeID} />
+            </div>
         </main>
     )
 }

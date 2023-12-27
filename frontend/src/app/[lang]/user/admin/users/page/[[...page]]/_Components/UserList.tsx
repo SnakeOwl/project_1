@@ -31,7 +31,7 @@ export default function UserList({
 
     const [users, setUsers] = useState<IUser[]>();
 
-    useEffect( ()=>{
+    useEffect(() => {
         updateUsersList(setUsers);
     }, []);
 
@@ -42,13 +42,11 @@ export default function UserList({
 
     return (
         <div className="flex flex-wrap">
-            {users.map((user) => {
-                return (
-                    <div className="2xl:w-1/6 px-2" key={user.id}>
-                        <UserCard user={user} />
-                    </div>
-                );
-            })
+            {users.map((user) =>
+                <div className="2xl:w-1/3 px-2" key={user.id}>
+                    <UserCard user={user} />
+                </div>
+            )
             }
         </div>
     )

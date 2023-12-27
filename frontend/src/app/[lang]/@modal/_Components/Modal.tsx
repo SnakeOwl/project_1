@@ -50,7 +50,8 @@ export default function Modal({
         >
             <div
                 ref={wrapper}
-                className={ className + " bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:w-10/12 md:w-8/12 p-6"}
+                className={ className + " rounded-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:w-10/12 md:w-8/12 p-6 \
+                    bg-white dark:bg-gray-900 "}
             >
                 {children}
             </div>

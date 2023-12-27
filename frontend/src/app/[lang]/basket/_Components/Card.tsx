@@ -1,4 +1,5 @@
 import { BlueButtonReversed, RedButton } from "@/_Components/Buttons/ColoredButtons";
+import CardWrapper from "@/_Components/CardWrapper";
 import Img from "@/_Components/Img";
 import { BlueText } from "@/_Components/text/borderedText";
 import axiosClient from "@/axios-client";
@@ -54,7 +55,7 @@ export default function Card({
 
 
     return (
-        <div className="w-full p-2 pb-4 mx-2 xl:w-1/5 ring-1 rounded-lg ring-gray-800">
+        <CardWrapper className="pb-4">
             <div className="mb-2">
                 <Img className="rounded" src={offer.short_image} />
             </div>
@@ -102,6 +103,6 @@ export default function Card({
                     </BlueText>
                 }
             </div>
-        </div>
+        </CardWrapper>
     )
 }

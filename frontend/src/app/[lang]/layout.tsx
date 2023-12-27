@@ -18,17 +18,9 @@ import CookieSection from "./_Components/CookieSection";
 
 const comfortaa = localFont({
     src: [
-        {
-            path: "../../fonts/Comfortaa.ttf",
-        },
+        { path: "../../fonts/Comfortaa.ttf" },
     ],
 });
-
-
-
-export async function generateStaticParams() {
-    return i18n.locales.map((locale) => ({ lang: locale }))
-}
 
 
 export default function RootLayout(props: {
@@ -78,4 +70,9 @@ export default function RootLayout(props: {
             </body>
         </html>
     );
+}
+
+
+export async function generateStaticParams() {
+    return i18n.locales.map((locale) => ({ lang: locale }));
 }

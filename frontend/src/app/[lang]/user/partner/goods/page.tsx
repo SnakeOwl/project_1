@@ -4,14 +4,11 @@ import "server-only"
 import CardList from "./_Components/CardList"
 
 
-interface IProps {
-    params: {lang: Locale}
-}
-
-
 export default async function PartnerGoodsPage({
     params: { lang }
-}: IProps){
+}: {
+    params: {lang: Locale}
+}){
     const dict = await getDictionary(lang)
 
     return (
@@ -29,7 +26,9 @@ export default async function PartnerGoodsPage({
 
 export async function generateMetadata({
     params: { lang },
-}: IProps) {
+}: {
+    params: {lang: Locale}
+}) {
     const dict = await getDictionary(lang);
 
     return {

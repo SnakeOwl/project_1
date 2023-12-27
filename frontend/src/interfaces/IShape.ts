@@ -5,5 +5,5 @@ export default interface IShape {
     name: string
     name_en: string
     
-    options?: IOption[]
+    shape_options?: IOption[]
 }

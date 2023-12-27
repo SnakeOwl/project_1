@@ -1,17 +1,12 @@
 import "server-only"
-import UserList from "./Components/UserList";
-
-
-interface IProps {
-    params: {
-        page?: string
-    }
-}
+import UserList from "./_Components/UserList";
 
 
 export default function UsersPage({
     params: {page}
-}: IProps){
+}: {
+    params: { page?: string }
+}){
 
     
     return (
@@ -19,7 +14,6 @@ export default function UsersPage({
             <h1>Управление пользователями</h1>
 
             <UserList page={page} />
-
         </main>
     )
 }

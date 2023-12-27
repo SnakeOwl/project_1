@@ -4,24 +4,22 @@ import Link from "next/link"
 import ToBusketButton from "@/_Components/Buttons/ToBusketButton"
 import IOffer from "@/interfaces/IOffer"
 import { BlueLink, RedLinkReversed } from "@/_Components/Links/ColoredLinks"
-
-
-interface IProps{
-    dict: any
-    offer: IOffer
-}
+import CardWrapper from "@/_Components/CardWrapper"
 
 
 export default function Card({
-    offer,
-    dict
-}: IProps) {
+    dict,
+    offer
+}: {
+    dict: any
+    offer: IOffer
+}) {
 
     const offerLink = `/offer/${offer.id}`;
 
     return (
-        <div className="p-2 pb-4 ml-1 mb-8 w-full xl:w-1/6 ring-1 rounded-lg ring-gray-800">
-            <div className="h-64 rounded-xl overflow-hidden mb-2">
+        <CardWrapper className="2xl:w-1/6 pb-4">
+            <div className="h-64 rounded-md overflow-hidden mb-2">
                 <Link href={offerLink} className="h-full w-full" >
                     <Img
                         className=" h-full w-full object-cover"
@@ -30,21 +28,21 @@ export default function Card({
                 </Link>
             </div>
 
-            <div className="px-3">
-                <Link href={offerLink} >
-                    <div className="mb-3 h3">
-                        {dict["currentLocale"] === "ru" ?
-                            offer.item?.name
-                            :
-                            offer.item?.name_en
-                        }
-                    </div>
-                </Link>
 
+            <div className="px-3">
+                <Link href={offerLink} className="mb-3 h3">
+                    {dict["currentLocale"] === "ru" ?
+                        offer.item?.name
+                        :
+                        offer.item?.name_en
+                    }
+                </Link>
+                    
                 <div className="flex justify-between mb-2">
                     <span>{dict["price"]}</span>
                     <span>{offer.price}</span>
                 </div>
+
 
                 {offer.count > 0 ?
                     <div className="flex justify-between">
@@ -63,7 +61,7 @@ export default function Card({
                         </RedLinkReversed>
                     </div>
                     :
-                    <BlueLink 
+                    <BlueLink
                         className="w-full py-2 text-center rounded-lg"
                         href={`/subscribe/${offer.id}`}
                     >
@@ -71,6 +69,7 @@ export default function Card({
                     </BlueLink>
                 }
             </div>
-        </div>
+        </CardWrapper>
+
     )
 }

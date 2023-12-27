@@ -38,7 +38,6 @@ export default function SubscribePage({
                 data={data}
                 createMode={true}
                 createURL="one-click-request"
-                updateURL=""
                 setGeneralErrors={setErrors}
                 submitText={dict["one click form submit"]}
             >
