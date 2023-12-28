@@ -6,9 +6,9 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use((config) => {
-    const token = (typeof window !== "undefined") ?
-            window.localStorage.getItem('ACCESS_TOKEN') :
-            "";
+    const token = (typeof window !== "undefined") 
+            ? window.localStorage.getItem('ACCESS_TOKEN') 
+            : "";
     config.headers.Authorization = `Bearer ${token}`;
     return config;
 });

@@ -87,7 +87,7 @@ export default function Options({
 
                             <span>{dict["cl"] === "ru" ? shape.name : shape.name_en}</span>
                             {
-                                shape.options?.map(option => {
+                                shape.shape_options?.map(option => {
                                     return (
 
                                         <div className="relative py-1 mb-1" key={`option-${option.id}`}>

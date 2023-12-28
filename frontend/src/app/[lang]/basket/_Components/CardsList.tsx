@@ -2,8 +2,8 @@
 import IOffer from "@/interfaces/IOffer";
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import Preloader from "@/_Components/Preloader";
 import axiosClient from "@/axios-client";
+import BasketLoader from "./BasketLoader";
 
 
 export default function CardsList({ dict }: { dict: any }) {
@@ -29,7 +29,7 @@ export default function CardsList({ dict }: { dict: any }) {
 
     // заглушка на первичную подгрузку корзины
     if (offers.length === 0)
-        return <Preloader />
+        return <BasketLoader />
 
 
     return (

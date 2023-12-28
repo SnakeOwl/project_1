@@ -49,7 +49,7 @@ export default async function OfferPage({
 
 
     return (
-        <main className="w-full mx-auto xl:w-3/4">
+        <main className="w-full mx-auto xl:w-3/4 px-2">
             <OfferView
                 offer={offer}
                 linksToOffers={linksToOffers}

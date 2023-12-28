@@ -2,6 +2,7 @@ import "server-only"
 import { Locale } from "@/i18n-config";
 import OfferList from "./_Components/OffersList";
 import { getDictionary } from "@/utils/get-dictionary";
+import getCategories from "@/utils/getCategories";
 
 
 interface IProps {
@@ -17,6 +18,7 @@ export default async function CatalogPage({
 }: IProps ) {
     
     const dict = await getDictionary(lang)
+    const categories = await getCategories();
 
     return (
         <div>

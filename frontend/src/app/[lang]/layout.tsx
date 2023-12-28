@@ -22,6 +22,8 @@ const comfortaa = localFont({
     ],
 });
 
+export const revalidate = 3600; // chashe for fetch()
+
 
 export default function RootLayout(props: {
     children: ReactNode,
@@ -63,7 +65,9 @@ export default function RootLayout(props: {
 
 
                         <Suspense fallback={<Loading />}>
-                            {props.children}
+                            <div className="p-4">
+                                {props.children}
+                            </div>
                             {props.modal}
                         </Suspense>
 
@@ -78,6 +82,6 @@ export default function RootLayout(props: {
 }
 
 
-export async function generateStaticParams() {
-    return i18n.locales.map((locale) => ({ lang: locale }));
-}
+// export async function generateStaticParams() {
+//     return i18n.locales.map((locale) => ({ lang: locale }));
+// }

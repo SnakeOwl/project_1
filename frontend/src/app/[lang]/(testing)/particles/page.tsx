@@ -7,6 +7,8 @@ import particlesConfig from "@/config/particles.json"
 export default async function ParticlesPage() {
 
     useEffect(() => {
+        // тормозит из-за движения частиц, на рабочей части сайта выключено
+        particlesConfig.particles.move.enable = true;
 
         // переключение между темами на устройстве
         window.matchMedia('(prefers-color-scheme: dark)')

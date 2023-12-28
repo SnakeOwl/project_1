@@ -14,11 +14,11 @@ Route::prefix("get")->group(function(){
     Route::get("storages", [App\Http\Controllers\Api\Admin\StoragesController::class, "index"]);
     Route::get("storage/{storage}", [App\Http\Controllers\Api\Admin\StoragesController::class, "show"]);
 
-    Route::get("categories", [App\Http\Controllers\Api\Admin\CategoriesController::class, "index"]);
-    Route::get("category/{category}", [App\Http\Controllers\Api\Admin\CategoriesController::class, "show"]);
+    Route::get("categories", [App\Http\Controllers\Api\Resources\CategoriesController::class, "index"]);
+    Route::get("category/{category}", [App\Http\Controllers\Api\Resources\CategoriesController::class, "show"]);
 
-    Route::get("categories", [App\Http\Controllers\Api\Admin\CategoriesController::class, "index"]);
-    Route::get("category/{category}", [App\Http\Controllers\Api\Admin\CategoriesController::class, "show"]);
+    Route::get("categories", [App\Http\Controllers\Api\Resources\CategoriesController::class, "index"]);
+    Route::get("category/{category}", [App\Http\Controllers\Api\Resources\CategoriesController::class, "show"]);
 
     Route::get("categories/{category}/shapes", [App\Http\Controllers\Api\Admin\ShapesController::class, "index"]);
     Route::get("categories/{category}/shapes/{shape}", [App\Http\Controllers\Api\Admin\ShapesController::class, "show"]);
@@ -48,7 +48,6 @@ Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreContr
 
 Route::prefix('catalog')->group(function(){
     Route::get('', App\Http\Controllers\Api\Catalog\IndexController::class);
-    Route::get('get-categories', App\Http\Controllers\Api\Catalog\GetCategoriesController::class);
     Route::get('category/{category}/options', App\Http\Controllers\Api\Catalog\GetCategoryOptionsController::class);
 
     Route::post('oneClickBuy', App\Http\Controllers\Api\Catalog\OneClickBuyStoreController::class);
@@ -84,7 +83,7 @@ Route::middleware('auth:sanctum')->group(function(){
                 "users" => App\Http\Controllers\Api\Admin\UsersController::class,
                 "storages" => App\Http\Controllers\Api\Admin\StoragesController::class,
                 "orders" => App\Http\Controllers\Api\Admin\OrdersController::class,
-                "categories" => App\Http\Controllers\Api\Admin\CategoriesController::class,
+                "categories" => App\Http\Controllers\Api\Resources\CategoriesController::class,
                 "categories.shapes" => App\Http\Controllers\Api\Admin\ShapesController::class,
                 "shapes.options" => App\Http\Controllers\Api\Admin\ShapeOptionsController::class,
                 "messages" => App\Http\Controllers\Api\Admin\MessagesController::class,

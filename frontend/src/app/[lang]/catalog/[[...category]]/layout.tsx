@@ -9,22 +9,23 @@ import ReducerCatalog from "@/context/Catalog/ReducerCatalog";
 import ContextCatalog from "@/context/Catalog/ContextCatalog";
 import MobileMenuArea from "@/_Components/menu/MobileMenuArea";
 
+
 export default function Layout({
-    params,
+    params: {lang, category},
     children
 }: {
     children: React.ReactNode,
     params: {
-        category: [string | undefined],
+        category?: string[],
         lang: Locale
     }
 }) {
 
-    const dictionary = getDictionaryStatic(params.lang);
+    const dictionary = getDictionaryStatic(lang);
 
 
     // определение названия категории, которая приходит через строку браузера
-    const activeCategoryAlias = params.category !== undefined ? params.category[0] : null;
+    const activeCategoryAlias = category !== undefined ? category[0] : null;
 
 
     // переменная для передачи state в reducer

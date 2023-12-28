@@ -13,7 +13,8 @@ export default function BasketLayout({
 
     // ПЕРЕНАПРАВЛЕНИЕ, если у пользователя нет товара в корзине
     useEffect(() => {
-        if (stateUser.bkey == null) {
+        
+        if (localStorage.getItem("bkey") == null) {
             router.push("/catalog");
         }
     }, [stateUser.bkey]);

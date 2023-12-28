@@ -47,7 +47,7 @@ export default function Pagination({
     }
 
 
-    const classes = "text-sm xl:text-base py-1 2xl:px-3 px-2 first:rounded-l-md last:rounded-r-md border border-gray-300";
+    const classes = "text-sm xl:text-base py-1 2xl:px-3 px-2 first:rounded-l-md last:rounded-r-md border border-gray-300 dark:border-gray-700";
 
     return (
         <div className="w-fit flex mx-auto ">
@@ -55,13 +55,13 @@ export default function Pagination({
 
                 links.map(link => {
                     if (link.active === true)
-                        return <button className={`${classes} bg-gray-200`} key={link.label} type="button">{link.label}</button>
+                        return <button className={`${classes} bg-gray-200 dark:bg-gray-900`} key={link.label} type="button">{link.label}</button>
                         
                     
                     return (
                         <button
                             key={link.label}
-                            className={classes}
+                            className={`${classes} dark:hover:bg-gray-800`}
                             onClick={() => handleClick(link.url)}
                         >
                             {link.label}

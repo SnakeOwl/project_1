@@ -1,19 +1,19 @@
 "use client"
 
 import { BlueLinkReversed } from "@/_Components/Links/ColoredLinks";
-import axiosClient from "@/axios-client";
 import ContextCatalog from "@/context/Catalog/ContextCatalog";
 import { useContext, useEffect, useState } from "react";
 import Options from "./Options";
 import { BlueButton } from "@/_Components/Buttons/ColoredButtons";
 import ICategory from "@/interfaces/ICategory";
-import Preloader from "@/_Components/Preloader";
+import getCategories from "@/utils/getCategories";
+import CategoryLoader from "./CategoryLoader";
 
-export default function Categories({
-    dict
-}: {
-    dict: any
-}) {
+
+
+
+
+export default function Categories({ dict}: { dict: any }) {
 
     const { stateCatalog } = useContext(ContextCatalog)
     const { activeCategoryAlias } = stateCatalog;
@@ -21,15 +21,16 @@ export default function Categories({
     const [categories, setCategories] = useState<ICategory[]>();
 
     useEffect(() => {
-        axiosClient.get("catalog/get-categories")
-            .then(({ data }) => {
-                setCategories(data.categories);
-            })
+        const updateCategories = async () =>{
+            const categories = await getCategories();
+            setCategories(categories);
+        }
+        updateCategories();
     }, [activeCategoryAlias])
 
 
     if (categories === undefined)
-        return <Preloader />
+        return <CategoryLoader />
 
     return (
         <div className={"flex flex-col"}>

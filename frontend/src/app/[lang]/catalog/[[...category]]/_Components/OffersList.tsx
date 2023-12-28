@@ -6,6 +6,7 @@ import Pagination from "./Pagination"
 import { useContext, useEffect, useState } from "react";
 import axiosClient from "@/axios-client";
 import ContextCatalog from "@/context/Catalog/ContextCatalog";
+import Loading from "../loading";
 
 
 export default function OfferList({
@@ -34,16 +35,20 @@ export default function OfferList({
     }, []);
 
 
+    //loadnig.tsx подтягивается сам, только если page.tsx это async функция
+    if (offers.data == false)
+        return <Loading />
+
 
     return (
         <>
-            <main className="flex flex-wrap justify-around space-x-1 gap-4 mb-4">
+            <main className="flex flex-wrap justify-around gap-4 mb-4 px-2">
                 { offers.data.map((offer: IOffer) =>
-                        <Card
-                            key={`offer-${offer.id}`}
-                            offer={offer}
-                            dict={dict}
-                        />
+                    <Card
+                        key={`offer-${offer.id}`}
+                        offer={offer}
+                        dict={dict}
+                    />
                     )
                 }
 
