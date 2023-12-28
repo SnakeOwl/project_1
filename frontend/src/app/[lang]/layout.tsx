@@ -14,7 +14,7 @@ import FunctionalOnlyComponent from "./_Components/FunctionalOnlyComponent";
 import Loading from "./loading";
 import { Suspense } from 'react'
 import CookieSection from "./_Components/CookieSection";
-
+import ParticlesWrapper from "./_Components/ParticlesWrapper";
 
 const comfortaa = localFont({
     src: [
@@ -49,26 +49,31 @@ export default function RootLayout(props: {
                 <meta property="og:description" content={dict["og:description"]} />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://nextjs.org" />
+
+                <script src="/libs/particles/particles.js"></script>
+
             </head>
             <body className={`${comfortaa.className} bg-white dark:bg-gray-950 dark:text-gray-300 px-4 xl:px-0`}>
-                
-
-                <ContextUser.Provider value={{ stateUser, dispatchUser }}>
-                    <FunctionalOnlyComponent />
-                    <Header dict={dict} />
 
 
-                    <Suspense fallback={<Loading />}>
-                        {props.children}
-                        {props.modal}
-                    </Suspense>
+                <ParticlesWrapper>
+                    <ContextUser.Provider value={{ stateUser, dispatchUser }}>
+                        <FunctionalOnlyComponent />
+                        <Header dict={dict} />
 
-                </ ContextUser.Provider>
 
-                <Footer dict={dict}/>
-                <CookieSection dict={dict} />
+                        <Suspense fallback={<Loading />}>
+                            {props.children}
+                            {props.modal}
+                        </Suspense>
+
+                    </ ContextUser.Provider>
+
+                    <Footer dict={dict} />
+                    <CookieSection dict={dict} />
+                </ParticlesWrapper>
             </body>
-        </html>
+        </html >
     );
 }
 

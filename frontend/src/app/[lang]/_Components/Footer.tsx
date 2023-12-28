@@ -6,7 +6,7 @@ import PoweredWithBlock from './Footer/PoweredWithBlock';
 
 const Footer = ({dict}: {dict: any}) =>  {
     return (
-        <footer className="text-gray-200 text-center  py-4 px-4 mt-8 w-full bg-gray-950 border-t-2 border-gray-900">
+        <footer className="dark:text-gray-200 text-center  py-4 px-4 mt-8 w-full border-t-2 dark:border-gray-900">
             <div className="flex flex-wrap 2xl:w-3/4 mx-auto">
                 <div className="xl:w-1/3 px-2 mb-3 text-justify ">
                     <h3 className='text-center'><Logo /></h3>
