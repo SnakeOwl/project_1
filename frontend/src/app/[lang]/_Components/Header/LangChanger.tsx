@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import { i18n } from "@/i18n-config"
-import { BlueLinkReversed } from '@/_Components/Links/ColoredLinks'
+import { BlueLinkReversed } from '@/_Components/ColoredLinks'
 
 
 export default function LangChanger({dict}: {dict: any}) {

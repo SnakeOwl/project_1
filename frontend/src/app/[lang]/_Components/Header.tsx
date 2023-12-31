@@ -6,7 +6,7 @@ import LogoutButton from "./Header/LogoutButton";
 import BasketButton from "./Header/BasketButton";
 import { useContext } from "react";
 import ContextUser from "@/context/User/ContextUser";
-import { BlueLink, BlueLinkReversed } from "@/_Components/Links/ColoredLinks";
+import { BlueLink, BlueLinkReversed } from "@/_Components/ColoredLinks";
 
 
 export default function Header({ dict }: {dict: any}) {

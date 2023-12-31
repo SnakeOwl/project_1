@@ -1,5 +1,5 @@
 import { RedButton } from "@/_Components/Buttons/ColoredButtons";
-import { RedLinkReversed } from "@/_Components/Links/ColoredLinks";
+import { RedLinkReversed } from "@/_Components/ColoredLinks";
 import ILinkToOffer from "./ILinkToOffer";
 import IOption from "@/interfaces/IOption";
 

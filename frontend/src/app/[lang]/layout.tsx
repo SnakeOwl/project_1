@@ -4,7 +4,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import Footer from "./_Components/Footer";
 import Header from "./_Components/Header";
-import { Locale, i18n } from '@/i18n-config'
+import { Locale } from '@/i18n-config'
 import getDictionaryStatic from "@/utils/get-dictionary-static";
 import { ReactNode, useReducer } from "react";
 import ReducerUser from "@/context/User/ReducerUser";
@@ -28,17 +28,20 @@ export const revalidate = 3600; // chashe for fetch()
 export default function RootLayout(props: {
     children: ReactNode,
     modal: ReactNode,
+    mod: ReactNode,
     params: {
         lang: Locale
     }
 }) {
 
     const dict = getDictionaryStatic(props.params.lang);
+    
     // todo: глянуть как делают Контексты на TS
     const updatedStateUser: UserContextType = {
         token: undefined,
         bkey: undefined
     };
+
 
 
     const [stateUser, dispatchUser] = useReducer(ReducerUser, updatedStateUser);
@@ -68,9 +71,7 @@ export default function RootLayout(props: {
                             <div className="p-4">
                                 {props.children}
                             </div>
-                            {props.modal}
                         </Suspense>
-
                     </ ContextUser.Provider>
 
                     <Footer dict={dict} />

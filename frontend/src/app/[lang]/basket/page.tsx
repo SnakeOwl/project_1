@@ -1,6 +1,6 @@
 import "server-only"
 import CardsList from "./_Components/CardsList";
-import { RedLink } from "@/_Components/Links/ColoredLinks";
+import { RedLink } from "@/_Components/ColoredLinks";
 import { Locale } from "@/i18n-config";
 import { getDictionary } from "@/utils/get-dictionary";
 

@@ -1,5 +1,5 @@
-import { RedButton, RedButtonReversed } from "@/_Components/Buttons/ColoredButtons";
-import { BlueLink, BlueLinkReversed } from "@/_Components/Links/ColoredLinks";
+import { RedButtonReversed } from "@/_Components/Buttons/ColoredButtons";
+import { BlueLink, BlueLinkReversed } from "@/_Components/ColoredLinks";
 import axiosClient from "@/axios-client";
 import IItem from "@/interfaces/IItem";
 

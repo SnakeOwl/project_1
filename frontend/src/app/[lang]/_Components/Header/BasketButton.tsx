@@ -1,4 +1,4 @@
-import { RedLink } from "@/_Components/Links/ColoredLinks";
+import { RedLink } from "@/_Components/ColoredLinks";
 
 
 export default function BasketButton() {

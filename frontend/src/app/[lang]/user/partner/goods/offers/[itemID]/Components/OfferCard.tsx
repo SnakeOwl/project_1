@@ -1,6 +1,6 @@
 "use client"
 import { RedButtonReversed } from "@/_Components/Buttons/ColoredButtons"
-import { BlueLinkReversed } from "@/_Components/Links/ColoredLinks"
+import { BlueLinkReversed } from "@/_Components/ColoredLinks"
 import { RedText } from "@/_Components/text/borderedText"
 import axiosClient from "@/axios-client"
 import IOffer from "@/interfaces/IOffer"

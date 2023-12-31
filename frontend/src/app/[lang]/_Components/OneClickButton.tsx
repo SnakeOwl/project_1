@@ -1,39 +1,44 @@
-"use client"
-import { Locale } from "@/i18n-config"
-import Modal from "../../_Components/Modal"
-import { Input } from "@/_Components/Inputs/Input"
+import { RedButtonReversed } from "@/_Components/Buttons/ColoredButtons";
+import FormWrapper from "@/_Components/FormWrapper";
+import { Input } from "@/_Components/Inputs/Input";
+import Modal from "@/_Components/Modal";
 import { useState } from "react"
-import FormWrapper from "@/_Components/FormWrapper"
-import getDictionaryStatic from "@/utils/get-dictionary-static"
 
+export default function OneClickButton({ dict, offerID }
+    : { dict: any, offerID: string }) {
 
-interface IPost {
-    offer_id: string
-    phone: string
-    name: string
-}
+    const [hidden, setHidden] = useState<boolean>(true);
 
-
-export default function SubscribePage({
-    params: { lang, offerID }
-}: {
-    params: {
-        lang: Locale
-        offerID: string
-    }
-}) {
-    const dict = getDictionaryStatic(lang);
-    const [data, setData] = useState<IPost>({
+    const [data, setData] = useState<{
+        offer_id: string
+        phone: string
+        name: string
+    }>({
         offer_id: offerID,
         phone: "",
         name: ""
     });
 
+
     const [errors, setErrors] = useState<any>();
 
-    dict["subscribe text"];
+
+    if (hidden)
+        return (
+            <RedButtonReversed
+                className={"py-2 px-3 rounded-md"}
+                onClick={() => setHidden(false)}
+            >
+                <i className="bi bi-hand-index-thumb"></i>
+            </RedButtonReversed>
+        )
+
+
     return (
-        <Modal className="2xl:w-1/4 w-full">
+        <Modal
+            className="w-full 2xl:w-1/4"
+            onClickWrapper={() => setHidden(true)}
+        >
             <FormWrapper
                 data={data}
                 createMode={true}
@@ -41,8 +46,6 @@ export default function SubscribePage({
                 setGeneralErrors={setErrors}
                 submitText={dict["one click form submit"]}
             >
-                <p className="text-center mb-2">{dict["one click form text"]}</p>
-
                 <Input
                     id="name"
                     onChange={e => { setData({ ...data, name: e.target.value }) }}

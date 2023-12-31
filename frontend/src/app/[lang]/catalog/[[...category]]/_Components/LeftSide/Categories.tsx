@@ -1,6 +1,6 @@
 "use client"
 
-import { BlueLinkReversed } from "@/_Components/Links/ColoredLinks";
+import { BlueLinkReversed } from "@/_Components/ColoredLinks";
 import ContextCatalog from "@/context/Catalog/ContextCatalog";
 import { useContext, useEffect, useState } from "react";
 import Options from "./Options";

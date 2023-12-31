@@ -1,11 +1,19 @@
 import Link from "next/link"
 
+
+interface IProps extends React.InputHTMLAttributes<HTMLAnchorElement> {
+    className?: string
+    children: string | React.ReactNode
+    href: string
+}
+
+
 export function BlueLink({
     children,
-    className = "",
     href,
-    target = "_self"
-}) {
+    className = "",
+    ...other
+}: IProps) {
     return (
         <Link
             className={" \
@@ -17,18 +25,20 @@ export function BlueLink({
             duration-300 \
              " + className}
             href={href}
-            target={target}
+            {...other}
         >
             {children}
         </Link>
     )
 }
+
+
 export function BlueLinkReversed({
     children,
-    className = "",
     href,
-    target = "_self"
-}) {
+    className = "",
+    ...other
+}: IProps) {
     return (
         <Link
             className={" \
@@ -39,7 +49,7 @@ export function BlueLinkReversed({
             duration-300 \
              " + className}
             href={href}
-            target={target}
+            {...other}
         >
             {children}
         </Link>
@@ -49,10 +59,10 @@ export function BlueLinkReversed({
 
 export function RedLink({
     children,
-    className = "",
     href,
-    target = "_self"
-}) {
+    className = "",
+    ...other
+}: IProps) {
     return (
         <Link
             className={" \
@@ -64,18 +74,21 @@ export function RedLink({
             duration-300 \
              " + className}
             href={href}
-            target={target}
+            {...other}
         >
             {children}
         </Link>
     )
 }
+
+
+
 export function RedLinkReversed({
     children,
-    className = "",
     href,
-    target = "_self"
-}) {
+    className = "",
+    ...other
+}: IProps) {
     return (
         <Link
             className={" \
@@ -86,7 +99,8 @@ export function RedLinkReversed({
             duration-300 \
              " + className}
             href={href}
-            target={target}
+            {...other}
+
         >
             {children}
         </Link>

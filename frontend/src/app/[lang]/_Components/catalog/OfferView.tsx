@@ -4,7 +4,8 @@ import ToBusketButton from "@/_Components/Buttons/ToBusketButton";
 import ILinkToOffer from "./ILinkToOffer";
 import Img from "@/_Components/Img";
 import Galery from "./Galery";
-import { BlueLink } from "@/_Components/Links/ColoredLinks";
+import { BlueLink } from "@/_Components/ColoredLinks";
+import SubscribeModule from "../SubscribeModule";
 
 interface IProps {
     offer: IOffer
@@ -53,12 +54,7 @@ export default function OfferView({
                         :
 
                         <div className="w-full 2xl:w-1/3 mx-auto">
-                            <BlueLink 
-                                className="w-full text-center py-2 rounded-lg" 
-                                href={`/subscribe/${offer.id}`}
-                                >
-                                {dict["subscribe"]}
-                            </BlueLink>
+                            <SubscribeModule dict={dict} offerID={offer.id} />
                         </div>
                     }
                 </div>
@@ -117,12 +113,7 @@ export default function OfferView({
                 :
                 <div className="w-full flex justify-center">
                     <div className="w-full 2xl:w-1/5 ">
-                        <BlueLink 
-                            className="w-full text-center py-2 rounded-lg"
-                            href={`/subscribe/${offer.id}`}
-                        >
-                            {dict["subscribe"]}
-                        </BlueLink>
+                        <SubscribeModule dict={dict} offerID={offer.id} />
                     </div>
                 </div>
             }

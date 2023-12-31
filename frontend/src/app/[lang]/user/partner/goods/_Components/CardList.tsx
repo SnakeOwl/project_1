@@ -1,6 +1,6 @@
 "use client"
 
-import { BlueLink } from "@/_Components/Links/ColoredLinks";
+import { BlueLink } from "@/_Components/ColoredLinks";
 import axiosClient from "@/axios-client";
 import IItem from "@/interfaces/IItem";
 import { useEffect, useState } from "react";

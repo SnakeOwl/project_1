@@ -1,10 +1,9 @@
 "use client"
-import { Locale } from "@/i18n-config"
-import Modal from "../../_Components/Modal"
-import { Input } from "@/_Components/Inputs/Input"
-import { useState } from "react"
-import FormWrapper from "@/_Components/FormWrapper"
-import getDictionaryStatic from "@/utils/get-dictionary-static"
+import { BlueButton } from "@/_Components/Buttons/ColoredButtons";
+import FormWrapper from "@/_Components/FormWrapper";
+import { Input } from "@/_Components/Inputs/Input";
+import Modal from "@/_Components/Modal";
+import { useState } from "react";
 
 
 interface IPost {
@@ -13,34 +12,42 @@ interface IPost {
 }
 
 
-export default function SubscribePage({
-    params: { lang, offerID }
-}: {
-    params: {
-        lang: Locale
-        offerID: string
-    }
-}) {
-    const dict = getDictionaryStatic(lang);
+export default function SubscribeModule({ dict, offerID }
+    : { dict: any, offerID: string }) {
+    
+    const [hidden, setHidden] = useState<boolean>(true);
+
     const [data, setData] = useState<IPost>({
         offer_id: offerID,
         email: ""
     });
 
-    const [errors, setErrors] = useState()
+    const [errors, setErrors] = useState<any>();
 
-    dict["subscribe text"];
+
+    if (hidden)
+        return (
+            <BlueButton
+                className="w-full py-2 text-center rounded-lg"
+                onClick={()=>setHidden(false)}
+            >
+                {dict["subscribe"]}
+            </BlueButton>
+        )
+
+
     return (
-        <Modal className="w-full 2xl:w-1/4">
+        <Modal 
+            className="w-full 2xl:w-1/4"
+            onClickWrapper={()=>setHidden(true)}
+        >
             <FormWrapper
                 data={data}
                 createMode={true}
                 createURL="subscribe"
-                updateURL=""
                 setGeneralErrors={setErrors}
                 submitText={<i className="bi bi-envelope-check-fill"></i>}
             >
-
                 <Input
                     id="email"
                     type="email"
@@ -50,6 +57,7 @@ export default function SubscribePage({
                     placeholder="WalterWhite@gmail.com"
                     className="mb-2"
                     required
+                    error={errors?.email || undefined}
                 />
                 <p className="text-center mb-2">{dict["subscribe text"]}</p>
             </FormWrapper>

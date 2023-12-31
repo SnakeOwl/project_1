@@ -1,4 +1,4 @@
-import { BlueLink } from "@/_Components/Links/ColoredLinks";
+import { BlueLink } from "@/_Components/ColoredLinks";
 import IOffer from "@/interfaces/IOffer";
 import OfferCard from "./OfferCard";
 

@@ -20,6 +20,7 @@ interface IProps {
     // callback after success result.
     successCallback?: Function
 
+    onClick?: React.MouseEventHandler<HTMLFormElement>
 }
 
 export default function FormWrapper({
@@ -34,7 +35,10 @@ export default function FormWrapper({
 
     setGeneralErrors,
 
-    successCallback
+    successCallback,
+    onClick=()=>{},
+
+    ...other
 }: IProps) {
 
     // данные для визуализации формы
@@ -86,7 +90,9 @@ export default function FormWrapper({
 
 
     return (
-        <form onSubmit={hundleSubmit}>
+        <form 
+            onSubmit={hundleSubmit} {...other} 
+        >
                 {side.errMessage !== undefined &&
                     <RedText className="mb-4">
                         {side.errMessage}

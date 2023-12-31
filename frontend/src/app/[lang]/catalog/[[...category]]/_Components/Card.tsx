@@ -1,9 +1,11 @@
 import Img from "@/_Components/Img"
-import Link from "next/link"
+import Link from 'next/link'
 import ToBusketButton from "@/_Components/Buttons/ToBusketButton"
 import IOffer from "@/interfaces/IOffer"
-import { BlueLink, RedLinkReversed } from "@/_Components/Links/ColoredLinks"
+import { BlueLink, RedLinkReversed } from "@/_Components/ColoredLinks"
 import CardWrapper from "@/_Components/CardWrapper"
+import SubscribeModule from "@/app/[lang]/_Components/SubscribeModule"
+import OneClickButton from "@/app/[lang]/_Components/OneClickButton"
 
 
 export default function Card({
@@ -52,20 +54,10 @@ export default function Card({
                             {dict["to basket"]}
                         </ToBusketButton>
 
-                        <RedLinkReversed
-                            className={"py-2 px-3 rounded-md"}
-                            href={`/one-click-form/${offer.id}`}
-                        >
-                            <i className="bi bi-hand-index-thumb"></i>
-                        </RedLinkReversed>
+                        <OneClickButton dict={dict} offerID={offer.id} />
                     </div>
                     :
-                    <BlueLink
-                        className="w-full py-2 text-center rounded-lg"
-                        href={`/subscribe/${offer.id}`}
-                    >
-                        {dict["subscribe"]}
-                    </BlueLink>
+                    <SubscribeModule dict={dict} offerID={offer.id} />
                 }
             </div>
         </CardWrapper>
