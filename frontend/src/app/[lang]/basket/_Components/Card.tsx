@@ -9,18 +9,15 @@ import Link from "next/link";
 import { useContext } from "react";
 
 
-interface IProps {
-    offer: IOffer,
-    updateOffers: Function,
-    dict: any
-}
-
-
 export default function Card({
     offer,
     updateOffers,
     dict
-}: IProps) {
+}: {
+    offer: IOffer,
+    updateOffers: Function,
+    dict: any
+}) {
 
     const { dispatchUser } = useContext(ContextUser);
 
@@ -57,7 +54,7 @@ export default function Card({
     return (
         <CardWrapper className="pb-4">
             <div className="mb-2">
-                <Img className="rounded" src={offer.short_image} />
+                <Img className="rounded h-full w-full object-cover" src={offer.short_image} />
             </div>
 
             <div className="px-4">

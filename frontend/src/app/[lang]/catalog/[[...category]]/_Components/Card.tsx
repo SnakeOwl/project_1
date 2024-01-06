@@ -2,7 +2,6 @@ import Img from "@/_Components/Img"
 import Link from 'next/link'
 import ToBusketButton from "@/_Components/Buttons/ToBusketButton"
 import IOffer from "@/interfaces/IOffer"
-import { BlueLink, RedLinkReversed } from "@/_Components/ColoredLinks"
 import CardWrapper from "@/_Components/CardWrapper"
 import SubscribeModule from "@/app/[lang]/_Components/SubscribeModule"
 import OneClickButton from "@/app/[lang]/_Components/OneClickButton"
@@ -61,6 +60,5 @@ export default function Card({
                 }
             </div>
         </CardWrapper>
-
     )
 }

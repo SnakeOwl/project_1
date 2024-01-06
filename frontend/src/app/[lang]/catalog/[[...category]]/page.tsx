@@ -38,3 +38,5 @@ export async function generateMetadata({
         title: dict["catalog"],
     }
 }
+
+

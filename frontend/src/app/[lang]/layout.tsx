@@ -12,12 +12,11 @@ import UserProvider from "./_Components/UserProvider";
 import Loading from "./loading";
 import Header from "./_Components/Header";
 import FunctionalOnlyComponent from "./_Components/FunctionalOnlyComponent";
+import {Comfortaa} from "next/font/google"
 
-
-const comfortaa = localFont({
-    src: [
-        { path: "../../fonts/Comfortaa.ttf" },
-    ],
+const comfortaa = Comfortaa({
+    subsets: ["latin", "cyrillic"],
+    weight: ["300", "400", "500"]
 });
 
 export const revalidate = 3600; // chashe for fetch(), time in seconds
@@ -32,7 +31,7 @@ export default async function RootLayout(props: {
     }
 }) {
     const dict = await getDictionary(props.params.lang);
-// console.log(i18n.locales.map((locale) => ({ lang: locale })))   // [ { lang: 'en' }, { lang: 'ru' } ]
+
     return (
         <html lang={props.params.lang}>
             <head>
@@ -65,5 +64,6 @@ export default async function RootLayout(props: {
 
 
 export async function generateStaticParams() {
+    // [ { lang: 'en' }, { lang: 'ru' } ]
     return i18n.locales.map((locale) => ({ lang: locale }));
 }

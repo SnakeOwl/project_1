@@ -33,10 +33,9 @@ export default function CardsList({ dict }: { dict: any }) {
 
 
     return (
-        <div className="flex justify-around">
+        <div className="flex justify-around flex-wrap gap-4">
             {
-                offers.map(offer =>
-                    <Card
+                offers.map(offer => <Card
                         key={offer.id}
                         offer={offer}
                         updateOffers={updateOffers}
