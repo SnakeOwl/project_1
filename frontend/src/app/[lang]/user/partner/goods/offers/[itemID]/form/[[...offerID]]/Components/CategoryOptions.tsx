@@ -43,7 +43,7 @@ export default function CategoryOptions({
                                     {dict["cl"] == "ru"? shape.name: shape.name_en  }
                                 </div>
 
-                                {shape.options?.map(option=>{
+                                {shape.shape_options?.map(option=>{
                                     return (
                                     <div className="mb-2" key={option.id}>
                                         <Checkbox 

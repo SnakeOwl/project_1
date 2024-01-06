@@ -1,20 +1,18 @@
-"use client"
+import "server-only"
 import "./globals.css";
 
 import localFont from "next/font/local";
 import Footer from "./_Components/Footer";
-import Header from "./_Components/Header";
-import { Locale } from '@/i18n-config'
-import getDictionaryStatic from "@/utils/get-dictionary-static";
-import { ReactNode, useReducer } from "react";
-import ReducerUser from "@/context/User/ReducerUser";
-import ContextUser from "@/context/User/ContextUser";
-import UserContextType from "@/context/User/UserContextType";
-import FunctionalOnlyComponent from "./_Components/FunctionalOnlyComponent";
-import Loading from "./loading";
-import { Suspense } from 'react'
+import { Locale, i18n } from '@/i18n-config'
+import { ReactNode, Suspense } from "react";
 import CookieSection from "./_Components/CookieSection";
 import ParticlesWrapper from "./_Components/ParticlesWrapper";
+import { getDictionary } from "@/utils/get-dictionary";
+import UserProvider from "./_Components/UserProvider";
+import Loading from "./loading";
+import Header from "./_Components/Header";
+import FunctionalOnlyComponent from "./_Components/FunctionalOnlyComponent";
+
 
 const comfortaa = localFont({
     src: [
@@ -22,10 +20,10 @@ const comfortaa = localFont({
     ],
 });
 
-export const revalidate = 3600; // chashe for fetch()
+export const revalidate = 3600; // chashe for fetch(), time in seconds
 
 
-export default function RootLayout(props: {
+export default async function RootLayout(props: {
     children: ReactNode,
     modal: ReactNode,
     mod: ReactNode,
@@ -33,20 +31,8 @@ export default function RootLayout(props: {
         lang: Locale
     }
 }) {
-
-    const dict = getDictionaryStatic(props.params.lang);
-    
-    // todo: глянуть как делают Контексты на TS
-    const updatedStateUser: UserContextType = {
-        token: undefined,
-        bkey: undefined
-    };
-
-
-
-    const [stateUser, dispatchUser] = useReducer(ReducerUser, updatedStateUser);
-
-    // todo: придумать как можно обойтись без этих двух контекстов, чтобы перенести этот код на серверную часть.
+    const dict = await getDictionary(props.params.lang);
+// console.log(i18n.locales.map((locale) => ({ lang: locale })))   // [ { lang: 'en' }, { lang: 'ru' } ]
     return (
         <html lang={props.params.lang}>
             <head>
@@ -54,15 +40,10 @@ export default function RootLayout(props: {
                 <meta property="og:description" content={dict["og:description"]} />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://nextjs.org" />
-
-                <script src="/libs/particles/particles.js"></script>
-
             </head>
             <body className={`${comfortaa.className} bg-white dark:bg-gray-950 dark:text-gray-300 px-4 xl:px-0`}>
-
-
                 <ParticlesWrapper>
-                    <ContextUser.Provider value={{ stateUser, dispatchUser }}>
+                    <UserProvider>
                         <FunctionalOnlyComponent />
                         <Header dict={dict} />
 
@@ -72,7 +53,7 @@ export default function RootLayout(props: {
                                 {props.children}
                             </div>
                         </Suspense>
-                    </ ContextUser.Provider>
+                    </UserProvider>
 
                     <Footer dict={dict} />
                     <CookieSection dict={dict} />
@@ -83,6 +64,6 @@ export default function RootLayout(props: {
 }
 
 
-// export async function generateStaticParams() {
-//     return i18n.locales.map((locale) => ({ lang: locale }));
-// }
+export async function generateStaticParams() {
+    return i18n.locales.map((locale) => ({ lang: locale }));
+}

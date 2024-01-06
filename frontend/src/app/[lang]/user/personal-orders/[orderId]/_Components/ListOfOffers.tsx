@@ -34,7 +34,7 @@ export default function ListOfOffers({
                                         </Link>
                                     </td>
                                     <td className="p-4">
-                                        {dictionary["cl"] === "ru" ? offer.item.name : offer.item.name_en}
+                                        {dictionary["cl"] === "ru" ? offer.item?.name : offer.item?.name_en}
                                     </td>
                                     <td className="p-4">
                                         {offer.pivot?.count}

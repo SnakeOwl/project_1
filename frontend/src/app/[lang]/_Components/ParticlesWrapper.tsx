@@ -1,12 +1,11 @@
 "use client"
 import particlesConfig from "@/config/particles.json"
 import { useEffect } from "react";
-
+import particlesJS from "@/libs/particles_module"
 
 // Чёт эта библиотека требовательная к ресурсам. От неё даже комп начинает гудеть.
-// todo: придумать другое решение для развлечения пользователей
-// Либа такая тяжёлая, что с включенным движением частиц, даже анимация кнопок тормозит.
-export default function ParticlesWrapper (props: {children: React.ReactNode}){
+// lib такая тяжёлая, что с включенным движением частиц, даже анимация кнопок тормозит.
+export default function ParticlesWrapper(props: { children: React.ReactNode }) {
 
     useEffect(() => {
         // переключение между темами на устройстве
@@ -20,7 +19,7 @@ export default function ParticlesWrapper (props: {children: React.ReactNode}){
                     particlesConfig.particles.color.value = "#000"
                     particlesConfig.particles.line_linked.color = "#000";
                 }
-                window.particlesJS.load('particles-js', particlesConfig);
+                particlesJS('particles-js', particlesConfig);
             })
 
 
@@ -29,18 +28,16 @@ export default function ParticlesWrapper (props: {children: React.ReactNode}){
             particlesConfig.particles.color.value = "#000"
             particlesConfig.particles.line_linked.color = "#000";
         }
-        window.particlesJS.load('particles-js', particlesConfig);
+        particlesJS('particles-js', particlesConfig);
 
     }, [])
 
     return (
         <>
             <div className="fixed top-0 w-full h-full z-10" id="particles-js"></div>
-                <div className="absolute left-0 top-0 right-0 bottom-0 z-20 w-full">
+            <div className="absolute left-0 top-0 right-0 bottom-0 z-20 w-full">
                 {props.children}
-
-                </div>
+            </div>
         </>
-
     )
 }

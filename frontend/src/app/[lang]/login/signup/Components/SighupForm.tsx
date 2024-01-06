@@ -3,7 +3,7 @@
 import { useContext, useState } from "react"
 import axiosClient from "@/axios-client";
 import { BlueButton } from "@/_Components/Buttons/ColoredButtons";
-import { Input } from "@/_Components/Inputs/Inputs";
+import { Input } from "@/_Components/Inputs/Input";
 import ContextUser from "@/context/User/ContextUser";
 import ReCaptchaGoogleV3 from "@/_Components/recaptches/ReCaptchaGoogleV3";
 
@@ -146,7 +146,7 @@ export default function SighupForm({
 
                 <Input
                     id="name"
-                    labelText={dictionary["name"]}
+                    label={dictionary["name"]}
                     value={data.name}
                     className={"mb-8"}
 
@@ -159,7 +159,7 @@ export default function SighupForm({
                 <Input
                     id="email"
                     type="email"
-                    labelText={dictionary["email"]}
+                    label={dictionary["email"]}
                     value={data.email}
 
                     className={"mb-8"}
@@ -173,7 +173,7 @@ export default function SighupForm({
                 <Input
                     id="password"
                     type="password"
-                    labelText={dictionary["password"]}
+                    label={dictionary["password"]}
                     value={data.password}
 
                     className={"mb-8"}
@@ -181,13 +181,13 @@ export default function SighupForm({
                     error={side.errors.password}
                     required
 
-                    minLength="8"
+                    minLength={8}
                 />
 
                 <Input
                     id="password_confirmation"
                     type="password"
-                    labelText={dictionary["confirm password"]}
+                    label={dictionary["confirm password"]}
                     value={data.password_confirmation}
 
                     className={"mb-8"}

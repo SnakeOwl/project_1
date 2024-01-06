@@ -18,9 +18,8 @@ interface IProps {
     setGeneralErrors: Function 
 
     // callback after success result.
+    // (data)=>{}
     successCallback?: Function
-
-    onClick?: React.MouseEventHandler<HTMLFormElement>
 }
 
 export default function FormWrapper({
@@ -36,7 +35,6 @@ export default function FormWrapper({
     setGeneralErrors,
 
     successCallback,
-    onClick=()=>{},
 
     ...other
 }: IProps) {
@@ -60,11 +58,11 @@ export default function FormWrapper({
         }
 
         Promise.resolve(request)
-            .then(() => {
+            .then(({data}) => {
                 setSide({ errMessage: undefined, success: true });
 
                 if (successCallback !== undefined)
-                    successCallback();
+                    successCallback(data);
             })
             .catch(error => {
                 // если нет респонса, значит нет ответа от сервера

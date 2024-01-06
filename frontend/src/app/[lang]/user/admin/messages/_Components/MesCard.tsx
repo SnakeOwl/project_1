@@ -1,3 +1,4 @@
+"use client"
 import { BlueButton } from "@/_Components/Buttons/ColoredButtons";
 import { GreenText } from "@/_Components/text/borderedText";
 import axiosClient from "@/axios-client";
@@ -5,11 +6,7 @@ import IMessage from "@/interfaces/IMessage";
 import { useState } from "react";
 
 
-interface IProps {
-    mes: IMessage
-}
-
-export default function MesCard({mes}: IProps){
+export default function MesCard({mes}: { mes: IMessage }){
     const [hasread, setHasread] = useState<boolean>(false);
 
     function deleteMessage(){

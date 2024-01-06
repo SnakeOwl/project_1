@@ -1,16 +1,13 @@
 "use client"
 import { BlueButtonReversed, RedButtonReversed } from "@/_Components/Buttons/ColoredButtons";
 import { Input } from "@/_Components/Inputs/Input";
-import IParameter from "@/interfaces/IParameter";
 
 
-
-
-
-interface IParams {
-    parameters: IParameter[]
-    setParameters: Function
-    dict: any
+interface INewParameter {
+    param_name: string
+    param_name_en: string
+    param_value: string
+    param_value_en: string
 }
 
 
@@ -18,7 +15,11 @@ export default function Parameters({
     parameters,
     setParameters,
     dict
-}: IParams) {
+}: {
+    parameters: INewParameter[]
+    setParameters: Function
+    dict: any
+}) {
 
     function addParameter() {
         parameters.push({
@@ -36,7 +37,7 @@ export default function Parameters({
 
         setParameters(parameters);
     }
-    
+
     function updateParameter(e: React.ChangeEvent<HTMLInputElement>, index: number) {
         parameters[index] = {
             ...parameters[index],
@@ -68,7 +69,7 @@ export default function Parameters({
                                 id={"param_name"}
                                 value={par.param_name}
                                 label={dict["parameters field name"]}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{updateParameter(e, i)}}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i) }}
                                 className="mb-1"
                             />
 
@@ -76,7 +77,7 @@ export default function Parameters({
                                 id={"param_name_en"}
                                 value={par.param_name_en}
                                 label={dict["parameters field name en"]}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{updateParameter(e, i)}}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i) }}
                                 className="mb-1"
                             />
 
@@ -84,7 +85,7 @@ export default function Parameters({
                                 id={"param_value"}
                                 value={par.param_value}
                                 label={dict["parameters field value"]}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{updateParameter(e, i)}}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i) }}
                                 className="mb-1"
                             />
 
@@ -92,7 +93,7 @@ export default function Parameters({
                                 id={"param_value_en"}
                                 value={par.param_value_en}
                                 label={dict["parameters field value en"]}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{updateParameter(e, i)}}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i) }}
                                 className="mb-4"
                             />
 

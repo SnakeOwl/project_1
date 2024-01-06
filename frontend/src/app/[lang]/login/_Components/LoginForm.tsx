@@ -8,16 +8,15 @@ import { useContext, useState } from "react";
 import ReCaptchaGoogleV3 from "@/_Components/recaptches/ReCaptchaGoogleV3"
 
 
-interface IProps {
-    dict: any
-}
+
+export default function LoginForm({ dict }
+: { dict: any }) {
+
+  
+    const [CaptchaIsVerified, setCaptchaIsVerified] = useState<boolean>(false);
 
 
-export default function LoginForm({
-    dict
-}: IProps) {
 
-    const [CaptchaIsVerified, setCaptchaIsVerified] = useState(false);
 
 
     // form's data
@@ -103,18 +102,20 @@ export default function LoginForm({
     }
 
 
+
+
     // debug function
-    function fillAsPartner(){
+    function fillAsPartner() {
         setData({
-            email:"SuperPartner@email.com",
-            password:"SuperPartner",
+            email: "SuperPartner@email.com",
+            password: "SuperPartner",
         });
     }
 
-    function fillAsAdmin(){
+    function fillAsAdmin() {
         setData({
-            email:"administrator@email.com",
-            password:"administrator",
+            email: "administrator@email.com",
+            password: "administrator",
         });
     }
 
@@ -164,17 +165,17 @@ export default function LoginForm({
                 </BlueButton>
             }
 
-            <PurpleButtonReversed 
-                onClick={fillAsPartner} 
+            <PurpleButtonReversed
+                onClick={fillAsPartner}
                 className="w-full py-2 mt-4 rounded-lg"
-                >
+            >
                 fill as partner
             </PurpleButtonReversed>
 
-            <PurpleButtonReversed 
-                onClick={fillAsAdmin} 
+            <PurpleButtonReversed
+                onClick={fillAsAdmin}
                 className="w-full py-2 mt-4 rounded-lg"
-                >
+            >
                 fill as Admin
             </PurpleButtonReversed>
         </form>

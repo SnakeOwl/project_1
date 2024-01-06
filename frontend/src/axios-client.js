@@ -1,6 +1,8 @@
 import axios from "axios";
 import apiRoutes from "./config/API_routes.json"
 
+
+// todo: в доках к nextjs сказано что fetch содержит кеш данных. Чекнуть, аксиос тоже считается как fetch или там свой алгоритм
 const axiosClient = axios.create({
     baseURL: `${apiRoutes.BASE_URL}/api`
 });

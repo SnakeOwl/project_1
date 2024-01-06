@@ -14,15 +14,15 @@ interface IProps {
 
 
 export default async function CatalogPage({
-    params:{ category, lang }
-}: IProps ) {
-    
+    params: { category, lang }
+}: IProps) {
+
     const dict = await getDictionary(lang)
     const categories = await getCategories();
 
     return (
         <div>
-            <OfferList dict={dict} category={category}  />
+            <OfferList dict={dict} category={category} />
         </div>
     );
 }
@@ -31,7 +31,7 @@ export default async function CatalogPage({
 // metadata. server only!
 export async function generateMetadata({
     params: { lang },
-}: IProps ) {
+}: IProps) {
     const dict = await getDictionary(lang)
 
     return {

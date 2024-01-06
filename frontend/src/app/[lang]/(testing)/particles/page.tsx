@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import particlesConfig from "@/config/particles.json"
+import particlesJS from "@/libs/particles_module"
 
 
 export default async function ParticlesPage() {
@@ -21,7 +22,7 @@ export default async function ParticlesPage() {
                     particlesConfig.particles.color.value = "#000"
                     particlesConfig.particles.line_linked.color = "#000";
                 }
-                window.particlesJS.load('particles-js', particlesConfig);
+                particlesJS('particles-js', particlesConfig);
             })
 
 
@@ -30,12 +31,11 @@ export default async function ParticlesPage() {
             particlesConfig.particles.color.value = "#000"
             particlesConfig.particles.line_linked.color = "#000";
         }
-        window.particlesJS.load('particles-js', particlesConfig);
+        particlesJS('particles-js', particlesConfig);
 
     }, [])
     return (
         <main>
-
             <div className="absolute top-0 right-0 left-0 bottom-0 " id="particles-js"></div>
         </main>
     )

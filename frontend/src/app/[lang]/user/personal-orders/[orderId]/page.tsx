@@ -1,6 +1,6 @@
 import { getDictionary } from "@/utils/get-dictionary";
 import { Locale } from "@/i18n-config";
-import OrderInformation from "./Components/OrderInformation";
+import OrderInformation from "./_Components/OrderInformation";
 
 
 
