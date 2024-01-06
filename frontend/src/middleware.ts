@@ -20,9 +20,11 @@ function getLocale(request: NextRequest): string | undefined {
     // но не могу понять в каком месте этот хеадер устанавливается
     // работает только с английским языком, а это костыль.
     // можно узнать с какого пути перешел пользователь, из этого пути и вырезаю локаль.
-    const loca = negotiatorHeaders["next-url"].substr(1,2);
-    if (locales.indexOf(loca) !== -1){
-        negotiatorHeaders["accept-language"] = loca;
+    if (typeof negotiatorHeaders["next-url"] !== "undefined"){
+        const loca = negotiatorHeaders["next-url"].substr(1,2);
+        if (locales.indexOf(loca) !== -1){
+            negotiatorHeaders["accept-language"] = loca;
+        }
     }
     
 
