@@ -1,7 +1,6 @@
 import "server-only"
 import "./globals.css";
 
-import localFont from "next/font/local";
 import Footer from "./_Components/Footer";
 import { Locale, i18n } from '@/i18n-config'
 import { ReactNode, Suspense } from "react";
@@ -31,6 +30,7 @@ export default async function RootLayout(props: {
     }
 }) {
     const dict = await getDictionary(props.params.lang);
+
 
     return (
         <html lang={props.params.lang}>

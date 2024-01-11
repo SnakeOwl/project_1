@@ -4,19 +4,16 @@ import ToBusketButton from "@/_Components/Buttons/ToBusketButton";
 import ILinkToOffer from "./ILinkToOffer";
 import Img from "@/_Components/Img";
 import Galery from "./Galery";
-import { BlueLink } from "@/_Components/ColoredLinks";
-import SubscribeModule from "../SubscribeModule";
-
-interface IProps {
-    offer: IOffer
-    dict: any
-    linksToOffers: ILinkToOffer[]
-}
+import SubscribeModule from "@/app/[lang]/_Components/SubscribeModule";
 
 
 export default function OfferView({
     offer, dict, linksToOffers
-}: IProps) {
+}: {
+    offer: IOffer
+    dict: any
+    linksToOffers: ILinkToOffer[]
+}) {
 
     return (
         <>

@@ -8,7 +8,7 @@ Route::get("/", function (){ return response("Api is working", 200); });
 
 
 Route::prefix("get")->group(function(){
-    Route::get("item/{item}", App\Http\Controllers\Api\getters\GetItemController::class);
+    Route::get("item/{item}", [App\Http\Controllers\Api\Resources\ItemsController::class, "show"]);
     Route::get("options-by-item/{item}", App\Http\Controllers\Api\getters\GetOptionsByItemIDController::class);
     
     Route::get("storages", [App\Http\Controllers\Api\Admin\StoragesController::class, "index"]);
@@ -69,7 +69,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('orders/{order}', App\Http\Controllers\Api\User\GetOrderController::class);
 
         Route::prefix("partner")->group(function(){
-            Route::resource("items", App\Http\Controllers\Api\Partner\ItemsController::class)->except(["create", "edit", "show"]);
+            Route::apiResource("items", App\Http\Controllers\Api\Resources\ItemsController::class);
 
             // при использовании методов PUT/PATCH картинки не передаются.
             Route::resource("items.offers", App\Http\Controllers\Api\Partner\OffersController::class)->only(["destroy", "store"]);

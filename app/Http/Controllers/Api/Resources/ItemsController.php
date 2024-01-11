@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api\Partner;
+namespace App\Http\Controllers\Api\Resources;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Category;
 use App\Http\Requests\Api\Partner\CreateItemRequest;
 use App\Http\Requests\Api\Partner\UpdateItemRequest;
 use App\Http\Requests\Api\Partner\DeleteItemRequest;
@@ -40,6 +39,13 @@ class ItemsController extends Controller
         return response("", 204);
     }
 
+
+    public function show(Item $item)
+    {
+        return $item->load("parameters");
+    }
+
+    
     /**
      * Update the specified resource in storage.
      */

@@ -3,7 +3,7 @@ import { Locale } from "@/i18n-config";
 import axiosClient from "@/axios-client";
 import IOffer from "@/interfaces/IOffer";
 import ILinkToOffer from "./_Conmponents/ILinkToOffer";
-import OfferView from "../../_Components/catalog/OfferView";
+import OfferView from "./_Conmponents/OfferView";
 
 
 // getting data from API

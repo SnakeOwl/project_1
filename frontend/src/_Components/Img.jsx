@@ -9,13 +9,14 @@ export default function Img(props) {
     if (src !== undefined && src !== null)
         nsrc = `${configRoutes.API_IMAGES_STORAGE}/${src}`;
 
+
     return (
         <Image
             width={500}
             height={500}
             {...props}
             src={nsrc}
-            alt="Here must be image"
+            alt={(props.alt != undefined)? props.alt : "Here must be image"}
         />
     );
 }

@@ -1,13 +1,13 @@
 "use client"
 
 import IOffer from "@/interfaces/IOffer"
-import Card from "./Card"
 import Pagination from "./Pagination"
 import { useContext, useEffect, useState } from "react";
 import axiosClient from "@/axios-client";
 import ContextCatalog from "@/context/Catalog/ContextCatalog";
+import dynamic from "next/dynamic";
+import {CardLoader} from "../loading"
 import Loading from "../loading";
-
 
 export default function OfferList({
     dict,
@@ -35,6 +35,13 @@ export default function OfferList({
     }, []);
 
 
+    const WithCustomLoading = dynamic(
+        () => import("./Card"),
+        {
+            loading: () => <CardLoader />,
+        }
+    )
+
     //loadnig.tsx подтягивается сам, только если page.tsx это async функция
     if (offers.data == false)
         return <Loading />
@@ -43,13 +50,11 @@ export default function OfferList({
     return (
         <>
             <main className="flex flex-wrap justify-around gap-4 mb-4 px-2">
-                { offers.data.map((offer: IOffer) =>
-                    <Card
-                        key={`offer-${offer.id}`}
+                {offers.data.map((offer: IOffer) =>
+                    <WithCustomLoading key={`offer-${offer.id}`}
                         offer={offer}
-                        dict={dict}
-                    />
-                    )
+                        dict={dict} />
+                )
                 }
 
             </main>

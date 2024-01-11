@@ -1,7 +1,7 @@
 import CardWrapper from "@/_Components/CardWrapper";
 
 // filler
-const Card = () => {
+export const CardLoader = () => {
     const gradient = "rounded-md bg-gradient-to-br from-green-400 to-green-50 dark:from-blue-900 dark:to-blue-500";
 
     return (
@@ -20,10 +20,8 @@ const Card = () => {
 
 const ArrayOfCards = function () {
     let result: React.ReactNode[] = [];
-    for (let i = 0; i < 15; i++) {
-        result.push(<Card key={`item-filler-${i}`} />);
-    }
-
+    for (let i = 0; i < 15; i++) 
+        result.push(<CardLoader key={`item-filler-${i}`} />);
 
     return result;
 }

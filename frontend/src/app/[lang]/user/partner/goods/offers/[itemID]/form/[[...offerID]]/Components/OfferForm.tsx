@@ -21,23 +21,20 @@ type PostData = {
 }
 
 
-interface IProps {
-    dict: any
-    offer?: IOffer
-    category: ICategory // category with all options
-    itemID: string
-}
-
-
 export default function OfferForm({
     dict,
     offer,
     category,
     itemID
-}: IProps) {
-    
+}: {
+    dict: any
+    offer?: IOffer
+    category: ICategory // category with all options
+    itemID: string
+}) {
+
     const [data, setData] = useState<PostData>({
-        count: offer?.count || 0,
+        count: offer?.count || 255,
         price: offer?.price || 0,
         optionsIDs: offer?.optionsIDs || [],
         galery: offer?.images || []
@@ -81,7 +78,8 @@ export default function OfferForm({
         });
     }
 
-    function removeFromGalery(index: number){
+    function removeFromGalery(index: number) {
+        console.log(data.galery)
         if (data.galery == undefined)
             return;
 
@@ -98,14 +96,14 @@ export default function OfferForm({
         const headers = {
             "Content-Type": "multipart/form-data"
         }
-        
+
         let request = undefined;
-        if(offer == undefined){
+        if (offer == undefined) {
             // create offer
-            request = axiosClient.post(`user/partner/items/${itemID}/offers`, data, {headers});
+            request = axiosClient.post(`user/partner/items/${itemID}/offers`, data, { headers });
         } else {
             // update offer
-            request = axiosClient.post(`user/partner/items/${itemID}/offers/${offer.id}`, data, {headers});
+            request = axiosClient.post(`user/partner/items/${itemID}/offers/${offer.id}`, data, { headers });
         }
 
         Promise.resolve(request)
@@ -156,9 +154,9 @@ export default function OfferForm({
                     required
                     min="0"
                     type="number"
-                    label={dict["price"]} 
+                    label={dict["price"]}
                     error={side.errors.price}
-                    />
+                />
 
                 <Input
                     id="count"
@@ -169,9 +167,9 @@ export default function OfferForm({
                     min="0"
                     max="255"
                     type="number"
-                    label={dict["count"]} 
+                    label={dict["count"]}
                     error={side.errors.count}
-                    />
+                />
             </div>
 
 
@@ -190,21 +188,21 @@ export default function OfferForm({
                     type="file" />
             </div>
 
-            
+
             <div className="mb-4">
                 <h2>{dict['offer shape options h']}</h2>
                 <CategoryOptions
                     dict={dict}
                     category={category}
                     selectedOptions={data.optionsIDs}
-                    setProperties={(options: number[])=>setData({...data, optionsIDs: options})}
-                 />
+                    setProperties={(options: number[]) => setData({ ...data, optionsIDs: options })}
+                />
             </div>
 
 
             <div className="mb-4">
                 <h2>{dict['galery management']}</h2>
-                <Input 
+                <Input
                     className="mb-2"
                     id="newGaleryImages"
                     type="file"
@@ -212,35 +210,33 @@ export default function OfferForm({
                     onChange={setGaleryImages}
                     multiple
                     accept="image" />
-                
+
                 {offer &&
                     <div className="flex flex-wrap">
-                        {data.galery?.map((img, i) =>{
-                            return (
-                                <div className="2xl:w-1/4 px-2" key={img.id}>
-                                    <Img src={img.url} />
-                                    
-                                    <RedButtonReversed
-                                        className="block w-1/4 mt-1 mx-auto py-1 rounded-md"
-                                        type="button"
-                                        onClick={()=>{removeFromGalery(i)}}
-                                    >
-                                        <i className="bi bi-x-lg"></i>
-                                    </RedButtonReversed>
-                                </div>
-                            )
-                        })
+                        {data.galery?.map((img, i) =>
+                            <div className="2xl:w-1/4 px-2" key={img.id}>
+                                <Img src={img.url} />
+
+                                <RedButtonReversed
+                                    className="block w-1/4 mt-1 mx-auto py-1 rounded-md"
+                                    type="button"
+                                    onClick={() => { removeFromGalery(i) }}
+                                >
+                                    <i className="bi bi-x-lg"></i>
+                                </RedButtonReversed>
+                            </div>
+                        )
                         }
                     </div>
                 }
             </div>
 
-            
-            {side.success?
+
+            {side.success ?
                 <GreenText className="text-center">
                     {dict["success"]}
                 </GreenText>
-            :
+                :
                 <BlueButton className="w-full py-2">
                     {dict["submit"]}
                 </BlueButton>

@@ -36,18 +36,17 @@ export default function Galery({
             <LightGallery
                 speed={500}
                 plugins={[lgZoom]}
-                elementClassNames='flex flex-wrap'
+                elementClassNames='flex flex-wrap gap-2'
             >
-                {
-                    images.map(image => {
-                        const link = `${apiStorage}/${image.url}`;
+                {images.map(image => {
+                    const link = `${apiStorage}/${image.url}`;
 
-                        return (
-                            <a key={image.id} className='w-1/2 xl:w-1/4 px-2' href={link}>
-                                <Img className='' alt="img1" src={link} />
-                            </a>
-                        )
-                    })
+                    return (
+                        <a key={image.id} className='w-full 2xl:w-1/4' href={link}>
+                            <Img className='' alt="img1" src={image.url} />
+                        </a>
+                    )
+                })
                 }
             </LightGallery>
         </>

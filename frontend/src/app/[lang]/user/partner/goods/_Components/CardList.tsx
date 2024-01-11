@@ -46,6 +46,7 @@ export default function CardList({ dict }: {dict: any}) {
 
             {goods.map(item =>
                 <Card
+                    key={item.id}
                     setGoods={setGoods}
                     dict={dict}
                     item={item}

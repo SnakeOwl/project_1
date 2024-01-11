@@ -12,7 +12,7 @@ class GetOptionsByItemIDController extends Controller
      */
     public function __invoke(Item $item)
     {
-        $item->load("category.shapes.options");
+        $item->load("category.shapes.shapeOptions");
 
         return $item->category;
     }

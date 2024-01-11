@@ -6,7 +6,7 @@ import OfferForm from "./Components/OfferForm";
 import ICategory from "@/interfaces/ICategory";
 
 
-async function getCategoryOptions(itemID: string){
+async function  getCategoryOptions(itemID: string): Promise<ICategory> {
     let result = undefined;
 
     await axiosClient.get(`get/options-by-item/${itemID}`)

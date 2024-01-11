@@ -48,7 +48,7 @@ class OffersController extends Controller
     public function index(Item $item)
     {
         return $item->offers;
-    }    
+    }
 
     public function edit(Item $item, Offer $offer)
     {

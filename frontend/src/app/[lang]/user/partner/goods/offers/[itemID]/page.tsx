@@ -1,6 +1,5 @@
 import axiosClient from "@/axios-client"
 import { Locale } from "@/i18n-config"
-import IItem from "@/interfaces/IItem";
 import { getDictionary } from "@/utils/get-dictionary"
 import "server-only"
 import OfferList from "./Components/OfferList";

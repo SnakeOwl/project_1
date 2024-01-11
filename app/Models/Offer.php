@@ -33,7 +33,9 @@ class Offer extends Model
 
     public function customCreate($params)
     {
-        $params['short_image'] = $this->storeImage($params['shortImage']);
+        if(isset($params['shortImage']))
+            $params['short_image'] = $this->storeImage($params['shortImage']);
+
         $offer = $this->create($params);
         $offer->shapeOptions()->sync($params['optionsIDs']);
         $offer->uploadGalery($params['newGaleryImages'] ?? array());
@@ -85,18 +87,19 @@ class Offer extends Model
     // проверяет старые изображения oldImages на необходимость удаления (удаляя при необходимости),
     public function autocleanGalery($checkImages)
     {
+        
         if(count($this->images) != count($checkImages))
         {
             $ids = array();
             foreach($checkImages as $image){
                 $ids[] = $image["id"];
             }
-
+            
             foreach ($this->images()->get('id') as $image)
             {
                 if( !in_array($image->id, $ids))
                 {
-                    Galery::find($image->id)->first()->delete();
+                    $image->delete();
 
                     if ($image->image !== null)
                     {

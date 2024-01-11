@@ -27,17 +27,15 @@ export default function OfferList({
             </div>
 
 
-            {offers?.map(offer => {
-                return (
-                    <div className="2xl:w-1/5 px-2" key={offer.id}>
-                        <OfferCard
-                            dict={dict}
-                            itemID={itemID}
-                            offer={offer}
-                         />
-                    </div>
-                );
-            })
+            {offers?.map((offer) =>
+                <div className="2xl:w-1/5 px-2" key={offer.id}>
+                    <OfferCard
+                        dict={dict}
+                        itemID={itemID}
+                        offer={offer}
+                    />
+                </div>
+            )
             }
         </div>
     )

@@ -10,9 +10,6 @@ import getCategories from "@/utils/getCategories";
 import CategoryLoader from "./CategoryLoader";
 
 
-
-
-
 export default function Categories({ dict}: { dict: any }) {
 
     const { stateCatalog } = useContext(ContextCatalog)
@@ -28,9 +25,12 @@ export default function Categories({ dict}: { dict: any }) {
         updateCategories();
     }, [activeCategoryAlias])
 
+    
+
 
     if (categories === undefined)
         return <CategoryLoader />
+        
 
     return (
         <div className={"flex flex-col"}>
