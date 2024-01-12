@@ -7,10 +7,12 @@ export default function Match({
 }) {
     return (
         <div className={`${className} flex py-2`}>
-            <Img className="w-16 rounded-xl mr-2" src={offer.item.short_image} />
+            <Link href={`/offer/${offer.id}`}>
+                <Img className="w-16 rounded-xl mr-2" src={offer.item.short_image} />
+            </Link>
 
             <div>
-                <Link className="text-xl" href={`/catalog/offers/${offer.id}`}>
+                <Link className="text-xl" href={`/offer/${offer.id}`}>
                     {offer.item.name}
                 </Link>
                 <p>{offer.price}</p>

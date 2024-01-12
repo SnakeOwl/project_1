@@ -9,11 +9,8 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $offers = Offer::with('item')
-            ->paginate(15);
+        $offers = Offer::with('item')->paginate(15);
 
-        return [
-            'offers' => $offers,
-        ];
+        return $offers;
     }
 }

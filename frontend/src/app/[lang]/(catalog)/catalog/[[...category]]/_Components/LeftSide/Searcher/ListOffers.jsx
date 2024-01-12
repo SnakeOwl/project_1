@@ -7,11 +7,7 @@ export default function ListOffers({
     return (
         <div className={className}>
             {
-                matches.map(offer => {
-                    return(
-                        <Match key={`offer-${offer.id}`} offer={offer} />
-                    );
-                })
+                matches.map(offer => <Match key={`offer-${offer.id}`} offer={offer} /> )
             }
         </div>
     )

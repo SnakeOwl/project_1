@@ -48,7 +48,7 @@ Route::post('message-store', App\Http\Controllers\Api\Contacts\MessageStoreContr
 
 Route::prefix('catalog')->group(function(){
     Route::get('', App\Http\Controllers\Api\Catalog\IndexController::class);
-    Route::get('category/{category}/options', App\Http\Controllers\Api\Catalog\GetCategoryOptionsController::class);
+    Route::get('category/{category_alias}/options', App\Http\Controllers\Api\Catalog\GetCategoryOptionsController::class);
 
     Route::post('oneClickBuy', App\Http\Controllers\Api\Catalog\OneClickBuyStoreController::class);
     Route::post('search', App\Http\Controllers\Api\Catalog\SearchController::class);

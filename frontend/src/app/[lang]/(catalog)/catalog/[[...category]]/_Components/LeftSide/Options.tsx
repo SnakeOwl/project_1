@@ -1,58 +1,43 @@
 import Preloader from "@/_Components/Preloader";
-import axiosClient from "@/axios-client";
-import ContextCatalog from "@/context/Catalog/ContextCatalog";
 import { useContext, useEffect, useState } from "react"
 import IShape from "@/interfaces/IShape";
 import Checkbox from "@/_Components/Inputs/Checkbox";
 import { useRouter, useSearchParams } from 'next/navigation'
+import ICategory from "@/interfaces/ICategory";
+import ContextCatalog from "@/context/Catalog/ContextCatalog";
 
 
 export default function Options({
-    categoryId,
+    category,
     dict
 }: {
-    categoryId: string
+    category: ICategory
     dict: any
 }) {
-    const { dispatchCatalog } = useContext(ContextCatalog);
+    const { stateCatalog } = useContext(ContextCatalog);
+    const { activeOptions } = stateCatalog;
 
     // список всех Шейпов от текущей Категории
-    const [shapes, setShapes] = useState<IShape[]>([]);
-
+    const [shapes, setShapes] = useState<IShape[]>(activeOptions);
 
     // выбранные опции, для фильтра. Будут храниться Идишники
     const [foptions, setFoptions] = useState<string[]>([]);
 
-    const router = useRouter();
     const searchParams = useSearchParams();
+    const router = useRouter();
 
-    async function updateOffersAndShapes() {
-        console.log("updating offers and shapes")
-        // парсинг приходящих параметров из url
-        const searchOptions = searchParams.get('options')?.split(',');
-        setFoptions(searchOptions || []);
 
-        await axiosClient.get(`catalog/category/${categoryId}/options`, {
-            params: { options: searchOptions }
-            // params: { options: foptions }  // старый подход, через стайт
-        })
-            .then(({ data }) => {
-                setShapes(data.options);
-
-                dispatchCatalog({
-                    type: "SET_OFFERS",
-                    offers: data.offers
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
-    //нужно для получения Шейпов Категории
     useEffect(() => {
-        updateOffersAndShapes();
-    }, [categoryId, searchParams]);
+        // обновление активной категоии и её опций
+        (async ()=>{
+            // парсинг приходящих параметров из url
+            const searchOptions = searchParams.get('options')?.split(',');
+            setFoptions(() => searchOptions || []);
+            setShapes(() => stateCatalog.activeOptions)
+        })();
+
+        
+    }, [category, searchParams, stateCatalog]);
 
 
     if (shapes.length === 0)
@@ -74,12 +59,13 @@ export default function Options({
         // чистка пустых ячеек
         temp = temp.filter(el => el != null);
 
+        // todo: При реализации других фильтров, нужно обдумать о синхронизации параметров url
         if (temp.length > 0){
             const searchParameters = "?options=" + temp.toString();
             router.push(searchParameters)
         } else {
             // если не запушить с изменением пути, то оно компонент не перерисует
-            router.push("?no-filter-options");
+            router.push("?");
         }
     }
 

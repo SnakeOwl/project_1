@@ -1,13 +1,7 @@
-import { BlueButton, BlueButtonReversed } from "@/_Components/Buttons/ColoredButtons"
-import axiosClient from "@/axios-client"
-import ContextCatalog from "@/context/Catalog/ContextCatalog"
-import Link from "next/link"
-import { useContext } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 
 
-
-
-
+// todo: заменить пагинацию на кнопочку "Ещё"
 export default function Pagination({
     links
 }: {
@@ -18,32 +12,19 @@ export default function Pagination({
     }]
 }) {
 
-    const { dispatchCatalog } = useContext(ContextCatalog);
-
-
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-        });
-    }
+    const searchParams = useSearchParams();
+    const router = useRouter();
 
 
     async function handleClick(url: string) {
-        await axiosClient.get(url)
-            .then(({ data }: { data: { offers: [] } }) => {
+        let newUrl = url;
+        // для синхронизации с выбранными опциями, вытягиваю их из адресной строки
+        if (searchParams.get('options') !== null){
+            const searchOptions =  "&options=" + searchParams.get('options');
+            newUrl += searchOptions;
+        }
 
-                dispatchCatalog({
-                    type: "SET_OFFERS",
-                    offers: data.offers
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            })
-
-        scrollToTop();
+        router.push(newUrl);
     }
 
 
@@ -52,17 +33,16 @@ export default function Pagination({
     return (
         <div className="w-fit flex mx-auto ">
             {
-
                 links.map(link => {
                     if (link.active === true)
                         return <button className={`${classes} bg-gray-200 dark:bg-gray-900`} key={link.label} type="button">{link.label}</button>
-                        
+                        const url = link.url?.substr( link.url.indexOf('?') )
                     
                     return (
                         <button
                             key={link.label}
                             className={`${classes} dark:hover:bg-gray-800`}
-                            onClick={() => handleClick(link.url)}
+                            onClick={() => handleClick(url)}
                         >
                             {link.label}
                         </button>

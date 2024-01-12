@@ -9,8 +9,9 @@ use App\Models\Category;
 
 class GetCategoryOptionsController extends Controller
 {
-    public function __invoke(FilterRequest $request, Category $category)
+    public function __invoke(FilterRequest $request, $category_alias)
     {
+        $category = Category::where("alias", $category_alias)->firstOrFail();
         $params = $request->validated();
         $availableOffers = [];
         $availableOptions = [];

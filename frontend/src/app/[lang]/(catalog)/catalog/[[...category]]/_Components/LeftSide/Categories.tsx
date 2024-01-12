@@ -10,7 +10,7 @@ import getCategories from "@/utils/getCategories";
 import CategoryLoader from "./CategoryLoader";
 
 
-export default function Categories({ dict}: { dict: any }) {
+export default function Categories({ dict }: { dict: any }) {
 
     const { stateCatalog } = useContext(ContextCatalog)
     const { activeCategoryAlias } = stateCatalog;
@@ -24,8 +24,6 @@ export default function Categories({ dict}: { dict: any }) {
         }
         updateCategories();
     }, [activeCategoryAlias])
-
-    
 
 
     if (categories === undefined)
@@ -43,7 +41,7 @@ export default function Categories({ dict}: { dict: any }) {
 
                         <Options
                             dict={dict}
-                            categoryId={category.id}
+                            category={category}
                         />
                     </div>
                     :

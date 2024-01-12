@@ -13,9 +13,8 @@ class FilterRequest extends FormRequest
 
     public function rules()
     {
-        // при передаче get запроса нельзя определить значение boolean
         return [
-            'options' => 'array',
+            'options' => 'nullable|array',
         ];
     }
 }
