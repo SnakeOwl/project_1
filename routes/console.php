@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
+// Artisan::command("test", function () {
+//     echo"It's the test command into console.php file.";
+// }
+// );
+
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');

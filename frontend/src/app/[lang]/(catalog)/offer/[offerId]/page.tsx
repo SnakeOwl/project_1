@@ -4,6 +4,7 @@ import axiosClient from "@/axios-client";
 import IOffer from "@/interfaces/IOffer";
 import ILinkToOffer from "./_Conmponents/ILinkToOffer";
 import OfferView from "./_Conmponents/OfferView";
+import fetchClient from "@/fetch-client";
 
 
 // getting data from API
@@ -11,17 +12,18 @@ async function getOffer(offerId: string): Promise<[IOffer, ILinkToOffer[]]> {
 
     let offer = undefined; // текущее ТП
     let linksToOffers = undefined; // ссылки на другие ТП, текущего товара
-
-    await axiosClient.get(`catalog/${offerId}`)
-        .then(({ data }) => {
-            offer = data.offer;
-            linksToOffers = Object.values(data.itemOffersLinks);
-        })
-
+    //todo: используя axiosClient, оно не кеширует данные, нужно переписать критические места, используя fetch.
+    const response = await fetchClient.get(`catalog/${offerId}`)
+    switch (response.status){
+        case 200: 
+            const {jsonData} = response;
+            offer = jsonData.offer;
+            linksToOffers = Object.values<ILinkToOffer>(jsonData.itemOffersLinks);
+            break;
+    }
 
     if (offer === undefined || linksToOffers === undefined)
         throw new Error("Can't get offer information");
-
 
     return [offer, linksToOffers];
 }
@@ -62,9 +64,9 @@ export default async function OfferPage({
 
 
 // metadata. server only!
-    export async function generateMetadata({
-        params: { lang, offerId }
-    }: IProps) {
+export async function generateMetadata({
+    params: { lang, offerId }
+}: IProps) {
     const dict = await getDictionary(lang)
     const [offer] = await getOffer(offerId)
 

@@ -17,10 +17,10 @@ class ContentSeeder extends Seeder
 {
     public function run()
     {
-        $count_categories = 4;
+        $count_categories = 3;
         $count_shapes_per_category = 4;             // шейпы будут рандомно привязаны к категориям
         $count_shape_options_per_shape = 2;    // опции будут рандомно привязаны к шейпам
-        $count_items = 32;             // предметы будут рандомно привязаны к категориям
+        $count_items = 16;             // предметы будут рандомно привязаны к категориям
         $COUNT_OFFERS_PER_ITEM = 4;    // перемножит количество предметов и шейпов, потом создаст заданное число записей
         $count_parameters_per_item = 4; // уникальные параметры для каждого предмета
         /*

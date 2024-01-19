@@ -63,8 +63,6 @@ class CurrencyConverter
     public static function getCurrencyCodeFromSession()
     {
         return session('currency', 'RUB');
-
-        return "RUB";
     }
 
     public static function getCurrentCurrencyFromSession()

@@ -1,10 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Log;
 
 Route::get("/", function (){ return response("Api is working", 200); });
 
+
+Route::get("/tt", function (){
+    Log::info("tt");
+});
 
 
 Route::prefix("get")->group(function(){
@@ -78,7 +82,9 @@ Route::middleware('auth:sanctum')->group(function(){
     });
 
 
-    Route::prefix("admin")->middleware("UIsAdmin")->group(function (){
+    Route::prefix("admin")
+        ->middleware("UIsAdmin")
+        ->group(function (){
             Route::apiResources([
                 "users" => App\Http\Controllers\Api\Admin\UsersController::class,
                 "storages" => App\Http\Controllers\Api\Admin\StoragesController::class,

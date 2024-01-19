@@ -7,13 +7,13 @@ const axiosClient = axios.create({
     baseURL: `${apiRoutes.BASE_URL}/api`
 });
 
-axiosClient.interceptors.request.use((config) => {
-    const token = (typeof window !== "undefined") 
-            ? window.localStorage.getItem('ACCESS_TOKEN') 
-            : "";
-    config.headers.Authorization = `Bearer ${token}`;
-    return config;
-});
+if (typeof window !== "undefined"){
+    axiosClient.interceptors.request.use((config) => {
+        const token = window.localStorage.getItem('ACCESS_TOKEN');
+        config.headers.Authorization = `Bearer ${token}`;
+        return config;
+    });
+}
 
 axiosClient.interceptors.response.use((response) => {
     return response;
@@ -26,7 +26,6 @@ axiosClient.interceptors.response.use((response) => {
     } catch (e) {
         console.log(e);
     }
-
 
     throw error;
 });

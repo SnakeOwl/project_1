@@ -1,9 +1,11 @@
 <?php
 
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/catalog/')->name('index');
+
+// Route::redirect returns a 302
+// Route::permanentRedirect method to return a 301
+Route::permanentRedirect('/', '/catalog/')->name('index');
 
 Route::prefix('catalog')->group(function(){
 
