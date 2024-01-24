@@ -53,14 +53,14 @@ export default function Navigation({
             text: "Заказы",
             href: "/user/admin/orders/page"
         },
-        {
-            text: "Товары",
-            href: "/user/admin/items/page"
-        },
-        {
-            text: "Подписчики",
-            href: "/user/admin/subscribers/page"
-        },
+        // {
+        //     text: "Товары",
+        //     href: "/user/admin/items/page"
+        // },
+        // {
+        //     text: "Подписчики",
+        //     href: "/user/admin/subscribers/page"
+        // },
         {
             text: "Категории",
             href: "/user/admin/categories"
@@ -73,14 +73,14 @@ export default function Navigation({
             text: "Склады",
             href: "/user/admin/storages"
         },
-        {
-            text: "Письма пользователей",
-            href: "/user/admin/messages/page"
-        },
-        {
-            text: "Запросы на покупку в один клик",
-            href: "/user/admin/one-click-requests/page"
-        },
+        // {
+        //     text: "Письма пользователей",
+        //     href: "/user/admin/messages/page"
+        // },
+        // {
+        //     text: "Запросы на покупку в один клик",
+        //     href: "/user/admin/one-click-requests/page"
+        // },
     ];
     
 

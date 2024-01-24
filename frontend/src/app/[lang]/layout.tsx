@@ -10,8 +10,10 @@ import { getDictionary } from "@/utils/get-dictionary";
 import UserProvider from "./_Components/UserProvider";
 import Loading from "./loading";
 import Header from "./_Components/Header";
-import {Comfortaa} from "next/font/google"
+import { Comfortaa } from "next/font/google"
 import FunctionalComponent from "./_Components/FunctionalComponent";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import captchaInfo from "@/config/recaptcha.json"
 
 
 const comfortaa = Comfortaa({
@@ -21,7 +23,7 @@ const comfortaa = Comfortaa({
 
 
 // chashe for fetch(), time in seconds
-export const revalidate = 3600; 
+export const revalidate = 3600;
 
 
 export default async function RootLayout(props: {
@@ -34,7 +36,7 @@ export default async function RootLayout(props: {
 }) {
     const dict = await getDictionary(props.params.lang);
 
-    
+
     return (
         <html lang={props.params.lang}>
             <head>

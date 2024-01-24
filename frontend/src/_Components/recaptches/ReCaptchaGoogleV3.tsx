@@ -23,7 +23,7 @@ const ReCaptchaGoogleV3 = memo(({
             scriptProps={{
                 async: false, // optional, default to false,
                 defer: false, // optional, default to false
-                appendTo: 'head', // optional, default to "head", can be "head" or "body",
+                appendTo: 'body', // optional, default to "head", can be "head" or "body",
                 nonce: undefined // optional, default undefined
             }}
             container={{ // optional to render inside custom element
