@@ -58,7 +58,6 @@ export default function Options({
         // чистка пустых ячеек
         temp = temp.filter(el => el != null);
 
-        // todo: При реализации других фильтров, нужно обдумать о синхронизации параметров url
         if (temp.length > 0){
             const searchParameters = "?options=" + temp.toString();
             router.push(searchParameters)

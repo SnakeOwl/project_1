@@ -10,8 +10,8 @@ import { getDictionary } from "@/utils/get-dictionary";
 import UserProvider from "./_Components/UserProvider";
 import Loading from "./loading";
 import Header from "./_Components/Header";
-import FunctionalOnlyComponent from "./_Components/FunctionalOnlyComponent";
 import {Comfortaa} from "next/font/google"
+import FunctionalComponent from "./_Components/FunctionalComponent";
 
 
 const comfortaa = Comfortaa({
@@ -34,7 +34,7 @@ export default async function RootLayout(props: {
 }) {
     const dict = await getDictionary(props.params.lang);
 
-
+    
     return (
         <html lang={props.params.lang}>
             <head>
@@ -46,9 +46,9 @@ export default async function RootLayout(props: {
             <body className={`${comfortaa.className} bg-white dark:bg-gray-950 dark:text-gray-300 px-4 xl:px-0`}>
                 <ParticlesWrapper>
                     <UserProvider>
-                        <FunctionalOnlyComponent />
-                        <Header dict={dict} />
+                        <FunctionalComponent />
 
+                        <Header dict={dict} />
 
                         <Suspense fallback={<Loading />}>
                             <div className="p-4">

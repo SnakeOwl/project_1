@@ -1,11 +1,11 @@
 "use client"
 import ContextUser from "@/context/User/ContextUser";
-import getUser from "@/utils/getUser";
 import { useContext, useEffect } from "react";
+import getUser from "./getUser";
 
 
-// todo: перенести этот код в более подходящее место.
-export default function FunctionalOnlyComponent() {
+// функция должна вызываться с доступом к UserProvider
+export default function SynchronizeUser (){
     const { dispatchUser } = useContext(ContextUser);
 
     useEffect(() => {
@@ -34,8 +34,5 @@ export default function FunctionalOnlyComponent() {
                 bkey: localStorage.getItem("bkey") || undefined
             });
         }
-    }, [])
-
-
-    return null;
+    }, []);
 }
