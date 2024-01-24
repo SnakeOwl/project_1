@@ -9,7 +9,6 @@ import ReducerCatalog from "@/context/Catalog/ReducerCatalog";
 import ContextCatalog from "@/context/Catalog/ContextCatalog";
 import MobileMenuArea from "@/_Components/menu/MobileMenuArea";
 
-
 export default function Layout({
     params: {lang, category},
     children

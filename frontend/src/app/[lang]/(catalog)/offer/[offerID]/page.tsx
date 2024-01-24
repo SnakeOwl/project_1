@@ -1,22 +1,21 @@
+import "server-only"
 import { getDictionary } from "@/utils/get-dictionary";
 import { Locale } from "@/i18n-config";
-import axiosClient from "@/axios-client";
 import IOffer from "@/interfaces/IOffer";
 import ILinkToOffer from "./_Conmponents/ILinkToOffer";
 import OfferView from "./_Conmponents/OfferView";
 import fetchClient from "@/fetch-client";
 
 
-// getting data from API
-async function getOffer(offerId: string): Promise<[IOffer, ILinkToOffer[]]> {
 
+async function getOffer(offerId: string): Promise<[IOffer, ILinkToOffer[]]> {
     let offer = undefined; // текущее ТП
     let linksToOffers = undefined; // ссылки на другие ТП, текущего товара
-    //todo: используя axiosClient, оно не кеширует данные, нужно переписать критические места, используя fetch.
+
     const response = await fetchClient.get(`catalog/${offerId}`)
-    switch (response.status){
-        case 200: 
-            const {jsonData} = response;
+    switch (response.status) {
+        case 200:
+            const { jsonData } = response;
             offer = jsonData.offer;
             linksToOffers = Object.values<ILinkToOffer>(jsonData.itemOffersLinks);
             break;
@@ -29,9 +28,11 @@ async function getOffer(offerId: string): Promise<[IOffer, ILinkToOffer[]]> {
 }
 
 
+
+
 interface IProps {
     params: {
-        offerId: string
+        offerID: string
         lang: Locale
     }
 }
@@ -39,12 +40,12 @@ interface IProps {
 
 export default async function OfferPage({
     params: {
-        offerId,
+        offerID,
         lang
     }
 }: IProps) {
     const dict = await getDictionary(lang);
-    const [offer, linksToOffers] = await getOffer(offerId);
+    const [offer, linksToOffers] = await getOffer(offerID);
 
     if (offer.item == undefined)
         throw new Error("Error. Can't find Item for Offer");
@@ -63,12 +64,28 @@ export default async function OfferPage({
 
 
 
+// returns { offerID: string }[]  OR  []
+export async function generateStaticParams() {
+    const response = await fetchClient.get("get/offers/all-ids")
+
+    switch (response.status) {
+        case 200:
+            const { jsonData } = response;
+            const result = jsonData.map((off: {id: string}) => { return { offerID: off.id.toString() } });
+            return result;
+            break;
+    }
+
+    return [];
+}
+
+
 // metadata. server only!
 export async function generateMetadata({
-    params: { lang, offerId }
+    params: { lang, offerID }
 }: IProps) {
     const dict = await getDictionary(lang)
-    const [offer] = await getOffer(offerId)
+    const [offer] = await getOffer(offerID)
 
     return {
         title: `${dict["buy"]} ${offer.item?.name}`,

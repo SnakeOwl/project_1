@@ -13,12 +13,15 @@ import Header from "./_Components/Header";
 import FunctionalOnlyComponent from "./_Components/FunctionalOnlyComponent";
 import {Comfortaa} from "next/font/google"
 
+
 const comfortaa = Comfortaa({
     subsets: ["latin", "cyrillic"],
     weight: ["300", "400", "500"]
 });
 
-export const revalidate = 3600; // chashe for fetch(), time in seconds
+
+// chashe for fetch(), time in seconds
+export const revalidate = 3600; 
 
 
 export default async function RootLayout(props: {
