@@ -15,7 +15,7 @@ export default function CategoryOptions({
 }) {
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        let id = Number(e.target.id);
+        let id = Number(e.target.value);
 
         if (selectedOptions.indexOf(id) === -1) {
             selectedOptions.push(id);
@@ -42,10 +42,10 @@ export default function CategoryOptions({
                             {shape.shape_options?.map(option =>
                                 <div className="mb-2" key={option.id}>
                                     <Checkbox
-                                        id={option.id}
                                         label={dict["cl"] ? option.value : option.value_en}
                                         checked={selectedOptions?.indexOf(Number(option.id)) === -1 ? false : true}
                                         onChange={handleChange}
+                                        value={option.id}
                                     />
                                 </div>
                             )

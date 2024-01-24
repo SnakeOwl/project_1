@@ -1,12 +1,9 @@
 "use client"
 
-import fetchClient from "@/fetch-client";
 import ClientComponent from "./_components/ClientConmponent";
 
 
-
 export default async function UnitTestPage(){
-
     return (
         <main>
             <h1>Unit Test Page</h1>
@@ -16,3 +13,4 @@ export default async function UnitTestPage(){
         </main>
     )
 }
+ 

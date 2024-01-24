@@ -1,61 +1,39 @@
-# project 1
+# Shower Пример Интернет-магазина на laravel + next
 
 Тут есть 2 версии сайта.
 - 1-я, та, что в папке resources/. Она сделана с помощью Моста Inertia. В ней доступна рабочая админка.
-- 2-я, та, что в папке React. Она сделана на чистом React и в ней нет админки.
+- 2-я, та, что в папке frontend. Она пока ещё в разработке.
 
 # ----- Installing -----
 ## до этого вы должны были создать БД
 composer install
 
-## сюда указать доступы к базе и url приложения
+## в этот файл указать доступы к базе и url приложения
 cp .env.example .env 
 
 php artisan key:generate
 php artisan storage:link
-php artisan migrate --seed
+## Для работы приложения нужны валюты
+php artisan migrate --seed 
 
+
+### если есть ошибка с доступом к файлам
 sudo find  /var/www/project_1 -type f -exec chmod 664 {} \;     # права на файлы
 sudo find  /var/www/project_1 -type d -exec chmod 775 {} \;     # права на папки
 sudo chmod -R 777 storage/  # без этого лог файл не создаётся
 
-## после этого заработает первая версия сайта
+## frontend на Inertia
 npm install
 npm run build 
 
-
-# ----- Installing React part -----
-cd React
-npm install
-
-## тут указать урлы для первой версии сайта (вторая версия работает через API пути от первого)
-/React/.env.production
-
-## После этого работает
-npm run build
-
-### Если при перезагрузке страницы (вторая версия сайта) apache выдаёт 404, то эта конфигурация помогает
-    <VirtualHost *:8080>
-        ServerName example.com
-        DocumentRoot /var/www/httpd/example.com
-
-        <Directory "/var/www/httpd/example.com">
-            ...
-
-            RewriteEngine On
-            # Don't rewrite files or directories
-            RewriteCond %{REQUEST_FILENAME} -f [OR]
-            RewriteCond %{REQUEST_FILENAME} -d
-            RewriteRule ^ - [L]
-            # Rewrite everything else to index.html to allow html5 state links
-            RewriteRule ^ index.html [L]
-        </Directory>
-    </VirtualHost> 
-
-## В папке React/dist будут скомпиленные файлы, их нужно залить на сервер (или настроить сервер для восприятия этот папки как рутовой)
+## после этого заработает первая версия сайта
 
 
-# ----- Настройка APACHE -----
+# Для работы с nextjs в папке frontend есть свой README
+cd frontend
+
+
+# Настройка APACHE
     https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-ru
 
 # Настройка почты по smtp

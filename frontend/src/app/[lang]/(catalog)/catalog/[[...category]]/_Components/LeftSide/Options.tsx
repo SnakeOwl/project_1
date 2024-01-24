@@ -46,8 +46,7 @@ export default function Options({
 
 
     function optionChanged(e: React.ChangeEvent<HTMLInputElement>) {
-
-        const id = e.target.id;
+        const id = e.target.value;
         let temp = foptions;
 
         if (temp.includes(id)) {
@@ -79,11 +78,10 @@ export default function Options({
                             {option.count > 0 ?
                                 <>
                                     <Checkbox
-                                        id={option.id}
                                         label={dict["cl"] === "ru" ? option.value : option.value_en}
                                         checked={foptions.includes(String(option.id))}
-                                        className=""
                                         onChange={optionChanged}
+                                        value={option.id}
                                     />
                                     <div className="absolute right-0 top-0 text-sm text-white px-1 bg-blue-500 rounded-md">
                                         {option.count}

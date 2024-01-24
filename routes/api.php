@@ -33,6 +33,10 @@ Route::prefix("get")->group(function(){
 
 
     Route::resource("items.offers", App\Http\Controllers\Api\Partner\OffersController::class)->only(["index", "edit"]);
+
+    Route::prefix("offers")->group(function(){
+        Route::get("all-ids", [App\Http\Controllers\Api\Resources\OfferController::class, "getAllIDs"]);
+    });
 });
 
 
