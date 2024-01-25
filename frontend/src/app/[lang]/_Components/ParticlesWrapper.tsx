@@ -27,7 +27,14 @@ export default function ParticlesWrapper(props: { children: React.ReactNode }) {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches !== true) {
             particlesConfig.particles.color.value = "#000"
             particlesConfig.particles.line_linked.color = "#000";
+
         }
+        
+        // на мобилках количество частиц должно быть намного меньше
+        if (window.screen.width < 640){
+            particlesConfig.particles.number.value = 16;
+        }
+        
         particlesJS('particles-js', particlesConfig);
 
     }, [])

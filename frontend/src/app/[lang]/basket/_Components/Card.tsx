@@ -52,7 +52,7 @@ export default function Card({
 
 
     return (
-        <CardWrapper className="pb-4">
+        <CardWrapper className="pb-4 w-full">
             <div className="mb-2">
                 <Img className="rounded h-full w-full object-cover" src={offer.short_image} />
             </div>

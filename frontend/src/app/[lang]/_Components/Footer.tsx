@@ -18,12 +18,12 @@ const Footer = ({dict}: {dict: any}) =>  {
                     <Link href={"/support"}>{dict["contact form"]}</Link>
                 </div>
 
-                <div className="w-full xl:w-1/3 text-center px-2">
+                <div className="w-full xl:w-1/3 text-center px-2 mb-4">
                     <h3>{dict["contacts"]}</h3>
                     <p>
                         <a className="mb-3" href="tel:375291234567" itemProp="telephone" content="375291234567"> 375 29 123 4567</a>
                     </p>
-                    <a href="https://github.com/SnakeOwl/project_1_frontend" rel="noreferrer" target="_blank"><i className="bi bi-github h1"></i></a>
+                    <a href="https://github.com/SnakeOwl/project_1" rel="noreferrer" target="_blank"><i className="bi bi-github h1"></i></a>
                 </div>
             </div>
 
