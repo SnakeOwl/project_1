@@ -23,7 +23,7 @@ const comfortaa = Comfortaa({
 
 
 // chashe for fetch(), time in seconds
-export const revalidate = 3600;
+export const revalidate = 600; // 600 = 10 min
 
 
 export default async function RootLayout(props: {
