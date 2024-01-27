@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function Navigation({
     dict
-}: {dict: any}) {
+}: { dict: any }) {
 
     const [rights, setRights] = useState(3);
 
@@ -51,7 +51,7 @@ export default function Navigation({
         },
         {
             text: "Заказы",
-            href: "/user/admin/orders/page"
+            href: "/user/admin/orders"
         },
         // {
         //     text: "Товары",
@@ -64,10 +64,10 @@ export default function Navigation({
         {
             text: "Категории",
             href: "/user/admin/categories"
-        },        
+        },
         {
             text: "Пользователи",
-            href: "/user/admin/users/page"
+            href: "/user/admin/users"
         },
         {
             text: "Склады",
@@ -77,12 +77,12 @@ export default function Navigation({
         //     text: "Письма пользователей",
         //     href: "/user/admin/messages/page"
         // },
-        // {
-        //     text: "Запросы на покупку в один клик",
-        //     href: "/user/admin/one-click-requests/page"
-        // },
+        {
+            text: "Запросы на покупку в один клик",
+            href: "/user/admin/one-click-requests"
+        },
     ];
-    
+
 
 
     return (
@@ -104,10 +104,9 @@ export default function Navigation({
 
 
             {rights === 6 &&
-            <>
-                <h3>{dict["partner links"]}</h3>
-                {partnerLinks.map(link => {
-                    return (
+                <>
+                    <h3>{dict["partner links"]}</h3>
+                    {partnerLinks.map(link =>
                         <Link
                             key={link.href}
                             className="py-2"
@@ -115,27 +114,24 @@ export default function Navigation({
                         >
                             {link.text}
                         </Link>
-                    );
-                })
-                }
-            </>
+                    )
+                    }
+                </>
             }
 
 
             {rights === 10 &&
                 <>
                     <h3>Администрирование</h3>
-                    {adminLinks.map(link => {
-                        return (
-                            <Link
-                                key={link.href}
-                                className="py-2"
-                                href={link.href}
-                            >
-                                {link.text}
-                            </Link>
-                        );
-                    })
+                    {adminLinks.map(link =>
+                        <Link
+                            key={link.href}
+                            className="py-2"
+                            href={link.href}
+                        >
+                            {link.text}
+                        </Link>
+                    )
                     }
                 </>
             }

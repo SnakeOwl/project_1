@@ -12,10 +12,12 @@ export default function AdminCardWrapper({
     removeAPIPath,
     editLink,
     children,
+    className=""
 }: {
     removeAPIPath: string
     editLink: string
     children: React.ReactNode
+    className?: string
 }) {
     const [removed, setRemoved] = useState<boolean>(false);
 
@@ -31,11 +33,11 @@ export default function AdminCardWrapper({
 
 
     if (removed)
-        return <RedText>Удалено</RedText>;
+        return <RedText className="flex items-center justify-center">Удалено</RedText>;
 
 
     return (
-        <CardWrapper>
+        <CardWrapper className={className}>
 
             {children}
 

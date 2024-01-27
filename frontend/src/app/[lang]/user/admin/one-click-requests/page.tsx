@@ -10,6 +10,7 @@ export default async function OneClickPage({
 
     return (
         <main>
+            <h1>Запросы на покупку в один клик</h1>
             <RequestList/>
         </main>
     )

@@ -14,18 +14,14 @@ export default function StoragesList({
     storages
 }: IProps ) {
     return (
-        <div className="flex space-around space-x-4">
-            <div className="2xl:w-1/6 px-2"> 
+        <div className="flex flex-wrap space-around gap-4">
+            <div className="w-full 2xl:w-1/6"> 
                 <BigPlusLink href="/user/admin/storages/form" />
             </div>
 
-            {storages.map(storage=>{
-                return (
-                <div className="2xl:w-1/6" key={storage.id}> 
-                	<StorageCard storage={storage} /> 
-                	</div> 
-                	)
-            })
+            {storages.map(storage=>
+                <StorageCard key={storage.id} className="w-full 2xl:w-1/6" storage={storage} /> 
+            )
             }
         </div>
     )

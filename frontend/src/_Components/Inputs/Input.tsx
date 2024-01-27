@@ -1,5 +1,7 @@
+"use client"
+import { useId } from "react"
+
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    id?:         string
     value?:      string
     label?:     string
     error?:     string | undefined
@@ -8,7 +10,6 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 
 export function Input({
-    id,
     value,
     label,
     error,
@@ -16,6 +17,7 @@ export function Input({
 
     ...other
 }: IProps) {
+    const id = useId();
     const classes = "p-3 w-full rounded-md text-inherit bg-inherit \
         border-2 border-gray-200 \
         dark:border-gray-700 \

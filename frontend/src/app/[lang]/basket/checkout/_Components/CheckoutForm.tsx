@@ -1,6 +1,7 @@
 "use client"
 import FormWrapper from "@/_Components/FormWrapper";
 import { Input } from "@/_Components/Inputs/Input";
+import Basket from "@/classes/Basket";
 import ContextUser from "@/context/User/ContextUser";
 import { useContext, useState } from "react";
 
@@ -8,11 +9,10 @@ import { useContext, useState } from "react";
 export default function CheckoutForm({
     dictionary
 }: { dictionary: any }) {
+
     const { stateUser, dispatchUser } = useContext(ContextUser);
-
-    // данные для доп отрисовки частей формы
     const [errors, setErrors] = useState<any>();
-
+    const basket = new Basket();
 
     // данные для отправки формы
     const [data, setData] = useState({
@@ -30,14 +30,6 @@ export default function CheckoutForm({
     });
 
 
-    function _setData(e: React.ChangeEvent<HTMLInputElement>) {
-        setData({
-            ...data,
-            [e.target.id]: e.target.value
-        });
-    }
-
-
     return (
         <div>
             <FormWrapper
@@ -49,21 +41,20 @@ export default function CheckoutForm({
                 setGeneralErrors={setErrors}
 
                 successCallback = {() => {
-                    // чистка данных корзины
-                    localStorage.removeItem('basketKey');
-                    dispatchUser({
-                        type: "SET_BKEY",
-                        bkey: undefined
-                    });
+                    basket.eraseData();
                 }}
             >
 
                 <Input
                     className="mb-4"
                     label={dictionary["name"]}
-                    id={"name"}
                     value={data.name}
-                    onChange={_setData}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
+                        setData({
+                            ...data,
+                            name: e.target.value
+                        });
+                    }}
                     error={errors?.name}
                     required
                 />
@@ -71,9 +62,13 @@ export default function CheckoutForm({
                 <Input
                     className="mb-4"
                     label={dictionary["phone"]}
-                    id={"phone"}
                     value={data.phone}
-                    onChange={_setData}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
+                        setData({
+                            ...data,
+                            phone: e.target.value
+                        });
+                    }}
                     error={errors?.phone}
                     required
 
@@ -83,18 +78,26 @@ export default function CheckoutForm({
                     className="mb-4"
                     type="email"
                     label={dictionary["email"]}
-                    id={"email"}
                     value={data.email}
-                    onChange={_setData}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
+                        setData({
+                            ...data,
+                            email: e.target.value
+                        });
+                    }}
                     error={errors?.email}
                 />
 
                 <Input
                     className="mb-4"
                     label={dictionary["delivery method"]}
-                    id={"delivery_method"}
                     value={data.delivery_method}
-                    onChange={_setData}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
+                        setData({
+                            ...data,
+                            delivery_method: e.target.value
+                        });
+                    }}
                     error={errors?.email}
 
                     disabled
@@ -103,9 +106,13 @@ export default function CheckoutForm({
                 <Input
                     className="mb-4"
                     label={dictionary["payment method"]}
-                    id={"payment_method"}
                     value={data.payment_method}
-                    onChange={_setData}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
+                        setData({
+                            ...data,
+                            payment_method: e.target.value
+                        });
+                    }}
                     error={errors?.email}
 
                     disabled
@@ -114,15 +121,17 @@ export default function CheckoutForm({
                 <Input
                     className="mb-4"
                     label={dictionary["address"]}
-                    id={"address"}
                     value={data.address}
-                    onChange={_setData}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
+                        setData({
+                            ...data,
+                            address: e.target.value
+                        });
+                    }}
                     error={errors?.email}
                 />
 
             </FormWrapper>
-
         </div>
-
     )
 }

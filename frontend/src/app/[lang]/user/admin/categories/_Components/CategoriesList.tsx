@@ -11,14 +11,17 @@ export default function CategoriesList({
 }: IProps) {
 
     return (
-        <div className="flex space-x-4">
+        <div className="flex flex-wrap gap-2 justify-around">
             <div className="2xl:w-1/6">
                 <BigPlusLink href="/user/admin/categories/form" />
             </div>
 
-            {categories.map(cat => {
-                return <div className="2xl:w-1/6"> <CategoryCard category={cat} /> </div>
-            })
+            {categories.map(cat => 
+                <CategoryCard 
+                    key={cat.id}
+                    className="w-full 2xl:w-1/6" 
+                    category={cat} />
+            )
             }
         </div>
     )

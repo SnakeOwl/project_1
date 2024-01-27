@@ -6,9 +6,7 @@ export default function UsersPage({
     params: {page}
 }: {
     params: { page?: string }
-}){
-
-    
+}){    
     return (
         <main>
             <h1>Управление пользователями</h1>

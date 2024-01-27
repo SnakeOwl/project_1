@@ -4,15 +4,17 @@ import { useEffect, useState } from "react";
 import Card from "./Card";
 import axiosClient from "@/axios-client";
 import BasketLoader from "./BasketLoader";
+import Basket from "@/classes/Basket";
 
 
 export default function CardsList({ dict }: { dict: any }) {
 
     const [offers, setOffers] = useState<IOffer[]>([]);
+    const basket = new Basket();
 
     async function updateOffers() {
         await axiosClient.get("/basket/index", {
-            params: { key: localStorage.getItem("bkey") }
+            params: { key: basket.getKey() }
         })
             .then(({ data }) => {
                 setOffers(() => { return data.offers });

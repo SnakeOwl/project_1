@@ -3,6 +3,7 @@ import CardWrapper from "@/_Components/CardWrapper";
 import Img from "@/_Components/Img";
 import { BlueText } from "@/_Components/text/borderedText";
 import axiosClient from "@/axios-client";
+import Basket from "@/classes/Basket";
 import ContextUser from "@/context/User/ContextUser";
 import IOffer from "@/interfaces/IOffer";
 import Link from "next/link";
@@ -20,21 +21,17 @@ export default function Card({
 }) {
 
     const { dispatchUser } = useContext(ContextUser);
-
+    const basket = new Basket();
 
     async function removeFromBasket() {
         const { data } = await axiosClient.get(`/basket/remove/${offer.id}`, {
-            params: { key: localStorage.getItem("bkey") }
+            params: { key: basket.getKey() }
         });
 
         // Если из корзины убирают последний товар, то стереть корзину
         if (data.basketIsEmpty == true) {
-            localStorage.removeItem("bkey");
+            basket.eraseData();
 
-            dispatchUser({
-                type: "SET_BKEY",
-                bkey: undefined
-            })
         } else {
             updateOffers();
         }
@@ -44,7 +41,7 @@ export default function Card({
     // добавление предмета в корзину
     async function addToBasket() {
         await axiosClient.get(`/basket/add/${offer.id}`, {
-            params: { key: localStorage.getItem("bkey") }
+            params: { key: basket.getKey() }
         });
 
         updateOffers();
@@ -52,7 +49,7 @@ export default function Card({
 
 
     return (
-        <CardWrapper className="pb-4 w-full">
+        <CardWrapper className="pb-4 w-full 2xl:w-1/5">
             <div className="mb-2">
                 <Img className="rounded h-full w-full object-cover" src={offer.short_image} />
             </div>

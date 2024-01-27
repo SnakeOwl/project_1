@@ -12,11 +12,10 @@ export default function BasketLayout({
     const {stateUser} = useContext(ContextUser);
 
     // ПЕРЕНАПРАВЛЕНИЕ, если у пользователя нет товара в корзине
-    useEffect(() => {
-        
-        if (localStorage.getItem("bkey") == null) {
+    useEffect(() => {        
+        if (typeof stateUser.bkey != "string") 
             router.push("/catalog");
-        }
+        
     }, [stateUser.bkey]);
 
 

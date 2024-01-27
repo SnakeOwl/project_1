@@ -5,7 +5,7 @@ import { BlueButton, PurpleButtonReversed } from "@/_Components/Buttons/ColoredB
 import { Input } from "@/_Components/Inputs/Input";
 import ContextUser from "@/context/User/ContextUser";
 import { useContext, useState } from "react";
-import ReCaptchaGoogleV3 from "@/_Components/recaptches/ReCaptchaGoogleV3"
+import ReCaptchaGoogleV3 from "@/_Components/ReCaptchaGoogleV3"
 
 
 
@@ -122,7 +122,7 @@ export default function LoginForm({ dict }
     return (
         <form onSubmit={handleSubmit} name="login" className="text-left px-4">
 
-            <div className="hidden">
+            <div className="invisible">
                 <ReCaptchaGoogleV3
                     onVerify={() => setCaptchaIsVerified(true)}
                     lang={dict["cl"]}

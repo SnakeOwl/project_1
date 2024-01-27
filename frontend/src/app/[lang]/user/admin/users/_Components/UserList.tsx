@@ -41,13 +41,8 @@ export default function UserList({
 
 
     return (
-        <div className="flex flex-wrap">
-            {users.map((user) =>
-                <div className="2xl:w-1/3 px-2" key={user.id}>
-                    <UserCard user={user} />
-                </div>
-            )
-            }
+        <div className="flex flex-wrap gap-2">
+            { users.map((user) => <UserCard key={user.id} className="w-full 2xl:basis-1/5" user={user} />) }
         </div>
     )
 }

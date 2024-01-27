@@ -12,8 +12,6 @@ import Loading from "./loading";
 import Header from "./_Components/Header";
 import { Comfortaa } from "next/font/google"
 import FunctionalComponent from "./_Components/FunctionalComponent";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import captchaInfo from "@/config/recaptcha.json"
 
 
 const comfortaa = Comfortaa({
@@ -23,7 +21,8 @@ const comfortaa = Comfortaa({
 
 
 // chashe for fetch(), time in seconds
-export const revalidate = 600; // 600 = 10 min
+// Количество доступных товаров также кешируется. С этим осторожнее.
+export const revalidate = 20;
 
 
 export default async function RootLayout(props: {

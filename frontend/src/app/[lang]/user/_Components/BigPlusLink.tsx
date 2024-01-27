@@ -10,7 +10,7 @@ const BigPlusLink = ({href}: IProps) => {
     return (
         <BlueLink
             href={href}
-            className="w-full text-center py-16"
+            className="py-2 h-full text-center flex items-center justify-center"
         >
             <i className="bi bi-plus-lg"></i>
         </BlueLink>

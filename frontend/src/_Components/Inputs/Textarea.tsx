@@ -1,17 +1,20 @@
+"use client"
+import { useId } from "react";
+
 interface IProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-    id: string
     label?: string
     error?: string | undefined 
     className?: string
 }
 
-export function Textarea({
-    id,
+export default function Textarea({
     label,
     error,
     className,
     ...other
 }: IProps) {
+    const id = useId();
+
     const classes = "p-3 w-full rounded-md text-inherit bg-inherit \
         border-2 border-gray-150 \
         dark:border-gray-700 \

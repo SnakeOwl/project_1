@@ -7,16 +7,20 @@ interface IProps {
     shapes?: IShape[]
 }
 
-export default function ShapesList({categoryID, shapes}: IProps){
+export default function ShapesList({ categoryID, shapes }: IProps) {
     return (
-        <div className="flex flex-wrap gap-2">
-        	<div className="2xl:w-1/6">
+        <div className="flex flex-wrap gap-2 justify-between">
+            <div className="w-full 2xl:w-1/5">
                 <BigPlusLink href={`user/admin/categories/${categoryID}/shapes/form`} />
             </div>
 
-            { shapes?.map(shape => <div className="2xl:w-1/6">
-                    <ShapeCard shape={shape} categoryID={categoryID} />
-                </div>
+            {shapes?.map(shape =>
+                <ShapeCard
+                    key={shape.id}
+                    className="w-full 2xl:w-1/5"
+                    shape={shape}
+                    categoryID={categoryID}
+                />
             )
             }
         </div>

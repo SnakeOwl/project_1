@@ -30,7 +30,7 @@ export default function UserLayout(props: {
 
 
     return (
-        <div className="w-full xl:w-4/5 mx-auto flex flex-wrap">
+        <div className="w-full 2xl:w-4/5 mx-auto flex flex-wrap">
             <div className="w-full xl:w-1/4">
                 <MobileMenuArea>
                     <Navigation dict={dict} />

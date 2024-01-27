@@ -1,6 +1,7 @@
 "use client"
 import FormWrapper from "@/_Components/FormWrapper";
 import { Input } from "@/_Components/Inputs/Input";
+import Textarea from "@/_Components/Inputs/Textarea";
 import IStorage from "@/interfaces/IStorage";
 import React, { useState } from "react";
 
@@ -15,12 +16,12 @@ interface IDataRequest {
     schedule_en: string
 }
 
-interface IProps {
+
+export default function StorageForm({ 
+    storage
+}: {
     storage?: IStorage
-}
-
-
-export default function StorageForm({ storage }: IProps) {
+}) {
 
     const [data, setData] = useState<IDataRequest>({
         name: storage?.name || "",
@@ -46,7 +47,6 @@ export default function StorageForm({ storage }: IProps) {
                 setGeneralErrors={setErrors}
             >
                 <Input
-                    id="name"
                     label="name"
                     value={data.name}
                     className="mb-2"
@@ -58,7 +58,6 @@ export default function StorageForm({ storage }: IProps) {
                 />
 
                 <Input
-                    id="name_en"
                     label="name_en"
                     value={data.name_en}
                     className="mb-2"
@@ -70,7 +69,6 @@ export default function StorageForm({ storage }: IProps) {
                 />
 
                 <Input
-                    id="address"
                     label="address"
                     value={data.address}
                     className="mb-2"
@@ -83,7 +81,6 @@ export default function StorageForm({ storage }: IProps) {
 
 
                 <Input
-                    id="address_en"
                     label="address_en"
                     value={data.address_en}
                     className="mb-2"
@@ -95,7 +92,6 @@ export default function StorageForm({ storage }: IProps) {
                 />
 
                 <Input
-                    id="phone"
                     label="phone"
                     value={data.phone}
                     className="mb-2"
@@ -106,24 +102,22 @@ export default function StorageForm({ storage }: IProps) {
                     error={errors?.phone ? errors.phone : undefined}
                 />
 
-                <Input
-                    id="schedule"
+                <Textarea
                     label="schedule"
                     value={data.schedule}
                     className="mb-2"
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                         setData({ ...data, schedule: e.target.value })
                     }}
 
                     error={errors?.schedule ? errors.schedule : undefined}
                 />
 
-                <Input
-                    id="schedule_en"
+                <Textarea
                     label="schedule_en"
                     value={data.schedule_en}
                     className="mb-4"
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                         setData({ ...data, schedule_en: e.target.value })
                     }}
 

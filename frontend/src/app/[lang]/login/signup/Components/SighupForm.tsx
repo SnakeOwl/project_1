@@ -5,7 +5,7 @@ import axiosClient from "@/axios-client";
 import { BlueButton } from "@/_Components/Buttons/ColoredButtons";
 import { Input } from "@/_Components/Inputs/Input";
 import ContextUser from "@/context/User/ContextUser";
-import ReCaptchaGoogleV3 from "@/_Components/recaptches/ReCaptchaGoogleV3";
+import ReCaptchaGoogleV3 from "@/_Components/ReCaptchaGoogleV3";
 
 export default function SighupForm({
     dictionary
@@ -137,7 +137,7 @@ export default function SighupForm({
 
             <form onSubmit={handleSubmit}>
                 
-                <div className="hidden">
+                <div className="invisible">
                     <ReCaptchaGoogleV3
                         onVerify={() => setCaptchaIsVerified(true)}
                         lang={dictionary["cl"]}

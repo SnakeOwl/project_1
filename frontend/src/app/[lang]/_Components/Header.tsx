@@ -25,7 +25,7 @@ export default function Header({ dict }: {dict: any}) {
                     </div>
 
                     <div className="w-1/2 h-full text-sm flex items-center justify-end ">
-                        {stateUser.bkey !== undefined &&
+                        {typeof stateUser.bkey === "string" &&
                             <BasketButton />
                         }
 

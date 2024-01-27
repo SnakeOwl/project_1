@@ -15,6 +15,7 @@ export default function ReducerUser(
     state: UserContextType,
     action: Action
 ): UserContextType {
+
     switch (action.type) {
         case "SET": {
             return {
@@ -26,19 +27,19 @@ export default function ReducerUser(
 
         case 'SET_TOKEN':
             return {
-                ...action,
+                ...state,
                 token: action.token
             }
 
         case "SET_BKEY":
             return {
-                ...action,
+                ...state,
                 bkey: action.bkey
             }
 
         case "SET_USER":
             return {
-                ...action,
+                ...state,
                 user: action.user
             }
 

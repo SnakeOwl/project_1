@@ -1,10 +1,8 @@
 "use client"
 
 import { useState } from "react";
-import { BlueButton } from '@/_Components/Buttons/ColoredButtons'
 import { Input } from "@/_Components/Inputs/Input"
-import axiosClient from '@/axios-client'
-import ReCaptchaGoogleV3 from "@/_Components/recaptches/ReCaptchaGoogleV3";
+import ReCaptchaGoogleV3 from "@/_Components/ReCaptchaGoogleV3";
 import { Textarea } from "@/_Components/Inputs/Textarea";
 import FormWrapper from "@/_Components/FormWrapper";
 
@@ -17,7 +15,8 @@ interface IPostData {
 
 
 export default function SupportForm({ dict }: {dict: any}) {
-
+    "use strict";
+    
     const [CaptchaIsVerified, setCaptchaIsVerified] = useState(false);
 
 
@@ -40,7 +39,7 @@ export default function SupportForm({ dict }: {dict: any}) {
             submitText={dict["submit"]}
         >
 
-            <div className="hidden">
+            <div className="invisible">
                 <ReCaptchaGoogleV3
                     onVerify={() => setCaptchaIsVerified(true)}
                     lang={dict["cl"]}

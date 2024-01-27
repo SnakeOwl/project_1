@@ -1,7 +1,4 @@
-import { Locale } from "@/i18n-config"
 import "server-only"
-
-
 
 
 export default function AdminPage(){

@@ -1,9 +1,8 @@
 "use client"
 import { RedButton, RedButtonReversed } from "./ColoredButtons";
 import axiosClient from "@/axios-client";
-import ContextUser from "@/context/User/ContextUser";
-import { useContext, useState } from "react"
-
+import { useState } from "react"
+import Basket from "@/classes/Basket";
 
 export default function ToBusketButton({
     offerID,
@@ -17,29 +16,20 @@ export default function ToBusketButton({
     
     const [inBasket, setInBasket] = useState(false);
     const [error, setError] = useState(false);
-    const {dispatchUser} = useContext(ContextUser);
-
-
+    const basket = new Basket();
+    
     async function handleClick(){
-        const bkey = localStorage.getItem("bkey") || null;
+
+        const key = basket.getKey();
 
         await axiosClient.get(`/basket/add/${offerID}`, {
-            params: { key: bkey }
+            params: { key: key || null }
         })
-        .then( ({data})=>{
+        .then(({data})=>{
             setInBasket(true);
-
-            if(bkey === null){
-                dispatchUser({
-                    type: "SET_BKEY",
-                    bkey: data.bkey
-                });
-
-                localStorage.setItem("bkey", data.bkey);
-            }
+            basket.setKey(data.bkey);
         })
         .catch(error => {
-            console.log(error);
             setError(true);
         });
     }
