@@ -30,50 +30,36 @@ export default function OfferList({
 
         const page = searchParams.get('page') || "1";
         let request = undefined;
-        // todo: Объединить эти 2 реквеста к одному контроллеру на php
-        if (category != undefined) {
-            // серфинг по категории
-            const searchOptions = searchParams.get('options')?.split(',');
 
-            request = axiosClient.get(`catalog/category/${category}/options`, {
-                params: { options: searchOptions, page: page }
-            })
-        } else {
-            // серфинг по всему каталогу
-            request = axiosClient.get("catalog", { params: { page: page } });
-        }
+        const searchOptions = searchParams.get('options')?.split(',');
+
+        request = axiosClient.get(`catalog`, {
+            params: {
+                options: searchOptions,
+                page: page,
+                category_alias: category || null
+            }
+        })
+
 
         Promise.resolve(request)
             .then(({ data }) => {
+
                 // Если page > чем выдаваемое число страниц, то laravel ошибку не выдаёт
-                // 2 обработчика для 2х ебаных контроллеров
-                if (data.offers == undefined) {
-                    if (data.current_page > data.last_page)
-                        router.push("/");
-                } else {
-                    if (data.offers.current_page > data.offers.last_page)
-                        router.push("/");
-                }
+                if (data.offers.current_page > data.offers.last_page)
+                    router.push("/");
 
-                if (category != undefined) {
-                    dispatchCatalog({
-                        type: "SET_OFFERS_AND_ACTIVE_OPTIONS",
-                        offers: data.offers,
-                        activeOptions: data.options
-                    });
-                } else {
-                    dispatchCatalog({
-                        type: "SET_OFFERS",
-                        offers: data
-                    });
-                }
+                dispatchCatalog({
+                    type: "SET_OFFERS_AND_ACTIVE_OPTIONS",
+                    offers: data.offers,
+                    activeOptions: data.options
+                });
+
             })
-            .catch(error => {
-
-                const { response } = error
+            .catch(({ response }) => {
                 if (response.status == 404)
                     router.push("/");
-            })
+            });
 
     }, [searchParams, category]);
 

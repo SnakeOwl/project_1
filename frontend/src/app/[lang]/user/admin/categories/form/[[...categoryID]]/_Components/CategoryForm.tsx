@@ -12,11 +12,11 @@ interface PostData {
 }
 
 
-interface IProps {
+export default function CategoryForm({ 
+    category 
+}: {
     category?: ICategory
-}
-
-export default function CategoryForm({ category }: IProps) {
+}) {
 
     const [data, setData] = useState<PostData>({
         name: category?.name || "",

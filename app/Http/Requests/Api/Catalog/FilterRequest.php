@@ -14,6 +14,7 @@ class FilterRequest extends FormRequest
     public function rules()
     {
         return [
+            "category_alias" => "nullable|exists:categories,alias",
             'options' => 'nullable|array',
         ];
     }
