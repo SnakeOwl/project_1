@@ -15,8 +15,6 @@ interface IPostData {
 
 
 export default function SupportForm({ dict }: {dict: any}) {
-    "use strict";
-    
     const [CaptchaIsVerified, setCaptchaIsVerified] = useState(false);
 
 
