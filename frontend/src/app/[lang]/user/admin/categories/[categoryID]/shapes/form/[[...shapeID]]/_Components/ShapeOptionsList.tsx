@@ -7,7 +7,7 @@ export default function ShapeOptionsList({shape}: {shape: IShape}) {
     return(
         <div className="flex flex-wrap gap-2">
             <div className="2xl:w-1/6">
-                <BigPlusLink  href={`user/admin/categories/shapes/${shape.id}/options/form`} />
+                <BigPlusLink  href={`/user/admin/categories/shapes/${shape.id}/options/form`} />
             </div>
 
             { shape.shape_options?.map(op => 
