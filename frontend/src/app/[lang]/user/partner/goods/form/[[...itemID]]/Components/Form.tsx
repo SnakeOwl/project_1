@@ -2,7 +2,7 @@
 import { BlueButton } from "@/_Components/Buttons/ColoredButtons";
 import { Input } from "@/_Components/Inputs/Input";
 import Select from "@/_Components/Inputs/Select";
-import { Textarea } from "@/_Components/Inputs/Textarea";
+import Textarea from "@/_Components/Inputs/Textarea";
 import { GreenText, RedText } from "@/_Components/text/borderedText";
 import axiosClient from "@/axios-client";
 import ICategory from "@/interfaces/ICategory";

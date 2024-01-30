@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Input } from "@/_Components/Inputs/Input"
 import ReCaptchaGoogleV3 from "@/_Components/ReCaptchaGoogleV3";
-import { Textarea } from "@/_Components/Inputs/Textarea";
+import Textarea from "@/_Components/Inputs/Textarea";
 import FormWrapper from "@/_Components/FormWrapper";
 
 
