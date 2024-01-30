@@ -166,6 +166,7 @@ export default function LoginForm({ dict }
             }
 
             <PurpleButtonReversed
+                type="button"
                 onClick={fillAsPartner}
                 className="w-full py-2 mt-4 rounded-lg"
             >
@@ -173,6 +174,7 @@ export default function LoginForm({ dict }
             </PurpleButtonReversed>
 
             <PurpleButtonReversed
+                type="button"
                 onClick={fillAsAdmin}
                 className="w-full py-2 mt-4 rounded-lg"
             >

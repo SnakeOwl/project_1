@@ -14,7 +14,7 @@ export default function ShapeCard({
     return (
         <AdminCardWrapper
             removeAPIPath={`admin/categories/${categoryID}/shapes/${shape.id}`}
-            editLink={`user/admin/categories/${categoryID}/shapes/form/${shape.id}`}
+            editLink={`/user/admin/categories/${categoryID}/shapes/form/${shape.id}`}
             className={className}
         >
             <div className="mb-2">{shape.name}</div>
