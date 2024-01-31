@@ -6,10 +6,6 @@ use Illuminate\Support\Facades\Log;
 Route::get("/", function (){ return response("Api is working", 200); });
 
 
-Route::get("/tt", function (){
-    Log::info("tt");
-});
-
 
 Route::prefix("get")->group(function(){
     Route::get("item/{item}", [App\Http\Controllers\Api\Resources\ItemsController::class, "show"]);

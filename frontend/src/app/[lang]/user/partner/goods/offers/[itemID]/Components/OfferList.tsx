@@ -1,6 +1,7 @@
 import { BlueLink } from "@/_Components/ColoredLinks";
 import IOffer from "@/interfaces/IOffer";
 import OfferCard from "./OfferCard";
+import BigPlusLink from "@/app/[lang]/user/_Components/BigPlusLink";
 
 
 interface IProps {
@@ -17,18 +18,14 @@ export default function OfferList({
 }: IProps) {
 
     return (
-        <div className="flex mb-4">
-            <div className="2xl:w-1/5 px-2">
-                <BlueLink
-                    href={`/user/partner/goods/offers/${itemID}/form`}
-                    className="w-full text-center py-16">
-                    <i className="bi bi-plus-lg"></i>
-                </BlueLink>
+        <div className="flex flex-wrap gap-4 justify-around">
+            <div className="w-full 2xl:w-1/5">
+                <BigPlusLink href={`/user/partner/goods/offers/${itemID}/form`} />
             </div>
 
 
-            {offers?.map((offer) =>
-                <div className="2xl:w-1/5 px-2" key={offer.id}>
+            {offers?.map(offer =>
+                <div className="w-full 2xl:w-1/5" key={offer.id}>
                     <OfferCard
                         dict={dict}
                         itemID={itemID}

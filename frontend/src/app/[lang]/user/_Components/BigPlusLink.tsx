@@ -1,4 +1,4 @@
-import { BlueLink } from "@/_Components/ColoredLinks"
+import { BlueLinkReversed } from "@/_Components/ColoredLinks"
 import { memo } from "react"
 
 
@@ -8,12 +8,12 @@ interface IProps{
 
 const BigPlusLink = ({href}: IProps) => {
     return (
-        <BlueLink
+        <BlueLinkReversed
             href={href}
-            className="py-2 h-full text-center flex items-center justify-center"
+            className="py-2 h-full text-center flex items-center justify-center rounded-lg"
         >
             <i className="bi bi-plus-lg"></i>
-        </BlueLink>
+        </BlueLinkReversed>
     )
 }
 

@@ -11,7 +11,7 @@ class UpdateShapeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateShapeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:255|min:2',
+            'name_en' => 'required|max:255|min:2',
         ];
     }
 }

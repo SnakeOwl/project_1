@@ -1,30 +1,15 @@
 import "server-only"
 import StorageForm from "./_Components/StorageForm"
-import axiosClient from "@/axios-client"
-import IStorage from "@/interfaces/IStorage";
-
-
-
-async function getStorage(storageID: string): Promise<IStorage>{
-    const {data} = await axiosClient.get(`get/storage/${storageID}`)
-        .catch(error =>{ 
-            throw new Error("Не могу получить Storage с Сервера.") 
-        });
-
-    return data;
-}
-
-
-interface IProps {
-    params: {
-        storageID?: string
-    }
-}
+import getStorage from "@/utils/getStorage";
 
 
 export default async function StorageFormPage({
     params:{ storageID }
-}: IProps ){
+}: {
+    params: {
+        storageID?: string
+    }
+} ){
 
     const storage = (storageID != undefined)? await getStorage(storageID): undefined;
 

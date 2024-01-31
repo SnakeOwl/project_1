@@ -7,7 +7,7 @@ export default function MobileMenuArea(props: any) {
 
 
     return (
-        <div className=" xl:block xl:static flex h-full fixed top-0 left-0">
+        <div className="xl:block xl:static flex h-screen fixed top-0 left-0">
             <div className={hidden ? "w-0 overflow-hidden xl:w-full" : "w-full bg-white dark:bg-gray-950 pt-8 overflow-scroll"}>
                 {props.children}
             </div>

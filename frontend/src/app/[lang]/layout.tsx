@@ -22,7 +22,7 @@ const comfortaa = Comfortaa({
 
 // chashe for fetch(), time in seconds
 // Количество доступных товаров также кешируется. С этим осторожнее.
-export const revalidate = 20;
+export const revalidate = 60;
 
 
 export default async function RootLayout(props: {

@@ -2,6 +2,7 @@ import { Locale } from "@/i18n-config"
 import { getDictionary } from "@/utils/get-dictionary"
 import "server-only"
 import CardList from "./_Components/CardList"
+import PageRefresher from "../../_Components/PageRefresher"
 
 
 export default async function PartnerGoodsPage({
@@ -16,6 +17,8 @@ export default async function PartnerGoodsPage({
             <h1>{dict["goods management"]}</h1>
 
             <CardList dict={dict} />
+
+            <PageRefresher />
         </main>
     );
 }

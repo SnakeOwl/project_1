@@ -17,12 +17,12 @@ interface IDataRequest {
 }
 
 
-export default function StorageForm({ 
+export default function StorageForm({
     storage
 }: {
     storage?: IStorage
 }) {
-
+    
     const [data, setData] = useState<IDataRequest>({
         name: storage?.name || "",
         name_en: storage?.name_en || "",
@@ -32,10 +32,10 @@ export default function StorageForm({
         schedule: storage?.schedule || "",
         schedule_en: storage?.schedule_en || "",
     });
-
-
+    
     const [errors, setErrors] = useState<any>();
-
+    
+    
 
     return (
         <div className="2xl:w-1/2 mx-auto">
@@ -43,7 +43,7 @@ export default function StorageForm({
                 data={data}
                 createMode={storage == undefined}
                 createURL="admin/storages"
-                updateURL={ storage !== undefined? `admin/storages/${storage.id}`: ""}
+                updateURL={storage !== undefined ? `admin/storages/${storage.id}` : ""}
                 setGeneralErrors={setErrors}
             >
                 <Input

@@ -1,45 +1,23 @@
-import axiosClient from "@/axios-client"
 import { Locale } from "@/i18n-config"
 import { getDictionary } from "@/utils/get-dictionary"
 import "server-only"
 import OfferList from "./Components/OfferList";
 import IOffer from "@/interfaces/IOffer";
-
-
-async function getOffers(itemID: string){
-    let result = undefined;
-
-    await axiosClient.get(`get/items/${itemID}/offers`)
-        .then(response=>{
-            const {data} = response;
-
-            result = data;
-        })
-        .catch(error => {
-            throw new Error("Error! Can't get Item from server.");
-        });
-
-    if (result == undefined)
-        throw new Error("Error! Can't get Item from server.");    
-
-    return result;
-}
-
-
-interface IProps {
-    params: {
-        lang: Locale
-        itemID: string
-    }
-}
+import getOffersByItem from "@/utils/getOffersByItem";
+import PageRefresher from "@/app/[lang]/user/_Components/PageRefresher";
 
 
 export  default async function PartnerOffersPage({params: {
     lang, itemID
-}}: IProps ){
+}}: {
+    params: {
+        lang: Locale
+        itemID: string
+    }
+} ){
     const dict = await getDictionary(lang);
 
-    const offers:IOffer[] = await getOffers(itemID);
+    const offers:IOffer[] = await getOffersByItem(itemID, {cache: "no-store"});
 
     return (
         <main>
@@ -50,6 +28,8 @@ export  default async function PartnerOffersPage({params: {
                 offers={offers} 
                 itemID={itemID} 
             />
+
+            <PageRefresher />
         </main>
     )
 }

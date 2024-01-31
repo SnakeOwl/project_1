@@ -1,27 +1,20 @@
-import axiosClient from "@/axios-client";
 import CategoryForm from "./_Components/CategoryForm";
-import ICategory from "@/interfaces/ICategory";
 import ShapesList from "./_Components/ShapesList";
-
-
-async function getCategory(categoryID: string): Promise<ICategory>{
-    const {data} = await axiosClient(`get/category/${categoryID}`);
-    return data;
-}
-
-
-interface IProps {
-    params: {
-        categoryID?: string
-    } 
-}
+import PageRefresher from "../../../../_Components/PageRefresher";
+import getCategory from "@/utils/getCategory";
 
 
 export default async function CategoryFormPage ({
     params: {categoryID}
-}: IProps ){
+}: {
+    params: {
+        categoryID?: string
+    } 
+} ){
 
-    const category = (categoryID != undefined)? await getCategory(categoryID): undefined;
+    const category = (categoryID != undefined)
+        ? await getCategory(categoryID, { cache: 'no-store' })
+        : undefined;
 
     return (
         <main>
@@ -36,6 +29,8 @@ export default async function CategoryFormPage ({
                 :
                 <div>Работа с опциями, доступны только при редактировании категории. При создании опции не отображаются.</div>
             }
+
+            <PageRefresher />
         </main>
     )
 }

@@ -1,26 +1,21 @@
-import axiosClient from "@/axios-client";
-import ICategory from "@/interfaces/ICategory";
 import "server-only"
 import CategoriesList from "./_Components/CategoriesList";
 import type { Metadata } from 'next'
-
-
-async function getCategories(): Promise<ICategory[]> {
-    const { data } = await axiosClient.get("get/categories");
-
-    return data;
-}
+import PageRefresher from "../../_Components/PageRefresher";
+import getCategories from "@/utils/getCategories";
 
 
 export default async function CategoriesPage() {
 
-    const categories = await getCategories();
+    const categories = await getCategories({ cache: 'no-store' });
 
     return (
         <main>
             <h1>Управление Категориями</h1>
 
             <CategoriesList categories={categories} />
+
+            <PageRefresher />
         </main>
     )
 }

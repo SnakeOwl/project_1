@@ -38,27 +38,25 @@ export default function Parameters({
         setParameters(parameters);
     }
 
-    function updateParameter(e: React.ChangeEvent<HTMLInputElement>, index: number) {
+    function updateParameter(e: React.ChangeEvent<HTMLInputElement>, index: number, field: string) {
         parameters[index] = {
             ...parameters[index],
-            [e.target.id]: e.target.value
+            [field]: e.target.value
         }
 
         setParameters(parameters);
     }
 
     return (
-        <div className="flex flex-wrap">
-            <div className="2xl:w-1/3 px-2">
-                <div className="rounded-lg">
-                    <BlueButtonReversed
-                        onClick={addParameter}
-                        className="w-full text-center py-16 rounded-lg"
-                        type="button"
-                    >
-                        <i className="bi bi-plus-lg"></i>
-                    </BlueButtonReversed>
-                </div>
+        <div className="flex flex-wrap gap-4 justify-around">
+            <div className="w-full 2xl:w-1/3 px-2">
+                <BlueButtonReversed
+                    onClick={addParameter}
+                    className="w-full text-center py-8 rounded-lg"
+                    type="button"
+                >
+                    <i className="bi bi-plus-lg"></i>
+                </BlueButtonReversed>
             </div>
 
             {parameters && parameters.map((par, i) => {
@@ -66,34 +64,30 @@ export default function Parameters({
                     <div className="2xl:w-1/3 p-2" key={i}>
                         <div className="p-2 border border-gray-500 rounded-lg">
                             <Input
-                                id={"param_name"}
                                 value={par.param_name}
                                 label={dict["parameters field name"]}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i) }}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i, "param_name") }}
                                 className="mb-1"
                             />
 
                             <Input
-                                id={"param_name_en"}
                                 value={par.param_name_en}
                                 label={dict["parameters field name en"]}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i) }}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i, "param_name_en") }}
                                 className="mb-1"
                             />
 
                             <Input
-                                id={"param_value"}
                                 value={par.param_value}
                                 label={dict["parameters field value"]}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i) }}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i, "param_value") }}
                                 className="mb-1"
                             />
 
                             <Input
-                                id={"param_value_en"}
                                 value={par.param_value_en}
                                 label={dict["parameters field value en"]}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i) }}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { updateParameter(e, i, "param_value_en") }}
                                 className="mb-4"
                             />
 

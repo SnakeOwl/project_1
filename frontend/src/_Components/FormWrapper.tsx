@@ -20,6 +20,10 @@ interface IProps {
     // callback after success result.
     // (data)=>{}
     successCallback?: Function
+    
+    headers?: object
+    // При передаче файлов, метод PUT не подходит.
+    usePostUpdate?: boolean
 }
 
 export default function FormWrapper({
@@ -35,6 +39,9 @@ export default function FormWrapper({
     setGeneralErrors,
 
     successCallback,
+
+    headers={},
+    usePostUpdate=false,
 
     ...other
 }: IProps) {
@@ -52,9 +59,13 @@ export default function FormWrapper({
         let request = undefined;
 
         if (createMode){
-            request = axiosClient.post(createURL, data)
+            request = axiosClient.post(createURL, data, { headers });
         } else {
-            request = axiosClient.put(updateURL, data)
+            if (usePostUpdate){
+                request = axiosClient.post(updateURL, data, { headers });
+            } else {
+                request = axiosClient.put(updateURL, data, { headers });
+            }
         }
 
         Promise.resolve(request)

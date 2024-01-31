@@ -41,7 +41,7 @@ export default function ParticlesWrapper(props: { children: React.ReactNode }) {
 
     return (
         <>
-            <div className="fixed top-0 w-full h-full z-10" id="particles-js"></div>
+            <div className="fixed top-0 w-full h-screen z-10" id="particles-js"></div>
             <div className="absolute left-0 top-0 right-0 bottom-0 z-20 w-full">
                 {props.children}
             </div>

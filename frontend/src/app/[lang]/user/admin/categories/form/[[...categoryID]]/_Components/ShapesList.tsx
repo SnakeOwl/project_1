@@ -9,7 +9,7 @@ interface IProps {
 
 export default function ShapesList({ categoryID, shapes }: IProps) {
     return (
-        <div className="flex flex-wrap gap-2 justify-between">
+        <div className="flex flex-wrap gap-2">
             <div className="w-full 2xl:w-1/5">
                 <BigPlusLink href={`/user/admin/categories/${categoryID}/shapes/form`} />
             </div>

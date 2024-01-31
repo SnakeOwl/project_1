@@ -1,39 +1,39 @@
-import axiosClient from "@/axios-client"
-import IShape from "@/interfaces/IShape"
 import "server-only"
 import ShapeForm from "./_Components/ShapeForm";
 import ShapeOptionsList from "./_Components/ShapeOptionsList";
+import getShape from "@/utils/getShape";
+import PageRefresher from "@/app/[lang]/user/_Components/PageRefresher";
 
-
-async function getShape(categoryID: string, shapeID: string): Promise<IShape>{
-    const {data} = await axiosClient.get(`get/categories/${categoryID}/shapes/${shapeID}`);
-    return data;
-}
 
 
 export default async function ShapesFormPage({
-    params:{ categoryID, shapeID }
+    params: { categoryID, shapeID }
 }: {
     params: {
         categoryID: string
         shapeID: string
     }
-}){
+}) {
 
-    const shape = shapeID? await getShape(categoryID, shapeID): undefined  ;
+    const shape = shapeID
+        ? await getShape(categoryID, shapeID, { cache: "no-store" })
+        : undefined;
 
     return (
         <main>
             <h1 className="text-center">Управление Опциями Категории</h1>
-            <div className="2xl:w-1/2 mx-auto"> 
-            <ShapeForm shape={shape} categoryID={categoryID} />
-		</div>
+            <div className="2xl:w-1/2 mx-auto">
+                <ShapeForm shape={shape} categoryID={categoryID} />
+            </div>
             <h2>Опции опций Категории</h2>
-            {shape !== undefined?
+            {shape !== undefined ?
                 <ShapeOptionsList shape={shape} />
                 :
                 <p>Опции для опций недоступны при создании.</p>
             }
+
+
+            <PageRefresher />
         </main>
     )
 }

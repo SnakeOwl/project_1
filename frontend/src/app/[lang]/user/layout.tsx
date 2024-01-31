@@ -11,7 +11,7 @@ import MobileMenuArea from "@/_Components/menu/MobileMenuArea";
 
 export default function UserLayout(props: {
     children: React.ReactNode,
-    params: {lang: Locale}
+    params: { lang: Locale }
 }) {
 
     const dict = getDictionaryStatic(props.params.lang);
@@ -21,7 +21,6 @@ export default function UserLayout(props: {
     const router = useRouter();
 
     useEffect(() => {
-
         // Если тут проверять по StateUser.token, то при перезагрузке страницы оно на пару секунд выкидывает пользователя на форму логина
         if (localStorage.getItem("ACCESS_TOKEN") == undefined)
             router.push("/login");

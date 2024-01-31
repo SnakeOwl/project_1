@@ -35,7 +35,7 @@ export function Input({
 
                 className={classes}
             />
-            { error !== undefined &&
+            { error != undefined || error != null &&
                 <p className={errClasses}>{error}</p>
             }
         </div>

@@ -14,7 +14,6 @@ export default function OptionCard({shapeID, option}: IProps){
         >
             <div className="mb-2">{option.value}</div>
             <div className="mb-2">{option.value_en}</div>
-            <div className="mb-2">count: {option.count}</div>
         </AdminCardWrapper>
     )
 }

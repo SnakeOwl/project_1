@@ -12,7 +12,7 @@ export default function CategoriesList({
 
     return (
         <div className="flex flex-wrap gap-2 justify-around">
-            <div className="2xl:w-1/6">
+            <div className="w-full 2xl:w-1/6">
                 <BigPlusLink href="/user/admin/categories/form" />
             </div>
 

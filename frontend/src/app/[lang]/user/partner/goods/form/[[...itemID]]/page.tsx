@@ -2,44 +2,8 @@ import { Locale } from "@/i18n-config";
 import { getDictionary } from "@/utils/get-dictionary";
 import "server-only";
 import Form from "./Components/Form";
-import axiosClient from "@/axios-client";
-
-
-
-async function getItem(itemID: string){
-    let result = undefined;
-
-    await axiosClient.get(`get/item/${itemID}`)
-        .then(({data})=>{
-            result = data;
-        })
-        .catch(()=>{
-            throw new Error("Error. Can't get categories from server.");
-        });
-
-        if (result == undefined)
-            throw new Error("There are no Categories.");
-    
-    return result;
-}
-
-
-async function getCategories(){
-    let result = undefined;
-
-    await axiosClient.get("get/categories")
-        .then(({data})=>{
-            result = data;
-        })
-        .catch(()=>{
-            throw new Error("Error. Can't get categories from server.");
-        });
-
-        if (result == undefined)
-            throw new Error("There are no Categories.");
-    
-    return result;
-}
+import getCategories from "@/utils/getCategories";
+import getItem from "@/utils/getItem";
 
 
 export default async function ItemFormPage({
@@ -53,7 +17,9 @@ export default async function ItemFormPage({
     const dict = await getDictionary(lang);
     const categories = await getCategories();
 
-    const item = itemID? await getItem(itemID): undefined;
+    const item = itemID
+        ? await getItem(itemID, {cache: "no-store"})
+        : undefined;
 
 
     return (

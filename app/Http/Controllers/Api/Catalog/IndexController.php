@@ -14,7 +14,7 @@ class IndexController extends Controller
     {
         // Обычный серфинг по каталогу
         if ($request->missing("category_alias")){
-            $offers = Offer::with('item')->paginate(15);
+            $offers = Offer::orderBy('id', 'desc')->with('item')->paginate(15);
     
             return [
                 'offers' => $offers,
@@ -64,7 +64,7 @@ class IndexController extends Controller
         });
 
 
-        $offers = $availableOffers->toQuery()->with("item")->paginate(15);
+        $offers = $availableOffers->toQuery()->orderBy("id", "desc")->with("item")->paginate(15);
 
         return [
             'offers' => $offers,

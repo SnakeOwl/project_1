@@ -1,27 +1,20 @@
-import axiosClient from "@/axios-client"
-import IStorage from "@/interfaces/IStorage";
 import "server-only"
 import StoragesList from "./_Components/StoragesList";
-
-
-async function getStorages(): Promise<IStorage[]>{
-    const response = await axiosClient.get("get/storages");
-    const {data} = response;
-
-    return data;
-}
+import getStorages from "@/utils/getStorages";
+import PageRefresher from "../../_Components/PageRefresher";
 
 
 export default async function StoragesPage(){
 
     const storages = await getStorages();
 
-
     return (
         <main>
             <h1>Управление Складами</h1>
 
             <StoragesList storages={storages} />
+
+            <PageRefresher />
         </main>
     )
 }

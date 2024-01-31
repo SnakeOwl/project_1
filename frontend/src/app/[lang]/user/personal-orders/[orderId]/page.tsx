@@ -3,8 +3,6 @@ import { Locale } from "@/i18n-config";
 import OrderInformation from "./_Components/OrderInformation";
 
 
-
-// todo: какого-то хуя редиректит со страницы после перезагрузки
 export default async function PersonalOrderPage({
     params: { orderId, lang }
 }: {

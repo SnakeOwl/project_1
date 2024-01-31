@@ -33,7 +33,7 @@ export default function AdminCardWrapper({
 
 
     if (removed)
-        return <RedText className="flex items-center justify-center">Удалено</RedText>;
+        return <RedText className={`flex items-center justify-center ${className}`}>Удалено</RedText>;
 
 
     return (
