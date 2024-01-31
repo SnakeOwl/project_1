@@ -81,6 +81,10 @@ export default function Navigation({
             text: "Запросы на покупку в один клик",
             href: "/user/admin/one-click-requests"
         },
+        {
+            text: "Сбросить серверный кеш",
+            href: "/user/admin/cache-clear"
+        },
     ];
 
 

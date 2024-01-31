@@ -1,9 +1,13 @@
 
 # Installing
-После установки указать пути к api, в файле /src/config/API_routes.json.
+После установки указать пути к api, в файле 
+/src/config/API_routes.json.
+в next.config.js указать remotePatterns для картинок
+
 
 npm install
 npm run build
+
 
 ## Для раздачи на сервере можно использовать этого демона
 npm install pm2 -g 

@@ -10,15 +10,13 @@ interface IPostData {
     name_en: string
 }
 
-interface IProps {
-    categoryID: string
-    shape?: IShape
-}
-
 export default function ShapeForm({
     categoryID,
     shape
-}: IProps) {
+}: {
+    categoryID: string
+    shape?: IShape
+}) {
 
     const [data, setData] = useState<IPostData>({
         name: shape?.name || "",
