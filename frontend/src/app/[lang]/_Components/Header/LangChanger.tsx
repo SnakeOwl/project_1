@@ -24,12 +24,14 @@ export default function LangChanger({dict}: {dict: any}) {
             {i18n.locales.map((locale) => {
                 if (locale !== dict["cl"])
                     return (
-                        <BlueLinkReversed key={locale}
+                        // Если использовать Link от nextjs, то на странице с галерей 
+                        // все приложение падает при переключении локали
+                        <a key={locale}
                             className="px-2 py-1 rounded"
                             href={redirectedPathName(locale)}
                         >
                             {locale}
-                        </BlueLinkReversed>
+                        </a>
                     )
             })}
         </div>

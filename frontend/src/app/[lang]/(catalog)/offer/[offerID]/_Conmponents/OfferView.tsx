@@ -59,7 +59,7 @@ export default function OfferView({
 
 
             {/* Galery */}
-            {offer.images !== undefined && offer.images.length > 0 &&
+            {offer?.images != undefined && offer.images.length > 0 &&
                 <div className="w-full my-8">
                     <h2 className="text-center my-3">{dict["galery"]}</h2>
                     <Galery images={offer.images} />

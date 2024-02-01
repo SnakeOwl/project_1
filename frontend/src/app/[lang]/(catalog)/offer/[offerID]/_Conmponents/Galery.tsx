@@ -1,10 +1,7 @@
 "use client"
 
 import LightGallery from 'lightgallery/react';
-// import styles
-import 'lightgallery/css/lightgallery.css';
-import 'lightgallery/css/lg-zoom.css';
-import 'lightgallery/css/lg-thumbnail.css';
+
 import Img from '@/_Components/Img';
 
 // import plugins if you need
@@ -32,23 +29,21 @@ export default function Galery({
 
 
     return (
-        <>
-            <LightGallery
-                speed={500}
-                plugins={[lgZoom]}
-                elementClassNames='flex flex-wrap gap-2 justify-around'
-            >
-                {images.map(image => {
-                    const link = `${apiStorage}/${image.url}`;
+        <LightGallery
+            speed={500}
+            plugins={[lgZoom]}
+            elementClassNames='flex flex-wrap gap-2 justify-around'
+        >
+            {images.map(image => {
+                const link = `${apiStorage}/${image.url}`;
 
-                    return (
-                        <a key={image.id} className='w-full 2xl:w-1/6' href={link}>
-                            <Img className='' alt="" src={image.url} />
-                        </a>
-                    )
-                })
-                }
-            </LightGallery>
-        </>
+                return (
+                    <a key={image.id} className='w-full 2xl:w-1/6' href={link}>
+                        <Img className='' alt="" src={image.url} />
+                    </a>
+                )
+            })
+            }
+        </LightGallery>
     )
 }
