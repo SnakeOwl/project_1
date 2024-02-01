@@ -5,6 +5,7 @@ import IOffer from "@/interfaces/IOffer";
 import ILinkToOffer from "./_Conmponents/ILinkToOffer";
 import OfferView from "./_Conmponents/OfferView";
 import fetchClient from "@/fetch-client";
+import { notFound } from "next/navigation";
 
 
 
@@ -19,6 +20,9 @@ async function getOffer(offerId: string): Promise<[IOffer, ILinkToOffer[]]> {
             offer = jsonData.offer;
             linksToOffers = Object.values<ILinkToOffer>(jsonData.itemOffersLinks);
             break;
+            
+        case 404:
+            notFound();
     }
 
     if (offer === undefined || linksToOffers === undefined)
@@ -67,17 +71,19 @@ export default async function OfferPage({
 // returns { offerID: string }[]  OR  []
 export async function generateStaticParams() {
     const response = await fetchClient.get("get/offers/all-ids")
-
+    
     switch (response.status) {
         case 200:
             const { jsonData } = response;
-            const result = jsonData.map((off: {id: string}) => { return { offerID: off.id.toString() } });
-            return result;
+            return jsonData.map<any[]>((off: {id: string}) => { return { offerID: off.id.toString() } });
+            
             break;
     }
-
-    return [];
 }
+
+
+
+
 
 
 // metadata. server only!

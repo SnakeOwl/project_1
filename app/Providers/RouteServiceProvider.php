@@ -45,8 +45,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting()
     {
+        // todo: найти способ задания доверенных хостов, чтобы отключить вообще RateLimiter
+        // во время build frontenda создается большая нагрузка запросами
+        // по факту столько запросов в минуту излишне, но у тебя просто не скомпилится билд
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(160)->by($request->user()?->id ?: $request->ip());
+            return Limit::perMinute(320)->by($request->user()?->id ?: $request->ip());
         });
     }
 }

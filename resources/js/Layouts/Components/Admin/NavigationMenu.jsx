@@ -16,29 +16,14 @@ export default function NavigationMenu(){
             upperName: menuInfo.countOrders,
         },
         {   
-            route: '/admin/items',
-            name: lang['goods'],
-            upperName: menuInfo.countItems + "/" + menuInfo.countOffers,
-        },
-        {   
             route: '/admin/subscribers',
             name: lang['subscribers'],
             upperName: menuInfo.countSubscribers,
         },
         {   
-            route: '/admin/categories',
-            name: lang['categories'],
-            upperName: menuInfo.countCategories,
-        },
-        {   
             route: '/admin/users',
             name: lang['users'],
             upperName: menuInfo.countUsers,
-        },
-        {   
-            route: '/admin/storages',
-            name: lang['storages'],
-            upperName: menuInfo.countStorages,
         },
         {   
             route: '/admin/messages',

@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\hasMany;
-use App\Models\Traits\Translatable;
 
 class Category extends Model
 {
-    use HasFactory, Translatable;
+    use HasFactory;
 
     public $timestamps = false;
 

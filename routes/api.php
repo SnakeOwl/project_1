@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Log;
 
 Route::get("/", function (){ return response("Api is working", 200); });
-
 
 
 Route::prefix("get")->group(function(){

@@ -23,24 +23,9 @@ Route::prefix('admin')
     Route::resource('messages', App\Http\Controllers\Admin\Messages\MessageController::class)
         ->only(['index', 'destroy']);
 
-    Route::resource('items', App\Http\Controllers\Admin\Items\ItemController::class);
-    Route::resource('items.offers', App\Http\Controllers\Admin\Offers\OfferController::class)
-        ->except("update");
-        // через put и path картинки в js не загружаются (при установки картинки, данные вообще не приходят).
-    Route::post('items/{item}/offers/{offer}/update', [App\Http\Controllers\Admin\Offers\OfferController::class, "update"]);
-
-    Route::resource('storages', App\Http\Controllers\Admin\Storages\StorageController::class);
-
     Route::resource('users', App\Http\Controllers\Admin\Users\UserController::class)
         ->except(['create', 'store']);
 
     Route::resource('subscribers', App\Http\Controllers\Admin\Subscribers\SubscribersController::class)
         ->only(['index' ,'destroy']);
-
-    Route::resource('categories', App\Http\Controllers\Admin\Categories\CategoryController::class);
-
-    Route::resource('shapes', App\Http\Controllers\Admin\Categories\Shapes\ShapeController::class)
-        ->only(['store', 'update', 'destroy']);
-    Route::resource('shape-options', App\Http\Controllers\Admin\Categories\Shapes\Options\ShapeOptionController::class)
-        ->only(['store', 'update', 'destroy']);
 });
