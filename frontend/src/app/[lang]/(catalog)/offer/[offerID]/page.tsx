@@ -6,7 +6,6 @@ import ILinkToOffer from "./_Conmponents/ILinkToOffer";
 import OfferView from "./_Conmponents/OfferView";
 import fetchClient from "@/fetch-client";
 import { notFound } from "next/navigation";
-import getDictionaryStatic from "@/utils/get-dictionary-static";
 
 
 
@@ -50,7 +49,7 @@ export default async function OfferPage({
     }
 }: IProps) {
     const [offer, linksToOffers] = await getOffer(offerID);
-    const dict = getDictionaryStatic(lang);
+    const dict = await getDictionary(lang);
 
     if (offer.item == undefined)
         throw new Error("Error. Can't find Item for Offer");

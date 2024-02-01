@@ -80,9 +80,11 @@ export default function OfferList({
         <>
             <main className="flex flex-wrap justify-around gap-4 mb-4 px-2">
                 {offers.data.map((offer: IOffer) =>
-                    <WithCustomLoading key={`offer-${offer.id}`}
+                    <WithCustomLoading
+                        key={`offer-${offer.id}`}
                         offer={offer}
-                        dict={dict} />
+                        dict={dict}
+                    />
                 )
                 }
 
