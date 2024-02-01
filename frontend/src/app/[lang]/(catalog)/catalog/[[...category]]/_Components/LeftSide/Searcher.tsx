@@ -44,7 +44,7 @@ export default function Searcher({
                 onChange={handleChange}
             />
 
-            <ListOffers 
+            <ListOffers
                 matches={matches}
             />
         </div>
