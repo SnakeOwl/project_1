@@ -18,7 +18,7 @@ export default function Card({
     const offerLink = `/offer/${offer.id}`;
 
     return (
-        <CardWrapper className="2xl:w-1/6 w-full pb-4">
+        <CardWrapper className="2xl:w-1/6 w-full pb-4 flex flex-col justify-between">
             <div className="h-64 rounded-md overflow-hidden mb-2">
                 <Link href={offerLink} className="h-full w-full" >
                     <Img
@@ -29,23 +29,22 @@ export default function Card({
             </div>
 
 
-            <div className="px-3">
-                <Link href={offerLink} className="mb-3 h3">
-                    {dict["currentLocale"] === "ru" ?
-                        offer.item?.name
-                        :
-                        offer.item?.name_en
-                    }
-                </Link>
-                    
+            <Link href={offerLink} className="mb-3 px-3 h3">
+                {dict["currentLocale"] === "ru" ?
+                    offer.item?.name
+                    :
+                    offer.item?.name_en
+                }
+            </Link>
+
+
+            <div className="mt-auto px-3">
                 <div className="flex justify-between mb-2">
                     <span>{dict["price"]}</span>
                     <span>{offer.price}</span>
                 </div>
-
-
                 {offer.count > 0 ?
-                    <div className="flex justify-between">
+                    <div className="flex justify-between ">
                         <ToBusketButton
                             offerID={offer.id}
                             className={"py-2 px-5 rounded-md"}
