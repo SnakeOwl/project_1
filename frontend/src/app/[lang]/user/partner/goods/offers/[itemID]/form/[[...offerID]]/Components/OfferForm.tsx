@@ -8,6 +8,7 @@ import CategoryOptions from "./CategoryOptions"
 import ICategory from "@/interfaces/ICategory"
 import { RedButtonReversed } from "@/_Components/Buttons/ColoredButtons"
 import FormWrapper from "@/_Components/FormWrapper"
+import { revalidatePath } from "next/cache"
 
 
 type PostData = {
@@ -93,6 +94,10 @@ export default function OfferForm({
             setGeneralErrors={setErrors}
             headers={{ "Content-Type": "multipart/form-data" }}
             usePostUpdate={true}
+            successCallback={()=>{
+                revalidatePath("en/offer/", "page");
+                revalidatePath("ru/offer/", "page");
+            }}
         >
             <div className="flex">
                 <Input

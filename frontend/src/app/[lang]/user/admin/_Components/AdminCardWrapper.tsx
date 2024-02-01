@@ -37,7 +37,7 @@ export default function AdminCardWrapper({
 
 
     return (
-        <CardWrapper className={className}>
+        <CardWrapper className={`flex flex-col justify-between ${className}` }>
 
             {children}
 

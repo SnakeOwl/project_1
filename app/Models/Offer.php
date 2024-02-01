@@ -37,7 +37,9 @@ class Offer extends Model
             $params['short_image'] = $this->storeImage($params['shortImage']);
 
         $offer = $this->create($params);
-        $offer->shapeOptions()->sync($params['optionsIDs']);
+        if (isset($params['optionsIDs']))
+            $offer->shapeOptions()->sync($params['optionsIDs']);
+
         $offer->uploadGalery($params['newGaleryImages'] ?? array());
     }
 
@@ -47,7 +49,9 @@ class Offer extends Model
              $this->updateShortImage($params['shortImage']);
 
         $this->update($params);
-        $this->shapeOptions()->sync($params['optionsIDs']);
+        if (isset($params['optionsIDs']))
+            $this->shapeOptions()->sync($params['optionsIDs']);
+        
         $this->autocleanGalery($params['galery'] ?? array());
         $this->uploadGalery($params['newGaleryImages'] ?? array());
     }

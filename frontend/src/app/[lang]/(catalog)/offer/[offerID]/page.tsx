@@ -68,18 +68,21 @@ export default async function OfferPage({
 
 
 
+// намеренный отказ от Full Route Cache, из-за того что количество предложений для покупок ограничено
+// а оно кешит на хуеву тучу секунд
+
 // returns { offerID: string }[]  OR  []
-export async function generateStaticParams() {
-    const response = await fetchClient.get("get/offers/all-ids")
+// export async function generateStaticParams() {
+//     const response = await fetchClient.get("get/offers/all-ids")
     
-    switch (response.status) {
-        case 200:
-            const { jsonData } = response;
-            return jsonData.map<any[]>((off: {id: string}) => { return { offerID: off.id.toString() } });
+//     switch (response.status) {
+//         case 200:
+//             const { jsonData } = response;
+//             return jsonData.map<any[]>((off: {id: string}) => { return { offerID: off.id.toString() } });
             
-            break;
-    }
-}
+//             break;
+//     }
+// }
 
 
 
