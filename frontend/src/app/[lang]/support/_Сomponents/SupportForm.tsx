@@ -2,24 +2,18 @@
 
 import { useState } from "react";
 import { Input } from "@/_Components/Inputs/Input"
-import ReCaptchaGoogleV3 from "@/_Components/ReCaptchaGoogleV3";
 import Textarea from "@/_Components/Inputs/Textarea";
 import FormWrapper from "@/_Components/FormWrapper";
 
 
-interface IPostData {
-    name: string
-    email: string
-    message: string
-}
-
-
 export default function SupportForm({ dict }: {dict: any}) {
-    const [CaptchaIsVerified, setCaptchaIsVerified] = useState(false);
-
 
     // данные для отправки на сервер
-    const [data, setData] = useState<IPostData>({
+    const [data, setData] = useState<{
+        name: string
+        email: string
+        message: string
+    }>({
         name: "",
         email: "",
         message: "",
@@ -36,14 +30,6 @@ export default function SupportForm({ dict }: {dict: any}) {
             setGeneralErrors={setErrors}
             submitText={dict["submit"]}
         >
-
-            <div className="invisible">
-                <ReCaptchaGoogleV3
-                    onVerify={() => setCaptchaIsVerified(true)}
-                    lang={dict["cl"]}
-                />
-            </div>
-
             <Input
                 className="mb-4"
                 label={dict["name"]}

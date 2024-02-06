@@ -1,23 +1,13 @@
 "use client"
 
 import { useContext, useState } from "react"
-import axiosClient from "@/axios-client";
-import { BlueButton } from "@/_Components/Buttons/ColoredButtons";
 import { Input } from "@/_Components/Inputs/Input";
 import ContextUser from "@/context/User/ContextUser";
-import ReCaptchaGoogleV3 from "@/_Components/ReCaptchaGoogleV3";
+import FormWrapper from "@/_Components/FormWrapper";
 
-export default function SighupForm({
-    dictionary
-}: {
-    dictionary: any
-}) {
+export default function SighupForm({ dictionary }: { dictionary: any }) {
 
     const { dispatchUser } = useContext(ContextUser);
-
-
-    const [CaptchaIsVerified, setCaptchaIsVerified] = useState(false);
-
 
     // данные для отправки на сервер
     const [data, setData] = useState({
@@ -27,74 +17,23 @@ export default function SighupForm({
         password_confirmation: ""
     });
 
-    function _setData(e: React.ChangeEvent<HTMLInputElement>) {
-        setData({
-            ...data,
-            [e.target.id]: e.target.value
-        })
-    }
-
-
     // данные для визуализации формы
-    const [side, setSide] = useState({
-        errors: {
-            name: undefined,
-            email: undefined,
-            password: undefined,
-            password_confirmation: undefined
-        },
-        errMessage: null,
-    })
+    const [errors, setErrors] = useState<any>();
 
 
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
+    function updateUserInfo(response: any) {
+        // обновление записи пользователя в приложении
+        dispatchUser({
+            type: 'SET_TOKEN',
+            token: response.token,
+        });
 
-        if (!CaptchaIsVerified)
-            return false;
-            
-
-        await axiosClient.post("signup", data)
-            .then(({ data }) => {
-                // обновление записи пользователя в приложении
-                dispatchUser({
-                    type: 'SET_TOKEN',
-                    token: data.token,
-                });
-
-                // запись токена для проверки в API, на сервере
-                if (data.token) {
-                    localStorage.setItem('ACCESS_TOKEN', data.token);
-                } else {
-                    localStorage.removeItem('ACCESS_TOKEN');
-                }
-            })
-            .catch(error => {
-                // если нет респонса, значит нет ответа от сервера
-                if (error.response === undefined) {
-                    console.log(dictionary["server conn propblem"]);
-
-                    return;
-                }
-
-                const { response } = error
-                if (response.data.errors !== undefined) {
-                    setSide(s => {
-                        return {
-                            ...s,
-                            errors: response.data.errors
-                        }
-                    });
-                }
-
-                // общие ошибки
-                setSide(s => {
-                    return {
-                        ...s,
-                        errMessage: response.data.message
-                    }
-                });
-            })
+        // запись токена для проверки в API, на сервере
+        if (response.token) {
+            localStorage.setItem('ACCESS_TOKEN', response.token);
+        } else {
+            localStorage.removeItem('ACCESS_TOKEN');
+        }
     }
 
 
@@ -129,77 +68,66 @@ export default function SighupForm({
         setData({ ...data, password_confirmation: e.target.value });
     }
 
+    
     return (
-        <>
-            {side.errMessage !== null &&
-                <p className="text-red-600 border-red-200 border-2 text-justify py-3 px-2 rounded-md">{side.errMessage}</p>
-            }
+        <FormWrapper
+            data={data}
+            submitText={dictionary["goRegister"]}
+            createURL="signup"
+            createMode={true}
+            setGeneralErrors={setErrors}
+            successCallback={updateUserInfo}
+        >
+            <Input
+                label={dictionary["name"]}
+                value={data.name}
+                className={"mb-8"}
 
-            <form onSubmit={handleSubmit}>
-                
-                <div className="invisible">
-                    <ReCaptchaGoogleV3
-                        onVerify={() => setCaptchaIsVerified(true)}
-                        lang={dictionary["cl"]}
-                    />
-                </div>
+                onChange={(e) => { setData({ ...data, name: e.target.value }) }}
+                error={errors?.name}
+                required
+                placeholder="Walter White"
+            />
 
-                <Input
-                    id="name"
-                    label={dictionary["name"]}
-                    value={data.name}
-                    className={"mb-8"}
+            <Input
+                type="email"
+                label={dictionary["email"]}
+                value={data.email}
 
-                    onChange={_setData}
-                    error={side.errors.name}
-                    required
-                    placeholder="Walter White"
-                />
+                className={"mb-8"}
+                onChange={(e) => { setData({ ...data, email: e.target.value }) }}
+                error={errors?.email}
+                required
 
-                <Input
-                    id="email"
-                    type="email"
-                    label={dictionary["email"]}
-                    value={data.email}
+                placeholder="WalterWhite@gmail.com"
+            />
 
-                    className={"mb-8"}
-                    onChange={_setData}
-                    error={side.errors.email}
-                    required
+            <Input
+                id="password"
+                type="password"
+                label={dictionary["password"]}
+                value={data.password}
 
-                    placeholder="WalterWhite@gmail.com"
-                />
+                className={"mb-8"}
+                onChange={handleChangePassword}
+                error={errors?.password}
+                required
 
-                <Input
-                    id="password"
-                    type="password"
-                    label={dictionary["password"]}
-                    value={data.password}
+                minLength={8}
+            />
 
-                    className={"mb-8"}
-                    onChange={handleChangePassword}
-                    error={side.errors.password}
-                    required
+            <Input
+                id="password_confirmation"
+                type="password"
+                label={dictionary["confirm password"]}
+                value={data.password_confirmation}
 
-                    minLength={8}
-                />
+                className={"mb-8"}
+                onChange={handleChangePasswordConfirmation}
+                error={errors?.password_confirmation}
 
-                <Input
-                    id="password_confirmation"
-                    type="password"
-                    label={dictionary["confirm password"]}
-                    value={data.password_confirmation}
-
-                    className={"mb-8"}
-                    onChange={handleChangePasswordConfirmation}
-                    error={side.errors.password_confirmation}
-
-                    required
-                />
-
-                <BlueButton className={"w-full py-3"}>{dictionary["goRegister"]}</BlueButton>
-            </form>
-        </>
+                required
+            />
+        </FormWrapper>
     )
-
 }

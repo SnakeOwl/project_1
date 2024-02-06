@@ -45,6 +45,8 @@ module.exports = {
         'a:hover': {
             color: theme('colors.red.600'),
         },
+
+        ".grecaptcha-badge": {"visibility": "hidden"}
     })
   }],
 }

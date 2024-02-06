@@ -1,23 +1,12 @@
 "use client"
 
-import axiosClient from "@/axios-client";
-import { BlueButton, PurpleButtonReversed } from "@/_Components/Buttons/ColoredButtons";
+import { PurpleButtonReversed } from "@/_Components/Buttons/ColoredButtons";
 import { Input } from "@/_Components/Inputs/Input";
 import ContextUser from "@/context/User/ContextUser";
 import { useContext, useState } from "react";
-import ReCaptchaGoogleV3 from "@/_Components/ReCaptchaGoogleV3"
+import FormWrapper from "@/_Components/FormWrapper";
 
-
-
-export default function LoginForm({ dict }
-: { dict: any }) {
-
-  
-    const [CaptchaIsVerified, setCaptchaIsVerified] = useState<boolean>(false);
-
-
-
-
+export default function LoginForm({ dict }: { dict: any }) {
 
     // form's data
     const [data, setData] = useState({
@@ -25,83 +14,23 @@ export default function LoginForm({ dict }
         password: ""
     });
 
-    function _setData(e: React.ChangeEvent<HTMLInputElement>) {
-        setData({
-            ...data,
-            [e.target.id]: e.target.value
-        })
-    }
-
-    // form's side data
-    const [side, setSide] = useState({
-        errors: {
-            email: undefined,
-            password: undefined
-        },
-        errMessage: null,
-    });
-
-
+    const [errors, setErrors] = useState<any>();
     const { dispatchUser } = useContext(ContextUser);
 
+    function updateUserInfo(response: any) {
+        // обновление записи пользователя в приложении
+        dispatchUser({
+            type: 'SET_TOKEN',
+            token: response.token,
+        });
 
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-
-        if (!CaptchaIsVerified)
-            return false;
-
-
-        await axiosClient.post('login', data)
-            .then(({ data }) => {
-                // обновление записи пользователя в приложении
-                dispatchUser({
-                    type: 'SET_TOKEN',
-                    token: data.token,
-                });
-
-                // запись токена для проверки в API, на сервере
-                if (data.token) {
-                    localStorage.setItem('ACCESS_TOKEN', data.token);
-                } else {
-                    localStorage.removeItem('ACCESS_TOKEN');
-                }
-            })
-            .catch(error => {
-                // если нет респонса, значит нет ответа от сервера
-                if (error.response === undefined) {
-                    setSide(s => {
-                        return {
-                            ...s,
-                            errMessage: dict["server conn propblem"]
-                        }
-                    });
-
-                    return;
-                }
-
-                const { response } = error;
-                if (response.data.errors !== undefined) {
-                    setSide(s => {
-                        return {
-                            ...s,
-                            errors: response.data.errors
-                        }
-                    });
-                }
-
-                // общие ошибки
-                setSide(s => {
-                    return {
-                        ...s,
-                        errMessage: response.data.message
-                    }
-                });
-                console.log(response);
-            });
+        // запись токена для проверки в API, на сервере
+        if (response.token) {
+            localStorage.setItem('ACCESS_TOKEN', response.token);
+        } else {
+            localStorage.removeItem('ACCESS_TOKEN');
+        }
     }
-
-
 
 
     // debug function
@@ -120,55 +49,41 @@ export default function LoginForm({ dict }
     }
 
     return (
-        <form onSubmit={handleSubmit} name="login" className="text-left px-4">
-
-            <div className="invisible">
-                <ReCaptchaGoogleV3
-                    onVerify={() => setCaptchaIsVerified(true)}
-                    lang={dict["cl"]}
-                />
-            </div>
-
-
-            {side.errMessage !== null &&
-                <p className="text-red-600 border-red-200 border-2 text-justify py-3 px-2 rounded-md">{side.errMessage}</p>
-            }
+        <FormWrapper
+            data={data}
+            submitText={dict["login"]}
+            createMode={true}
+            createURL="login"
+            setGeneralErrors={setErrors}
+            successCallback={updateUserInfo}
+        >
             <Input
-                id="email"
                 type="email"
                 value={data.email}
-                onChange={_setData}
+                onChange={(e) => { setData({ ...data, email: e.target.value }) }}
                 label={dict["email"]}
                 placeholder="WalterWhite@gmail.com"
                 className="mb-8"
 
-                error={side.errors.email}
+                error={errors?.email || null}
                 required
             />
 
             <Input
-                id="password"
                 type="password"
-                onChange={_setData}
+                onChange={(e) => { setData({ ...data, password: e.target.value }) }}
                 label={dict["password"]}
                 className="mb-8"
                 value={data.password}
 
-                error={side.errors.password}
+                error={errors?.password || null}
                 required
             />
-
-
-            {CaptchaIsVerified &&
-                <BlueButton className={"w-full py-3"}>
-                    {dict["log in"]}
-                </BlueButton>
-            }
 
             <PurpleButtonReversed
                 type="button"
                 onClick={fillAsPartner}
-                className="w-full py-2 mt-4 rounded-lg"
+                className="w-full py-2 mb-2 rounded-lg"
             >
                 fill as partner
             </PurpleButtonReversed>
@@ -176,10 +91,11 @@ export default function LoginForm({ dict }
             <PurpleButtonReversed
                 type="button"
                 onClick={fillAsAdmin}
-                className="w-full py-2 mt-4 rounded-lg"
+                className="w-full py-2 mb-2 rounded-lg"
             >
                 fill as Admin
             </PurpleButtonReversed>
-        </form>
+        </FormWrapper>
+
     );
 }
