@@ -4,11 +4,16 @@ import LightGallery from 'lightgallery/react';
 
 import Img from '@/_Components/Img';
 
+
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-thumbnail.css';
+
+
 // import plugins if you need
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
 
-import APIroutes from "@/config/API_routes.json";
 import IImage from '@/interfaces/IImage';
 
 
@@ -25,7 +30,7 @@ export default function Galery({
             </div>
         )
 
-    const apiStorage = APIroutes.API_IMAGES_STORAGE;
+    const apiStorage = process.env.NEXT_PUBLIC_API_IMAGES_STORAGE;
 
 
     return (

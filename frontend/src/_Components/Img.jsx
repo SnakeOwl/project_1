@@ -1,4 +1,3 @@
-import configRoutes from "@/config/API_routes"
 import Image from 'next/image'
 
 export default function Img(props) {
@@ -7,7 +6,7 @@ export default function Img(props) {
 
 
     if (src !== undefined && src !== null)
-        nsrc = `${configRoutes.API_IMAGES_STORAGE}/${src}`;
+        nsrc = `${process.env.NEXT_PUBLIC_API_IMAGES_STORAGE}/${src}`;
 
 
     return (

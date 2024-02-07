@@ -1,7 +1,6 @@
 
 # Installing
-После установки указать пути к api, в файле 
-/src/config/API_routes.json.
+После установки указать пути для .env
 в next.config.js указать remotePatterns для картинок
 
 
@@ -12,7 +11,7 @@ npm run build
 ## Для раздачи на сервере можно использовать этого демона
 npm install pm2 -g 
 
-todo: придумать как по другому запускать на сервере. А то этот способ сбрасывается каждый раз, после рестарта сервера.
+todo: перенести этот функционал на Docker
 pm2 start npm --name "ShowerFrontend" -- start
 
 check:

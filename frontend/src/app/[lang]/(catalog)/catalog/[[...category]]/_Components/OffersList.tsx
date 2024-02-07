@@ -29,21 +29,15 @@ export default function OfferList({
     useEffect(() => {
 
         const page = searchParams.get('page') || "1";
-        let request = undefined;
-
         const searchOptions = searchParams.get('options')?.split(',');
 
-        request = axiosClient.get(`catalog`, {
+        axiosClient.get(`catalog`, {
             params: {
                 options: searchOptions,
                 page: page,
                 category_alias: category || null
             }
-        })
-
-
-        Promise.resolve(request)
-            .then(({ data }) => {
+        }).then(({ data }) => {
 
                 // Если page > чем выдаваемое число страниц, то laravel ошибку не выдаёт
                 if (data.offers.current_page > data.offers.last_page)

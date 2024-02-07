@@ -1,10 +1,10 @@
 import axios from "axios";
-import apiRoutes from "./config/API_routes.json"
 
 // nextj не кеширует данные, пришедшие с axiosClient.
 // для кешированя использовать fetchClient
 const axiosClient = axios.create({
-    baseURL: `${apiRoutes.BASE_URL}/api`
+    
+    baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 });
 
 if (typeof window !== "undefined"){

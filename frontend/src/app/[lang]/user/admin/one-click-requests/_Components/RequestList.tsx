@@ -4,8 +4,6 @@ import Card from "./Card";
 import { useEffect, useState } from "react";
 import axiosClient from "@/axios-client";
 
-
-// todo: сделать постраничную навигацию
 export default function RequestList() {
 
     const [requests, setRequests] = useState<IOneClickRequest[]>()

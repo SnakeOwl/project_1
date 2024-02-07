@@ -1,7 +1,6 @@
 import FetchHttpClient, { json } from 'fetch-http-client';
-import apiRoutes from "./config/API_routes.json"
 
-const fetchClient = new FetchHttpClient(`${apiRoutes.BASE_URL}/api/`);
+const fetchClient = new FetchHttpClient(`${process.env.NEXT_PUBLIC_BASE_URL}/api/`);
 
 // Add access token
 if (typeof window !== "undefined") {

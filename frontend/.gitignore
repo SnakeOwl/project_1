@@ -1,4 +1,6 @@
 /node_modules
 /.next
+/.env
+
 # пути с круглыми скобками задавать в двойных кавычках
 "/src/app/[lang]/(testing)"

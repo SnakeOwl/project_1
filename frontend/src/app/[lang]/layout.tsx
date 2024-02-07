@@ -50,7 +50,7 @@ export default async function RootLayout(props: {
                         <FunctionalComponent />
 
                         <Header dict={dict} />
-
+                        
                         <Suspense fallback={<Loading />}>
                             <div className="p-4">
                                 {props.children}

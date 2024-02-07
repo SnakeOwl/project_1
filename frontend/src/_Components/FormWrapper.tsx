@@ -3,7 +3,6 @@ import { FormEvent, useState } from "react";
 import { GreenText, RedText } from "./text/borderedText";
 import { BlueButton } from "./Buttons/ColoredButtons";
 import Script from "next/script";
-import captchaInfo from "@/config/recaptcha.json"
 
 interface IProps {
     children: React.ReactNode
@@ -75,7 +74,7 @@ export default function FormWrapper({
 
         // grecaptcha подтягивается с помощью внешнего скрипта.
         grecaptcha.ready(function () {
-            grecaptcha.execute(captchaInfo.RECAPTCHA_SITE_KEY, { action: 'submit' }).then(function (token: string) {
+            grecaptcha.execute( process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "", { action: 'submit' }).then(function (token: string) {
                 Promise.resolve(request)
                     .then(({ data }) => {
                         setSide({ errMessage: undefined, success: true });
