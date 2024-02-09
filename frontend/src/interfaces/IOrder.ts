@@ -19,7 +19,5 @@ export default interface IOrder {
 
     created_at: string
 
-    basket: IBasket
-
-    offers?: IOffer[]
+    basket?: IBasket
 }

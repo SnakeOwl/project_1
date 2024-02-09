@@ -62,7 +62,7 @@ export default function OrderForm({ orderID }: { orderID: string }) {
 
             <h2>Заказанные предложения</h2>
             <section>
-                {order?.offers?.map(offer =>
+                {order?.basket?.offers.map(offer =>
                     <CardWrapper className="w-full md:w-1/2 2xl:w-1/4">
                         <Img src={offer.short_image} className=" h-full w-full object-cover rounded-lg" />
                         <section className="mt-2">

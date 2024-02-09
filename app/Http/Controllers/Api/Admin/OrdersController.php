@@ -29,7 +29,7 @@ class OrdersController extends Controller
      */
     public function show(Order $order)
     {
-        return $order->load("offers.item");
+        return $order->load("basket.offers.item");
     }
 
     /**

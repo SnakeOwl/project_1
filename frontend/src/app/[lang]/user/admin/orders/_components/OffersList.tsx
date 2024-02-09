@@ -39,7 +39,7 @@ export default function OffersList() {
                     className="w-full md:w-1/2 2xl:w-1/4"
                 >
                     <div className="mb-2">
-                        {order.name}
+                        {order.name} <br />
                         {order.email}
                     </div>
                     <div className="mb-2">

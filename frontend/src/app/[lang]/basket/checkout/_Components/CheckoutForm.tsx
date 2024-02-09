@@ -25,7 +25,7 @@ export default function CheckoutForm({
 
         delivery_method: "courier",
         address: "",
-        post_index: undefined,
+        post_index: "",
         storage_id: undefined,
     });
 
