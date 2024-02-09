@@ -55,7 +55,7 @@ export default function OrderInformation({
             </h2>
 
             <ListOfOffers
-                offers={order.basket.offers}
+                offers={order.basket?.offers || []}
                 dictionary={dictionary}
             />
         </>
