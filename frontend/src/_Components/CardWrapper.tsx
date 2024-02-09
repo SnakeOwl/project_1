@@ -8,7 +8,7 @@ const CardWrapper = ({
     className?: string
 }) => {
     return (
-        <div className={`rounded-md p-1 border border-gray-200 dark:border-gray-800 ${className}`}>
+        <div className={`flex flex-col justify-between rounded-md p-1 border border-gray-200 dark:border-gray-800 ${className}`}>
             {children}
         </div>
     )

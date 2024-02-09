@@ -1,6 +1,7 @@
 import axiosClient from "@/axios-client"
 import IOrder from "@/interfaces/IOrder";
 import "server-only"
+import OffersList from "./_components/OffersList";
 
 
 async function getShape(categoryID: string, shapeID: string): Promise<IOrder>{
@@ -26,7 +27,7 @@ export default async function OrdersPage({
         <main>
             <h1>Заказы пользователей</h1>
 
-            <p className="text-red-400">Доделать этот участок когда будет вменяемое оформление заказа</p>
+            <OffersList />
         </main>
     )
 }

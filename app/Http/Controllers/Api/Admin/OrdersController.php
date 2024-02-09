@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -12,7 +13,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        return Order::active()->paginate(25);
     }
 
     /**
@@ -26,9 +27,9 @@ class OrdersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Order $order)
     {
-        //
+        return $order->load("offers.item");
     }
 
     /**
@@ -42,8 +43,8 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Order $order)
     {
-        //
+        $order->delete();
     }
 }

@@ -18,7 +18,7 @@ export default function Card({
     const offerLink = `/offer/${offer.id}`;
 
     return (
-        <CardWrapper className="w-full lg:w-1/4 2xl:w-1/6 pb-4 flex flex-col justify-between">
+        <CardWrapper className="w-full lg:w-1/4 2xl:w-1/6 pb-4">
             <div className="h-64 rounded-md overflow-hidden mb-2">
                 <Link href={offerLink} className="h-full w-full" >
                     <Img

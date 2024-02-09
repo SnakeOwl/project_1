@@ -1,4 +1,5 @@
 import IBasket from "./IBasket"
+import IOffer from "./IOffer"
 
 export default interface IOrder {
     readonly id: string
@@ -16,5 +17,9 @@ export default interface IOrder {
     address: string
     date_delivered: string
 
+    created_at: string
+
     basket: IBasket
+
+    offers?: IOffer[]
 }

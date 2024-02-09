@@ -11,11 +11,6 @@ export default function NavigationMenu(){
             upperName: false,
         },
         {   
-            route: '/admin/orders',
-            name: lang['orders'],
-            upperName: menuInfo.countOrders,
-        },
-        {   
             route: '/admin/subscribers',
             name: lang['subscribers'],
             upperName: menuInfo.countSubscribers,

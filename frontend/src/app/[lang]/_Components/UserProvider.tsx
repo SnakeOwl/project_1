@@ -3,7 +3,6 @@ import ReducerUser from "@/context/User/ReducerUser";
 import UserContextType from "@/context/User/UserContextType";
 import { useReducer } from "react";
 import ContextUser from "@/context/User/ContextUser";
-import { WebVitals } from "@/utils/web-vitals";
 
 
 export default function UserProvider({
@@ -17,7 +16,6 @@ export default function UserProvider({
         bkey: undefined
     };
     
-    // WebVitals();
 
     const [stateUser, dispatchUser] = useReducer(ReducerUser, updatedStateUser);
     return (
