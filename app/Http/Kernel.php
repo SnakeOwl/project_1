@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'basket_not_empty' => \App\Http\Middleware\BasketIsNotEmpty::class,
         'isEditor' => \App\Http\Middleware\CheckUsersRights::class,
         'isAdmin' => \App\Http\Middleware\CheckForAdmin::class,
+        
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

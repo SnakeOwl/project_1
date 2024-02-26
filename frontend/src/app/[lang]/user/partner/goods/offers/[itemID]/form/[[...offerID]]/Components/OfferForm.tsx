@@ -8,7 +8,7 @@ import CategoryOptions from "./CategoryOptions"
 import ICategory from "@/interfaces/ICategory"
 import { RedButtonReversed } from "@/_Components/Buttons/ColoredButtons"
 import FormWrapper from "@/_Components/FormWrapper"
-import { revalidatePath } from "next/cache"
+import revalidateOffer from "@/utils/cache/revalidateOffer"
 
 
 type PostData = {
@@ -84,6 +84,14 @@ export default function OfferForm({
         });
     }
 
+    // при обновлении элемента, нужно сбросить кеш для его публичной страницы.
+    async function successCallback() {
+        if (offer == undefined)
+            return;
+
+        revalidateOffer(offer.id);
+    }
+
 
     return (
         <FormWrapper
@@ -94,10 +102,7 @@ export default function OfferForm({
             setGeneralErrors={setErrors}
             headers={{ "Content-Type": "multipart/form-data" }}
             usePostUpdate={true}
-            successCallback={()=>{
-                revalidatePath("en/offer/", "page");
-                revalidatePath("ru/offer/", "page");
-            }}
+            successCallback={successCallback}
         >
             <div className="flex">
                 <Input

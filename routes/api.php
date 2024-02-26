@@ -90,9 +90,10 @@ Route::middleware('auth:sanctum')->group(function(){
                 "categories.shapes" => App\Http\Controllers\Api\Admin\ShapesController::class,
                 "shapes.options" => App\Http\Controllers\Api\Admin\ShapeOptionsController::class,
                 "messages" => App\Http\Controllers\Api\Admin\MessagesController::class,
-                "subscriptions" => App\Http\Controllers\Api\Admin\SubscriptionsController::class,
                 "one-click-requests" => App\Http\Controllers\Api\Resources\OneClickRequestController::class,
             ]);
+
+            Route::apiResource("subscriptions", App\Http\Controllers\Api\Admin\SubscriptionsController::class)->except(["store", "update"]);
         });
 });
 
