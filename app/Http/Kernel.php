@@ -37,10 +37,6 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
-            \App\Http\Middleware\SetLocale::class,
-            \App\Http\Middleware\SetCurrenCurrency::class,
-            \App\Http\Middleware\ThemeColor::class,
-
         ],
 
         'api' => [
@@ -58,14 +54,6 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
-        "UIsAdmin" =>\App\Http\Middleware\UIsAdmin::class,
-
-        'catalogInformation' => \App\Http\Middleware\CatalogInformation::class,
-        'adminCounter' => \App\Http\Middleware\AdminCounter::class,
-        'basket_not_empty' => \App\Http\Middleware\BasketIsNotEmpty::class,
-        'isEditor' => \App\Http\Middleware\CheckUsersRights::class,
-        'isAdmin' => \App\Http\Middleware\CheckForAdmin::class,
-        
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
