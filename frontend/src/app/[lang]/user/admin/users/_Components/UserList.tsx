@@ -20,14 +20,11 @@ function updateUsersList(setUsers: Function) {
 }
 
 
-interface IProps {
-    page?: string
-}
-
-
 export default function UserList({
     page
-}: IProps) {
+}: {
+    page?: string
+}) {
 
     const [users, setUsers] = useState<IUser[]>();
 

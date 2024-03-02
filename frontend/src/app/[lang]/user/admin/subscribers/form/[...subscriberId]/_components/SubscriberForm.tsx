@@ -10,16 +10,17 @@ async function getSub(id: string): Promise<ISubscriber>{
 }
 
 
-export default function SubscriberForm(params: {props: {SubID?: string}}){
+export default function SubscriberForm({
+    subscriberId
+}: {subscriberId?: string}){
     
     const [sub, setSub] = useState<ISubscriber>();
 
 
     useEffect(()=>{
-        const id = params.props.SubID;
-        if (id != undefined){
+        if (subscriberId != undefined){
             (async ()=>{
-                setSub(await getSub(id) )
+                setSub(await getSub(subscriberId))
             })();
         }
     }, [])
@@ -27,7 +28,7 @@ export default function SubscriberForm(params: {props: {SubID?: string}}){
 
     return (
         <div>
-            
+            asdf
         </div>
     )
 }
