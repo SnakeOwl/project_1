@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Api\Resources;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreOneClickFormRequest;
-use App\Http\Requests\UpdateOneClickFormRequest;
+use Illuminate\Http\Request;
 use App\Models\OneClickForm;
 
 class OneClickRequestController extends Controller
@@ -20,9 +19,9 @@ class OneClickRequestController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOneClickFormRequest $request)
+    public function store(Request $request)
     {
-        OneClickForm::create($request->validated());
+        OneClickForm::create($request->all());
         return response("", 204);
     }
 
@@ -37,9 +36,9 @@ class OneClickRequestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOneClickFormRequest $request, OneClickForm $one_click_request)
+    public function update(Request $request, OneClickForm $one_click_request)
     {
-        $one_click_request->update($request->validated());
+        $one_click_request->update($request->all());
         return response("", 204);
     }
 

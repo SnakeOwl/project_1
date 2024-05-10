@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreShapeOptionRequest;
-use App\Http\Requests\UpdateShapeOptionRequest;
+use Illuminate\Http\Request;
 use App\Models\ShapeOption;
 use App\Models\Shape;
 
@@ -21,9 +20,9 @@ class ShapeOptionsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreShapeOptionRequest $request, Shape $shape)
+    public function store(Request $request, Shape $shape)
     {
-        $shape->options()->create($request->validated());
+        $shape->options()->create($request->all());
         return response("", 204);
     }
 
@@ -38,9 +37,9 @@ class ShapeOptionsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateShapeOptionRequest $request, Shape $shape, ShapeOption $option)
+    public function update(Request $request, Shape $shape, ShapeOption $option)
     {
-        $option->update($request->validated());
+        $option->update($request->all());
         return response("", 204);
     }
 
